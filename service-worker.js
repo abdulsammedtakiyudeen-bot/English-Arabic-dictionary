@@ -1,4 +1,4 @@
-const CACHE_NAME = "iald-cache-v4";
+const CACHE_NAME = "iald-cache-v5";
 const CORE_ASSETS = ["./", "./index.html", "./style.css", "./app.js", "./manifest.json", "./arabic-words.json", "./icon.svg", "./privacy.html"];
 self.addEventListener("install", event => {
   event.waitUntil((async () => {

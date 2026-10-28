@@ -4,3 +4,13 @@
 @media(min-width:700px){.hero{padding:46px 20px 48px}.quick-stats{margin-top:-22px}.feature-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.feature-card{min-height:155px}.section{margin-top:40px}.word-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:380px){.brand small{font-size:9px}.daily-card{padding:16px}.daily-card .arabic{font-size:29px}.word-card{padding:11px}.word-card h3{font-size:22px}.word-card .english{font-size:12px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+/* Expanded beginner lesson notes */
+.lesson-expanded h4{font-size:12px;color:var(--green);margin:18px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.lesson-expanded ol{padding-left:22px;margin:8px 0 14px}
+.lesson-expanded li{font-size:12px;line-height:1.75;color:var(--muted);padding:3px 0}
+.lesson-vocab{display:grid;gap:8px;margin:8px 0 14px}
+.lesson-vocab-row{display:grid;grid-template-columns:minmax(72px,auto) minmax(0,1fr) 38px;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:9px}
+.lesson-vocab-row .arabic{font:22px Amiri,serif;color:var(--green);text-align:right}
+.lesson-vocab-row span:nth-child(2){font-size:11px;line-height:1.55;color:var(--muted);overflow-wrap:anywhere}
+.lesson-vocab-row span:nth-child(2) strong{color:var(--ink)}
+.lesson-expanded>.button{margin-top:10px}
