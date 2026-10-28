@@ -1,5 +1,5 @@
-const CACHE_NAME = "iald-cache-v5";
-const CORE_ASSETS = ["./", "./index.html", "./style.css", "./app.js", "./manifest.json", "./arabic-words.json", "./icon.svg", "./privacy.html"];
+const CACHE_NAME = "iald-cache-v6";
+const CORE_ASSETS = ["./", "./index.html", "./style.css", "./app.js", "./manifest.json", "./arabic-words.json", "./icon.svg", "./about.html", "./contact.html", "./privacy.html", "./terms.html"];
 self.addEventListener("install", event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
