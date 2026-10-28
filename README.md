@@ -45,3 +45,10 @@ A responsive English–Arabic vocabulary and Islamic Arabic learning PWA designe
 
 ## Welcome page update (v8)
 The site now opens at `index.html`, a welcome page with a “Continue my Arabic learning journey” button. That button opens `learn.html`, which contains the dictionary application. `welcome.css` styles the landing page. The service worker cache is `iald-cache-v8`. Upload all files in this ZIP to the repository root, replacing files with the same names.
+
+
+## Welcome and guided course (v9)
+- `index.html` is the welcome page. “Start learning now” opens `guide.html`, then `explore.html`, then `learn.html`.
+- Mini Lessons displays a 20-section sequential course. Only the first section is available at the start.
+- A learner opens a section, studies the notes and vocabulary, then taps the next-section button and confirms completion. Confirmed progress unlocks the next section and is stored in this browser.
+- Section progress is local to the device/browser and is not an online account sync.

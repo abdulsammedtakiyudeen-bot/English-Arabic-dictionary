@@ -13,6 +13,8 @@ let learned = store.get("learned", []);
 let correctAnswers = store.get("correctAnswers", 0);
 let lastOnlineQuery = "";
 let quiz = { questions: [], index: 0, score: 0, answered: false };
+let lessonCatalog = [];
+let pendingLessonCompletion = null;
 
 function esc(value) {
   return String(value ?? "").replace(/[&<>"']/g, ch => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[ch]));
@@ -129,8 +131,59 @@ function renderLessons(target) {
  {"title":"39. Islamic Vocabulary for Worship","ar":"وُضُوء · صَلَاة · صِيَام · دُعَاء","tr":"wuḍūʾ · ṣalāh · ṣiyām · duʿāʾ","notes":["وُضُوء means ablution.","صَلَاة means prayer; صِيَام means fasting; دُعَاء means supplication.","أَذَان is the call to prayer; مَسْجِد means mosque.","Distinguish everyday meanings from technical Islamic meanings.","For Qur’anic interpretation or religious rulings, consult reliable scholarship and qualified teachers."],"v":[["وُضُوء","wuḍūʾ","ablution"],["صَلَاة","ṣalāh","prayer"],["صِيَام","ṣiyām","fasting"],["دُعَاء","duʿāʾ","supplication"],["أَذَان","adhān","call to prayer"]],"sum":"Learn key worship terms and their English meanings.","en":"Islamic vocabulary includes terms for prayer, fasting, supplication, and the mosque."},
  {"title":"40. Listening and Pronunciation Practice","ar":"اِسْمَعْ · كَرِّرْ · تَكَلَّمْ","tr":"ismaʿ · karrir · takallam","notes":["Listen to a short phrase before repeating it.","Repeat slowly, then at a natural pace.","Shadowing means speaking along with audio after you know the meaning.","Speech voices vary by device and browser; if the Arabic voice is unavailable or inaccurate, use a trusted teacher or recording.","Review a small group of words several times instead of rushing."],"v":[["اِسْمَعْ","ismaʿ","listen!"],["كَرِّرْ","karrir","repeat!"],["تَكَلَّمْ","takallam","speak!"],["نُطْق","nuṭq","pronunciation"],["اِسْتِمَاع","istimāʿ","listening"]],"sum":"Listen, repeat, and review short phrases regularly.","en":"Active listening and repetition help develop recognition and pronunciation."}
  ];
- target.innerHTML = `<div class="lesson-list">${lessons.map((l,i)=>`<article class="lesson lesson-expanded"><h3>${esc(l.title)}</h3><p class="arabic" lang="ar" dir="rtl">${esc(l.ar)}</p><p><strong>${esc(l.tr)}</strong></p><h4>Lesson notes</h4><ol>${l.notes.map(n=>`<li>${esc(n)}</li>`).join("")}</ol><h4>Key words and English translations</h4><div class="lesson-vocab">${l.v.map(v=>`<div class="lesson-vocab-row"><span class="arabic" lang="ar" dir="rtl">${esc(v[0])}</span><span><strong>${esc(v[1])}</strong><br>${esc(v[2])}</span><button class="button button-outline" type="button" data-audio="${esc(v[0])}" aria-label="Listen to ${esc(v[2])}">🔊</button></div>`).join("")}</div><h4>Short English summary</h4><p>${esc(l.sum)}</p><h4>English translation</h4><p>${esc(l.en)}</p><button class="button button-gold" type="button" data-audio="${esc(l.ar)}">🔊 Listen to lesson phrase</button></article>`).join("")}</div>`;
+ lessonCatalog = lessons.slice(0, 20);
+ renderLessonMenu(target);
 }
+function completedLessonIds() {
+  const saved = store.get("completedLessons", []);
+  return Array.isArray(saved) ? saved.filter(n => Number.isInteger(n) && n >= 0 && n < 20) : [];
+}
+function renderLessonMenu(target) {
+  const done = completedLessonIds();
+  const nextIndex = done.length;
+  target.innerHTML = `<div class="course-progress-card"><div><p class="eyebrow">YOUR LEARNING PATH</p><h3>${Math.min(done.length,20)} of 20 sections completed</h3><p>Finish each section in order to unlock the next one.</p></div><div class="course-progress-track"><span style="width:${Math.min(100,done.length/20*100)}%"></span></div></div><div class="lesson-menu">${lessonCatalog.map((l,i)=>{const unlocked=i<=nextIndex||done.includes(i);const complete=done.includes(i);return `<button type="button" class="lesson-menu-item ${unlocked?'':'is-locked'} ${complete?'is-complete':''}" data-open-lesson="${i}" ${unlocked?'':'disabled'}><span class="lesson-number">${complete?'✓':unlocked?String(i+1).padStart(2,'0'):'🔒'}</span><span class="lesson-menu-copy"><strong>${esc(l.title.replace(/^\d+\.\s*/,''))}</strong><small>${complete?'Completed':unlocked?(i===nextIndex?'Available now':'Review this section'):'Complete the previous section first'}</small></span><span class="lesson-menu-arrow">${complete?'↻':unlocked?'›':'🔒'}</span></button>`}).join('')}</div><p class="small muted lesson-lock-note">Your progress is saved on this device. Clearing browser data may reset it.</p>`;
+}
+function renderLessonDetail(target, index) {
+  const done = completedLessonIds();
+  const nextIndex = done.length;
+  if (index > nextIndex && !done.includes(index)) { renderLessonMenu(target); return; }
+  const l = lessonCatalog[index];
+  if (!l) { renderLessonMenu(target); return; }
+  const complete = done.includes(index);
+  const finalLesson = index === 19;
+  target.innerHTML = `<div class="lesson-detail-top"><button class="text-btn" type="button" data-back-to-lessons>← All sections</button><span class="pill">Section ${index+1} of 20</span></div><article class="lesson lesson-expanded lesson-detail"><p class="eyebrow">${complete?'COMPLETED SECTION':'YOUR CURRENT SECTION'}</p><h3>${esc(l.title)}</h3><p class="arabic" lang="ar" dir="rtl">${esc(l.ar)}</p><p><strong>${esc(l.tr)}</strong></p><h4>Lesson notes</h4><ol>${l.notes.map(n=>`<li>${esc(n)}</li>`).join('')}</ol><h4>Key words and English translations</h4><div class="lesson-vocab">${l.v.map(v=>`<div class="lesson-vocab-row"><span class="arabic" lang="ar" dir="rtl">${esc(v[0])}</span><span><strong>${esc(v[1])}</strong><br>${esc(v[2])}</span><button class="button button-outline" type="button" data-audio="${esc(v[0])}" aria-label="Listen to ${esc(v[2])}">🔊</button></div>`).join('')}</div><h4>Short English summary</h4><p>${esc(l.sum)}</p><h4>English translation</h4><p>${esc(l.en)}</p><button class="button button-gold" type="button" data-audio="${esc(l.ar)}">🔊 Listen to lesson phrase</button><div class="lesson-complete-box"><h4>${complete?'Section completed ✓':'Ready to continue?'}</h4><p>${complete?'You have confirmed completion of this section. You can review it any time.': 'Read the notes, practise the words, and listen to the phrases. When you are ready, continue to the next section.'}</p>${complete?`<button class="button button-outline" type="button" data-back-to-lessons>Back to section menu</button>`:`<button class="button button-gold" type="button" data-request-completion="${index}">${finalLesson?'Finish the 20-section course':'Move to the next section →'}</button>`}</div></article>`;
+}
+function showCompletionPrompt(index) {
+  const l = lessonCatalog[index];
+  if (!l) return;
+  pendingLessonCompletion = index;
+  const modal = document.createElement('div');
+  modal.className = 'lesson-confirm-backdrop';
+  modal.id = 'lessonConfirmModal';
+  modal.innerHTML = `<section class="lesson-confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="confirmLessonTitle"><div class="confirm-mark">✓</div><p class="eyebrow">PLEASE CONFIRM</p><h3 id="confirmLessonTitle">Have you completed this section?</h3><p>You are about to mark <strong>${esc(l.title)}</strong> as completed. Please confirm that you have read the lesson notes and practised the key words.</p><div class="confirm-actions"><button class="button button-outline" type="button" data-cancel-completion>Not yet</button><button class="button button-gold" type="button" data-confirm-completion>I testify, I have completed it</button></div></section>`;
+  document.body.appendChild(modal);
+}
+function confirmLessonCompletion() {
+  if (pendingLessonCompletion === null) return;
+  const index = pendingLessonCompletion;
+  const done = completedLessonIds();
+  if (!done.includes(index) && index === done.length) {
+    done.push(index);
+    store.set('completedLessons', done);
+  }
+  pendingLessonCompletion = null;
+  $('#lessonConfirmModal')?.remove();
+  if (done.length >= 20) {
+    $('#viewContent').innerHTML = `<div class="course-finish-card"><div class="finish-star">✦</div><p class="eyebrow">MĀ SHĀ’ ALLĀH · COURSE COMPLETE</p><h3>You completed all 20 Arabic learning sections!</h3><p>You have reached the end of this beginner pathway. Keep reviewing, listening, and practising what you learned.</p><p class="arabic" lang="ar" dir="rtl">رَبِّ زِدْنِي عِلْمًا</p><p><em>My Lord, increase me in knowledge.</em></p><button class="button button-gold" type="button" data-back-to-lessons>Review all 20 sections</button></div>`;
+  } else {
+    renderLessonMenu($('#viewContent'));
+    const next = lessonCatalog[done.length];
+    const note = document.createElement('div'); note.className='lesson-unlocked-notice';
+    note.innerHTML = `<strong>✓ Section completed!</strong><p>${esc(next.title)} is now unlocked. Open it when you are ready.</p>`;
+    $('#viewContent').prepend(note);
+  }
+}
+
 function startQuiz(target) {
   const pool = shuffle(words.filter(w => w.category !== "Online translation"));
   quiz = { questions: pool.slice(0, Math.min(10, pool.length)), index: 0, score: 0, answered: false };
@@ -231,6 +284,13 @@ async function onlineLookup() {
   }
 }
 function handleActions(event) {
+  const openLesson = event.target.closest('[data-open-lesson]');
+  if (openLesson) { renderLessonDetail($('#viewContent'), Number(openLesson.dataset.openLesson)); return; }
+  if (event.target.closest('[data-back-to-lessons]')) { $('#lessonConfirmModal')?.remove(); pendingLessonCompletion = null; renderLessonMenu($('#viewContent')); return; }
+  const requestCompletion = event.target.closest('[data-request-completion]');
+  if (requestCompletion) { showCompletionPrompt(Number(requestCompletion.dataset.requestCompletion)); return; }
+  if (event.target.closest('[data-confirm-completion]')) { confirmLessonCompletion(); return; }
+  if (event.target.closest('[data-cancel-completion]')) { $('#lessonConfirmModal')?.remove(); pendingLessonCompletion = null; return; }
   const audio = event.target.closest("[data-audio]");
   if (audio) { speakArabic(audio.dataset.audio); return; }
   const fav = event.target.closest("[data-fav]");
