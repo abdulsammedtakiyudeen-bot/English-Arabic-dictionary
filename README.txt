@@ -1,26 +1,30 @@
-ISLAMIC ARABIC LEARNING DICTIONARY — ACCOUNT PAGES (INITIAL VERSION)
+ISLAMIC ARABIC LEARNING DICTIONARY — PROFILE NAVIGATION ADD-ON
 
-Files:
-- config.js: Supabase project URL and browser publishable key
-- signup.html: email/password registration
-- login.html: email/password login and password reset email
-- dashboard.html: signed-in account and membership display
-- auth.js: Supabase Auth logic
-- auth.css: responsive styling
+Files in this package:
+- profile.html: account profile page
+- profile.js: loads profile details, updates display name, and logs out
+- profile.css: responsive styling with bottom navigation
+- config.js: Supabase URL and browser-safe publishable key
 
-INSTALLATION ON GITHUB MOBILE:
-1. Open repository abdulsammedtakiyudeen-bot/English-Arabic-dictionary.
-2. Upload these six files to the repository root (same level as index.html and learn.html).
-3. Commit changes to main and wait for GitHub Pages to publish.
-4. Visit /signup.html to test registration, then confirm the email if prompted, and visit /login.html.
+IMPORTANT: These files do not automatically modify your existing learn.html. To show Profile in BOTH the top and bottom navigation, add the snippets below to learn.html.
 
-SUPABASE SETTINGS:
-- Authentication > URL Configuration: set Site URL to https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/
-- Add this exact URL to Redirect URLs if required: https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/**
-- Keep email confirmation enabled. If confirmation emails do not arrive, review Supabase email/SMTP configuration.
+1) TOP NAVIGATION
+In learn.html, find the <header class="topbar"> area. After the existing theme button, add:
+<a class="profile-top-link" href="./profile.html" aria-label="My profile">♙ Profile</a>
 
-IMPORTANT LIMITS:
-- This is the first account/authentication stage. Existing home/learning pages have not been replaced or automatically linked; add links to signup.html/login.html in those pages after testing.
-- Membership defaults to FREE. Do not manually change a user's membership to premium as a payment process. Paid membership requires a trusted server-side payment verification flow and protected entitlement updates; static GitHub Pages alone cannot safely verify payments.
-- The publishable key is designed for browser use; never put a service_role/secret key or database password in these files.
-- Supabase CDN use requires an internet connection for account features. Existing dictionary content should remain available as currently built.
+2) BOTTOM NAVIGATION
+In learn.html, find <nav class="bottom-nav" aria-label="Main navigation">. Add this anchor before </nav>:
+<a class="nav-item" href="./profile.html"><span>♙</span>Profile</a>
+
+3) STYLE THE TOP LINK
+Add this CSS to the end of style.css:
+.profile-top-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 12px;border:1px solid #b28b3b;border-radius:12px;color:inherit;text-decoration:none;font-size:13px;font-weight:700;white-space:nowrap}
+
+4) UPLOAD all four files to the ROOT of the same GitHub repository, alongside learn.html, login.html, signup.html and config.js. If config.js already exists from the account-system package, keep one config.js only; use the values in this package.
+
+5) Supabase must have the public.profiles table and RLS policies previously created. The profile page lets a signed-in user update only their own display_name. It does not allow changing membership status.
+
+6) Set Supabase Authentication > URL Configuration Site URL to:
+https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/
+
+This is an add-on, not a full website replacement. Do not replace index.html, learn.html, app.js, or service-worker.js with files from another project.
