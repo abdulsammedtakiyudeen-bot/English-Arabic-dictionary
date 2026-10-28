@@ -34,3 +34,14 @@ A responsive English–Arabic vocabulary and Islamic Arabic learning PWA designe
 - Arabic speech depends on speech synthesis and the Arabic voices available on the user's device.
 - Browser storage is device/browser-specific and is not cloud-synced.
 - Review the privacy notice and test the published site on the devices you plan to support before a Play Store release.
+
+
+## Expanded learning release v7
+- Expanded Arabic-English vocabulary with word forms and practical phrases organised by category.
+- 40 detailed lessons with Arabic examples, transliteration, notes, English summaries, and listening buttons.
+- Offline cache version bumped to v7.
+- Vocabulary includes Modern Standard Arabic and Islamic learning terms; specialised meanings should be checked against reliable references.
+
+
+## Welcome page update (v8)
+The site now opens at `index.html`, a welcome page with a “Continue my Arabic learning journey” button. That button opens `learn.html`, which contains the dictionary application. `welcome.css` styles the landing page. The service worker cache is `iald-cache-v8`. Upload all files in this ZIP to the repository root, replacing files with the same names.
