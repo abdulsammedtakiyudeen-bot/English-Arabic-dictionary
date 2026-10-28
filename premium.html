@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#12372a">
+  <meta name="description" content="Choose a Premium membership for Islamic Arabic Learning Dictionary.">
   <title>Premium Membership | Islamic Arabic Learning Dictionary</title>
 
   <style>
@@ -19,10 +20,13 @@
 
     main {
       width: min(100%, 760px);
-      margin: 30px auto;
+      margin: 25px auto;
     }
 
-    header { text-align: center; margin-bottom: 28px; }
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
 
     .plans {
       display: grid;
@@ -46,7 +50,10 @@
       margin: 12px 0;
     }
 
-    .muted { color: #627368; line-height: 1.6; }
+    .muted {
+      color: #627368;
+      line-height: 1.6;
+    }
 
     button, .link {
       display: block;
@@ -64,18 +71,30 @@
       margin-top: 18px;
     }
 
-    button:disabled { opacity: .6; cursor: wait; }
+    button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
 
     .status {
       margin: 20px 0;
       padding: 14px;
       background: white;
+      border: 1px solid #dce8df;
       border-radius: 12px;
       line-height: 1.6;
       overflow-wrap: anywhere;
     }
 
-    footer { text-align: center; margin-top: 24px; }
+    .error {
+      color: #a32222;
+      border-color: #e6baba;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 24px;
+    }
   </style>
 </head>
 
@@ -84,12 +103,12 @@
   <header>
     <h1>✨ Premium Membership</h1>
     <p class="muted">
-      Support your learning with a Premium membership.
+      Choose a plan to support your Arabic learning.
     </p>
   </header>
 
   <div id="status" class="status" role="status" aria-live="polite">
-    Checking your account…
+    Checking your account...
   </div>
 
   <section class="plans">
@@ -97,21 +116,28 @@
       <h2>Monthly</h2>
       <p class="price">GH₵15</p>
       <p class="muted">30 days of Premium membership.</p>
-      <button type="button" data-plan="monthly">Choose Monthly</button>
+      <button type="button" data-plan="monthly" disabled>
+        Choose Monthly
+      </button>
     </article>
 
     <article class="plan">
       <h2>Yearly</h2>
       <p class="price">GH₵120</p>
       <p class="muted">365 days of Premium membership.</p>
-      <button type="button" data-plan="yearly">Choose Yearly</button>
+      <button type="button" data-plan="yearly" disabled>
+        Choose Yearly
+      </button>
     </article>
   </section>
 
   <footer>
     <a class="link" href="./profile.html">View My Profile</a>
     <a class="link" href="./learn.html">Back to Learning</a>
-    <p class="muted">Payments are processed securely through Paystack.</p>
+    <p class="muted">
+      Payments are processed through Paystack.
+      Test Mode should remain enabled during testing.
+    </p>
   </footer>
 </main>
 
@@ -123,14 +149,26 @@
   const status = document.getElementById("status");
   const buttons = [...document.querySelectorAll("[data-plan]")];
 
+  function showStatus(message, isError = false) {
+    status.textContent = message;
+    status.classList.toggle("error", isError);
+  }
+
+  function enableButtons(enabled) {
+    buttons.forEach(button => {
+      button.disabled = !enabled;
+    });
+  }
+
   if (
     !window.supabase ||
     !window.SUPABASE_URL ||
     !window.SUPABASE_PUBLISHABLE_KEY
   ) {
-    status.textContent =
-      "Account service unavailable. Check config.js and your internet connection.";
-    buttons.forEach(button => button.disabled = true);
+    showStatus(
+      "Supabase could not load. Check your internet connection and config.js.",
+      true
+    );
     return;
   }
 
@@ -139,75 +177,132 @@
     window.SUPABASE_PUBLISHABLE_KEY
   );
 
-  let signedIn = false;
+  let currentUser = null;
+  let busy = false;
 
   async function checkAccount() {
+    enableButtons(false);
+    showStatus("Checking your login...");
+
     const { data, error } = await client.auth.getUser();
 
     if (error || !data.user) {
-      signedIn = false;
-      status.textContent =
-        "Please log in before purchasing Premium.";
+      currentUser = null;
+      showStatus(
+        "Please log in to your dictionary account before choosing a Premium plan.",
+        true
+      );
+      enableButtons(true);
       return;
     }
 
-    signedIn = true;
-    status.textContent =
-      "Signed in as " + data.user.email +
-      ". Choose your preferred Premium plan.";
+    currentUser = data.user;
+
+    showStatus(
+      "Signed in as " + (currentUser.email || "your account") +
+      ". Choose Monthly or Yearly to continue."
+    );
+
+    enableButtons(true);
   }
 
-  async function startPayment(plan, button) {
-    if (!signedIn) {
-      location.href = "./login.html";
+  async function startPayment(plan) {
+    if (busy) return;
+
+    if (plan !== "monthly" && plan !== "yearly") {
+      showStatus("Please choose a valid membership plan.", true);
       return;
     }
 
-    buttons.forEach(item => item.disabled = true);
-    status.textContent = "Preparing secure Paystack checkout…";
+    busy = true;
+    enableButtons(false);
+    showStatus("Checking your session...");
 
     try {
+      const { data: userData, error: userError } =
+        await client.auth.getUser();
+
+      if (userError || !userData.user) {
+        currentUser = null;
+        showStatus(
+          "Your login session is missing or expired. Please log in, then return to Premium.",
+          true
+        );
+        return;
+      }
+
+      currentUser = userData.user;
+
+      showStatus("Preparing secure Paystack checkout...");
+
       const { data, error } = await client.functions.invoke(
         "rapid-responder",
         {
           body: {
             action: "initialize",
-            plan
+            plan: plan
           }
         }
       );
 
       if (error) {
+        let detail = error.message || "The payment service returned an error.";
+
+        try {
+          if (error.context && typeof error.context.json === "function") {
+            const responseBody = await error.context.json();
+            if (responseBody && responseBody.error) {
+              detail = responseBody.error;
+            }
+          }
+        } catch (_) {}
+
+        throw new Error(detail);
+      }
+
+      if (data && data.error) {
+        throw new Error(data.error);
+      }
+
+      if (!data || !data.authorization_url) {
         throw new Error(
-          "Could not start checkout. Check your connection and try again."
+          "Checkout did not return a payment link. Check the rapid-responder Edge Function logs."
         );
       }
 
-      if (
-        !data ||
-        !data.authorization_url ||
-        !data.reference
-      ) {
-        throw new Error(data?.error || "Checkout could not be created.");
-      }
+      showStatus("Opening Paystack checkout...");
 
-      status.textContent = "Opening Paystack checkout…";
-      location.href = data.authorization_url;
+      window.location.assign(data.authorization_url);
+
     } catch (error) {
-      status.textContent =
-        error.message || "An unexpected error occurred.";
-      buttons.forEach(item => item.disabled = false);
+      console.error("Premium checkout error:", error);
+
+      showStatus(
+        "Payment could not start: " +
+        (error.message || "Unexpected error") +
+        " Please check your connection and try again.",
+        true
+      );
+
+    } finally {
+      busy = false;
+      enableButtons(true);
     }
   }
 
   buttons.forEach(button => {
     button.addEventListener("click", () => {
-      startPayment(button.dataset.plan, button);
+      startPayment(button.dataset.plan);
     });
   });
 
-  checkAccount().catch(() => {
-    status.textContent = "Could not check your account. Refresh and try again.";
+  checkAccount().catch(error => {
+    console.error("Account check error:", error);
+    showStatus(
+      "Could not check your account. Refresh the page and try again.",
+      true
+    );
+    enableButtons(true);
   });
 })();
 </script>
