@@ -3,17 +3,16 @@
     "id": "salam",
     "arabic": "سَلَام",
     "english": "Peace",
-    "definition": "Peace; safety; a greeting meaning peace.",
+    "definition": "Peace, safety, or a greeting expressing peace.",
     "example_ar": "السَّلَامُ عَلَيْكُمْ",
     "example_en": "Peace be upon you.",
-    "category": "Greeting",
-    "learn": true
+    "category": "Greeting"
   },
   {
     "id": "marhaba",
     "arabic": "مَرْحَبًا",
     "english": "Hello / Welcome",
-    "definition": "A common Arabic greeting meaning hello or welcome.",
+    "definition": "A common greeting meaning hello or welcome.",
     "example_ar": "مَرْحَبًا بِكَ",
     "example_en": "Welcome.",
     "category": "Greeting"
@@ -31,7 +30,7 @@
     "id": "afwan",
     "arabic": "عَفْوًا",
     "english": "You're welcome",
-    "definition": "Used to respond to thanks; can also mean pardon or excuse me.",
+    "definition": "Often used to respond to thanks; it can also mean pardon or excuse me.",
     "example_ar": "عَفْوًا",
     "example_en": "You're welcome.",
     "category": "Everyday"
@@ -58,7 +57,7 @@
     "id": "min-fadlik",
     "arabic": "مِنْ فَضْلِكَ",
     "english": "Please (to a man)",
-    "definition": "A polite way to say please when addressing a man.",
+    "definition": "A polite way to say please when addressing a man; feminine: مِنْ فَضْلِكِ.",
     "example_ar": "مَاءٌ مِنْ فَضْلِكَ",
     "example_en": "Water, please.",
     "category": "Everyday"
@@ -112,31 +111,28 @@
     "id": "iman",
     "arabic": "إِيمَان",
     "english": "Faith",
-    "definition": "Faith or belief; its precise theological use depends on context.",
+    "definition": "Faith or belief; precise theological use depends on context.",
     "example_ar": "الْإِيمَانُ",
     "example_en": "Faith.",
-    "category": "Islamic",
-    "learn": true
+    "category": "Islamic"
   },
   {
     "id": "islam",
     "arabic": "إِسْلَام",
-    "english": "Islam / submission to God",
-    "definition": "Islam; the Arabic word is related to submission and peace, with religious meaning shaped by context.",
+    "english": "Islam",
+    "definition": "Islam; religious meaning is shaped by context and scholarly explanation.",
     "example_ar": "الْإِسْلَامُ دِينِي",
     "example_en": "Islam is my religion.",
-    "category": "Islamic",
-    "learn": true
+    "category": "Islamic"
   },
   {
     "id": "salah",
     "arabic": "صَلَاة",
     "english": "Prayer",
-    "definition": "Prayer; in Islamic usage, especially the prescribed ritual prayer.",
+    "definition": "In Islamic usage, especially the prescribed ritual prayer.",
     "example_ar": "وَقْتُ الصَّلَاةِ",
     "example_en": "Prayer time.",
-    "category": "Islamic",
-    "learn": true
+    "category": "Islamic"
   },
   {
     "id": "masjid",
@@ -145,28 +141,25 @@
     "definition": "A mosque; a place where Muslims pray.",
     "example_ar": "أَذْهَبُ إِلَى الْمَسْجِدِ",
     "example_en": "I go to the mosque.",
-    "category": "Islamic",
-    "learn": true
+    "category": "Islamic"
   },
   {
     "id": "quran",
     "arabic": "قُرْآن",
     "english": "Qur'an",
-    "definition": "The Qur'an, Islam's holy scripture. This entry is a vocabulary aid, not tafsir.",
+    "definition": "The Qur'an, Islam's holy scripture. This vocabulary entry is not tafsir.",
     "example_ar": "الْقُرْآنُ الْكَرِيمُ",
     "example_en": "The Noble Qur'an.",
-    "category": "Islamic",
-    "learn": true
+    "category": "Islamic"
   },
   {
     "id": "dua",
     "arabic": "دُعَاء",
     "english": "Supplication",
-    "definition": "A supplication or personal prayer asking God for help or blessing.",
+    "definition": "A supplication or personal prayer asking Allah for help or blessing.",
     "example_ar": "أَدْعُو اللَّهَ",
     "example_en": "I supplicate to Allah.",
-    "category": "Islamic",
-    "learn": true
+    "category": "Islamic"
   },
   {
     "id": "allah",
@@ -175,8 +168,7 @@
     "definition": "The Arabic name for God.",
     "example_ar": "الْحَمْدُ لِلَّهِ",
     "example_en": "Praise belongs to Allah.",
-    "category": "Islamic",
-    "learn": true
+    "category": "Islamic"
   },
   {
     "id": "rahma",
@@ -185,8 +177,7 @@
     "definition": "Mercy, compassion, or kindness; meaning depends on context.",
     "example_ar": "رَحْمَةُ اللَّهِ",
     "example_en": "The mercy of Allah.",
-    "category": "Islamic",
-    "learn": true
+    "category": "Islamic"
   },
   {
     "id": "sabr",
@@ -195,8 +186,7 @@
     "definition": "Patience, perseverance, or steadfastness.",
     "example_ar": "الصَّبْرُ جَمِيلٌ",
     "example_en": "Patience is beautiful.",
-    "category": "Islamic",
-    "learn": true
+    "category": "Islamic"
   },
   {
     "id": "jannah",
@@ -205,8 +195,7 @@
     "definition": "Literally a garden; in Islamic contexts it can refer to Paradise.",
     "example_ar": "الْجَنَّةُ",
     "example_en": "Paradise.",
-    "category": "Islamic",
-    "learn": true
+    "category": "Islamic"
   },
   {
     "id": "sadaqah",
@@ -215,14 +204,13 @@
     "definition": "Voluntary charity or a charitable act.",
     "example_ar": "الصَّدَقَةُ",
     "example_en": "Charity.",
-    "category": "Islamic",
-    "learn": true
+    "category": "Islamic"
   },
   {
     "id": "muslim",
     "arabic": "مُسْلِم",
     "english": "Muslim",
-    "definition": "A Muslim; feminine form: مُسْلِمَة.",
+    "definition": "A Muslim; the feminine form is مُسْلِمَة.",
     "example_ar": "أَنَا مُسْلِمٌ",
     "example_en": "I am a Muslim (masculine form).",
     "category": "Islamic"
@@ -260,7 +248,7 @@
     "english": "I",
     "definition": "The first-person singular pronoun: I.",
     "example_ar": "أَنَا طَالِبٌ",
-    "example_en": "I am a student (masculine form).",
+    "example_en": "I am a male student.",
     "category": "Basics"
   },
   {
@@ -280,5 +268,86 @@
     "example_ar": "هُوَ صَدِيقِي",
     "example_en": "He is my friend.",
     "category": "Everyday"
+  },
+  {
+    "id": "madrasah",
+    "arabic": "مَدْرَسَة",
+    "english": "School",
+    "definition": "A school or place of learning.",
+    "example_ar": "هَذِهِ مَدْرَسَتِي",
+    "example_en": "This is my school.",
+    "category": "Learning"
+  },
+  {
+    "id": "ustadh",
+    "arabic": "أُسْتَاذ",
+    "english": "Teacher",
+    "definition": "A teacher or instructor; feminine: أُسْتَاذَة.",
+    "example_ar": "هُوَ أُسْتَاذٌ",
+    "example_en": "He is a teacher.",
+    "category": "Learning"
+  },
+  {
+    "id": "talib",
+    "arabic": "طَالِب",
+    "english": "Student (masculine)",
+    "definition": "A male student; feminine: طَالِبَة.",
+    "example_ar": "أَنَا طَالِبٌ",
+    "example_en": "I am a male student.",
+    "category": "Learning"
+  },
+  {
+    "id": "sadiqah",
+    "arabic": "صَدِيقَة",
+    "english": "Female friend",
+    "definition": "A female friend.",
+    "example_ar": "هِيَ صَدِيقَتِي",
+    "example_en": "She is my friend.",
+    "category": "Everyday"
+  },
+  {
+    "id": "afiyah",
+    "arabic": "عَافِيَة",
+    "english": "Well-being",
+    "definition": "Well-being or good health; common expressions vary by region and context.",
+    "example_ar": "بِصِحَّةٍ وَعَافِيَةٍ",
+    "example_en": "In health and well-being.",
+    "category": "Everyday"
+  },
+  {
+    "id": "sukranallah",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "english": "Praise be to Allah",
+    "definition": "An expression of praise and gratitude to Allah.",
+    "example_ar": "الْحَمْدُ لِلَّهِ عَلَى كُلِّ حَالٍ",
+    "example_en": "Praise be to Allah in every situation.",
+    "category": "Islamic"
+  },
+  {
+    "id": "bismillah",
+    "arabic": "بِسْمِ اللَّهِ",
+    "english": "In the name of Allah",
+    "definition": "A phrase said before beginning something, meaning 'In the name of Allah'.",
+    "example_ar": "بِسْمِ اللَّهِ أَبْدَأُ",
+    "example_en": "In the name of Allah, I begin.",
+    "category": "Islamic"
+  },
+  {
+    "id": "inshallah",
+    "arabic": "إِنْ شَاءَ اللَّهُ",
+    "english": "If Allah wills",
+    "definition": "An expression used when speaking about a future intention, God willing.",
+    "example_ar": "سَأَتَعَلَّمُ الْعَرَبِيَّةَ إِنْ شَاءَ اللَّهُ",
+    "example_en": "I will learn Arabic, if Allah wills.",
+    "category": "Islamic"
+  },
+  {
+    "id": "salaam-alaikum",
+    "arabic": "السَّلَامُ عَلَيْكُمْ",
+    "english": "Peace be upon you",
+    "definition": "The common Muslim greeting meaning 'Peace be upon you'.",
+    "example_ar": "وَعَلَيْكُمُ السَّلَامُ",
+    "example_en": "And peace be upon you too.",
+    "category": "Greeting"
   }
 ]
