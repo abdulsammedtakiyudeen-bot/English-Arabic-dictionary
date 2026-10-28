@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12372a">
+  <title>Premium Membership | Islamic Arabic Learning Dictionary</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: system-ui, Arial, sans-serif;
+      background: #f3f7f4;
+      color: #183b2d;
+    }
+
+    main {
+      width: min(100%, 760px);
+      margin: 30px auto;
+    }
+
+    header { text-align: center; margin-bottom: 28px; }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+
+    .plan {
+      background: white;
+      border: 1px solid #dce8df;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 5px 20px #12372a0b;
+    }
+
+    .plan h2 { margin-top: 0; }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 12px 0;
+    }
+
+    .muted { color: #627368; line-height: 1.6; }
+
+    button, .link {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      border: 0;
+      border-radius: 10px;
+      background: #12372a;
+      color: white;
+      font: inherit;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      margin-top: 18px;
+    }
+
+    button:disabled { opacity: .6; cursor: wait; }
+
+    .status {
+      margin: 20px 0;
+      padding: 14px;
+      background: white;
+      border-radius: 12px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    footer { text-align: center; margin-top: 24px; }
+  </style>
+</head>
+
+<body>
+<main>
+  <header>
+    <h1>✨ Premium Membership</h1>
+    <p class="muted">
+      Support your learning with a Premium membership.
+    </p>
+  </header>
+
+  <div id="status" class="status" role="status" aria-live="polite">
+    Checking your account…
+  </div>
+
+  <section class="plans">
+    <article class="plan">
+      <h2>Monthly</h2>
+      <p class="price">GH₵15</p>
+      <p class="muted">30 days of Premium membership.</p>
+      <button type="button" data-plan="monthly">Choose Monthly</button>
+    </article>
+
+    <article class="plan">
+      <h2>Yearly</h2>
+      <p class="price">GH₵120</p>
+      <p class="muted">365 days of Premium membership.</p>
+      <button type="button" data-plan="yearly">Choose Yearly</button>
+    </article>
+  </section>
+
+  <footer>
+    <a class="link" href="./profile.html">View My Profile</a>
+    <a class="link" href="./learn.html">Back to Learning</a>
+    <p class="muted">Payments are processed securely through Paystack.</p>
+  </footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./config.js"></script>
+
+<script>
+(() => {
+  const status = document.getElementById("status");
+  const buttons = [...document.querySelectorAll("[data-plan]")];
+
+  if (
+    !window.supabase ||
+    !window.SUPABASE_URL ||
+    !window.SUPABASE_PUBLISHABLE_KEY
+  ) {
+    status.textContent =
+      "Account service unavailable. Check config.js and your internet connection.";
+    buttons.forEach(button => button.disabled = true);
+    return;
+  }
+
+  const client = window.supabase.createClient(
+    window.SUPABASE_URL,
+    window.SUPABASE_PUBLISHABLE_KEY
+  );
+
+  let signedIn = false;
+
+  async function checkAccount() {
+    const { data, error } = await client.auth.getUser();
+
+    if (error || !data.user) {
+      signedIn = false;
+      status.textContent =
+        "Please log in before purchasing Premium.";
+      return;
+    }
+
+    signedIn = true;
+    status.textContent =
+      "Signed in as " + data.user.email +
+      ". Choose your preferred Premium plan.";
+  }
+
+  async function startPayment(plan, button) {
+    if (!signedIn) {
+      location.href = "./login.html";
+      return;
+    }
+
+    buttons.forEach(item => item.disabled = true);
+    status.textContent = "Preparing secure Paystack checkout…";
+
+    try {
+      const { data, error } = await client.functions.invoke(
+        "rapid-responder",
+        {
+          body: {
+            action: "initialize",
+            plan
+          }
+        }
+      );
+
+      if (error) {
+        throw new Error(
+          "Could not start checkout. Check your connection and try again."
+        );
+      }
+
+      if (
+        !data ||
+        !data.authorization_url ||
+        !data.reference
+      ) {
+        throw new Error(data?.error || "Checkout could not be created.");
+      }
+
+      status.textContent = "Opening Paystack checkout…";
+      location.href = data.authorization_url;
+    } catch (error) {
+      status.textContent =
+        error.message || "An unexpected error occurred.";
+      buttons.forEach(item => item.disabled = false);
+    }
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      startPayment(button.dataset.plan, button);
+    });
+  });
+
+  checkAccount().catch(() => {
+    status.textContent = "Could not check your account. Refresh and try again.";
+  });
+})();
+</script>
+</body>
+</html>
