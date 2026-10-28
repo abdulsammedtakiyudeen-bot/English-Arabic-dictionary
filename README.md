@@ -20,9 +20,9 @@ A responsive English–Arabic vocabulary and Islamic Arabic learning PWA designe
 
 ## Important fixes in this edition
 - All references use the actual root paths. The vocabulary loads from `./arabic-words.json`; the icon is `./icon.svg`.
-- The service worker cache was bumped to `iald-cache-v2` and uses the same real paths.
+- The service worker cache was bumped to `iald-cache-v3` and uses the same real paths.
 - The manifest uses the correct icon path and sets the app scope.
-- The dictionary file is validated before rendering, and failed loading shows a clear message.
+- The dictionary file is validated before rendering, and the built-in dictionary is used as a fallback if the JSON file cannot be loaded.
 - HTML text from dictionary entries is escaped before being inserted into the page.
 - The quiz avoids repeating the same answer within one question and tracks correct answers.
 - Favourites, learned words, theme choice, quiz count, and saved online entries persist in local storage.
