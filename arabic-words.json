@@ -1,0 +1,284 @@
+[
+  {
+    "id": "salam",
+    "arabic": "سَلَام",
+    "english": "Peace",
+    "definition": "Peace; safety; a greeting meaning peace.",
+    "example_ar": "السَّلَامُ عَلَيْكُمْ",
+    "example_en": "Peace be upon you.",
+    "category": "Greeting",
+    "learn": true
+  },
+  {
+    "id": "marhaba",
+    "arabic": "مَرْحَبًا",
+    "english": "Hello / Welcome",
+    "definition": "A common Arabic greeting meaning hello or welcome.",
+    "example_ar": "مَرْحَبًا بِكَ",
+    "example_en": "Welcome.",
+    "category": "Greeting"
+  },
+  {
+    "id": "shukran",
+    "arabic": "شُكْرًا",
+    "english": "Thank you",
+    "definition": "A polite expression of thanks.",
+    "example_ar": "شُكْرًا جَزِيلًا",
+    "example_en": "Thank you very much.",
+    "category": "Everyday"
+  },
+  {
+    "id": "afwan",
+    "arabic": "عَفْوًا",
+    "english": "You're welcome",
+    "definition": "Used to respond to thanks; can also mean pardon or excuse me.",
+    "example_ar": "عَفْوًا",
+    "example_en": "You're welcome.",
+    "category": "Everyday"
+  },
+  {
+    "id": "naam",
+    "arabic": "نَعَمْ",
+    "english": "Yes",
+    "definition": "Used to give an affirmative answer.",
+    "example_ar": "نَعَمْ، أَفْهَمُ",
+    "example_en": "Yes, I understand.",
+    "category": "Basics"
+  },
+  {
+    "id": "la",
+    "arabic": "لَا",
+    "english": "No",
+    "definition": "Used to give a negative answer.",
+    "example_ar": "لَا، شُكْرًا",
+    "example_en": "No, thank you.",
+    "category": "Basics"
+  },
+  {
+    "id": "min-fadlik",
+    "arabic": "مِنْ فَضْلِكَ",
+    "english": "Please (to a man)",
+    "definition": "A polite way to say please when addressing a man.",
+    "example_ar": "مَاءٌ مِنْ فَضْلِكَ",
+    "example_en": "Water, please.",
+    "category": "Everyday"
+  },
+  {
+    "id": "maa",
+    "arabic": "مَاء",
+    "english": "Water",
+    "definition": "Water; a basic everyday noun.",
+    "example_ar": "أُرِيدُ مَاءً",
+    "example_en": "I want water.",
+    "category": "Everyday"
+  },
+  {
+    "id": "bayt",
+    "arabic": "بَيْت",
+    "english": "House / Home",
+    "definition": "A house or home.",
+    "example_ar": "هَذَا بَيْتِي",
+    "example_en": "This is my house.",
+    "category": "Everyday"
+  },
+  {
+    "id": "kitab",
+    "arabic": "كِتَاب",
+    "english": "Book",
+    "definition": "A book; the plural is كُتُب (kutub).",
+    "example_ar": "هَذَا كِتَابٌ",
+    "example_en": "This is a book.",
+    "category": "Learning"
+  },
+  {
+    "id": "qalam",
+    "arabic": "قَلَم",
+    "english": "Pen",
+    "definition": "A pen used for writing.",
+    "example_ar": "هَذَا قَلَمٌ",
+    "example_en": "This is a pen.",
+    "category": "Learning"
+  },
+  {
+    "id": "ilm",
+    "arabic": "عِلْم",
+    "english": "Knowledge",
+    "definition": "Knowledge or learning; an important concept in Islamic tradition.",
+    "example_ar": "طَلَبُ الْعِلْمِ",
+    "example_en": "Seeking knowledge.",
+    "category": "Islamic"
+  },
+  {
+    "id": "iman",
+    "arabic": "إِيمَان",
+    "english": "Faith",
+    "definition": "Faith or belief; its precise theological use depends on context.",
+    "example_ar": "الْإِيمَانُ",
+    "example_en": "Faith.",
+    "category": "Islamic",
+    "learn": true
+  },
+  {
+    "id": "islam",
+    "arabic": "إِسْلَام",
+    "english": "Islam / submission to God",
+    "definition": "Islam; the Arabic word is related to submission and peace, with religious meaning shaped by context.",
+    "example_ar": "الْإِسْلَامُ دِينِي",
+    "example_en": "Islam is my religion.",
+    "category": "Islamic",
+    "learn": true
+  },
+  {
+    "id": "salah",
+    "arabic": "صَلَاة",
+    "english": "Prayer",
+    "definition": "Prayer; in Islamic usage, especially the prescribed ritual prayer.",
+    "example_ar": "وَقْتُ الصَّلَاةِ",
+    "example_en": "Prayer time.",
+    "category": "Islamic",
+    "learn": true
+  },
+  {
+    "id": "masjid",
+    "arabic": "مَسْجِد",
+    "english": "Mosque",
+    "definition": "A mosque; a place where Muslims pray.",
+    "example_ar": "أَذْهَبُ إِلَى الْمَسْجِدِ",
+    "example_en": "I go to the mosque.",
+    "category": "Islamic",
+    "learn": true
+  },
+  {
+    "id": "quran",
+    "arabic": "قُرْآن",
+    "english": "Qur'an",
+    "definition": "The Qur'an, Islam's holy scripture. This entry is a vocabulary aid, not tafsir.",
+    "example_ar": "الْقُرْآنُ الْكَرِيمُ",
+    "example_en": "The Noble Qur'an.",
+    "category": "Islamic",
+    "learn": true
+  },
+  {
+    "id": "dua",
+    "arabic": "دُعَاء",
+    "english": "Supplication",
+    "definition": "A supplication or personal prayer asking God for help or blessing.",
+    "example_ar": "أَدْعُو اللَّهَ",
+    "example_en": "I supplicate to Allah.",
+    "category": "Islamic",
+    "learn": true
+  },
+  {
+    "id": "allah",
+    "arabic": "اللَّه",
+    "english": "Allah / God",
+    "definition": "The Arabic name for God.",
+    "example_ar": "الْحَمْدُ لِلَّهِ",
+    "example_en": "Praise belongs to Allah.",
+    "category": "Islamic",
+    "learn": true
+  },
+  {
+    "id": "rahma",
+    "arabic": "رَحْمَة",
+    "english": "Mercy",
+    "definition": "Mercy, compassion, or kindness; meaning depends on context.",
+    "example_ar": "رَحْمَةُ اللَّهِ",
+    "example_en": "The mercy of Allah.",
+    "category": "Islamic",
+    "learn": true
+  },
+  {
+    "id": "sabr",
+    "arabic": "صَبْر",
+    "english": "Patience",
+    "definition": "Patience, perseverance, or steadfastness.",
+    "example_ar": "الصَّبْرُ جَمِيلٌ",
+    "example_en": "Patience is beautiful.",
+    "category": "Islamic",
+    "learn": true
+  },
+  {
+    "id": "jannah",
+    "arabic": "جَنَّة",
+    "english": "Garden / Paradise",
+    "definition": "Literally a garden; in Islamic contexts it can refer to Paradise.",
+    "example_ar": "الْجَنَّةُ",
+    "example_en": "Paradise.",
+    "category": "Islamic",
+    "learn": true
+  },
+  {
+    "id": "sadaqah",
+    "arabic": "صَدَقَة",
+    "english": "Charity",
+    "definition": "Voluntary charity or a charitable act.",
+    "example_ar": "الصَّدَقَةُ",
+    "example_en": "Charity.",
+    "category": "Islamic",
+    "learn": true
+  },
+  {
+    "id": "muslim",
+    "arabic": "مُسْلِم",
+    "english": "Muslim",
+    "definition": "A Muslim; feminine form: مُسْلِمَة.",
+    "example_ar": "أَنَا مُسْلِمٌ",
+    "example_en": "I am a Muslim (masculine form).",
+    "category": "Islamic"
+  },
+  {
+    "id": "sabah",
+    "arabic": "صَبَاح",
+    "english": "Morning",
+    "definition": "Morning; often used in greetings.",
+    "example_ar": "صَبَاحُ الْخَيْرِ",
+    "example_en": "Good morning.",
+    "category": "Everyday"
+  },
+  {
+    "id": "layl",
+    "arabic": "لَيْل",
+    "english": "Night",
+    "definition": "Night or nighttime.",
+    "example_ar": "اللَّيْلُ هَادِئٌ",
+    "example_en": "The night is quiet.",
+    "category": "Everyday"
+  },
+  {
+    "id": "yawm",
+    "arabic": "يَوْم",
+    "english": "Day",
+    "definition": "A day.",
+    "example_ar": "يَوْمٌ جَمِيلٌ",
+    "example_en": "A beautiful day.",
+    "category": "Everyday"
+  },
+  {
+    "id": "ana",
+    "arabic": "أَنَا",
+    "english": "I",
+    "definition": "The first-person singular pronoun: I.",
+    "example_ar": "أَنَا طَالِبٌ",
+    "example_en": "I am a student (masculine form).",
+    "category": "Basics"
+  },
+  {
+    "id": "anta",
+    "arabic": "أَنْتَ",
+    "english": "You (masculine)",
+    "definition": "Singular 'you' when addressing a male; feminine: أَنْتِ.",
+    "example_ar": "أَنْتَ صَدِيقِي",
+    "example_en": "You are my friend (to a man).",
+    "category": "Basics"
+  },
+  {
+    "id": "sadiq",
+    "arabic": "صَدِيق",
+    "english": "Friend",
+    "definition": "A male friend; feminine: صَدِيقَة.",
+    "example_ar": "هُوَ صَدِيقِي",
+    "example_en": "He is my friend.",
+    "category": "Everyday"
+  }
+]
