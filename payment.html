@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12372a">
+  <title>Premium Payment | Islamic Arabic Learning Dictionary</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: system-ui, Arial, sans-serif;
+      background: #f5f7f5;
+      color: #17372b;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    main {
+      width: min(100%, 480px);
+      padding: 28px;
+      box-sizing: border-box;
+      border-radius: 18px;
+      background: white;
+      box-shadow: 0 8px 32px #00000012;
+      text-align: center;
+    }
+
+    h1 { margin-top: 0; }
+    p { line-height: 1.6; overflow-wrap: anywhere; }
+
+    button, a.button {
+      display: inline-block;
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 18px;
+      background: #12372a;
+      color: white;
+      font: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 6px;
+    }
+
+    button:disabled { opacity: .6; cursor: wait; }
+    #reference { font-size: .85rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Premium Membership</h1>
+    <p id="status" role="status" aria-live="polite">
+      Checking your payment…
+    </p>
+    <p id="reference"></p>
+    <div id="actions" hidden>
+      <a class="button" href="./profile.html">View Profile</a>
+      <a class="button" href="./index.html">Return Home</a>
+    </div>
+    <button id="retry" hidden type="button">Check Payment Again</button>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./config.js"></script>
+  <script>
+    (() => {
+      const status = document.getElementById("status");
+      const referenceText = document.getElementById("reference");
+      const actions = document.getElementById("actions");
+      const retry = document.getElementById("retry");
+
+      if (
+        !window.supabase ||
+        !window.SUPABASE_URL ||
+        !window.SUPABASE_PUBLISHABLE_KEY
+      ) {
+        status.textContent =
+          "Account service unavailable. Check your configuration and internet connection.";
+        return;
+      }
+
+      const client = window.supabase.createClient(
+        window.SUPABASE_URL,
+        window.SUPABASE_PUBLISHABLE_KEY
+      );
+
+      const params = new URLSearchParams(window.location.search);
+      const reference = params.get("reference") || params.get("trxref");
+
+      if (reference) {
+        referenceText.textContent = "Payment reference: " + reference;
+      }
+
+      async function verifyPayment() {
+        retry.hidden = true;
+        actions.hidden = true;
+
+        if (!reference) {
+          status.textContent =
+            "No payment reference was found. If you have paid, sign in and contact support with your receipt.";
+          actions.hidden = false;
+          return;
+        }
+
+        status.textContent = "Verifying payment with Paystack…";
+
+        try {
+          const {
+            data: { session },
+            error: sessionError
+          } = await client.auth.getSession();
+
+          if (sessionError || !session) {
+            status.textContent =
+              "Please log in using the account that started this payment, then return here to verify it.";
+            retry.hidden = false;
+            actions.hidden = false;
+            return;
+          }
+
+          const { data, error } = await client.functions.invoke(
+            "rapid-responder",
+            {
+              body: {
+                action: "verify",
+                reference
+              }
+            }
+          );
+
+          if (error) {
+            throw new Error(
+              "Verification request failed. Please try again after signing in."
+            );
+          }
+
+          if (data?.verified && data?.activated) {
+            status.textContent =
+              "Payment verified! Your Premium membership is now active.";
+            actions.hidden = false;
+            return;
+          }
+
+          if (data?.verified && data?.already_processed) {
+            status.textContent =
+              "Your payment was already processed. Check your profile for membership status.";
+            actions.hidden = false;
+            return;
+          }
+
+          status.textContent =
+            data?.error ||
+            "Payment has not been confirmed yet. You can check again shortly.";
+          retry.hidden = false;
+        } catch (error) {
+          status.textContent =
+            error.message ||
+            "Unable to verify payment. Please try again.";
+          retry.hidden = false;
+        }
+      }
+
+      retry.addEventListener("click", verifyPayment);
+      verifyPayment();
+    })();
+  </script>
+</body>
+</html>
