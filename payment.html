@@ -59,10 +59,12 @@
       Checking your payment…
     </p>
     <p id="reference"></p>
+
     <div id="actions" hidden>
       <a class="button" href="./profile.html">View Profile</a>
       <a class="button" href="./index.html">Return Home</a>
     </div>
+
     <button id="retry" hidden type="button">Check Payment Again</button>
   </main>
 
@@ -100,11 +102,13 @@
       async function verifyPayment() {
         retry.hidden = true;
         actions.hidden = true;
+        retry.disabled = true;
 
         if (!reference) {
           status.textContent =
-            "No payment reference was found. If you have paid, sign in and contact support with your receipt.";
+            "No payment reference was found. If you paid, sign in and contact support with your receipt.";
           actions.hidden = false;
+          retry.disabled = false;
           return;
         }
 
@@ -118,14 +122,14 @@
 
           if (sessionError || !session) {
             status.textContent =
-              "Please log in using the account that started this payment, then return here to verify it.";
+              "Please sign in with the account that started this payment, then check again.";
             retry.hidden = false;
             actions.hidden = false;
             return;
           }
 
           const { data, error } = await client.functions.invoke(
-            "rapid-responder",
+            "rapid-handler",
             {
               body: {
                 action: "verify",
@@ -135,9 +139,20 @@
           );
 
           if (error) {
-            throw new Error(
-              "Verification request failed. Please try again after signing in."
-            );
+            let details = error.message || "Request failed.";
+
+            if (error.context) {
+              try {
+                const responseBody = await error.context.json();
+                if (responseBody?.error) {
+                  details = responseBody.error;
+                }
+              } catch (_) {
+                // Keep the original error message.
+              }
+            }
+
+            throw new Error("Verification failed: " + details);
           }
 
           if (data?.verified && data?.activated) {
@@ -160,9 +175,10 @@
           retry.hidden = false;
         } catch (error) {
           status.textContent =
-            error.message ||
-            "Unable to verify payment. Please try again.";
+            error.message || "Unable to verify payment. Please try again.";
           retry.hidden = false;
+        } finally {
+          retry.disabled = false;
         }
       }
 
