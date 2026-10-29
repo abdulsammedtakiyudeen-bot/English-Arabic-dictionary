@@ -5,22 +5,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#12372a">
-<meta name="description" content="Learn Arabic with embedded video lessons in the Islamic Arabic Learning Dictionary.">
+<meta name="description" content="Learn Arabic through video lessons, practice and structured courses.">
 <title>Arabic Courses | Islamic Arabic Learning Dictionary</title>
 <link rel="stylesheet" href="./style.css">
 <style>
-.course-wrap{width:min(950px,calc(100% - 28px));margin:24px auto 80px}
-.course-hero{background:#12372a;color:#fff;padding:26px;border-radius:20px}
-.course-hero h1{font-size:clamp(1.8rem,5vw,2.6rem)}
+.course-wrap{width:min(900px,calc(100% - 28px));margin:24px auto 80px}
+.course-hero{background:#12372a;color:white;padding:25px;border-radius:18px}
 .course-hero p{line-height:1.7}
-.course-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:18px;margin:24px 0}
-.course-card{background:var(--card,#fff);border:1px solid #dce8df;border-radius:16px;padding:16px;min-width:0}
-.course-card h2{font-size:1.15rem}
-.course-card p{line-height:1.6}
-.video-frame{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden}
-.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.course-btn{display:inline-block;background:#12372a;color:#fff;text-decoration:none;padding:11px 14px;border-radius:10px;font-weight:700}
-.course-note{padding:14px;background:#fff4d6;color:#594300;border-radius:12px;line-height:1.6}
+.course-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px;margin:22px 0}
+.lesson-card{background:var(--card,#fff);border:1px solid #dce8df;border-radius:16px;padding:16px;min-width:0}
+.lesson-card h2{font-size:1.15rem}
+.lesson-card p{line-height:1.6}
+.video-frame{width:100%;aspect-ratio:16/9;background:#111;border-radius:12px;overflow:hidden}
+.video-frame iframe{width:100%;height:100%;border:0}
+.action-btn{display:inline-block;background:#12372a;color:#fff;border:0;border-radius:10px;padding:11px 14px;font-weight:700;text-decoration:none;cursor:pointer;margin-top:8px}
+.action-btn:disabled{opacity:.45;cursor:not-allowed}
+.locked{opacity:.72}
+.status{font-size:.9rem;font-weight:700}
+.notice{background:#fff4d6;color:#594300;padding:14px;border-radius:12px;line-height:1.6}
+.progress-track{height:9px;background:#dce8df;border-radius:9px;overflow:hidden}
+.progress-fill{height:100%;width:0;background:#26845b;transition:width .2s}
 </style>
 </head>
 <body>
@@ -34,43 +38,139 @@
 <section class="course-hero">
 <p>STRUCTURED ARABIC LEARNING</p>
 <h1>Learn Arabic step by step</h1>
-<p>Watch lessons inside the app, practise what you learn, and build your Arabic skills one lesson at a time.</p>
-<a class="course-btn" href="./premium.html">Explore Premium</a>
-</section><p class="course-note"><strong>Note:</strong> Videos are hosted by YouTube. Internet access is required, and some videos may have embedding restrictions. Video availability and content are controlled by their owners.</p><section class="course-grid"><article class="course-card">
-<h2>📖 1. Arabic Reading</h2>
-<p>Start with Arabic letters, pronunciation, and vowel marks.</p>
-<div class="video-frame">
-<iframe src="https://www.youtube.com/embed/9-x28Zsz2EM" title="Arabic alphabet and vowel pronunciation for beginners" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-</article><article class="course-card">
-<h2>📚 2. Arabic Vocabulary</h2>
-<p>Learn everyday words, greetings, and useful expressions.</p>
-<div class="video-frame">
-<iframe src="https://www.youtube-nocookie.com/embed?listType=search&list=Arabic+vocabulary+for+beginners" title="Arabic vocabulary lessons" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
-<p><a href="https://www.youtube.com/results?search_query=Arabic+vocabulary+for+beginners" target="_blank" rel="noopener">Browse vocabulary lessons on YouTube</a></p>
-</article><article class="course-card">
-<h2>🧩 3. Arabic Grammar</h2>
-<p>Begin learning pronouns, nouns, and simple Arabic sentences.</p>
-<div class="video-frame">
-<iframe src="https://www.youtube-nocookie.com/embed?listType=search&list=Arabic+grammar+for+beginners" title="Arabic grammar lessons" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
-<p><a href="https://www.youtube.com/results?search_query=Arabic+grammar+for+beginners" target="_blank" rel="noopener">Browse grammar lessons on YouTube</a></p>
-</article><article class="course-card">
-<h2>💬 4. Arabic Conversation</h2>
-<p>Practise introductions, everyday questions, and simple conversations.</p>
-<div class="video-frame">
-<iframe src="https://www.youtube-nocookie.com/embed?listType=search&list=Arabic+conversation+for+beginners" title="Arabic conversation lessons" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
-<p><a href="https://www.youtube.com/results?search_query=Arabic+conversation+for+beginners" target="_blank" rel="noopener">Browse conversation lessons on YouTube</a></p>
-</article><article class="course-card">
-<h2>☾ 5. Islamic Arabic</h2>
-<p>Study common Islamic expressions and worship-related vocabulary.</p>
-<div class="video-frame">
-<iframe src="https://www.youtube-nocookie.com/embed?listType=search&list=Islamic+Arabic+vocabulary+for+beginners" title="Islamic Arabic vocabulary lessons" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
-<p><a href="https://www.youtube.com/results?search_query=Islamic+Arabic+vocabulary+for+beginners" target="_blank" rel="noopener">Browse Islamic Arabic lessons on YouTube</a></p>
-</article></section><p><a href="./learn.html">← Return to the Free Dictionary</a></p>
-</main>
-</body>
+<p>Watch a lesson, practise what you learn, and complete each lesson to unlock the next one.</p>
+<a class="action-btn" href="./premium.html">Explore Premium</a>
+</section><section class="section">
+<h2>Your progress</h2>
+<p id="progressText">0 of 4 lessons completed</p>
+<div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+</section><p class="notice"><strong>Please note:</strong> You need an internet connection to play videos. YouTube may restrict embedding for some videos. Lesson completion is currently saved in this browser on this device; it is not yet synchronised with your account. This version uses completion buttons, not graded exams.</p><section id="lessonGrid" class="course-grid"></section><p><a href="./learn.html">← Return to the Free Dictionary</a></p>
+</main><script>
+(function(){
+  const lessons = [
+    {
+      title:"📖 Lesson 1: Arabic Reading",
+      description:"Begin with the Arabic alphabet, letter sounds and basic pronunciation.",
+      video:"xLGxHenkgDA",
+      source:"https://www.youtube.com/watch?v=xLGxHenkgDA"
+    },
+    {
+      title:"📚 Lesson 2: Arabic Vocabulary",
+      description:"Learn basic Arabic words and build your vocabulary.",
+      video:"b3fu-a1FQzM",
+      source:"https://www.youtube.com/watch?v=b3fu-a1FQzM"
+    },
+    {
+      title:"🧩 Lesson 3: Arabic Grammar",
+      description:"Start learning how Arabic words and sentences work.",
+      video:"vCyCaK_qpdA",
+      source:"https://www.youtube.com/watch?v=vCyCaK_qpdA"
+    },
+    {
+      title:"💬 Lesson 4: Arabic Conversation",
+      description:"Practise greetings, introductions and everyday conversation.",
+      video:"F-h9LxnZe-E",
+      source:"https://www.youtube.com/watch?v=F-h9LxnZe-E"
+    }
+  ];
+
+  const storageKey = "arabic_course_completed_v1";
+  let completed = [];
+
+  try {
+    completed = JSON.parse(localStorage.getItem(storageKey) || "[]");
+    if (!Array.isArray(completed)) completed = [];
+  } catch(e) {
+    completed = [];
+  }
+
+  completed = completed.filter(n => Number.isInteger(n) && n >= 0 && n < lessons.length);
+
+  const grid = document.getElementById("lessonGrid");
+  const progressText = document.getElementById("progressText");
+  const progressFill = document.getElementById("progressFill");
+
+  function saveProgress(){
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(completed));
+    } catch(e) {
+      alert("Your browser could not save progress. Check your browser storage settings.");
+    }
+  }
+
+  function render(){
+    grid.innerHTML = "";
+
+    lessons.forEach((lesson,index) => {
+      const unlocked = index === 0 || completed.includes(index - 1);
+      const done = completed.includes(index);
+
+      const card = document.createElement("article");
+      card.className = "lesson-card" + (unlocked ? "" : " locked");
+
+      const title = document.createElement("h2");
+      title.textContent = lesson.title;
+      card.appendChild(title);
+
+      const desc = document.createElement("p");
+      desc.textContent = lesson.description;
+      card.appendChild(desc);
+
+      if(!unlocked){
+        const lock = document.createElement("p");
+        lock.className = "status";
+        lock.textContent = "🔒 Locked — complete the previous lesson first.";
+        card.appendChild(lock);
+      } else {
+        const frame = document.createElement("div");
+        frame.className = "video-frame";
+
+        const iframe = document.createElement("iframe");
+        iframe.src = "https://www.youtube-nocookie.com/embed/" + lesson.video;
+        iframe.title = lesson.title;
+        iframe.loading = "lazy";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.allowFullscreen = true;
+        frame.appendChild(iframe);
+        card.appendChild(frame);
+
+        const fallback = document.createElement("p");
+        fallback.innerHTML = 'If the video does not play, <a target="_blank" rel="noopener">open it on YouTube</a>.';
+        fallback.querySelector("a").href = lesson.source;
+        card.appendChild(fallback);
+
+        const button = document.createElement("button");
+        button.className = "action-btn";
+        button.type = "button";
+        button.textContent = done ? "✓ Lesson Completed" : "Mark Lesson Complete";
+        button.disabled = done;
+
+        button.addEventListener("click",function(){
+          if(index > 0 && !completed.includes(index - 1)){
+            alert("Complete the previous lesson first.");
+            return;
+          }
+
+          if(!completed.includes(index)){
+            completed.push(index);
+            completed.sort((a,b)=>a-b);
+            saveProgress();
+            render();
+          }
+        });
+
+        card.appendChild(button);
+      }
+
+      grid.appendChild(card);
+    });
+
+    progressText.textContent = completed.length + " of " + lessons.length + " lessons completed";
+    progressFill.style.width = (completed.length / lessons.length * 100) + "%";
+  }
+
+  render();
+})();
+</script></body>
 </html>
