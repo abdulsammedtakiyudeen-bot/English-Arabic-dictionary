@@ -739,3 +739,29 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
   }
+
+
+/* Professional visual refresh v10 */
+:root{
+  --green:#14283f;--green2:#203e59;--green3:#31536e;
+  --gold:#b89a63;--gold-light:#e0cfaa;--cream:#f3f5f7;
+  --ink:#172536;--muted:#667586;--line:#dce3e9;--white:#fff;
+  --shadow:0 16px 42px rgba(20,40,63,.09)
+}
+body{background:radial-gradient(ellipse at top left,#e8edf2 0,transparent 44%),var(--cream);color:var(--ink)}
+.brand{color:var(--green)}
+.brand-mark{background:linear-gradient(145deg,#24445f,#14283f);color:var(--gold-light);box-shadow:0 7px 20px #14283f22}
+.skip-link,.text-link{color:var(--green)}
+.skip-link:hover{background:#e9eff4;border-color:#cbd7e1}
+.welcome-hero{border-color:#b89a6330;background:radial-gradient(circle at 85% 18%,#b89a6318,transparent 30%),linear-gradient(135deg,#24445f 0%,#14283f 52%,#0d1c2d 100%);box-shadow:0 24px 65px #14283f20}
+.welcome-hero::before,.welcome-hero::after{border-color:#d4bd8c35}
+.bismillah,.word{color:var(--gold-light)}
+.eyebrow{color:#d0b77f}
+.welcome-hero h1 span{color:var(--gold-light)}
+.continue-button{border-color:#e7d7b3;background:linear-gradient(135deg,#e6d7b5,#c5ad7c);color:#182b40;box-shadow:0 10px 28px #0002}
+.continue-button:hover{filter:brightness(1.04)}
+.arabic-art{border-color:#c7ae7a;background:radial-gradient(circle,#ffffff12 0%,#ffffff03 52%,transparent 72%)}
+.arabic-art::before{border-color:#c7ae7a75}
+.arabic-art::after{border-color:#c7ae7a40}
+.welcome-footer a{color:#24445f}
+@media(max-width:700px){.welcome-header{padding:16px 18px}.welcome-hero{border-radius:24px;margin:8px 14px 0}}

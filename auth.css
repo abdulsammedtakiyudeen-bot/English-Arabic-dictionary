@@ -1,1 +1,15 @@
 :root{--green:#12372a;--green2:#1c5942;--gold:#d8b66a;--paper:#fbfaf5;--ink:#1d2b24;--muted:#68766d;--line:#dce5dc}*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#f4f6ee,#fffdf8);font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);min-height:100vh;display:flex;flex-direction:column}.top{padding:18px max(18px,calc((100% - 980px)/2));background:var(--green);color:white;display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{color:white;text-decoration:none;font-weight:750}.top a:last-child{color:#f5d98f}main{width:min(100% - 28px,480px);margin:36px auto;flex:1}.card{background:white;border:1px solid var(--line);border-radius:22px;padding:clamp(22px,5vw,34px);box-shadow:0 14px 40px #12372a10}.bismillah{text-align:center;color:var(--green2);font-size:1.3rem}h1{margin:8px 0 6px;font-size:clamp(1.7rem,6vw,2.2rem);color:var(--green);text-align:center}.intro{text-align:center;color:var(--muted);line-height:1.6;margin:0 0 24px}label{display:block;font-weight:650;font-size:.93rem;margin:16px 0 7px}input{width:100%;padding:13px 14px;border:1px solid #bdcbbf;border-radius:11px;font:inherit;background:#fff}input:focus{outline:3px solid #d8b66a66;border-color:var(--green2)}button,.button{display:inline-flex;justify-content:center;align-items:center;border:0;border-radius:11px;background:var(--green);color:#fff;padding:13px 16px;font:inherit;font-weight:700;text-decoration:none;cursor:pointer;width:100%;margin-top:18px}button:disabled{opacity:.6;cursor:wait}.secondary{background:#eef3ed;color:var(--green);border:1px solid var(--line)}.message{padding:12px;border-radius:10px;margin-top:14px;line-height:1.5;display:none;overflow-wrap:anywhere}.message.show{display:block}.message.error{background:#fff0ef;color:#8a241b}.message.ok{background:#edf8ef;color:#205a32}.links{text-align:center;line-height:2;margin-top:18px;color:var(--muted)}a{color:var(--green2)}footer{text-align:center;padding:20px;color:var(--muted);font-size:.85rem}.profile-row{padding:13px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.tag{display:inline-block;padding:5px 10px;border-radius:20px;background:#f8efd8;color:#755719;font-weight:700;font-size:.85rem}@media(max-width:420px){main{margin:22px auto}.top{padding:16px}}
+
+
+/* Professional visual refresh v10 — authentication presentation only */
+:root{--green:#14283f;--green2:#24445f;--gold:#b89a63;--paper:#f3f5f7;--ink:#172536;--muted:#667586;--line:#dce3e9}
+body{background:radial-gradient(ellipse at top left,#e8edf2 0,transparent 45%),var(--paper);color:var(--ink)}
+.top{background:linear-gradient(125deg,#14283f,#24445f)}
+.top a:last-child{color:#e0cfaa}
+.card{border-color:#dce3e9;border-radius:22px;box-shadow:0 18px 48px rgba(20,40,63,.10)}
+.bismillah{color:#24445f}
+h1{color:#14283f}
+input{border-color:#cbd5df;border-radius:12px}
+input:focus{outline:3px solid #b89a6333;border-color:#24445f}
+button,.button{background:#14283f;border-radius:12px}
+.secondary{background:#edf2f6;color:#203e59;border-color:#dce3e9}

@@ -1,1 +1,12 @@
 .step-badge{font-size:10px;font-weight:800;letter-spacing:1.2px;color:#e2ca83;border:1px solid #d8bd6b77;padding:9px 12px;border-radius:99px}.onboarding-main{max-width:900px;margin:0 auto;padding:28px 18px 50px}.onboarding-hero{text-align:center;background:#12372a;color:white;padding:35px 22px;border-radius:24px}.onboarding-hero h1{font-size:clamp(30px,7vw,45px);line-height:1.12;margin:10px 0 14px}.onboarding-hero .hero-copy{max-width:620px;margin:0 auto;color:#d1ddd5;line-height:1.75;font-size:14px}.onboarding-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:22px 0}.onboarding-card{background:#fffdf8;border:1px solid #e5e1d4;border-radius:17px;padding:18px;box-shadow:0 10px 24px #183d2509}.onboarding-card>span{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:#eef3ed;color:#12372a;font-size:22px}.onboarding-card h2{font-size:16px;color:#12372a;margin:15px 0 8px}.onboarding-card p,.onboarding-reminder{font-size:12px;line-height:1.75;color:#5d6a60}.onboarding-reminder{background:#f6f0df;border:1px solid #e6d8b3;border-radius:13px;padding:14px 16px}.onboarding-actions{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:23px}.onboarding-actions .continue-button{display:inline-flex;text-decoration:none;align-items:center;justify-content:center;text-align:center;max-width:100%;font-weight:800}.secondary-link{color:#12372a;font-size:12px;font-weight:700;text-decoration:none}.welcome-footer{padding-bottom:22px}@media(max-width:650px){.onboarding-grid{grid-template-columns:1fr}.onboarding-card{padding:16px}.onboarding-actions{align-items:stretch;flex-direction:column-reverse}.onboarding-actions .continue-button{width:100%}.secondary-link{text-align:center}}
+
+
+/* Professional visual refresh v10 */
+.step-badge{color:#e0cfaa;border-color:#b89a6377}
+.onboarding-hero{background:linear-gradient(125deg,#24445f,#14283f)}
+.onboarding-card{background:#fff;border-color:#dce3e9;box-shadow:0 12px 30px rgba(20,40,63,.07)}
+.onboarding-card>span{background:#edf2f6;color:#24445f}
+.onboarding-card h2{color:#203e59}
+.onboarding-card p,.onboarding-reminder{color:#667586}
+.onboarding-reminder{background:#f4f1e9;border-color:#e5dccb}
+.secondary-link{color:#24445f}
