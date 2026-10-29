@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#12372a">
+<title>Arabic Language Certificate</title><style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  padding:20px;
+  font-family:Arial,sans-serif;
+  background:#f1f5f2;
+  color:#173b2d;
+}
+.container{max-width:850px;margin:auto}
+.panel{
+  background:#fff;
+  padding:22px;
+  border-radius:14px;
+  box-shadow:0 4px 18px #00000010;
+  margin-bottom:20px;
+}
+h1,h2{text-align:center}
+p{line-height:1.6}
+input{
+  width:100%;
+  padding:13px;
+  border:1px solid #aaa;
+  border-radius:8px;
+  font-size:16px;
+  margin:8px 0 14px;
+}
+button,.button{
+  display:inline-block;
+  padding:12px 16px;
+  border:0;
+  border-radius:8px;
+  background:#12372a;
+  color:white;
+  font-weight:bold;
+  text-decoration:none;
+  cursor:pointer;
+  margin:4px;
+}
+.message{
+  background:#fff4d7;
+  color:#604800;
+  padding:14px;
+  border-radius:8px;
+}
+#certificate{
+  display:none;
+  background:#fff;
+  color:#173b2d;
+  border:10px double #b99a45;
+  padding:35px 24px;
+  text-align:center;
+  margin-top:24px;
+}
+#certificate .arabic{
+  font-size:25px;
+  direction:rtl;
+  margin:16px 0;
+}
+.cert-title{
+  font-size:clamp(25px,5vw,42px);
+  color:#12372a;
+  margin:18px 0;
+}
+.student-name{
+  font-size:clamp(24px,5vw,36px);
+  font-weight:bold;
+  color:#987326;
+  overflow-wrap:anywhere;
+  margin:20px 0;
+}
+.cert-number{
+  font-size:12px;
+  overflow-wrap:anywhere;
+}
+.back{text-align:center;margin:20px 0}
+@media print{
+  body{background:#fff;padding:0}
+  .container{max-width:none}
+  .panel,.back{display:none!important}
+  #certificate{
+    display:block!important;
+    margin:0;
+    min-height:95vh;
+    padding:35px 20px;
+    border:10px double #b99a45;
+    break-inside:avoid;
+  }
+  @page{size:A4 landscape;margin:10mm}
+}
+</style></head><body>
+<div class="container"><section class="panel">
+<h1>🎓 Arabic Language Certificate</h1>
+<p>
+Welcome! Complete all four Arabic course exams with a passing score
+of at least 70% to unlock your certificate.
+</p><div id="status" class="message">Checking your course progress...</div><div id="nameArea" hidden>
+<label for="studentName"><strong>Student's full name</strong></label>
+<input id="studentName" type="text" maxlength="80"
+placeholder="Enter your full name" autocomplete="name">
+<button id="generateBtn">Generate Certificate</button>
+</div>
+</section><section id="certificate">
+<div style="font-size:48px">🏅</div>
+<h2>ISLAMIC ARABIC LEARNING DICTIONARY</h2>
+<div class="arabic">شهادة الإنجاز في اللغة العربية</div>
+<h1 class="cert-title">CERTIFICATE OF ACHIEVEMENT</h1><p>This certificate is presented to</p>
+<div id="certName" class="student-name"></div><p>
+in recognition of completing the four Arabic learning lessons
+and passing all course examinations.
+</p><div class="arabic">بارك الله في علمك وجهدك</div><p><strong>Course:</strong> Arabic Language Learning</p>
+<p><strong>Completion date:</strong> <span id="certDate"></span></p>
+<p class="cert-number"><strong>Certificate number:</strong> <span id="certNumber"></span></p><p style="margin-top:35px">
+<strong>Islamic Arabic Learning Dictionary</strong><br>
+Digital Certificate of Achievement
+</p>
+</section><div class="back">
+<a class="button" href="./courses.html">← Back to Courses</a>
+<button id="printBtn" hidden>Print / Save as PDF</button>
+</div></div><script>
+(function(){
+  const status = document.getElementById("status");
+  const nameArea = document.getElementById("nameArea");
+  const nameInput = document.getElementById("studentName");
+  const certificate = document.getElementById("certificate");
+  const printBtn = document.getElementById("printBtn");
+
+  let progress;
+
+  try {
+    progress = JSON.parse(
+      localStorage.getItem("arabic_course_exam_v2") || "{}"
+    );
+  } catch(error) {
+    progress = {};
+  }
+
+  const passed = Array.isArray(progress.passed)
+    ? progress.passed
+    : [];
+
+  const allPassed = [0,1,2,3].every(n => passed.includes(n));
+
+  if(!allPassed){
+    status.textContent =
+      "🔒 Certificate locked. You must pass all four lesson exams with at least 70%. Current progress: " +
+      passed.filter(n => [0,1,2,3].includes(n)).length +
+      " of 4 exams passed.";
+
+    nameArea.hidden = true;
+    return;
+  }
+
+  status.className = "";
+  status.style.background = "#e2f4e8";
+  status.style.padding = "14px";
+  status.style.borderRadius = "8px";
+  status.textContent =
+    "🎉 All four exams are marked as passed on this device. Enter your name to create your certificate.";
+
+  nameArea.hidden = false;
+
+  document.getElementById("generateBtn").addEventListener("click", function(){
+    const name = nameInput.value.trim();
+
+    if(!name){
+      alert("Please enter your full name.");
+      nameInput.focus();
+      return;
+    }
+
+    const date = new Date();
+    const dateText = date.toLocaleDateString(undefined,{
+      year:"numeric",
+      month:"long",
+      day:"numeric"
+    });
+
+    const randomPart = Math.random().toString(36).slice(2,10).toUpperCase();
+    const certId = "IAD-" +
+      date.getFullYear() + "-" + randomPart;
+
+    document.getElementById("certName").textContent = name;
+    document.getElementById("certDate").textContent = dateText;
+    document.getElementById("certNumber").textContent = certId;
+
+    certificate.style.display = "block";
+    printBtn.hidden = false;
+
+    certificate.scrollIntoView({behavior:"smooth"});
+  });
+
+  printBtn.addEventListener("click", function(){
+    window.print();
+  });
+})();
+</script></body>
+</html>
