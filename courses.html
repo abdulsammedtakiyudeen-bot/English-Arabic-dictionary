@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -7,14 +6,15 @@
 <meta name="theme-color" content="#12372a">
 <meta name="description" content="Learn Arabic with video lessons and exams in the Islamic Arabic Learning Dictionary.">
 <title>Arabic Courses | Islamic Arabic Learning Dictionary</title>
-<link rel="stylesheet" href="./style.css"><!-- Hide course content until membership has been checked. --><style>
-body.course-access-checking > * {
+<link rel="stylesheet" href="./style.css">
+
+<style>
+html.course-access-checking body > * {
   visibility: hidden;
 }
-body.course-access-checking #accessMessage {
+html.course-access-checking #accessMessage {
   visibility: visible;
 }
-
 #accessMessage {
   position: fixed;
   inset: 0;
@@ -37,74 +37,177 @@ body.course-access-checking #accessMessage {
   font-weight: bold;
   text-decoration: none;
 }
+.course-wrap {
+  width: min(950px,calc(100% - 28px));
+  margin: 24px auto 80px;
+}
+.course-hero {
+  background: #12372a;
+  color: #fff;
+  padding: 25px;
+  border-radius: 18px;
+}
+.course-hero p { line-height: 1.7; }
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(min(100%,290px),1fr));
+  gap: 16px;
+  margin: 22px 0;
+}
+.lesson-card {
+  background: var(--card,#fff);
+  border: 1px solid #dce8df;
+  border-radius: 16px;
+  padding: 16px;
+  min-width: 0;
+}
+.lesson-card h2 { font-size: 1.15rem; }
+.lesson-card p { line-height: 1.6; }
+.video-frame {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.action-btn {
+  display: inline-block;
+  background: #12372a;
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 6px 4px 6px 0;
+}
+.action-btn:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+.locked { opacity: .8; }
+.status { font-size: .9rem; font-weight: 700; }
+.notice {
+  background: #fff4d6;
+  color: #594300;
+  padding: 14px;
+  border-radius: 12px;
+  line-height: 1.6;
+}
+.progress-track {
+  height: 9px;
+  background: #dce8df;
+  border-radius: 9px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: #26845b;
+  transition: width .2s;
+}
+.exam {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #dce8df;
+}
+.question {
+  padding: 12px;
+  margin: 12px 0;
+  background: rgba(128,128,128,.07);
+  border-radius: 12px;
+}
+.question p { font-weight: 700; }
+.question label {
+  display: block;
+  padding: 7px 4px;
+  cursor: pointer;
+  line-height: 1.5;
+}
+.question input { margin-right: 8px; }
+.result {
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 12px;
+  font-weight: 700;
+}
+.pass { background: #dff5e6; color: #155b31; }
+.fail { background: #fff0d9; color: #754600; }
+.small { font-size: .9rem; }
+.sync-status {
+  font-size: .9rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+</style>
 
-.course-wrap{width:min(950px,calc(100% - 28px));margin:24px auto 80px}
-.course-hero{background:#12372a;color:#fff;padding:25px;border-radius:18px}
-.course-hero p{line-height:1.7}
-.course-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px;margin:22px 0}
-.lesson-card{background:var(--card,#fff);border:1px solid #dce8df;border-radius:16px;padding:16px;min-width:0}
-.lesson-card h2{font-size:1.15rem}
-.lesson-card p{line-height:1.6}
-.video-frame{width:100%;aspect-ratio:16/9;background:#111;border-radius:12px;overflow:hidden}
-.video-frame iframe{width:100%;height:100%;border:0}
-.action-btn{display:inline-block;background:#12372a;color:#fff;border:0;border-radius:10px;padding:11px 14px;font-weight:700;text-decoration:none;cursor:pointer;margin:6px 4px 6px 0}
-.action-btn:disabled{opacity:.45;cursor:not-allowed}
-.locked{opacity:.8}
-.status{font-size:.9rem;font-weight:700}
-.notice{background:#fff4d6;color:#594300;padding:14px;border-radius:12px;line-height:1.6}
-.progress-track{height:9px;background:#dce8df;border-radius:9px;overflow:hidden}
-.progress-fill{height:100%;width:0;background:#26845b;transition:width .2s}
-.exam{margin-top:16px;padding-top:14px;border-top:1px solid #dce8df}
-.question{padding:12px;margin:12px 0;background:rgba(128,128,128,.07);border-radius:12px}
-.question p{font-weight:700}
-.question label{display:block;padding:7px 4px;cursor:pointer;line-height:1.5}
-.question input{margin-right:8px}
-.result{padding:12px;border-radius:10px;margin-top:12px;font-weight:700}
-.pass{background:#dff5e6;color:#155b31}
-.fail{background:#fff0d9;color:#754600}
-.small{font-size:.9rem}
-</style><script>
-/* Apply the access gate before the page is displayed. */
+<script>
 document.documentElement.classList.add("course-access-checking");
-</script><style>
-html.course-access-checking body > * {
-  visibility: hidden;
-}
-html.course-access-checking #accessMessage {
-  visibility: visible;
-}
-</style></head><body>
+</script>
+</head>
+
+<body>
 <div id="accessMessage" role="status" aria-live="polite">
   <div>
     <h2>Checking your Premium membership…</h2>
     <p>Please wait.</p>
   </div>
-</div><header class="topbar">
+</div>
+
+<header class="topbar">
   <a class="brand" href="./learn.html">
     <span class="brand-mark">بِ</span>
-    <span><strong>Arabic Learning</strong><small>Islamic Arabic Learning Dictionary</small></span>
+    <span>
+      <strong>Arabic Learning</strong>
+      <small>Islamic Arabic Learning Dictionary</small>
+    </span>
   </a>
   <a href="./profile.html">My Profile</a>
-</header><main class="course-wrap">
+</header>
+
+<main class="course-wrap">
   <section class="course-hero">
     <p>STRUCTURED ARABIC LEARNING</p>
     <h1>Learn Arabic step by step</h1>
     <p>Watch each lesson and take its exam. Score at least 70% to unlock the next lesson.</p>
     <a class="action-btn" href="./premium.html">Explore Premium</a>
-  </section>  <section class="section">
+  </section>
+
+  <section class="section">
     <h2>Your progress</h2>
-    <p id="progressText">0 of 4 exams passed</p>
-    <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+    <p id="progressText">Loading your progress…</p>
+    <div class="progress-track">
+      <div id="progressFill" class="progress-fill"></div>
+    </div>
     <p id="scoreSummary" class="small"></p>
-  </section>  <p class="notice">
+    <p id="syncStatus" class="sync-status" role="status" aria-live="polite">
+      Preparing account synchronisation…
+    </p>
+  </section>
+
+  <p class="notice">
     <strong>How it works:</strong>
     Each exam has 10 questions. You need 7 correct answers to pass.
-    You can retake a failed exam. Progress is saved in this browser on this device
-    and is not synchronised to your account. Exam results stored in the browser
-    are not secure proof of course completion.
-  </p>  <section id="lessonGrid" class="course-grid"></section>
+    You can retake a failed exam. Your progress is saved in this browser
+    and, when synchronisation succeeds, to your signed-in account.
+    Browser-submitted scores are not secure proof of course completion.
+  </p>
+
+  <section id="lessonGrid" class="course-grid"></section>
+
   <p><a href="./learn.html">← Return to the Free Dictionary</a></p>
-</main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./config.js"></script><script>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./config.js"></script>
+
+<script>
 (async function checkCourseAccess() {
   const message = document.getElementById("accessMessage");
 
@@ -147,8 +250,10 @@ html.course-access-checking #accessMessage {
       window.SUPABASE_PUBLISHABLE_KEY
     );
 
-    const { data: { user }, error: authError } =
-      await client.auth.getUser();
+    const {
+      data: { user },
+      error: authError
+    } = await client.auth.getUser();
 
     if (authError || !user) {
       showMessage(
@@ -193,8 +298,7 @@ html.course-access-checking #accessMessage {
     message.remove();
     document.documentElement.classList.remove("course-access-checking");
 
-    /* Start the existing course and exam system only after access is confirmed. */
-    startArabicCourses();
+    startArabicCourses(client, user.id);
 
   } catch (error) {
     showMessage(
@@ -205,8 +309,10 @@ html.course-access-checking #accessMessage {
     );
   }
 })();
-</script><script>
-function startArabicCourses() {
+</script>
+
+<script>
+function startArabicCourses(cloudClient, cloudUserId) {
 "use strict";
 
 const lessons = [
@@ -286,16 +392,33 @@ questions:[
 
 const storageKey = "arabic_course_exam_v2";
 let state = {scores:{}, passed:[]};
+let cloudAvailable = false;
+let cloudSaveQueue = Promise.resolve();
+
+const syncStatus = document.getElementById("syncStatus");
+
+function setSyncStatus(text) {
+  syncStatus.textContent = text;
+}
 
 try {
   const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+
   if (saved && typeof saved === "object") {
-    state.scores = saved.scores && typeof saved.scores === "object" ? saved.scores : {};
+    state.scores =
+      saved.scores && typeof saved.scores === "object"
+        ? saved.scores
+        : {};
+
     state.passed = Array.isArray(saved.passed)
-      ? saved.passed.filter(n => Number.isInteger(n) && n >= 0 && n < lessons.length)
+      ? saved.passed.filter(
+          n => Number.isInteger(n) && n >= 0 && n < lessons.length
+        )
       : [];
   }
-} catch (e) {}
+} catch (error) {
+  console.warn("Could not read browser progress:", error);
+}
 
 function isUnlocked(index) {
   return index === 0 || state.passed.includes(index - 1);
@@ -304,11 +427,121 @@ function isUnlocked(index) {
 function save() {
   try {
     localStorage.setItem(storageKey, JSON.stringify(state));
-    return true;
-  } catch (e) {
+  } catch (error) {
     alert("The browser could not save your progress. Check your storage settings.");
     return false;
   }
+
+  if (cloudAvailable) {
+    saveCloudProgress();
+  }
+
+  return true;
+}
+
+async function saveCloudProgress() {
+  if (!cloudAvailable || !cloudUserId) return;
+
+  const rows = lessons.map((lesson, index) => {
+    const saved = state.scores[index];
+
+    return {
+      user_id: cloudUserId,
+      lesson_index: index,
+      score: saved ? Number(saved.score) : 0,
+      passed: state.passed.includes(index),
+      attempted_at: saved && saved.date
+        ? saved.date
+        : new Date().toISOString()
+    };
+  });
+
+  cloudSaveQueue = cloudSaveQueue
+    .catch(() => {})
+    .then(async () => {
+      const { error } = await cloudClient
+        .from("course_progress")
+        .upsert(rows, {
+          onConflict: "user_id,lesson_index"
+        });
+
+      if (error) {
+        console.error("Cloud progress save failed:", error.message);
+        setSyncStatus(
+          "⚠️ Your browser saved the result, but account synchronisation failed. Please try again later."
+        );
+        return;
+      }
+
+      setSyncStatus("☁️ Your progress is synchronised with your account.");
+    });
+
+  await cloudSaveQueue;
+}
+
+async function loadCloudProgress() {
+  setSyncStatus("☁️ Loading progress from your account…");
+
+  const { data, error } = await cloudClient
+    .from("course_progress")
+    .select("lesson_index,score,passed,attempted_at")
+    .eq("user_id", cloudUserId);
+
+  if (error) {
+    console.error("Cloud progress load failed:", error.message);
+    cloudAvailable = false;
+    setSyncStatus(
+      "⚠️ Account progress could not be loaded. Your existing browser progress is still available on this device."
+    );
+    return;
+  }
+
+  // If the account has no records, keep existing browser progress
+  // and upload it rather than clearing it.
+  if (!data || data.length === 0) {
+    cloudAvailable = true;
+    await saveCloudProgress();
+    setSyncStatus(
+      "☁️ Account synchronisation is ready. Your current progress has been kept."
+    );
+    return;
+  }
+
+  state.scores = {};
+  state.passed = [];
+
+  data.forEach(row => {
+    const index = Number(row.lesson_index);
+    const score = Number(row.score);
+
+    if (!Number.isInteger(index) || index < 0 || index >= lessons.length) {
+      return;
+    }
+
+    if (score > 0 || row.passed) {
+      state.scores[index] = {
+        score: score,
+        date: row.attempted_at || new Date().toISOString()
+      };
+    }
+
+    if (row.passed === true && score >= 7) {
+      state.passed.push(index);
+    }
+  });
+
+  state.passed = [...new Set(state.passed)]
+    .sort((a, b) => a - b);
+
+  // Preserve the existing local-storage format.
+  try {
+    localStorage.setItem(storageKey, JSON.stringify(state));
+  } catch (error) {
+    console.warn("Could not update local progress:", error);
+  }
+
+  cloudAvailable = true;
+  setSyncStatus("☁️ Progress loaded from your account.");
 }
 
 function render() {
@@ -318,6 +551,7 @@ function render() {
   lessons.forEach((lesson, index) => {
     const unlocked = isUnlocked(index);
     const passed = state.passed.includes(index);
+
     const card = document.createElement("article");
     card.className = "lesson-card" + (unlocked ? "" : " locked");
 
@@ -332,11 +566,14 @@ function render() {
     const savedScore = state.scores[index];
     const status = document.createElement("p");
     status.className = "status";
+
     status.textContent = passed
-      ? "✅ Exam passed" + (savedScore ? " — latest score: " + savedScore.score + "/10" : "")
+      ? "✅ Exam passed" +
+        (savedScore ? " — latest score: " + savedScore.score + "/10" : "")
       : unlocked
         ? "🔓 Unlocked — watch the video and take the exam."
         : "🔒 Locked — pass the previous lesson's exam first.";
+
     card.appendChild(status);
 
     if (unlocked) {
@@ -344,30 +581,36 @@ function render() {
       frame.className = "video-frame";
 
       const iframe = document.createElement("iframe");
-      iframe.src = "https://www.youtube-nocookie.com/embed/" + lesson.video;
+      iframe.src =
+        "https://www.youtube-nocookie.com/embed/" + lesson.video;
       iframe.title = lesson.title;
       iframe.loading = "lazy";
-      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
       iframe.referrerPolicy = "strict-origin-when-cross-origin";
       iframe.allowFullscreen = true;
+
       frame.appendChild(iframe);
       card.appendChild(frame);
 
       const fallback = document.createElement("p");
       fallback.className = "small";
       fallback.textContent = "Video not playing? ";
+
       const videoLink = document.createElement("a");
       videoLink.href = lesson.source;
       videoLink.target = "_blank";
       videoLink.rel = "noopener";
       videoLink.textContent = "Open on YouTube";
+
       fallback.appendChild(videoLink);
       fallback.appendChild(document.createTextNode("."));
       card.appendChild(fallback);
 
       const exam = document.createElement("form");
       exam.className = "exam";
-      exam.innerHTML = "<h3>📝 Lesson Exam</h3><p>10 questions · Pass mark: 7/10 (70%)</p>";
+      exam.innerHTML =
+        "<h3>📝 Lesson Exam</h3><p>10 questions · Pass mark: 7/10 (70%)</p>";
 
       lesson.questions.forEach((q, qIndex) => {
         const block = document.createElement("div");
@@ -380,10 +623,14 @@ function render() {
         q.slice(1, 5).forEach((option, optionIndex) => {
           const label = document.createElement("label");
           const input = document.createElement("input");
+
           input.type = "radio";
           input.name = "lesson" + index + "q" + qIndex;
           input.value = optionIndex;
+
+          // Require an answer to every question.
           input.required = optionIndex === 0;
+
           label.appendChild(input);
           label.appendChild(document.createTextNode(option));
           block.appendChild(label);
@@ -403,72 +650,33 @@ function render() {
       result.hidden = true;
       exam.appendChild(result);
 
-      exam.addEventListener("submit", function(event) {
+      exam.addEventListener("submit", async function(event) {
         event.preventDefault();
 
         let score = 0;
         const formData = new FormData(exam);
 
         lesson.questions.forEach((q, qIndex) => {
-          if (Number(formData.get("lesson" + index + "q" + qIndex)) === q[5]) {
+          if (
+            Number(formData.get("lesson" + index + "q" + qIndex)) === q[5]
+          ) {
             score++;
           }
         });
 
         const didPass = score >= 7;
+
         state.scores[index] = {
           score: score,
           date: new Date().toISOString()
         };
 
         if (didPass) {
-          if (!state.passed.includes(index)) state.passed.push(index);
+          if (!state.passed.includes(index)) {
+            state.passed.push(index);
+          }
+
           state.passed.sort((a, b) => a - b);
         } else {
-          state.passed = state.passed.filter(n => n !== index && n < index);
-        }
-
-        save();
-
-        const resultClass = "result " + (didPass ? "pass" : "fail");
-        const resultText = didPass
-          ? "🎉 You scored " + score + "/10 (" + (score * 10) + "%). You passed! The next lesson is now unlocked."
-          : "You scored " + score + "/10 (" + (score * 10) + "%). You need 7/10 to pass. Review the lesson and try again.";
-
-        render();
-
-        const updatedCard = grid.children[index];
-        const updatedResult = updatedCard && updatedCard.querySelector(".result");
-
-        if (updatedResult) {
-          updatedResult.hidden = false;
-          updatedResult.className = resultClass;
-          updatedResult.textContent = resultText;
-        }
-      });
-
-      card.appendChild(exam);
-    }
-
-    grid.appendChild(card);
-  });
-
-  document.getElementById("progressText").textContent =
-    state.passed.length + " of " + lessons.length + " exams passed";
-
-  document.getElementById("progressFill").style.width =
-    (state.passed.length / lessons.length * 100) + "%";
-
-  document.getElementById("scoreSummary").textContent =
-    lessons.map((lesson, index) => {
-      const score = state.scores[index];
-      return score
-        ? "Lesson " + (index + 1) + ": " + score.score + "/10"
-        : "Lesson " + (index + 1) + ": Not attempted";
-    }).join(" · ");
-}
-
-render();
-}
-</script></body>
-  </html>
+          // A failed retake locks this lesson and later lessons again.
+         
