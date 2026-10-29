@@ -177,33 +177,36 @@
     window.SUPABASE_PUBLISHABLE_KEY
   );
 
-  let currentUser = null;
   let busy = false;
 
   async function checkAccount() {
     enableButtons(false);
-    showStatus("Checking your login...");
 
-    const { data, error } = await client.auth.getUser();
+    try {
+      const { data, error } = await client.auth.getUser();
 
-    if (error || !data.user) {
-      currentUser = null;
+      if (error || !data.user) {
+        showStatus(
+          "Please log in to your dictionary account before choosing a Premium plan.",
+          true
+        );
+        return;
+      }
+
       showStatus(
-        "Please log in to your dictionary account before choosing a Premium plan.",
+        "Signed in as " + (data.user.email || "your account") +
+        ". Choose Monthly or Yearly to continue."
+      );
+
+      enableButtons(true);
+    } catch (error) {
+      console.error("Account check error:", error);
+
+      showStatus(
+        "Could not check your login. Check your connection and refresh the page.",
         true
       );
-      enableButtons(true);
-      return;
     }
-
-    currentUser = data.user;
-
-    showStatus(
-      "Signed in as " + (currentUser.email || "your account") +
-      ". Choose Monthly or Yearly to continue."
-    );
-
-    enableButtons(true);
   }
 
   async function startPayment(plan) {
@@ -216,27 +219,24 @@
 
     busy = true;
     enableButtons(false);
-    showStatus("Checking your session...");
+    showStatus("Checking your login...");
 
     try {
       const { data: userData, error: userError } =
         await client.auth.getUser();
 
       if (userError || !userData.user) {
-        currentUser = null;
         showStatus(
-          "Your login session is missing or expired. Please log in, then return to Premium.",
+          "Your login session is missing or expired. Please log in again.",
           true
         );
         return;
       }
 
-      currentUser = userData.user;
-
-      showStatus("Preparing secure Paystack checkout...");
+      showStatus("Connecting to the payment service...");
 
       const { data, error } = await client.functions.invoke(
-        "rapid-responder",
+        "rapid-handler",
         {
           body: {
             action: "initialize",
@@ -246,16 +246,28 @@
       );
 
       if (error) {
-        let detail = error.message || "The payment service returned an error.";
+        console.error("Edge Function error:", error);
 
-        try {
-          if (error.context && typeof error.context.json === "function") {
-            const responseBody = await error.context.json();
-            if (responseBody && responseBody.error) {
-              detail = responseBody.error;
+        let detail = error.message ||
+          "The payment service could not be reached.";
+
+        if (error.context) {
+          try {
+            if (typeof error.context.json === "function") {
+              const body = await error.context.json();
+
+              if (body && body.error) {
+                detail = body.error;
+              }
+            } else if (typeof error.context.text === "function") {
+              const bodyText = await error.context.text();
+
+              if (bodyText) {
+                detail += " Response: " + bodyText.slice(0, 250);
+              }
             }
-          }
-        } catch (_) {}
+          } catch (_) {}
+        }
 
         throw new Error(detail);
       }
@@ -265,14 +277,16 @@
       }
 
       if (!data || !data.authorization_url) {
+        console.error("Unexpected checkout response:", data);
+
         throw new Error(
-          "Checkout did not return a payment link. Check the rapid-responder Edge Function logs."
+          "The function responded, but no Paystack checkout link was returned."
         );
       }
 
       showStatus("Opening Paystack checkout...");
 
-      window.location.assign(data.authorization_url);
+      window.location.href = data.authorization_url;
 
     } catch (error) {
       console.error("Premium checkout error:", error);
@@ -280,7 +294,7 @@
       showStatus(
         "Payment could not start: " +
         (error.message || "Unexpected error") +
-        " Please check your connection and try again.",
+        ". Please try again.",
         true
       );
 
@@ -296,14 +310,7 @@
     });
   });
 
-  checkAccount().catch(error => {
-    console.error("Account check error:", error);
-    showStatus(
-      "Could not check your account. Refresh the page and try again.",
-      true
-    );
-    enableButtons(true);
-  });
+  checkAccount();
 })();
 </script>
 </body>
