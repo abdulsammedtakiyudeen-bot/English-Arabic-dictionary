@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#092b20">
+  <title>Welcome to Your Arabic Journey</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #092b20;
+      color: white;
+    }
+
+    .intro {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      background: #092b20;
+    }
+
+    .background {
+      position: absolute;
+      inset: 0;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transform: scale(1.04);
+      animation: slideshow 16s infinite;
+      will-change: opacity, transform;
+    }
+
+    .slide:first-child {
+      background-image: url(
+        "https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1600&q=85"
+      );
+    }
+
+    .slide:nth-child(2) {
+      background-image: url(
+        "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=1600&q=85"
+      );
+      animation-delay: 8s;
+    }
+
+    @keyframes slideshow {
+      0% {
+        opacity: 0;
+        transform: scale(1.04);
+      }
+
+      8% {
+        opacity: 1;
+      }
+
+      42% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(1.04);
+      }
+    }
+
+    .shade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(3, 22, 16, 0.45),
+          rgba(3, 22, 16, 0.76)
+        );
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 28px 24px;
+      animation: appear 1.2s ease both;
+    }
+
+    .brand {
+      position: absolute;
+      top: 28px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 50%;
+      font-size: 19px;
+    }
+
+    .arabic {
+      font-size: clamp(38px, 8vw, 66px);
+      line-height: 1.7;
+      margin-bottom: 5px;
+      color: #f4d58d;
+      font-family: "Times New Roman", serif;
+      text-shadow: 0 3px 15px rgba(0,0,0,0.35);
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      color: #f4d58d;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 7vw, 54px);
+      line-height: 1.17;
+      max-width: 750px;
+      margin-bottom: 22px;
+      letter-spacing: -1px;
+      text-shadow: 0 3px 15px rgba(0,0,0,0.35);
+    }
+
+    .description {
+      max-width: 570px;
+      font-size: clamp(15px, 3.5vw, 18px);
+      line-height: 1.8;
+      color: rgba(255,255,255,0.91);
+      margin-bottom: 25px;
+    }
+
+    .quote {
+      max-width: 480px;
+      padding: 13px 20px;
+      border-left: 2px solid #f4d58d;
+      background: rgba(255,255,255,0.08);
+      font-size: 14px;
+      line-height: 1.7;
+      color: #fff3d5;
+      margin-bottom: 34px;
+    }
+
+    .continue {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      min-width: 205px;
+      padding: 17px 28px;
+      background: #f4d58d;
+      color: #153b2b;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .continue:hover {
+      background: #ffe6a9;
+      transform: translateY(-3px);
+    }
+
+    .continue:focus-visible {
+      outline: 3px solid white;
+      outline-offset: 5px;
+    }
+
+    .bottom-note {
+      position: absolute;
+      bottom: 22px;
+      left: 15px;
+      right: 15px;
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-height: 650px) {
+      .content {
+        padding-top: 55px;
+        padding-bottom: 42px;
+      }
+
+      .arabic {
+        font-size: 36px;
+        line-height: 1.25;
+      }
+
+      .eyebrow {
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 30px;
+        margin-bottom: 12px;
+      }
+
+      .description {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 14px;
+      }
+
+      .quote {
+        padding: 8px 12px;
+        margin-bottom: 16px;
+      }
+
+      .continue {
+        padding: 13px 24px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide {
+        animation-duration: 32s;
+      }
+
+      .content {
+        animation: none;
+      }
+
+      .continue {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="intro">
+
+    <div class="background" aria-hidden="true">
+      <div class="slide"></div>
+      <div class="slide"></div>
+    </div>
+
+    <div class="shade" aria-hidden="true"></div>
+
+    <section class="content">
+
+      <div class="brand">
+        <span class="brand-icon">ع</span>
+        <span>Arabic Learning Journey</span>
+      </div>
+
+      <div class="arabic" lang="ar" dir="rtl">أَهْلًا وَسَهْلًا</div>
+
+      <div class="eyebrow">A NEW JOURNEY BEGINS</div>
+
+      <h1>Welcome to Your Arabic Journey</h1>
+
+      <p class="description">
+        Discover a new language. Explore a new world.
+        Learn Arabic one word at a time, and take a step
+        towards a new skill every day.
+      </p>
+
+      <div class="quote">
+        Every expert was once a beginner.
+        Be patient with yourself, keep learning, and
+        celebrate every small step forward.
+      </div>
+
+      <a class="continue" href="./index.html">
+        CONTINUE <span aria-hidden="true">→</span>
+      </a>
+
+      <div class="bottom-note">
+        YOUR JOURNEY BEGINS WITH A SINGLE WORD
+      </div>
+
+    </section>
+  </main>
+</body>
+</html>
