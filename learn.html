@@ -6,12 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#12372a">
   <meta name="description" content="Learn Arabic vocabulary, everyday expressions, and Islamic terms with Islamic Arabic Learning Dictionary by Dev. Takiyudeen.">
-  <meta name="color-scheme" content="light dark">
-  <title>Islamic Arabic Learning Dictionary</title>
-  <link rel="manifest" href="./manifest.json">
+  <meta name="color-scheme" content="light dark">  <title>Islamic Arabic Learning Dictionary</title>  <link rel="manifest" href="./manifest.json">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css">
-  <style>
+  <link rel="stylesheet" href="./style.css">  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <script src="./config.js"></script>  <style>
     .feature-card.course-feature {
       display: flex;
       flex-direction: column;
@@ -24,54 +21,207 @@
       font: inherit;
       cursor: pointer;
     }
+
     .course-feature .feature-icon {
       font-size: 1.6rem;
     }
-  </style>
-</head>
-<body>
-<header class="topbar">
+
+    /* Premium promotion */
+    .premium-promo {
+      margin: 24px 0;
+      padding: 24px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #12372a, #245c43);
+      color: #fff;
+      box-shadow: 0 10px 28px rgba(18, 55, 42, 0.18);
+    }
+
+    .premium-promo[hidden] {
+      display: none !important;
+    }
+
+    .premium-promo .promo-label {
+      display: inline-block;
+      padding: 6px 10px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 999px;
+      font-size: .75rem;
+      letter-spacing: .08em;
+    }
+
+    .premium-promo h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.35rem, 5vw, 2rem);
+      color: #fff;
+    }
+
+    .premium-promo p {
+      line-height: 1.7;
+      margin: 8px 0 14px;
+      color: #edf6ef;
+    }
+
+    .premium-promo ul {
+      padding-left: 22px;
+      line-height: 1.9;
+      margin: 12px 0 20px;
+    }
+
+    .premium-promo .promo-prices {
+      font-weight: 700;
+      color: #f5df9b;
+    }
+
+    .premium-promo .promo-button {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 12px;
+      background: #f5df9b;
+      color: #12372a;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .premium-promo .promo-button:hover {
+      opacity: .92;
+    }
+
+    .premium-promo .promo-button:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 4px;
+    }
+
+    .premium-promo .promo-note {
+      font-size: .82rem;
+      margin-bottom: 0;
+    }
+  </style></head><body><header class="topbar">
   <a class="brand" href="./index.html" aria-label="Islamic Arabic Learning Dictionary home">
     <span class="brand-mark" aria-hidden="true">بِ</span>
-    <span><strong>Arabic Learning</strong><small>Islamic Arabic Learning Dictionary</small></span>
-  </a>
-  <button id="themeBtn" class="icon-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
-</header><main>
-  <section class="hero">
-    <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-    <p class="eyebrow">YOUR DAILY ARABIC COMPANION</p>
-    <h1>Discover Arabic,<br><span>one word at a time.</span></h1>
-    <p class="hero-copy">Build your vocabulary with everyday Arabic, useful expressions, and Islamic terms — at your own pace.</p>
-    <label class="search-box">
-      <span aria-hidden="true">⌕</span>
-      <input id="searchInput" type="search" placeholder="Search English or Arabic…" autocomplete="off" aria-label="Search words">
-      <button id="clearSearch" type="button" aria-label="Clear search" hidden>×</button>
-    </label>
-    <p class="search-hint">Try “peace”, “prayer”, “سَلَام”, or “مَاء”.</p>
-    <p id="appStatus" class="status-line" role="status" aria-live="polite"></p>
+    <span>
+      <strong>Arabic Learning</strong>
+      <small>Islamic Arabic Learning Dictionary</small>
+    </span>
+  </a><button
+id="themeBtn"
+class="icon-btn"
+type="button"
+aria-label="Toggle dark mode"
+title="Toggle dark mode"
+
+«◐</button>»
+
+</header><main>  <section class="hero">
+    <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p><p class="eyebrow">YOUR DAILY ARABIC COMPANION</p>
+
+<h1>Discover Arabic,<br><span>one word at a time.</span></h1>
+
+<p class="hero-copy">
+  Build your vocabulary with everyday Arabic, useful expressions,
+  and Islamic terms — at your own pace.
+</p>
+
+<label class="search-box">
+  <span aria-hidden="true">⌕</span>
+  <input
+    id="searchInput"
+    type="search"
+    placeholder="Search English or Arabic…"
+    autocomplete="off"
+    aria-label="Search words"
+  >
+  <button id="clearSearch" type="button" aria-label="Clear search" hidden>×</button>
+</label>
+
+<p class="search-hint">Try “peace”, “prayer”, “سَلَام”, or “مَاء”.</p>
+
+<p id="appStatus" class="status-line" role="status" aria-live="polite"></p>
+
+  </section>  <!-- Premium membership promotion -->  <section
+    id="premiumPromo"
+    class="premium-promo"
+    aria-labelledby="premiumPromoTitle"
+    hidden
+  >
+    <span class="promo-label">⭐ PREMIUM MEMBERSHIP</span><h2 id="premiumPromoTitle">Take Your Arabic Further</h2>
+
+<p>
+  Ready to move beyond the basics? Explore structured Arabic courses,
+  video lessons, examinations, and cloud-based learning progress.
+</p>
+
+<ul>
+  <li>🎓 Structured Arabic courses</li>
+  <li>🎥 Arabic video lessons</li>
+  <li>📝 Course examinations</li>
+  <li>📈 Save learning progress to your account</li>
+</ul>
+
+<p class="promo-prices">GH₵15/month or GH₵120/year</p>
+
+<a class="promo-button" href="./premium.html">
+  Explore Premium Plans →
+</a>
+
+<p class="promo-note">
+  View the Premium page for plan details and payment options.
+</p>
+
   </section>  <section class="quick-stats" aria-label="Your learning progress">
-    <div><span class="stat-icon">☆</span><strong id="favCount">0</strong><small>Saved words</small></div>
-    <div><span class="stat-icon">✓</span><strong id="learnedCount">0</strong><small>Words learned</small></div>
-    <div><span class="stat-icon">✧</span><strong id="quizCount">0</strong><small>Correct answers</small></div>
+    <div>
+      <span class="stat-icon">☆</span>
+      <strong id="favCount">0</strong>
+      <small>Saved words</small>
+    </div><div>
+  <span class="stat-icon">✓</span>
+  <strong id="learnedCount">0</strong>
+  <small>Words learned</small>
+</div>
+
+<div>
+  <span class="stat-icon">✧</span>
+  <strong id="quizCount">0</strong>
+  <small>Correct answers</small>
+</div>
+
   </section>  <section id="resultsSection" class="section" hidden>
     <div class="section-heading">
-      <div><p class="eyebrow">DICTIONARY</p><h2>Search results</h2></div>
+      <div>
+        <p class="eyebrow">DICTIONARY</p>
+        <h2>Search results</h2>
+      </div>
       <span id="resultCount" class="muted"></span>
-    </div>
-    <div id="results" class="word-list"></div>
-    <p id="noResults" class="empty-state" hidden>No matching words in the offline dictionary. You can try an optional online lookup, but machine translations may be wrong.</p>
-    <button id="onlineSearchBtn" class="button button-outline full" type="button" hidden>Try online translation</button>
-    <p id="onlineStatus" class="small muted" role="status" aria-live="polite"></p>
+    </div><div id="results" class="word-list"></div>
+
+<p id="noResults" class="empty-state" hidden>
+  No matching words in the offline dictionary. You can try an optional
+  online lookup, but machine translations may be wrong.
+</p>
+
+<button id="onlineSearchBtn" class="button button-outline full" type="button" hidden>
+  Try online translation
+</button>
+
+<p id="onlineStatus" class="small muted" role="status" aria-live="polite"></p>
+
   </section>  <section class="section">
     <div class="section-heading">
-      <div><p class="eyebrow">TODAY'S WORD</p><h2>A little Arabic every day</h2></div>
+      <div>
+        <p class="eyebrow">TODAY'S WORD</p>
+        <h2>A little Arabic every day</h2>
+      </div>
       <span class="pill">Daily practice</span>
-    </div>
-    <article id="dailyWord" class="daily-card"></article>
+    </div><article id="dailyWord" class="daily-card"></article>
+
   </section>  <section class="section">
     <div class="section-heading">
-      <div><p class="eyebrow">EXPLORE</p><h2>Choose your learning path</h2></div>
+      <div>
+        <p class="eyebrow">EXPLORE</p>
+        <h2>Choose your learning path</h2>
+      </div>
     </div><div class="feature-grid">
+
   <button class="feature-card" type="button" data-view="islamic">
     <span class="feature-icon">☾</span>
     <strong>Islamic words</strong>
@@ -100,42 +250,70 @@
     <span class="card-arrow">↗</span>
   </button>
 
-  <a class="feature-card course-feature" href="./courses.html" aria-label="Explore structured Arabic courses">
+  <a
+    class="feature-card course-feature"
+    href="./courses.html"
+    aria-label="Explore structured Arabic courses"
+  >
     <span class="feature-icon">🎓</span>
     <strong>Structured Courses</strong>
     <small>Explore Arabic courses and video lessons</small>
     <span class="card-arrow">↗</span>
   </a>
+
 </div>
 
   </section>  <section id="viewSection" class="section" hidden>
     <div class="section-heading">
-      <div><p class="eyebrow" id="viewEyebrow">LEARN</p><h2 id="viewTitle">Explore</h2></div>
+      <div>
+        <p class="eyebrow" id="viewEyebrow">LEARN</p>
+        <h2 id="viewTitle">Explore</h2>
+      </div>
       <button id="closeView" class="text-btn" type="button">Close ×</button>
-    </div>
-    <div id="viewContent"></div>
+    </div><div id="viewContent"></div>
+
   </section>  <section class="section about-card">
-    <span class="about-symbol" lang="ar" dir="rtl">بِسْمِ اللَّهِ</span>
-    <div>
-      <h2>Learn with care</h2>
-      <p>Translations are learning aids. Arabic words can carry different meanings depending on context. For Qur'anic interpretation and religious rulings, consult reliable tafsir and qualified teachers.</p>
-      <small>Created by <strong>Dev. Takiyudeen</strong></small>
-    </div>
+    <span class="about-symbol" lang="ar" dir="rtl">بِسْمِ اللَّهِ</span><div>
+  <h2>Learn with care</h2>
+  <p>
+    Translations are learning aids. Arabic words can carry different
+    meanings depending on context. For Qur'anic interpretation and
+    religious rulings, consult reliable tafsir and qualified teachers.
+  </p>
+  <small>Created by <strong>Dev. Takiyudeen</strong></small>
+</div>
+
   </section>  <section class="ad-slot" aria-label="Advertisement placeholder">
     <span>ADVERTISEMENT AREA</span>
-    <p>No advertising code is active in this version.</p>
-  </section>
-</main><nav class="bottom-nav" aria-label="Main navigation">
-  <button class="nav-item active" type="button" data-nav="home"><span>⌂</span>Home</button>
-  <button class="nav-item" type="button" data-nav="islamic"><span>☾</span>Words</button>
-  <button class="nav-item" type="button" data-nav="lessons"><span>▤</span>Lessons</button>
-  <button class="nav-item" type="button" data-nav="quiz"><span>✧</span>Quiz</button>
-  <button class="nav-item" type="button" data-nav="favorites"><span>☆</span>Saved</button>
-  <a class="nav-item" href="./courses.html" aria-label="Explore structured Arabic courses"><span>🎓</span>Courses</a>
-  <a class="nav-item" href="./profile.html" aria-label="Open your profile"><span>👤</span>Profile</a>
-  <a class="nav-item" href="./premium.html" aria-label="View Premium membership"><span>⭐</span>Premium</a>
+    <p>No external advertising code is active in this version.</p>
+  </section></main><nav class="bottom-nav" aria-label="Main navigation">
+  <button class="nav-item active" type="button" data-nav="home">
+    <span>⌂</span>Home
+  </button>  <button class="nav-item" type="button" data-nav="islamic">
+    <span>☾</span>Words
+  </button>  <button class="nav-item" type="button" data-nav="lessons">
+    <span>▤</span>Lessons
+  </button>  <button class="nav-item" type="button" data-nav="quiz">
+    <span>✧</span>Quiz
+  </button>  <button class="nav-item" type="button" data-nav="favorites">
+    <span>☆</span>Saved
+  </button>  <a class="nav-item" href="./courses.html" aria-label="Explore structured Arabic courses">
+    <span>🎓</span>Courses
+  </a>  <a class="nav-item" href="./profile.html" aria-label="Open your profile">
+    <span>👤</span>Profile
+  </a>  <a class="nav-item" href="./premium.html" aria-label="View Premium membership">
+    <span>⭐</span>Premium
+  </a>
 </nav><footer>
-  <p>© <span id="year"></span> Dev. Takiyudeen · <a href="./about.html">About</a> · <a href="./contact.html">Contact</a> · <a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a></p>
-  <p class="small">Offline vocabulary and progress are stored on this device. Online lookup needs internet.</p>
-</footer><script src="./app.js" defer></script></body>
+  <p>
+    © <span id="year"></span> Dev. Takiyudeen ·
+    <a href="./about.html">About</a> ·
+    <a href="./contact.html">Contact</a> ·
+    <a href="./privacy.html">Privacy</a> ·
+    <a href="./terms.html">Terms</a>
+  </p>  <p class="small">
+    Offline vocabulary and progress are stored on this device.
+    Online lookup needs internet.
+  </p>
+</footer><script src="./app.js" defer></script><script src="./promo.js" defer></script></body>
   </html>
