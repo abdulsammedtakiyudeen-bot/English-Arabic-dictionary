@@ -5,20 +5,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#12372a">
-<meta name="description" content="Explore Arabic reading, vocabulary, grammar, conversation and Islamic Arabic courses.">
+<meta name="description" content="Learn Arabic with embedded video lessons in the Islamic Arabic Learning Dictionary.">
 <title>Arabic Courses | Islamic Arabic Learning Dictionary</title>
 <link rel="stylesheet" href="./style.css">
 <style>
-.course-wrap{width:min(900px,calc(100% - 28px));margin:24px auto 80px}
-.course-hero{background:#12372a;color:white;padding:26px;border-radius:20px}
+.course-wrap{width:min(950px,calc(100% - 28px));margin:24px auto 80px}
+.course-hero{background:#12372a;color:#fff;padding:26px;border-radius:20px}
 .course-hero h1{font-size:clamp(1.8rem,5vw,2.6rem)}
 .course-hero p{line-height:1.7}
-.course-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin:22px 0}
-.course-card{background:white;color:#183b2d;border:1px solid #dce8df;border-radius:16px;padding:19px}
-.course-card h2{font-size:1.2rem}
-.course-card p{line-height:1.6;color:#52675b}
-.course-btn{display:inline-block;background:#12372a;color:white;text-decoration:none;padding:11px 14px;border-radius:10px;font-weight:700}
-.course-note{padding:15px;background:#fff4d6;color:#594300;border-radius:12px;line-height:1.6}
+.course-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:18px;margin:24px 0}
+.course-card{background:var(--card,#fff);border:1px solid #dce8df;border-radius:16px;padding:16px;min-width:0}
+.course-card h2{font-size:1.15rem}
+.course-card p{line-height:1.6}
+.video-frame{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.course-btn{display:inline-block;background:#12372a;color:#fff;text-decoration:none;padding:11px 14px;border-radius:10px;font-weight:700}
+.course-note{padding:14px;background:#fff4d6;color:#594300;border-radius:12px;line-height:1.6}
 </style>
 </head>
 <body>
@@ -32,31 +34,43 @@
 <section class="course-hero">
 <p>STRUCTURED ARABIC LEARNING</p>
 <h1>Learn Arabic step by step</h1>
-<p>Build your Arabic skills through structured courses, video lessons and examinations. Track your progress as you learn.</p>
-<a class="course-btn" href="./premium.html">Explore Premium Membership</a>
-</section><p class="course-note"><strong>Development notice:</strong> This is the first course-page version. Examination marking, automatic lesson unlocking, account-synchronised progress and certificate generation will be added in later stages. Premium access is not yet enforced on this page.</p><section class="course-grid">
-<article class="course-card">
-<h2>📖 Arabic Reading</h2>
-<p>Learn Arabic letters, their sounds, short vowels and how to read simple words.</p>
-<a class="course-btn" href="https://www.youtube.com/results?search_query=Arabic+letters+and+vowels+for+beginners" target="_blank" rel="noopener">Find Video Lessons ↗</a>
+<p>Watch lessons inside the app, practise what you learn, and build your Arabic skills one lesson at a time.</p>
+<a class="course-btn" href="./premium.html">Explore Premium</a>
+</section><p class="course-note"><strong>Note:</strong> Videos are hosted by YouTube. Internet access is required, and some videos may have embedding restrictions. Video availability and content are controlled by their owners.</p><section class="course-grid"><article class="course-card">
+<h2>📖 1. Arabic Reading</h2>
+<p>Start with Arabic letters, pronunciation, and vowel marks.</p>
+<div class="video-frame">
+<iframe src="https://www.youtube.com/embed/9-x28Zsz2EM" title="Arabic alphabet and vowel pronunciation for beginners" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 </article><article class="course-card">
-<h2>📚 Arabic Vocabulary</h2>
-<p>Learn greetings, family words, everyday objects and useful expressions.</p>
-<a class="course-btn" href="https://www.youtube.com/results?search_query=Arabic+vocabulary+for+beginners" target="_blank" rel="noopener">Find Video Lessons ↗</a>
+<h2>📚 2. Arabic Vocabulary</h2>
+<p>Learn everyday words, greetings, and useful expressions.</p>
+<div class="video-frame">
+<iframe src="https://www.youtube-nocookie.com/embed?listType=search&list=Arabic+vocabulary+for+beginners" title="Arabic vocabulary lessons" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+<p><a href="https://www.youtube.com/results?search_query=Arabic+vocabulary+for+beginners" target="_blank" rel="noopener">Browse vocabulary lessons on YouTube</a></p>
 </article><article class="course-card">
-<h2>🧩 Arabic Grammar</h2>
-<p>Understand pronouns, nouns, adjectives and basic sentence formation.</p>
-<a class="course-btn" href="https://www.youtube.com/results?search_query=Arabic+grammar+for+beginners" target="_blank" rel="noopener">Find Video Lessons ↗</a>
+<h2>🧩 3. Arabic Grammar</h2>
+<p>Begin learning pronouns, nouns, and simple Arabic sentences.</p>
+<div class="video-frame">
+<iframe src="https://www.youtube-nocookie.com/embed?listType=search&list=Arabic+grammar+for+beginners" title="Arabic grammar lessons" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+<p><a href="https://www.youtube.com/results?search_query=Arabic+grammar+for+beginners" target="_blank" rel="noopener">Browse grammar lessons on YouTube</a></p>
 </article><article class="course-card">
-<h2>💬 Arabic Conversation</h2>
-<p>Practise introductions, everyday questions and simple conversations.</p>
-<a class="course-btn" href="https://www.youtube.com/results?search_query=Arabic+conversation+for+beginners" target="_blank" rel="noopener">Find Video Lessons ↗</a>
+<h2>💬 4. Arabic Conversation</h2>
+<p>Practise introductions, everyday questions, and simple conversations.</p>
+<div class="video-frame">
+<iframe src="https://www.youtube-nocookie.com/embed?listType=search&list=Arabic+conversation+for+beginners" title="Arabic conversation lessons" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+<p><a href="https://www.youtube.com/results?search_query=Arabic+conversation+for+beginners" target="_blank" rel="noopener">Browse conversation lessons on YouTube</a></p>
 </article><article class="course-card">
-<h2>☾ Islamic Arabic</h2>
+<h2>☾ 5. Islamic Arabic</h2>
 <p>Study common Islamic expressions and worship-related vocabulary.</p>
-<a class="course-btn" href="https://www.youtube.com/results?search_query=Islamic+Arabic+vocabulary+for+beginners" target="_blank" rel="noopener">Find Video Lessons ↗</a>
-</article>
-</section><p><a href="./learn.html">← Return to the Free Dictionary</a></p>
+<div class="video-frame">
+<iframe src="https://www.youtube-nocookie.com/embed?listType=search&list=Islamic+Arabic+vocabulary+for+beginners" title="Islamic Arabic vocabulary lessons" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+<p><a href="https://www.youtube.com/results?search_query=Islamic+Arabic+vocabulary+for+beginners" target="_blank" rel="noopener">Browse Islamic Arabic lessons on YouTube</a></p>
+</article></section><p><a href="./learn.html">← Return to the Free Dictionary</a></p>
 </main>
 </body>
 </html>
