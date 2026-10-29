@@ -4,17 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#12372a">
-<meta name="description" content="Learn Arabic with video lessons and exams in the Islamic Arabic Learning Dictionary.">
+<meta name="description" content="Learn Arabic with video lessons, exams and progress tracking in the Islamic Arabic Learning Dictionary.">
 <title>Arabic Courses | Islamic Arabic Learning Dictionary</title>
 <link rel="stylesheet" href="./style.css">
 
 <style>
-html.course-access-checking body > * {
-  visibility: hidden;
-}
-html.course-access-checking #accessMessage {
-  visibility: visible;
-}
+html.course-access-checking body > * { visibility: hidden; }
+html.course-access-checking #accessMessage { visibility: visible; }
+
 #accessMessage {
   position: fixed;
   inset: 0;
@@ -27,6 +24,7 @@ html.course-access-checking #accessMessage {
   text-align: center;
   z-index: 99999;
 }
+
 #accessMessage a {
   display: inline-block;
   margin-top: 16px;
@@ -37,23 +35,28 @@ html.course-access-checking #accessMessage {
   font-weight: bold;
   text-decoration: none;
 }
+
 .course-wrap {
   width: min(950px,calc(100% - 28px));
   margin: 24px auto 80px;
 }
+
 .course-hero {
   background: #12372a;
   color: #fff;
   padding: 25px;
   border-radius: 18px;
 }
+
 .course-hero p { line-height: 1.7; }
+
 .course-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(min(100%,290px),1fr));
   gap: 16px;
   margin: 22px 0;
 }
+
 .lesson-card {
   background: var(--card,#fff);
   border: 1px solid #dce8df;
@@ -61,8 +64,10 @@ html.course-access-checking #accessMessage {
   padding: 16px;
   min-width: 0;
 }
+
 .lesson-card h2 { font-size: 1.15rem; }
 .lesson-card p { line-height: 1.6; }
+
 .video-frame {
   width: 100%;
   aspect-ratio: 16/9;
@@ -70,11 +75,13 @@ html.course-access-checking #accessMessage {
   border-radius: 12px;
   overflow: hidden;
 }
+
 .video-frame iframe {
   width: 100%;
   height: 100%;
   border: 0;
 }
+
 .action-btn {
   display: inline-block;
   background: #12372a;
@@ -87,12 +94,15 @@ html.course-access-checking #accessMessage {
   cursor: pointer;
   margin: 6px 4px 6px 0;
 }
+
 .action-btn:disabled {
   opacity: .45;
   cursor: not-allowed;
 }
+
 .locked { opacity: .8; }
 .status { font-size: .9rem; font-weight: 700; }
+
 .notice {
   background: #fff4d6;
   color: #594300;
@@ -100,51 +110,64 @@ html.course-access-checking #accessMessage {
   border-radius: 12px;
   line-height: 1.6;
 }
+
 .progress-track {
   height: 9px;
   background: #dce8df;
   border-radius: 9px;
   overflow: hidden;
 }
+
 .progress-fill {
   height: 100%;
   width: 0;
   background: #26845b;
   transition: width .2s;
 }
+
 .exam {
   margin-top: 16px;
   padding-top: 14px;
   border-top: 1px solid #dce8df;
 }
+
 .question {
   padding: 12px;
   margin: 12px 0;
   background: rgba(128,128,128,.07);
   border-radius: 12px;
 }
+
 .question p { font-weight: 700; }
+
 .question label {
   display: block;
   padding: 7px 4px;
   cursor: pointer;
   line-height: 1.5;
 }
+
 .question input { margin-right: 8px; }
+
 .result {
   padding: 12px;
   border-radius: 10px;
   margin-top: 12px;
   font-weight: 700;
 }
+
 .pass { background: #dff5e6; color: #155b31; }
 .fail { background: #fff0d9; color: #754600; }
 .small { font-size: .9rem; }
+
 .sync-status {
   font-size: .9rem;
   line-height: 1.6;
   overflow-wrap: anywhere;
 }
+
+.sync-warning { color: #805000; }
+.sync-success { color: #17623a; }
 </style>
 
 <script>
@@ -153,6 +176,7 @@ document.documentElement.classList.add("course-access-checking");
 </head>
 
 <body>
+
 <div id="accessMessage" role="status" aria-live="polite">
   <div>
     <h2>Checking your Premium membership…</h2>
@@ -172,6 +196,7 @@ document.documentElement.classList.add("course-access-checking");
 </header>
 
 <main class="course-wrap">
+
   <section class="course-hero">
     <p>STRUCTURED ARABIC LEARNING</p>
     <h1>Learn Arabic step by step</h1>
@@ -194,7 +219,7 @@ document.documentElement.classList.add("course-access-checking");
   <p class="notice">
     <strong>How it works:</strong>
     Each exam has 10 questions. You need 7 correct answers to pass.
-    You can retake a failed exam. Your progress is saved in this browser
+    You can retake an exam. Your progress is saved in this browser
     and, when synchronisation succeeds, to your signed-in account.
     Browser-submitted scores are not secure proof of course completion.
   </p>
@@ -250,12 +275,14 @@ document.documentElement.classList.add("course-access-checking");
       window.SUPABASE_PUBLISHABLE_KEY
     );
 
-    const {
-      data: { user },
-      error: authError
-    } = await client.auth.getUser();
+    const authResult = await Promise.race([
+      client.auth.getUser(),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Account verification timed out.")), 12000)
+      )
+    ]);
 
-    if (authError || !user) {
+    if (authResult.error || !authResult.data.user) {
       showMessage(
         "Please sign in first.",
         "Sign in to your account to check your membership.",
@@ -265,22 +292,28 @@ document.documentElement.classList.add("course-access-checking");
       return;
     }
 
-    const { data: profile, error: profileError } = await client
-      .from("profiles")
-      .select("membership,premium_until")
-      .eq("id", user.id)
-      .maybeSingle();
+    const user = authResult.data.user;
 
-    if (profileError) {
+    const profileResult = await Promise.race([
+      client.from("profiles")
+        .select("membership,premium_until")
+        .eq("id", user.id)
+        .maybeSingle(),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Membership verification timed out.")), 12000)
+      )
+    ]);
+
+    if (profileResult.error) {
       throw new Error("We could not verify your membership. Please try again.");
     }
 
+    const profile = profileResult.data;
     const expiry = profile && profile.premium_until
       ? Date.parse(profile.premium_until)
       : NaN;
 
-    const active =
-      profile &&
+    const active = profile &&
       profile.membership === "premium" &&
       Number.isFinite(expiry) &&
       expiry > Date.now();
@@ -297,13 +330,13 @@ document.documentElement.classList.add("course-access-checking");
 
     message.remove();
     document.documentElement.classList.remove("course-access-checking");
-
     startArabicCourses(client, user.id);
 
   } catch (error) {
+    console.error("Course access verification failed:", error);
     showMessage(
       "Membership verification failed.",
-      error.message || "Please try again.",
+      error.message || "Please check your connection and try again.",
       "Return to the dictionary",
       "./learn.html"
     );
@@ -391,52 +424,76 @@ questions:[
 ];
 
 const storageKey = "arabic_course_exam_v2";
-let state = {scores:{}, passed:[]};
+const syncTimeoutMs = 10000;
+
+let state = { scores: {}, passed: [] };
 let cloudAvailable = false;
 let cloudSaveQueue = Promise.resolve();
+let syncOperationId = 0;
 
 const syncStatus = document.getElementById("syncStatus");
 
-function setSyncStatus(text) {
-  syncStatus.textContent = text;
+function setSyncStatus(message, type) {
+  syncStatus.textContent = message;
+  syncStatus.classList.remove("sync-warning", "sync-success");
+
+  if (type === "warning") {
+    syncStatus.classList.add("sync-warning");
+  } else if (type === "success") {
+    syncStatus.classList.add("sync-success");
+  }
 }
 
-try {
-  const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+function withTimeout(promise, milliseconds, message) {
+  let timer;
 
-  if (saved && typeof saved === "object") {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => {
+      timer = setTimeout(() => reject(new Error(message)), milliseconds);
+    })
+  ]).finally(() => clearTimeout(timer));
+}
+
+function readLocalProgress() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+
+    if (!saved || typeof saved !== "object") return;
+
     state.scores =
       saved.scores && typeof saved.scores === "object"
         ? saved.scores
         : {};
 
     state.passed = Array.isArray(saved.passed)
-      ? saved.passed.filter(
-          n => Number.isInteger(n) && n >= 0 && n < lessons.length
-        )
+      ? [...new Set(saved.passed.filter(
+          index => Number.isInteger(index) &&
+            index >= 0 && index < lessons.length
+        ))].sort((a, b) => a - b)
       : [];
+
+  } catch (error) {
+    console.warn("Could not read browser progress:", error);
   }
-} catch (error) {
-  console.warn("Could not read browser progress:", error);
+}
+
+function saveLocalProgress() {
+  try {
+    localStorage.setItem(storageKey, JSON.stringify(state));
+    return true;
+  } catch (error) {
+    console.error("Could not save browser progress:", error);
+    setSyncStatus(
+      "⚠️ Your browser could not save progress. Check available device storage.",
+      "warning"
+    );
+    return false;
+  }
 }
 
 function isUnlocked(index) {
   return index === 0 || state.passed.includes(index - 1);
-}
-
-function save() {
-  try {
-    localStorage.setItem(storageKey, JSON.stringify(state));
-  } catch (error) {
-    alert("The browser could not save your progress. Check your storage settings.");
-    return false;
-  }
-
-  if (cloudAvailable) {
-    saveCloudProgress();
-  }
-
-  return true;
 }
 
 async function saveCloudProgress() {
@@ -459,98 +516,113 @@ async function saveCloudProgress() {
   cloudSaveQueue = cloudSaveQueue
     .catch(() => {})
     .then(async () => {
-      const { error } = await cloudClient
-        .from("course_progress")
-        .upsert(rows, {
+      if (!cloudAvailable) return;
+
+      const result = await withTimeout(
+        cloudClient.from("course_progress").upsert(rows, {
           onConflict: "user_id,lesson_index"
-        });
+        }),
+        syncTimeoutMs,
+        "Saving progress timed out."
+      );
 
-      if (error) {
-        console.error("Cloud progress save failed:", error.message);
-        setSyncStatus(
-          "⚠️ Your browser saved the result, but account synchronisation failed. Please try again later."
-        );
-        return;
-      }
+      if (result.error) throw result.error;
 
-      setSyncStatus("☁️ Your progress is synchronised with your account.");
+      setSyncStatus(
+        "☁️ Your progress is synchronised with your account.",
+        "success"
+      );
+    })
+    .catch(error => {
+      console.error("Cloud progress save failed:", error);
+      setSyncStatus(
+        "⚠️ Your browser saved the result, but account synchronisation failed. Your progress remains on this device.",
+        "warning"
+      );
     });
 
   await cloudSaveQueue;
 }
 
 async function loadCloudProgress() {
+  const operationId = ++syncOperationId;
+
   setSyncStatus("☁️ Loading progress from your account…");
 
-  const { data, error } = await cloudClient
-    .from("course_progress")
-    .select("lesson_index,score,passed,attempted_at")
-    .eq("user_id", cloudUserId);
+  const result = await withTimeout(
+    cloudClient.from("course_progress")
+      .select("lesson_index,score,passed,attempted_at")
+      .eq("user_id", cloudUserId),
+    syncTimeoutMs,
+    "Loading progress timed out."
+  );
 
-  if (error) {
-    console.error("Cloud progress load failed:", error.message);
-    cloudAvailable = false;
-    setSyncStatus(
-      "⚠️ Account progress could not be loaded. Your existing browser progress is still available on this device."
-    );
-    return;
-  }
+  if (operationId !== syncOperationId) return;
+  if (result.error) throw result.error;
 
-  // If the account has no records, keep existing browser progress
-  // and upload it rather than clearing it.
-  if (!data || data.length === 0) {
+  const data = result.data || [];
+
+  if (data.length === 0) {
     cloudAvailable = true;
     await saveCloudProgress();
-    setSyncStatus(
-      "☁️ Account synchronisation is ready. Your current progress has been kept."
-    );
     return;
   }
 
-  state.scores = {};
-  state.passed = [];
+  const cloudScores = {};
+  const cloudPassed = [];
 
   data.forEach(row => {
     const index = Number(row.lesson_index);
     const score = Number(row.score);
 
-    if (!Number.isInteger(index) || index < 0 || index >= lessons.length) {
-      return;
-    }
+    if (!Number.isInteger(index) ||
+        index < 0 ||
+        index >= lessons.length) return;
 
-    if (score > 0 || row.passed) {
-      state.scores[index] = {
-        score: score,
+    if (Number.isFinite(score) && (score > 0 || row.passed === true)) {
+      cloudScores[index] = {
+        score,
         date: row.attempted_at || new Date().toISOString()
       };
     }
 
     if (row.passed === true && score >= 7) {
-      state.passed.push(index);
+      cloudPassed.push(index);
     }
   });
 
-  state.passed = [...new Set(state.passed)]
-    .sort((a, b) => a - b);
+  state.scores = cloudScores;
+  state.passed = [...new Set(cloudPassed)].sort((a, b) => a - b);
 
-  // Preserve the existing local-storage format.
-  try {
-    localStorage.setItem(storageKey, JSON.stringify(state));
-  } catch (error) {
-    console.warn("Could not update local progress:", error);
-  }
+  saveLocalProgress();
 
   cloudAvailable = true;
-  setSyncStatus("☁️ Progress loaded from your account.");
+  setSyncStatus("☁️ Progress loaded from your account.", "success");
+}
+
+function updateProgress() {
+  const total = lessons.length;
+  const completed = state.passed.length;
+  const percent = Math.round(completed / total * 100);
+
+  document.getElementById("progressText").textContent =
+    completed + " of " + total + " lessons passed (" + percent + "%)";
+
+  document.getElementById("progressFill").style.width = percent + "%";
+
+  document.getElementById("scoreSummary").textContent =
+    "Exams attempted: " + Object.keys(state.scores).length +
+    " · Lessons passed: " + completed + "/" + total;
 }
 
 function render() {
   const grid = document.getElementById("lessonGrid");
-  grid.innerHTML = "";
+  grid.replaceChildren();
 
   lessons.forEach((lesson, index) => {
     const unlocked = isUnlocked(index);
     const passed = state.passed.includes(index);
+    const savedScore = state.scores[index];
 
     const card = document.createElement("article");
     card.className = "lesson-card" + (unlocked ? "" : " locked");
@@ -563,10 +635,8 @@ function render() {
     description.textContent = lesson.description;
     card.appendChild(description);
 
-    const savedScore = state.scores[index];
     const status = document.createElement("p");
     status.className = "status";
-
     status.textContent = passed
       ? "✅ Exam passed" +
         (savedScore ? " — latest score: " + savedScore.score + "/10" : "")
@@ -581,8 +651,8 @@ function render() {
       frame.className = "video-frame";
 
       const iframe = document.createElement("iframe");
-      iframe.src =
-        "https://www.youtube-nocookie.com/embed/" + lesson.video;
+      iframe.src = "https://www.youtube-nocookie.com/embed/" +
+        encodeURIComponent(lesson.video);
       iframe.title = lesson.title;
       iframe.loading = "lazy";
       iframe.allow =
@@ -600,7 +670,7 @@ function render() {
       const videoLink = document.createElement("a");
       videoLink.href = lesson.source;
       videoLink.target = "_blank";
-      videoLink.rel = "noopener";
+      videoLink.rel = "noopener noreferrer";
       videoLink.textContent = "Open on YouTube";
 
       fallback.appendChild(videoLink);
@@ -621,62 +691,4 @@ function render() {
         block.appendChild(question);
 
         q.slice(1, 5).forEach((option, optionIndex) => {
-          const label = document.createElement("label");
-          const input = document.createElement("input");
-
-          input.type = "radio";
-          input.name = "lesson" + index + "q" + qIndex;
-          input.value = optionIndex;
-
-          // Require an answer to every question.
-          input.required = optionIndex === 0;
-
-          label.appendChild(input);
-          label.appendChild(document.createTextNode(option));
-          block.appendChild(label);
-        });
-
-        exam.appendChild(block);
-      });
-
-      const submit = document.createElement("button");
-      submit.type = "submit";
-      submit.className = "action-btn";
-      submit.textContent = passed ? "Retake Exam" : "Submit Exam";
-      exam.appendChild(submit);
-
-      const result = document.createElement("div");
-      result.className = "result";
-      result.hidden = true;
-      exam.appendChild(result);
-
-      exam.addEventListener("submit", async function(event) {
-        event.preventDefault();
-
-        let score = 0;
-        const formData = new FormData(exam);
-
-        lesson.questions.forEach((q, qIndex) => {
-          if (
-            Number(formData.get("lesson" + index + "q" + qIndex)) === q[5]
-          ) {
-            score++;
-          }
-        });
-
-        const didPass = score >= 7;
-
-        state.scores[index] = {
-          score: score,
-          date: new Date().toISOString()
-        };
-
-        if (didPass) {
-          if (!state.passed.includes(index)) {
-            state.passed.push(index);
-          }
-
-          state.passed.sort((a, b) => a - b);
-        } else {
-          // A failed retake locks this lesson and later lessons again.
-         
+          const la
