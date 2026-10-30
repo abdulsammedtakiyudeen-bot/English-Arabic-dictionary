@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#12372a">
   <meta name="description" content="Learn Arabic vocabulary, everyday expressions, and Islamic terms with Islamic Arabic Learning Dictionary by Dev. Takiyudeen.">
-  <meta name="color-scheme" content="light dark">  <title>Islamic Arabic Learning Dictionary</title>  <link rel="manifest" href="./manifest.json">
+  <meta name="color-scheme" content="light dark">
+  <title>Islamic Arabic Learning Dictionary</title>  <link rel="manifest" href="./manifest.json">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css">  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <script src="./config.js"></script><script src="./auth-gate.js"></script>  <style>
+  <link rel="stylesheet" href="./style.css">  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <script src="./config.js"></script>  <script src="./auth-gate.js"></script>  <style>
     .feature-card.course-feature {
       display: flex;
       flex-direction: column;
@@ -26,7 +27,6 @@
       font-size: 1.6rem;
     }
 
-    /* Premium promotion */
     .premium-promo {
       margin: 24px 0;
       padding: 24px;
@@ -96,7 +96,8 @@
       font-size: .82rem;
       margin-bottom: 0;
     }
-  </style></head><body><header class="topbar">
+  </style></head><body>
+<header class="topbar">
   <a class="brand" href="./index.html" aria-label="Islamic Arabic Learning Dictionary home">
     <span class="brand-mark" aria-hidden="true">بِ</span>
     <span>
@@ -112,10 +113,10 @@ title="Toggle dark mode"
 
 «◐</button>»
 
-</header><main>  <section class="hero">
-    <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p><p class="eyebrow">YOUR DAILY ARABIC COMPANION</p>
-
-<h1>Discover Arabic,<br><span>one word at a time.</span></h1>
+</header><main>
+  <section class="hero">
+    <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+    <p class="eyebrow">YOUR DAILY ARABIC COMPANION</p><h1>Discover Arabic,<br><span>one word at a time.</span></h1>
 
 <p class="hero-copy">
   Build your vocabulary with everyday Arabic, useful expressions,
@@ -135,7 +136,6 @@ title="Toggle dark mode"
 </label>
 
 <p class="search-hint">Try “peace”, “prayer”, “سَلَام”, or “مَاء”.</p>
-
 <p id="appStatus" class="status-line" role="status" aria-live="polite"></p>
 
   </section>  <!-- Premium membership promotion -->  <section
@@ -144,9 +144,8 @@ title="Toggle dark mode"
     aria-labelledby="premiumPromoTitle"
     hidden
   >
-    <span class="promo-label">⭐ PREMIUM MEMBERSHIP</span><h2 id="premiumPromoTitle">Take Your Arabic Further</h2>
-
-<p>
+    <span class="promo-label">⭐ PREMIUM MEMBERSHIP</span>
+    <h2 id="premiumPromoTitle">Take Your Arabic Further</h2><p>
   Ready to move beyond the basics? Explore structured Arabic courses,
   video lessons, examinations, and cloud-based learning progress.
 </p>
@@ -156,6 +155,7 @@ title="Toggle dark mode"
   <li>🎥 Arabic video lessons</li>
   <li>📝 Course examinations</li>
   <li>📈 Save learning progress to your account</li>
+  <li>📚 Access Arabic learning books</li>
 </ul>
 
 <p class="promo-prices">GH₵15/month or GH₵120/year</p>
@@ -261,6 +261,18 @@ title="Toggle dark mode"
     <span class="card-arrow">↗</span>
   </a>
 
+  <!-- NEW: Premium Arabic Books section -->
+  <a
+    class="feature-card course-feature"
+    href="./books.html"
+    aria-label="Open Premium Arabic learning books"
+  >
+    <span class="feature-icon">📚</span>
+    <strong>Arabic Books</strong>
+    <small>Read and study Arabic learning books — Premium</small>
+    <span class="card-arrow">↗</span>
+  </a>
+
 </div>
 
   </section>  <section id="viewSection" class="section" hidden>
@@ -286,7 +298,8 @@ title="Toggle dark mode"
   </section>  <section class="ad-slot" aria-label="Advertisement placeholder">
     <span>ADVERTISEMENT AREA</span>
     <p>No external advertising code is active in this version.</p>
-  </section></main><nav class="bottom-nav" aria-label="Main navigation">
+  </section>
+</main><nav class="bottom-nav" aria-label="Main navigation">
   <button class="nav-item active" type="button" data-nav="home">
     <span>⌂</span>Home
   </button>  <button class="nav-item" type="button" data-nav="islamic">
@@ -299,6 +312,8 @@ title="Toggle dark mode"
     <span>☆</span>Saved
   </button>  <a class="nav-item" href="./courses.html" aria-label="Explore structured Arabic courses">
     <span>🎓</span>Courses
+  </a>  <!-- NEW: Books navigation -->  <a class="nav-item" href="./books.html" aria-label="Open Arabic books">
+    <span>📚</span>Books
   </a>  <a class="nav-item" href="./profile.html" aria-label="Open your profile">
     <span>👤</span>Profile
   </a>  <a class="nav-item" href="./premium.html" aria-label="View Premium membership">
@@ -316,4 +331,4 @@ title="Toggle dark mode"
     Online lookup needs internet.
   </p>
 </footer><script src="./app.js" defer></script><script src="./promo.js" defer></script></body>
-  </html>
+                </html>
