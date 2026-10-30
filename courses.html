@@ -282,7 +282,6 @@
   const message = document.getElementById("accessMessage");
 
   function showMessage(title, description, linkText, linkHref) {
-
     message.replaceChildren();
 
     const box = document.createElement("div");
@@ -295,12 +294,9 @@
     box.append(heading, paragraph);
 
     if (linkText && linkHref) {
-
       const link = document.createElement("a");
-
       link.href = linkHref;
       link.textContent = linkText;
-
       box.appendChild(link);
     }
 
@@ -308,9 +304,7 @@
   }
 
   async function checkMembership() {
-
     try {
-
       if (
         !window.supabase ||
         !window.SUPABASE_URL ||
@@ -327,14 +321,12 @@
       const authResult = await client.auth.getUser();
 
       if (authResult.error || !authResult.data.user) {
-
         showMessage(
           "Please sign in first.",
           "Sign in to check your Premium membership.",
           "Go to sign in",
           "./login.html"
         );
-
         return;
       }
 
@@ -362,23 +354,19 @@
         expiry > Date.now();
 
       if (!active) {
-
         showMessage(
           "An active Premium subscription is required.",
           "Your free dictionary remains available.",
           "View Premium plans",
           "./premium.html"
         );
-
         return;
       }
 
       message.remove();
-
       startArabicCourses(user.id, client);
 
     } catch(error) {
-
       console.error("Membership check failed:", error);
 
       showMessage(
@@ -391,7 +379,6 @@
   }
 
   checkMembership();
-
 })();
 </script>
 
@@ -472,35 +459,27 @@ questions: [
 ["What does نَعَم mean?","No","Yes","Maybe","Please",1],
 ["What is a good way to improve conversation?","Practise listening and speaking","Avoid listening","Memorise without using words","Never repeat phrases",0]
 ]
-};
+];
   const grid = document.getElementById("lessonGrid");
 const progressFill = document.getElementById("progressFill");
 const progressText = document.getElementById("progressText");
 
 const storageKey = "iald_course_progress_v3_" + userId;
 
-/* Only video completion is read from localStorage. */
-
 function loadVideoProgress() {
-
   try {
-
     const saved = JSON.parse(localStorage.getItem(storageKey));
 
     return lessons.map((_, index) => ({
-
       videoCompleted:
         saved?.lessons?.[index]?.videoCompleted === true,
-
       examSubmitted: false,
       score: null,
       passed: false,
       submittedAt: null
-
     }));
 
   } catch(error) {
-
     console.error("Video progress loading error:", error);
 
     return lessons.map(() => ({
@@ -518,9 +497,7 @@ let progress = {
 };
 
 function saveVideoProgress() {
-
   try {
-
     localStorage.setItem(
       storageKey,
       JSON.stringify({
@@ -529,19 +506,13 @@ function saveVideoProgress() {
         }))
       })
     );
-
   } catch(error) {
-
     console.error("Video progress saving error:", error);
-
     alert("Your browser could not save your video progress.");
   }
 }
 
-/* Official examination results come from Supabase. */
-
 async function loadDatabaseProgress() {
-
   const result = await client
     .from("course_progress")
     .select("lesson_index,score,passed,attempted_at")
@@ -552,7 +523,6 @@ async function loadDatabaseProgress() {
   }
 
   result.data.forEach(row => {
-
     const index = row.lesson_index;
 
     if (
@@ -560,27 +530,21 @@ async function loadDatabaseProgress() {
       index >= 0 &&
       index < lessons.length
     ) {
-
       progress.lessons[index].examSubmitted = true;
       progress.lessons[index].score = row.score;
       progress.lessons[index].passed = row.passed === true;
       progress.lessons[index].submittedAt = row.attempted_at;
-
     }
   });
 }
 
-/* Sequential unlocking uses database-confirmed results. */
-
 function isVideoUnlocked(index) {
-
   if (index === 0) return true;
 
   return progress.lessons[index - 1].passed === true;
 }
 
 function updateProgressSummary() {
-
   const passedCount = progress.lessons.filter(
     item => item.passed
   ).length;
@@ -594,7 +558,6 @@ function updateProgressSummary() {
 }
 
 function makeElement(tag, className, text) {
-
   const element = document.createElement(tag);
 
   if (className) element.className = className;
@@ -607,11 +570,9 @@ function makeElement(tag, className, text) {
 }
 
 function renderCourses() {
-
   grid.replaceChildren();
 
   lessons.forEach(function(lesson, lessonIndex) {
-
     const state = progress.lessons[lessonIndex];
     const unlocked = isVideoUnlocked(lessonIndex);
 
@@ -628,38 +589,30 @@ function renderCourses() {
     const status = makeElement("div", "status");
 
     if (!unlocked) {
-
       status.textContent =
         "🔒 Locked — pass Lesson " +
         lessonIndex + " to unlock this lesson.";
 
     } else if (state.passed) {
-
       status.textContent =
         "✅ Lesson exam passed — " + state.score + "/10";
 
     } else if (state.examSubmitted) {
-
       status.textContent =
         "📝 Exam submitted — " + state.score + "/10.";
 
     } else if (state.videoCompleted) {
-
       status.textContent =
         "✅ Video completed. Your exam is unlocked.";
 
     } else {
-
       status.textContent =
         "▶ Video unlocked. Watch and complete this lesson.";
     }
 
     card.appendChild(status);
 
-    /* VIDEO */
-
     if (unlocked) {
-
       const frame = makeElement("div", "video-frame");
       const iframe = document.createElement("iframe");
 
@@ -698,7 +651,6 @@ function renderCourses() {
       card.appendChild(help);
 
       if (!state.videoCompleted && !state.examSubmitted) {
-
         const button = makeElement(
           "button",
           "action-btn",
@@ -708,7 +660,6 @@ function renderCourses() {
         button.type = "button";
 
         button.addEventListener("click", function() {
-
           if (!confirm(
             "Have you finished watching this lesson video?"
           )) {
@@ -719,13 +670,11 @@ function renderCourses() {
 
           saveVideoProgress();
           renderCourses();
-
         });
 
         card.appendChild(button);
 
       } else if (state.videoCompleted) {
-
         card.appendChild(
           makeElement(
             "p",
@@ -736,7 +685,6 @@ function renderCourses() {
       }
 
     } else {
-
       const locked = makeElement("div", "locked-panel");
 
       locked.appendChild(
@@ -754,8 +702,6 @@ function renderCourses() {
       card.appendChild(locked);
     }
 
-    /* EXAMINATION */
-
     const exam = makeElement("form", "exam");
 
     exam.appendChild(
@@ -771,7 +717,6 @@ function renderCourses() {
     );
 
     if (!unlocked) {
-
       exam.classList.add("locked");
 
       exam.appendChild(
@@ -783,7 +728,6 @@ function renderCourses() {
       );
 
     } else if (state.examSubmitted) {
-
       const result = makeElement(
         "div",
         "result " + (state.passed ? "pass" : "fail")
@@ -798,7 +742,6 @@ function renderCourses() {
       exam.appendChild(result);
 
     } else if (!state.videoCompleted) {
-
       exam.classList.add("locked");
 
       exam.appendChild(
@@ -810,9 +753,7 @@ function renderCourses() {
       );
 
     } else {
-
       lesson.questions.forEach(function(q, qIndex) {
-
         const block = makeElement("div", "question");
 
         block.appendChild(
@@ -824,7 +765,6 @@ function renderCourses() {
         );
 
         q.slice(1, 5).forEach(function(option, optionIndex) {
-
           const label = document.createElement("label");
           const radio = document.createElement("input");
 
@@ -844,11 +784,9 @@ function renderCourses() {
           );
 
           block.appendChild(label);
-
         });
 
         exam.appendChild(block);
-
       });
 
       const submit = makeElement(
@@ -862,7 +800,6 @@ function renderCourses() {
       exam.appendChild(submit);
 
       exam.addEventListener("submit", async function(event) {
-
         event.preventDefault();
 
         if (state.examSubmitted || !state.videoCompleted) {
@@ -877,13 +814,11 @@ function renderCourses() {
         const answers = [];
 
         for (let qIndex = 0; qIndex < 10; qIndex++) {
-
           const selected = formData.get(
             "lesson" + lessonIndex + "q" + qIndex
           );
 
           if (selected === null) {
-
             alert("Please answer all questions.");
             return;
           }
@@ -895,7 +830,6 @@ function renderCourses() {
         submit.textContent = "Submitting securely...";
 
         try {
-
           const submission = await client.functions.invoke(
             "submit-course-exam",
             {
@@ -913,7 +847,6 @@ function renderCourses() {
           const result = submission.data;
 
           if (!result || !result.success) {
-
             throw new Error(
               result?.error ||
               "Your examination could not be submitted."
@@ -935,11 +868,7 @@ function renderCourses() {
           );
 
         } catch(error) {
-
-          console.error(
-            "Exam submission failed:",
-            error
-          );
+          console.error("Exam submission failed:", error);
 
           alert(
             error.message ||
@@ -949,34 +878,23 @@ function renderCourses() {
           submit.disabled = false;
           submit.textContent = "Submit Examination";
         }
-
       });
     }
 
     card.appendChild(exam);
     grid.appendChild(card);
-
   });
 
   updateProgressSummary();
 }
 
-/* Initialise only after official results load. */
-
 async function initialiseCourses() {
-
   try {
-
     await loadDatabaseProgress();
-
     renderCourses();
 
   } catch(error) {
-
-    console.error(
-      "Course initialisation failed:",
-      error
-    );
+    console.error("Course initialisation failed:", error);
 
     grid.replaceChildren();
 
