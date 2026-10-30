@@ -1,56 +1,62 @@
-<!DOCTYPE html><html lang="en">  <head>    <meta charset="UTF-8">    
-<meta name="viewport" content="width=device-width, initial-scale=1">    
-<meta name="theme-color" content="#12372a">    
-<meta name="description" content="Learn Arabic through structured video lessons and practice exams.">    
-<title>Arabic Courses | Islamic Arabic Learning Dictionary</title><link rel="stylesheet" href="./style.css"><style>    
-#accessMessage {    
-  position:fixed;    
-  inset:0;    
-  background:#12372a;    
-  color:white;    
-  display:flex;    
-  align-items:center;    
-  justify-content:center;    
-  padding:24px;    
-  text-align:center;    
-  z-index:99999;    
-}  #accessMessage a {  
-display:inline-block;  
-margin-top:16px;  
-padding:12px 18px;  
-background:white;  
-color:#12372a;  
-border-radius:8px;  
-font-weight:bold;  
-text-decoration:none;  
-}  .course-wrap {
-width:min(950px,calc(100% - 28px));
-margin:24px auto 80px;
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#12372a">
+<meta name="description" content="Learn Arabic through structured video lessons and practice exams.">
+<title>Arabic Courses | Islamic Arabic Learning Dictionary</title><link rel="stylesheet" href="./style.css"><style>
+#accessMessage {
+  position:fixed;
+  inset:0;
+  background:#12372a;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  text-align:center;
+  z-index:99999;
+}
+
+#accessMessage a {
+  display:inline-block;
+  margin-top:16px;
+  padding:12px 18px;
+  background:white;
+  color:#12372a;
+  border-radius:8px;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+.course-wrap {
+  width:min(950px,calc(100% - 28px));
+  margin:24px auto 80px;
 }
 
 .course-hero {
-background:#12372a;
-color:white;
-padding:25px;
-border-radius:18px;
+  background:#12372a;
+  color:white;
+  padding:25px;
+  border-radius:18px;
 }
 
 .course-hero p {line-height:1.7;}
 
 .course-grid {
-display:grid;
-grid-template-columns:1fr;
-gap:22px;
-margin:22px 0;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:22px;
+  margin:22px 0;
 }
 
 .lesson-card {
-background:var(--card,white);
-border:1px solid #dce8df;
-border-radius:16px;
-padding:18px;
-width:100%;
-min-width:0;
+  background:var(--card,white);
+  border:1px solid #dce8df;
+  border-radius:16px;
+  padding:18px;
+  width:100%;
+  min-width:0;
 }
 
 .lesson-card h2 {font-size:1.2rem;}
@@ -58,246 +64,255 @@ min-width:0;
 .lesson-card p {line-height:1.6;}
 
 .video-frame {
-width:100%;
-aspect-ratio:16/9;
-background:#111;
-border-radius:12px;
-overflow:hidden;
+  width:100%;
+  aspect-ratio:16/9;
+  background:#111;
+  border-radius:12px;
+  overflow:hidden;
 }
 
 .video-frame iframe {
-width:100%;
-height:100%;
-border:0;
+  width:100%;
+  height:100%;
+  border:0;
 }
 
 .action-btn {
-display:inline-block;
-background:#12372a;
-color:white;
-border:0;
-border-radius:10px;
-padding:11px 14px;
-font-weight:700;
-text-decoration:none;
-cursor:pointer;
-margin:6px 4px 6px 0;
+  display:inline-block;
+  background:#12372a;
+  color:white;
+  border:0;
+  border-radius:10px;
+  padding:11px 14px;
+  font-weight:700;
+  text-decoration:none;
+  cursor:pointer;
+  margin:6px 4px 6px 0;
 }
 
 .action-btn:disabled {
-opacity:.55;
-cursor:not-allowed;
+  opacity:.55;
+  cursor:not-allowed;
 }
 
 .exam {
-margin-top:18px;
-padding-top:16px;
-border-top:2px solid #dce8df;
+  margin-top:18px;
+  padding-top:16px;
+  border-top:2px solid #dce8df;
 }
 
 .exam.locked {opacity:.65;}
 
 .question {
-padding:12px;
-margin:12px 0;
-background:rgba(128,128,128,.07);
-border-radius:12px;
+  padding:12px;
+  margin:12px 0;
+  background:rgba(128,128,128,.07);
+  border-radius:12px;
 }
 
 .question p {font-weight:700;}
 
 .question label {
-display:block;
-padding:8px 4px;
-cursor:pointer;
-line-height:1.5;
+  display:block;
+  padding:8px 4px;
+  cursor:pointer;
+  line-height:1.5;
 }
 
 .question input {margin-right:8px;}
 
 .result {
-padding:12px;
-border-radius:10px;
-margin-top:12px;
-font-weight:700;
+  padding:12px;
+  border-radius:10px;
+  margin-top:12px;
+  font-weight:700;
 }
 
 .pass {background:#dff5e6;color:#155b31;}
 .fail {background:#fff0d9;color:#754600;}
 
 .status {
-padding:10px;
-border-radius:10px;
-background:rgba(18,55,42,.08);
-margin:12px 0;
-font-size:.92rem;
+  padding:10px;
+  border-radius:10px;
+  background:rgba(18,55,42,.08);
+  margin:12px 0;
+  font-size:.92rem;
 }
 
 .progress-track {
-height:10px;
-background:rgba(255,255,255,.25);
-border-radius:20px;
-overflow:hidden;
-margin:14px 0;
+  height:10px;
+  background:rgba(255,255,255,.25);
+  border-radius:20px;
+  overflow:hidden;
+  margin:14px 0;
 }
 
 .progress-fill {
-height:100%;
-width:0;
-background:#a9e6b9;
-transition:width .3s ease;
+  height:100%;
+  width:0;
+  background:#a9e6b9;
+  transition:width .3s ease;
 }
 
 .locked-panel {
-background:#f1f3f1;
-color:#444;
-border-radius:12px;
-padding:20px;
-text-align:center;
+  background:#f1f3f1;
+  color:#444;
+  border-radius:12px;
+  padding:20px;
+  text-align:center;
 }
 
 .locked-panel strong {
-display:block;
-font-size:1.1rem;
-margin-bottom:8px;
+  display:block;
+  font-size:1.1rem;
+  margin-bottom:8px;
 }
 
 .small {font-size:.9rem;}
 
 @media(max-width:480px) {
-.course-hero {padding:18px;}
-.lesson-card {padding:13px;}
+  .course-hero {padding:18px;}
+  .lesson-card {padding:13px;}
 }
 </style></head><body><div id="accessMessage" role="status" aria-live="polite">
+  <div>
+    <h2>Checking Premium membership…</h2>
+    <p>Please wait.</p>
+  </div>
+</div><header class="topbar">
+  <a class="brand" href="./learn.html">
+    <span class="brand-mark">بِ</span>
+    <span>
+      <strong>Arabic Learning</strong>
+      <small>Islamic Arabic Learning Dictionary</small>
+    </span>
+  </a>
+  <a href="./profile.html">My Profile</a>
+</header><main class="course-wrap">  <section class="course-hero">
+    <p>STRUCTURED ARABIC LEARNING</p>
+    <h1>Learn Arabic step by step</h1><p>
+  Watch each lesson, complete its examination and progress
+  through your Arabic learning journey.
+</p>
 
-  <div>    
-    <h2>Checking Premium membership…</h2>    
-    <p>Please wait.</p>    
-  </div>    
-</div><header class="topbar">    
-  <a class="brand" href="./learn.html">    
-    <span class="brand-mark">بِ</span>    
-    <span>    
-      <strong>Arabic Learning</strong>    
-      <small>Islamic Arabic Learning Dictionary</small>    
-    </span>    
-  </a>    
-  <a href="./profile.html">My Profile</a>    
-</header><main class="course-wrap">  <section class="course-hero">    
-    <p>STRUCTURED ARABIC LEARNING</p>    
-    <h1>Learn Arabic step by step</h1><p>    
-  Watch each lesson, complete its examination and progress    
-  through your Arabic learning journey.    
-</p>  <div class="progress-track">    
-  <div id="progressFill" class="progress-fill"></div>    
-</div>  <p id="progressText">Your progress: 0 of 4 lessons passed.</p>  <a class="action-btn" href="./premium.html">Explore Premium</a>    </section>  <p class="notice">    
-    <strong>How it works:</strong>    
-    Watch each lesson video and mark it as completed.    
-    This unlocks its 10-question examination.    
-    Score at least 7/10 to pass and unlock the next lesson.    
-    Each examination allows only one submission.    
-  </p>  <section id="lessonGrid" class="course-grid"></section>  <p><a href="./learn.html">← Return to the Learning Platform</a></p></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./config.js"></script><script src="./auth-gate.js"></script><script>    
-(function() {    
-  "use strict";  const message = document.getElementById("accessMessage");  function showMessage(title,description,linkText,linkHref) {
-message.replaceChildren();
+<div class="progress-track">
+  <div id="progressFill" class="progress-fill"></div>
+</div>
 
-const box = document.createElement("div");
-const heading = document.createElement("h2");
-const paragraph = document.createElement("p");
+<p id="progressText">Your progress: 0 of 4 lessons passed.</p>
 
-heading.textContent = title;
-paragraph.textContent = description;
+<a class="action-btn" href="./premium.html">Explore Premium</a>
 
-box.append(heading,paragraph);
+  </section>  <p class="notice">
+    <strong>How it works:</strong>
+    Watch each lesson video and mark it as completed.
+    This unlocks its 10-question examination.
+    Score at least 7/10 to pass and unlock the next lesson.
+    Each examination allows only one submission.
+  </p>  <section id="lessonGrid" class="course-grid"></section>  <p><a href="./learn.html">← Return to the Learning Platform</a></p></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./config.js"></script><script src="./auth-gate.js"></script><script>
+(function() {
+  "use strict";
 
-if(linkText && linkHref) {
-const link = document.createElement("a");
-link.href = linkHref;
-link.textContent = linkText;
-box.appendChild(link);
-}
+  const message = document.getElementById("accessMessage");
 
-message.appendChild(box);
+  function showMessage(title,description,linkText,linkHref) {
+    message.replaceChildren();
 
-}
+    const box = document.createElement("div");
+    const heading = document.createElement("h2");
+    const paragraph = document.createElement("p");
 
-async function checkMembership() {
-try {
-if(
-!window.supabase ||
-!window.SUPABASE_URL ||
-!window.SUPABASE_PUBLISHABLE_KEY
-) {
-throw new Error("The account service could not load.");
-}
+    heading.textContent = title;
+    paragraph.textContent = description;
 
-const client = window.supabase.createClient(
-window.SUPABASE_URL,
-window.SUPABASE_PUBLISHABLE_KEY
-);
+    box.append(heading,paragraph);
 
-const authResult = await client.auth.getUser();
+    if(linkText && linkHref) {
+      const link = document.createElement("a");
+      link.href = linkHref;
+      link.textContent = linkText;
+      box.appendChild(link);
+    }
 
-if(authResult.error || !authResult.data.user) {
-showMessage(
-"Please sign in first.",
-"Sign in to check your Premium membership.",
-"Go to sign in",
-"./login.html"
-);
-return;
-}
+    message.appendChild(box);
+  }
 
-const user = authResult.data.user;
+  async function checkMembership() {
+    try {
+      if(
+        !window.supabase ||
+        !window.SUPABASE_URL ||
+        !window.SUPABASE_PUBLISHABLE_KEY
+      ) {
+        throw new Error("The account service could not load.");
+      }
 
-const profileResult = await client
-.from("profiles")
-.select("membership,premium_until")
-.eq("id",user.id)
-.maybeSingle();
+      const client = window.supabase.createClient(
+        window.SUPABASE_URL,
+        window.SUPABASE_PUBLISHABLE_KEY
+      );
 
-if(profileResult.error) {
-throw new Error("We could not verify your membership.");
-}
+      const authResult = await client.auth.getUser();
 
-const profile = profileResult.data;
+      if(authResult.error || !authResult.data.user) {
+        showMessage(
+          "Please sign in first.",
+          "Sign in to check your Premium membership.",
+          "Go to sign in",
+          "./login.html"
+        );
+        return;
+      }
 
-const expiry = profile && profile.premium_until
-? Date.parse(profile.premium_until)
-: NaN;
+      const user = authResult.data.user;
 
-const active = profile &&
-profile.membership === "premium" &&
-Number.isFinite(expiry) &&
-expiry > Date.now();
+      const profileResult = await client
+        .from("profiles")
+        .select("membership,premium_until")
+        .eq("id",user.id)
+        .maybeSingle();
 
-if(!active) {
-showMessage(
-"An active Premium subscription is required.",
-"Your free dictionary remains available.",
-"View Premium plans",
-"./premium.html"
-);
-return;
-}
+      if(profileResult.error) {
+        throw new Error("We could not verify your membership.");
+      }
 
-message.remove();
-startArabicCourses(user.id);
+      const profile = profileResult.data;
 
-} catch(error) {
-console.error("Membership check failed:",error);
+      const expiry = profile && profile.premium_until
+        ? Date.parse(profile.premium_until)
+        : NaN;
 
-showMessage(
-"Membership verification failed.",
-error.message || "Check your internet connection and try again.",
-"Return to the dictionary",
-"./learn.html"
-);
-}
+      const active = profile &&
+        profile.membership === "premium" &&
+        Number.isFinite(expiry) &&
+        expiry > Date.now();
 
-}
+      if(!active) {
+        showMessage(
+          "An active Premium subscription is required.",
+          "Your free dictionary remains available.",
+          "View Premium plans",
+          "./premium.html"
+        );
+        return;
+      }
 
-checkMembership();
+      message.remove();
+      startArabicCourses(user.id);
+
+    } catch(error) {
+      console.error("Membership check failed:",error);
+
+      showMessage(
+        "Membership verification failed.",
+        error.message || "Check your internet connection and try again.",
+        "Return to the dictionary",
+        "./learn.html"
+      );
+    }
+  }
+
+  checkMembership();
 })();
 </script><script>
 function startArabicCourses(userId) {
@@ -386,346 +401,342 @@ const progressText = document.getElementById("progressText");
 const storageKey = "iald_course_progress_v3_" + userId;
 
 function emptyProgress() {
-return {
-lessons:lessons.map(() => ({
-videoCompleted:false,
-examSubmitted:false,
-score:null,
-passed:false,
-submittedAt:null
-}))
-};
+  return {
+    lessons:lessons.map(() => ({
+      videoCompleted:false,
+      examSubmitted:false,
+      score:null,
+      passed:false,
+      submittedAt:null
+    }))
+  };
 }
 
 function loadProgress() {
-try {
-const saved = JSON.parse(localStorage.getItem(storageKey));
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey));
 
-if(
-!saved ||
-!Array.isArray(saved.lessons) ||
-saved.lessons.length !== lessons.length
-) {
-return emptyProgress();
-}
+    if(
+      !saved ||
+      !Array.isArray(saved.lessons) ||
+      saved.lessons.length !== lessons.length
+    ) {
+      return emptyProgress();
+    }
 
-return {
-lessons:lessons.map((_,index) => {
-const item = saved.lessons[index] || {};
+    return {
+      lessons:lessons.map((_,index) => {
+        const item = saved.lessons[index] || {};
 
-return {    
-  videoCompleted:item.videoCompleted === true,    
-  examSubmitted:item.examSubmitted === true,    
-  score:Number.isInteger(item.score) ? item.score : null,    
-  passed:item.passed === true,    
-  submittedAt:item.submittedAt || null    
-};
+        return {
+          videoCompleted:item.videoCompleted === true,
+          examSubmitted:item.examSubmitted === true,
+          score:Number.isInteger(item.score) ? item.score : null,
+          passed:item.passed === true,
+          submittedAt:item.submittedAt || null
+        };
+      })
+    };
 
-})
-};
-
-} catch(error) {
-console.error("Could not load course progress:",error);
-return emptyProgress();
-}
+  } catch(error) {
+    console.error("Could not load course progress:",error);
+    return emptyProgress();
+  }
 }
 
 let progress = loadProgress();
 
 function saveProgress() {
-try {
-localStorage.setItem(storageKey,JSON.stringify(progress));
-} catch(error) {
-console.error("Could not save course progress:",error);
-alert("Your browser could not save your progress. Check your device storage.");
-}
+  try {
+    localStorage.setItem(storageKey,JSON.stringify(progress));
+  } catch(error) {
+    console.error("Could not save course progress:",error);
+    alert("Your browser could not save your progress. Check your device storage.");
+  }
 }
 
 function isVideoUnlocked(index) {
-if(index === 0) return true;
-return progress.lessons[index - 1].passed === true;
+  if(index === 0) return true;
+  return progress.lessons[index - 1].passed === true;
 }
 
 function updateProgressSummary() {
-const passedCount = progress.lessons.filter(
-item => item.passed
-).length;
+  const passedCount = progress.lessons.filter(
+    item => item.passed
+  ).length;
 
-progressText.textContent =
-"Your progress: " + passedCount +
-" of " + lessons.length + " lessons passed.";
+  progressText.textContent =
+    "Your progress: " + passedCount +
+    " of " + lessons.length + " lessons passed.";
 
-progressFill.style.width =
-(passedCount / lessons.length * 100) + "%";
+  progressFill.style.width =
+    (passedCount / lessons.length * 100) + "%";
 }
 
 function makeElement(tag,className,text) {
-const element = document.createElement(tag);
+  const element = document.createElement(tag);
 
-if(className) element.className = className;
-if(text !== undefined) element.textContent = text;
+  if(className) element.className = className;
+  if(text !== undefined) element.textContent = text;
 
-return element;
+  return element;
 }
 
 function renderCourses() {
-grid.replaceChildren();
+  grid.replaceChildren();
 
-lessons.forEach(function(lesson,lessonIndex) {
+  lessons.forEach(function(lesson,lessonIndex) {
 
-const state = progress.lessons[lessonIndex];
-const unlocked = isVideoUnlocked(lessonIndex);
+    const state = progress.lessons[lessonIndex];
+    const unlocked = isVideoUnlocked(lessonIndex);
 
-const card = makeElement("article","lesson-card");
+    const card = makeElement("article","lesson-card");
 
-card.appendChild(makeElement("h2","",lesson.title));
-card.appendChild(makeElement("p","",lesson.description));
+    card.appendChild(makeElement("h2","",lesson.title));
+    card.appendChild(makeElement("p","",lesson.description));
 
-const status = makeElement("div","status");
+    const status = makeElement("div","status");
 
-if(!unlocked) {
-status.textContent =
-"🔒 Locked — pass Lesson " + lessonIndex + " to unlock this lesson.";
-} else if(state.passed) {
-status.textContent =
-"✅ Lesson exam passed — " + state.score + "/10";
-} else if(state.examSubmitted) {
-status.textContent =
-"📝 Exam submitted — " + state.score + "/10.";
-} else if(state.videoCompleted) {
-status.textContent =
-"✅ Video completed. Your exam is unlocked.";
-} else {
-status.textContent =
-"▶ Video unlocked. Watch and complete this lesson.";
-}
+    if(!unlocked) {
+      status.textContent =
+        "🔒 Locked — pass Lesson " + lessonIndex + " to unlock this lesson.";
+    } else if(state.passed) {
+      status.textContent =
+        "✅ Lesson exam passed — " + state.score + "/10";
+    } else if(state.examSubmitted) {
+      status.textContent =
+        "📝 Exam submitted — " + state.score + "/10.";
+    } else if(state.videoCompleted) {
+      status.textContent =
+        "✅ Video completed. Your exam is unlocked.";
+    } else {
+      status.textContent =
+        "▶ Video unlocked. Watch and complete this lesson.";
+    }
 
-card.appendChild(status);
+    card.appendChild(status);
 
-/* VIDEO */
+    /* VIDEO */
 
-if(unlocked) {
+    if(unlocked) {
 
-const frame = makeElement("div","video-frame");
-const iframe = document.createElement("iframe");
+      const frame = makeElement("div","video-frame");
+      const iframe = document.createElement("iframe");
 
-iframe.src =
-"https://www.youtube-nocookie.com/embed/" + lesson.video;
+      iframe.src =
+        "https://www.youtube-nocookie.com/embed/" + lesson.video;
 
-iframe.title = lesson.title;
-iframe.loading = "lazy";
+      iframe.title = lesson.title;
+      iframe.loading = "lazy";
 
-iframe.allow =
-"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
 
-iframe.referrerPolicy = "strict-origin-when-cross-origin";
-iframe.allowFullscreen = true;
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      iframe.allowFullscreen = true;
 
-frame.appendChild(iframe);
-card.appendChild(frame);
+      frame.appendChild(iframe);
+      card.appendChild(frame);
 
-const help = makeElement("p","small");
-help.append("Video not playing? ");
+      const help = makeElement("p","small");
+      help.append("Video not playing? ");
 
-const link = document.createElement("a");
-link.href = "https://www.youtube.com/watch?v=" + lesson.video;
-link.target = "_blank";
-link.rel = "noopener noreferrer";
-link.textContent = "Open on YouTube";
+      const link = document.createElement("a");
+      link.href = "https://www.youtube.com/watch?v=" + lesson.video;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Open on YouTube";
 
-help.appendChild(link);
-card.appendChild(help);
+      help.appendChild(link);
+      card.appendChild(help);
 
-if(!state.videoCompleted) {
+      if(!state.videoCompleted) {
 
-const button = makeElement(    
-  "button",    
-  "action-btn",    
-  "I have completed this video"    
-);    
+        const button = makeElement(
+          "button",
+          "action-btn",
+          "I have completed this video"
+        );
 
-button.type = "button";    
+        button.type = "button";
 
-button.addEventListener("click",function() {    
-  if(!confirm("Have you finished watching this lesson video?")) {    
-    return;    
-  }    
+        button.addEventListener("click",function() {
+          if(!confirm("Have you finished watching this lesson video?")) {
+            return;
+          }
 
-  state.videoCompleted = true;    
-  saveProgress();    
-  renderCourses();    
-});    
+          state.videoCompleted = true;
+          saveProgress();
+          renderCourses();
+        });
 
-card.appendChild(button);
+        card.appendChild(button);
 
-} else {
-card.appendChild(
-makeElement("p","small","✓ Video marked as completed.")
-);
-}
+      } else {
+        card.appendChild(
+          makeElement("p","small","✓ Video marked as completed.")
+        );
+      }
 
-} else {
+    } else {
 
-const locked = makeElement("div","locked-panel");
+      const locked = makeElement("div","locked-panel");
 
-locked.appendChild(
-makeElement("strong","","🔒 Lesson locked")
-);
+      locked.appendChild(
+        makeElement("strong","","🔒 Lesson locked")
+      );
 
-locked.appendChild(
-makeElement(
-"p",
-"",
-"Pass the previous lesson's examination to unlock this video."
-)
-);
+      locked.appendChild(
+        makeElement(
+          "p",
+          "",
+          "Pass the previous lesson's examination to unlock this video."
+        )
+      );
 
-card.appendChild(locked);
-}
+      card.appendChild(locked);
+    }
 
-/* EXAMINATION: DIRECTLY BELOW VIDEO */
+    /* EXAMINATION: DIRECTLY BELOW VIDEO */
 
-const exam = makeElement("form","exam");
+    const exam = makeElement("form","exam");
 
-exam.appendChild(
-makeElement("h3","","📝 Lesson Examination")
-);
+    exam.appendChild(
+      makeElement("h3","","📝 Lesson Examination")
+    );
 
-exam.appendChild(
-makeElement("p","small","10 questions · Pass mark: 7/10")
-);
+    exam.appendChild(
+      makeElement("p","small","10 questions · Pass mark: 7/10")
+    );
 
-if(!unlocked) {
+    if(!unlocked) {
 
-exam.classList.add("locked");
+      exam.classList.add("locked");
 
-exam.appendChild(
-makeElement(
-"p",
-"status",
-"This examination is locked until the previous lesson is passed."
-)
-);
+      exam.appendChild(
+        makeElement(
+          "p",
+          "status",
+          "This examination is locked until the previous lesson is passed."
+        )
+      );
 
-} else if(!state.videoCompleted) {
+    } else if(!state.videoCompleted) {
 
-exam.classList.add("locked");
+      exam.classList.add("locked");
 
-exam.appendChild(
-makeElement(
-"p",
-"status",
-"Complete the lesson video first to unlock this examination."
-)
-);
+      exam.appendChild(
+        makeElement(
+          "p",
+          "status",
+          "Complete the lesson video first to unlock this examination."
+        )
+      );
 
-} else if(state.examSubmitted) {
+    } else if(state.examSubmitted) {
 
-const result = makeElement(
-"div",
-"result " + (state.passed ? "pass" : "fail")
-);
+      const result = makeElement(
+        "div",
+        "result " + (state.passed ? "pass" : "fail")
+      );
 
-result.textContent =
-"Your score: " + state.score + "/10. " +
-(state.passed
-? "Congratulations! You passed."
-: "You did not reach the 7/10 pass mark. This exam cannot be retaken.");
+      result.textContent =
+        "Your score: " + state.score + "/10. " +
+        (state.passed
+          ? "Congratulations! You passed."
+          : "You did not reach the 7/10 pass mark. This exam cannot be retaken.");
 
-exam.appendChild(result);
+      exam.appendChild(result);
 
-} else {
+    } else {
 
-lesson.questions.forEach(function(q,qIndex) {
+      lesson.questions.forEach(function(q,qIndex) {
 
-const block = makeElement("div","question");    
+        const block = makeElement("div","question");
 
-block.appendChild(    
-  makeElement("p","",(qIndex + 1) + ". " + q[0])    
-);    
+        block.appendChild(
+          makeElement("p","",(qIndex + 1) + ". " + q[0])
+        );
 
-q.slice(1,5).forEach(function(option,optionIndex) {    
+        q.slice(1,5).forEach(function(option,optionIndex) {
 
-  const label = document.createElement("label");    
-  const radio = document.createElement("input");    
+          const label = document.createElement("label");
+          const radio = document.createElement("input");
 
-  radio.type = "radio";    
-  radio.name = "lesson" + lessonIndex + "q" + qIndex;    
-  radio.value = String(optionIndex);    
-  radio.required = optionIndex === 0;    
+          radio.type = "radio";
+          radio.name = "lesson" + lessonIndex + "q" + qIndex;
+          radio.value = String(optionIndex);
+          radio.required = optionIndex === 0;
 
-  label.appendChild(radio);    
-  label.appendChild(document.createTextNode(option));    
+          label.appendChild(radio);
+          label.appendChild(document.createTextNode(option));
 
-  block.appendChild(label);    
-});    
+          block.appendChild(label);
+        });
 
-exam.appendChild(block);
+        exam.appendChild(block);
+      });
 
-});
+      const submit = makeElement(
+        "button",
+        "action-btn",
+        "Submit Examination"
+      );
 
-const submit = makeElement(
-"button",
-"action-btn",
-"Submit Examination"
-);
+      submit.type = "submit";
 
-submit.type = "submit";
+      exam.appendChild(submit);
 
-exam.appendChild(submit);
+      exam.addEventListener("submit",function(event) {
 
-exam.addEventListener("submit",function(event) {
+        event.preventDefault();
 
-event.preventDefault();    
+        if(state.examSubmitted || !state.videoCompleted) return;
 
-if(state.examSubmitted || !state.videoCompleted) return;    
+        if(!exam.reportValidity()) return;
 
-if(!exam.reportValidity()) return;    
+        const answers = new FormData(exam);
+        let score = 0;
 
-const answers = new FormData(exam);    
-let score = 0;    
+        lesson.questions.forEach(function(q,qIndex) {
 
-lesson.questions.forEach(function(q,qIndex) {    
+          const selected = answers.get(
+            "lesson" + lessonIndex + "q" + qIndex
+          );
 
-  const selected = answers.get(    
-    "lesson" + lessonIndex + "q" + qIndex    
-  );    
+          if(selected !== null && Number(selected) === q[5]) {
+            score++;
+          }
+        });
 
-  if(selected !== null && Number(selected) === q[5]) {    
-    score++;    
-  }    
-});    
+        state.examSubmitted = true;
+        state.score = score;
+        state.passed = score >= 7;
+        state.submittedAt = new Date().toISOString();
 
-state.examSubmitted = true;    
-state.score = score;    
-state.passed = score >= 7;    
-state.submittedAt = new Date().toISOString();    
+        saveProgress();
+        renderCourses();
+        updateProgressSummary();
 
-saveProgress();    
-renderCourses();    
-updateProgressSummary();    
+        if(state.passed) {
+          alert(
+            "Congratulations! You scored " + score +
+            "/10. You passed this examination."
+          );
+        } else {
+          alert(
+            "You scored " + score +
+            "/10. You did not reach the 7/10 pass mark."
+          );
+        }
+      });
+    }
 
-if(state.passed) {    
-  alert(    
-    "Congratulations! You scored " + score +    
-    "/10. You passed this examination."    
-  );    
-} else {    
-  alert(    
-    "You scored " + score +    
-    "/10. You did not reach the 7/10 pass mark."    
-  );    
-}
+    card.appendChild(exam);
+    grid.appendChild(card);
+  });
 
-});
-}
-
-card.appendChild(exam);
-grid.appendChild(card);
-
-});
-
-updateProgressSummary();
+  updateProgressSummary();
 }
 
 renderCourses();
@@ -733,5 +744,4 @@ updateProgressSummary();
 
 }
 </script></body>
-
-  </html>  Thus the courses.htm
+  </html>
