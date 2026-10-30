@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#12372a">
-<meta name="description" content="Learn Arabic through video lessons and practice exams.">
+<meta name="description" content="Learn Arabic through structured video lessons and practice exams.">
 <title>Arabic Courses | Islamic Arabic Learning Dictionary</title>
-<link rel="stylesheet" href="./style.css">
-
-<style>
+<link rel="stylesheet" href="./style.css"><style>
 #accessMessage {
   position: fixed;
   inset: 0;
@@ -99,10 +96,19 @@
   margin: 6px 4px 6px 0;
 }
 
+.action-btn:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
 .exam {
   margin-top: 16px;
   padding-top: 14px;
   border-top: 1px solid #dce8df;
+}
+
+.exam.locked {
+  opacity: .65;
 }
 
 .question {
@@ -144,6 +150,43 @@
   color: #754600;
 }
 
+.status {
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(18,55,42,.08);
+  margin: 12px 0;
+  font-size: .92rem;
+}
+
+.progress-track {
+  height: 10px;
+  background: rgba(255,255,255,.25);
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 14px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: #a9e6b9;
+  transition: width .3s ease;
+}
+
+.locked-panel {
+  background: #f1f3f1;
+  color: #444;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.locked-panel strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
 .small {
   font-size: .9rem;
 }
@@ -157,19 +200,12 @@
     padding: 13px;
   }
 }
-</style>
-</head>
-
-<body>
-
-<div id="accessMessage" role="status" aria-live="polite">
+</style></head><body><div id="accessMessage" role="status" aria-live="polite">
   <div>
     <h2>Checking Premium membership…</h2>
     <p>Please wait.</p>
   </div>
-</div>
-
-<header class="topbar">
+</div><header class="topbar">
   <a class="brand" href="./learn.html">
     <span class="brand-mark">بِ</span>
     <span>
@@ -178,38 +214,29 @@
     </span>
   </a>
   <a href="./profile.html">My Profile</a>
-</header>
-
-<main class="course-wrap">
-
-  <section class="course-hero">
+</header><main class="course-wrap">  <section class="course-hero">
     <p>STRUCTURED ARABIC LEARNING</p>
     <h1>Learn Arabic step by step</h1>
     <p>
-      Watch the lessons and practise your Arabic with the
-      multiple-choice exams.
-    </p>
-    <a class="action-btn" href="./premium.html">Explore Premium</a>
-  </section>
+      Watch each lesson, complete its examination and progress
+      through your Arabic learning journey.
+    </p><div class="progress-track">
+  <div id="progressFill" class="progress-fill"></div>
+</div>
 
-  <p class="notice">
+<p id="progressText">Your progress: 0 of 4 lessons passed.</p>
+
+<a class="action-btn" href="./premium.html">Explore Premium</a>
+
+  </section>  <p class="notice">
     <strong>How it works:</strong>
-    Each lesson contains a video and a 10-question exam.
-    Answer the questions and submit your exam to see your score.
-    You need at least 7 correct answers out of 10 to pass.
-  </p>
-
-  <section id="lessonGrid" class="course-grid"></section>
-
-  <p><a href="./learn.html">← Return to the Free Dictionary</a></p>
-
-</main>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="./config.js"></script><script src="./auth-gate.js"></script>
-
-<script>
+    Watch a lesson video and mark it as completed when you finish.
+    This unlocks its 10-question exam. Score at least 7/10 to pass
+    and unlock the next lesson. Each exam allows only one submission.
+  </p>  <section id="lessonGrid" class="course-grid"></section>  <p><a href="./learn.html">← Return to the Learning Platform</a></p></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./config.js"></script><script src="./auth-gate.js"></script><script>
 (function () {
+  "use strict";
+
   const message = document.getElementById("accessMessage");
 
   function showMessage(title, description, linkText, linkHref) {
@@ -315,7 +342,7 @@
       }
 
       message.remove();
-      startArabicCourses();
+      startArabicCourses(user.id);
 
     } catch (error) {
       console.error("Membership check failed:", error);
@@ -331,10 +358,8 @@
 
   checkMembership();
 })();
-</script>
-
-<script>
-function startArabicCourses() {
+</script><script>
+function startArabicCourses(userId) {
 "use strict";
 
 const lessons = [
@@ -409,126 +434,281 @@ questions: [
 ];
 
 const grid = document.getElementById("lessonGrid");
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
 
-lessons.forEach(function(lesson, lessonIndex) {
-  const card = document.createElement("article");
-  card.className = "lesson-card";
+const storageKey = "iald_course_progress_v3_" + userId;
 
-  const title = document.createElement("h2");
-  title.textContent = lesson.title;
-  card.appendChild(title);
+function emptyProgress() {
+  return {
+    lessons: lessons.map(() => ({
+      videoCompleted: false,
+      examSubmitted: false,
+      score: null,
+      passed: false,
+      submittedAt: null
+    }))
+  };
+}
 
-  const description = document.createElement("p");
-  description.textContent = lesson.description;
-  card.appendChild(description);
+function loadProgress() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey));
 
-  const frame = document.createElement("div");
-  frame.className = "video-frame";
+    if (
+      !saved ||
+      !Array.isArray(saved.lessons) ||
+      saved.lessons.length !== lessons.length
+    ) {
+      return emptyProgress();
+    }
 
-  const iframe = document.createElement("iframe");
-  iframe.src = "https://www.youtube-nocookie.com/embed/" + lesson.video;
-  iframe.title = lesson.title;
-  iframe.loading = "lazy";
-  iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-  iframe.referrerPolicy = "strict-origin-when-cross-origin";
-  iframe.allowFullscreen = true;
+    return {
+      lessons: lessons.map((_, index) => {
+        const item = saved.lessons[index] || {};
 
-  frame.appendChild(iframe);
-  card.appendChild(frame);
+        return {
+          videoCompleted: item.videoCompleted === true,
+          examSubmitted: item.examSubmitted === true,
+          score: Number.isInteger(item.score) ? item.score : null,
+          passed: item.passed === true,
+          submittedAt: item.submittedAt || null
+        };
+      })
+    };
+  } catch (error) {
+    console.error("Could not load course progress:", error);
+    return emptyProgress();
+  }
+}
 
-  const videoHelp = document.createElement("p");
-  videoHelp.className = "small";
-  videoHelp.append("Video not playing? ");
+let progress = loadProgress();
 
-  const videoLink = document.createElement("a");
-  videoLink.href = "https://www.youtube.com/watch?v=" + lesson.video;
-  videoLink.target = "_blank";
-  videoLink.rel = "noopener noreferrer";
-  videoLink.textContent = "Open on YouTube";
+function saveProgress() {
+  try {
+    localStorage.setItem(storageKey, JSON.stringify(progress));
+  } catch (error) {
+    console.error("Could not save course progress:", error);
+    alert("Your browser could not save your progress. Check your device storage.");
+  }
+}
 
-  videoHelp.appendChild(videoLink);
-  videoHelp.append(".");
-  card.appendChild(videoHelp);
+function isVideoUnlocked(index) {
+  if (index === 0) return true;
+  return progress.lessons[index - 1].passed === true;
+}
 
-  const exam = document.createElement("form");
-  exam.className = "exam";
+function updateProgressSummary() {
+  const passedCount = progress.lessons.filter(item => item.passed).length;
 
-  const examTitle = document.createElement("h3");
-  examTitle.textContent = "📝 Lesson Exam";
-  exam.appendChild(examTitle);
+  progressText.textContent =
+    "Your progress: " + passedCount + " of " + lessons.length + " lessons passed.";
 
-  const examInfo = document.createElement("p");
-  examInfo.textContent = "10 questions · Pass mark: 7/10 (70%)";
-  exam.appendChild(examInfo);
+  progressFill.style.width =
+    ((passedCount / lessons.length) * 100) + "%";
+}
 
-  lesson.questions.forEach(function(q, qIndex) {
-    const block = document.createElement("div");
-    block.className = "question";
+function makeElement(tag, className, text) {
+  const element = document.createElement(tag);
 
-    const question = document.createElement("p");
-    question.textContent = (qIndex + 1) + ". " + q[0];
-    block.appendChild(question);
+  if (className) element.className = className;
+  if (text !== undefined) element.textContent = text;
 
-    q.slice(1, 5).forEach(function(option, optionIndex) {
-      const label = document.createElement("label");
+  return element;
+}
 
-      const radio = document.createElement("input");
-      radio.type = "radio";
-      radio.name = "lesson" + lessonIndex + "q" + qIndex;
-      radio.value = String(optionIndex);
-      radio.required = optionIndex === 0;
+function renderCourses() {
+  grid.replaceChildren();
 
-      label.appendChild(radio);
-      label.appendChild(document.createTextNode(option));
-      block.appendChild(label);
-    });
+  lessons.forEach(function(lesson, lessonIndex) {
+    const state = progress.lessons[lessonIndex];
+    const unlocked = isVideoUnlocked(lessonIndex);
 
-    exam.appendChild(block);
-  });
+    const card = makeElement("article", "lesson-card");
 
-  const submit = document.createElement("button");
-  submit.type = "submit";
-  submit.className = "action-btn";
-  submit.textContent = "Submit exam";
-  exam.appendChild(submit);
+    card.appendChild(makeElement("h2", "", lesson.title));
+    card.appendChild(makeElement("p", "", lesson.description));
 
-  const result = document.createElement("div");
-  result.className = "result";
-  result.hidden = true;
-  result.setAttribute("role", "status");
-  exam.appendChild(result);
+    const status = makeElement("div", "status");
 
-  exam.addEventListener("submit", function(event) {
-    event.preventDefault();
+    if (!unlocked) {
+      status.textContent = "🔒 Locked — pass Lesson " + lessonIndex +
+        " to unlock this lesson.";
+    } else if (state.passed) {
+      status.textContent = "✅ Lesson exam passed — " +
+        state.score + "/10";
+    } else if (state.examSubmitted) {
+      status.textContent = "📝 Exam submitted — " +
+        state.score + "/10. This exam is permanently locked.";
+    } else if (state.videoCompleted) {
+      status.textContent = "✅ Video completed. Your exam is unlocked.";
+    } else {
+      status.textContent = "▶ Video unlocked. Watch and complete this lesson.";
+    }
 
-    if (!exam.reportValidity()) return;
+    card.appendChild(status);
 
-    let score = 0;
+    if (unlocked) {
+      const frame = makeElement("div", "video-frame");
 
-    lesson.questions.forEach(function(q, qIndex) {
-      const chosen = exam.querySelector(
-        'input[name="lesson' + lessonIndex + 'q' + qIndex + '"]:checked'
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + lesson.video;
+      iframe.title = lesson.title;
+      iframe.loading = "lazy";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      iframe.allowFullscreen = true;
+
+      frame.appendChild(iframe);
+      card.appendChild(frame);
+
+      const videoHelp = makeElement("p", "small");
+      videoHelp.append("Video not playing? ");
+
+      const videoLink = document.createElement("a");
+      videoLink.href = "https://www.youtube.com/watch?v=" + lesson.video;
+      videoLink.target = "_blank";
+      videoLink.rel = "noopener noreferrer";
+      videoLink.textContent = "Open on YouTube";
+
+      videoHelp.appendChild(videoLink);
+      videoHelp.append(".");
+      card.appendChild(videoHelp);
+
+      if (!state.videoCompleted) {
+        const completeButton = makeElement(
+          "button",
+          "action-btn",
+          "I have completed this video"
+        );
+
+        completeButton.type = "button";
+
+        completeButton.addEventListener("click", function() {
+          const confirmed = confirm(
+            "Have you finished watching this lesson video?"
+          );
+
+          if (!confirmed) return;
+
+          state.videoCompleted = true;
+          saveProgress();
+          renderCourses();
+        });
+
+        card.appendChild(completeButton);
+      } else {
+        card.appendChild(
+          makeElement("p", "small", "✓ Video marked as completed.")
+        );
+      }
+
+    } else {
+      const lockedPanel = makeElement("div", "locked-panel");
+
+      lockedPanel.appendChild(
+        makeElement("strong", "", "🔒 Lesson locked")
       );
 
-      if (chosen && Number(chosen.value) === q[5]) {
-        score++;
-      }
-    });
+      lockedPanel.appendChild(
+        makeElement(
+          "p",
+          "",
+          "Pass the previous lesson's examination to unlock this video."
+        )
+      );
 
-    result.hidden = false;
-    result.className = "result " + (score >= 7 ? "pass" : "fail");
+      card.appendChild(lockedPanel);
+    }
 
-    result.textContent = score >= 7
-      ? "🎉 You scored " + score + "/10. Congratulations, you passed!"
-      : "You scored " + score + "/10. You need at least 7/10 to pass. Review the lesson and try again.";
-  });
+    const exam = makeElement("form", "exam");
 
-  card.appendChild(exam);
-  grid.appendChild(card);
-});
+    exam.appendChild(makeElement("h3", "", "📝 Lesson Exam"));
 
-}
-</script>
+    exam.appendChild(
+      makeElement("p", "small", "10 questions · Pass mark: 7/10 (70%)")
+    );
 
-</body>
-</html>
+    if (!unlocked) {
+      exam.classList.add("locked");
+
+      exam.appendChild(
+        makeElement(
+          "p",
+          "status",
+          "This examination is locked until its lesson video is unlocked."
+        )
+      );
+
+    } else if (!state.videoCompleted) {
+      exam.classList.add("locked");
+
+      exam.appendChild(
+        makeElement(
+          "p",
+          "status",
+          "Complete the lesson video first to unlock this examination."
+        )
+      );
+
+    } else if (state.examSubmitted) {
+      const result = makeElement(
+        "div",
+        "result " + (state.passed ? "pass" : "fail")
+      );
+
+      result.textContent =
+        "Exam submitted: " + state.score + "/10. " +
+        (state.passed
+          ? "Congratulations! You passed."
+          : "You did not reach the 7/10 pass mark. This exam cannot be retaken.") +
+        (state.submittedAt
+          ? " Submitted on: " + new Date(state.submittedAt).toLocaleString()
+          : "");
+
+      exam.appendChild(result);
+
+    } else {
+      lesson.questions.forEach(function(q, qIndex) {
+        const block = makeElement("div", "question");
+
+        block.appendChild(
+          makeElement("p", "", (qIndex + 1) + ". " + q[0])
+        );
+
+        q.slice(1, 5).forEach(function(option, optionIndex) {
+          const label = document.createElement("label");
+
+          const radio = document.createElement("input");
+          radio.type = "radio";
+          radio.name = "lesson" + lessonIndex + "q" + qIndex;
+          radio.value = String(optionIndex);
+          radio.required = optionIndex === 0;
+
+          label.appendChild(radio);
+          label.appendChild(document.createTextNode(option));
+
+          block.appendChild(label);
+        });
+
+        exam.appendChild(block);
+      });
+
+      const submit = makeElement("button", "action-btn", "Submit final exam");
+      submit.type = "submit";
+
+      exam.appendChild(submit);
+
+      const result = makeElement("div", "result");
+      result.hidden = true;
+      result.setAttribute("role", "status");
+
+      exam.appendChild(result);
+
+      exam.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        if (state.examSubmitted) return;
+        if (!state.videoCompleted) return;
+
+      
