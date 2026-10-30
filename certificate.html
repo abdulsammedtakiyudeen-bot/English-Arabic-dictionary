@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en">
-<head>
+<head><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./config.js"></script><script src="./auth-gate.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#12372a">
@@ -123,81 +123,39 @@ Digital Certificate of Achievement
 <a class="button" href="./courses.html">← Back to Courses</a>
 <button id="printBtn" hidden>Print / Save as PDF</button>
 </div></div><script>
-(function(){
-  const status = document.getElementById("status");
-  const nameArea = document.getElementById("nameArea");
-  const nameInput = document.getElementById("studentName");
-  const certificate = document.getElementById("certificate");
-  const printBtn = document.getElementById("printBtn");
-
-  let progress;
-
+(async function(){
+  const status=document.getElementById('status');
+  const nameArea=document.getElementById('nameArea');
+  const nameInput=document.getElementById('studentName');
+  const certificate=document.getElementById('certificate');
+  const printBtn=document.getElementById('printBtn');
+  const client=window.supabase.createClient(window.SUPABASE_URL,window.SUPABASE_PUBLISHABLE_KEY);
   try {
-    progress = JSON.parse(
-      localStorage.getItem("arabic_course_exam_v2") || "{}"
-    );
-  } catch(error) {
-    progress = {};
-  }
-
-  const passed = Array.isArray(progress.passed)
-    ? progress.passed
-    : [];
-
-  const allPassed = [0,1,2,3].every(n => passed.includes(n));
-
-  if(!allPassed){
-    status.textContent =
-      "🔒 Certificate locked. You must pass all four lesson exams with at least 70%. Current progress: " +
-      passed.filter(n => [0,1,2,3].includes(n)).length +
-      " of 4 exams passed.";
-
-    nameArea.hidden = true;
-    return;
-  }
-
-  status.className = "";
-  status.style.background = "#e2f4e8";
-  status.style.padding = "14px";
-  status.style.borderRadius = "8px";
-  status.textContent =
-    "🎉 All four exams are marked as passed on this device. Enter your name to create your certificate.";
-
-  nameArea.hidden = false;
-
-  document.getElementById("generateBtn").addEventListener("click", function(){
-    const name = nameInput.value.trim();
-
-    if(!name){
-      alert("Please enter your full name.");
-      nameInput.focus();
-      return;
-    }
-
-    const date = new Date();
-    const dateText = date.toLocaleDateString(undefined,{
-      year:"numeric",
-      month:"long",
-      day:"numeric"
+    const {data:{user},error:authError}=await client.auth.getUser();
+    if(authError||!user){location.replace('./login.html?next=certificate.html');return;}
+    const {data:profile,error}=await client.from('profiles').select('membership,premium_until').eq('id',user.id).maybeSingle();
+    if(error||!profile){status.textContent='Your membership could not be verified. Please return to Premium or contact support.';return;}
+    const expiry=profile.premium_until?new Date(profile.premium_until):null;
+    const premiumActive=String(profile.membership||'free').toLowerCase()==='premium' && expiry && !Number.isNaN(expiry.getTime()) && expiry.getTime()>Date.now();
+    if(!premiumActive){status.textContent='🔒 Certificate access is for active Premium members. Please activate or renew Premium to continue.';return;}
+    let progress={};
+    try{progress=JSON.parse(localStorage.getItem('arabic_course_exam_v2')||'{}');}catch(_){}
+    const passed=Array.isArray(progress.passed)?progress.passed:[];
+    const allPassed=[0,1,2,3].every(n=>passed.includes(n));
+    if(!allPassed){status.textContent='Certificate locked. Pass all four course exams with at least 70%. Current progress: '+passed.filter(n=>[0,1,2,3].includes(n)).length+' of 4 exams passed.';return;}
+    status.textContent='All four exams are passed and your Premium membership is active. Enter your full name to create your certificate.';
+    nameArea.hidden=false;
+    document.getElementById('generateBtn').addEventListener('click',function(){
+      const name=nameInput.value.trim();if(!name){status.textContent='Please enter your full name.';nameInput.focus();return;}
+      const date=new Date();const dateText=date.toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
+      const randomPart=Math.random().toString(36).slice(2,10).toUpperCase();
+      document.getElementById('certName').textContent=name;
+      document.getElementById('certDate').textContent=dateText;
+      document.getElementById('certNumber').textContent='IAD-'+date.getFullYear()+'-'+randomPart;
+      certificate.style.display='block';printBtn.hidden=false;certificate.scrollIntoView({behavior:'smooth'});
     });
-
-    const randomPart = Math.random().toString(36).slice(2,10).toUpperCase();
-    const certId = "IAD-" +
-      date.getFullYear() + "-" + randomPart;
-
-    document.getElementById("certName").textContent = name;
-    document.getElementById("certDate").textContent = dateText;
-    document.getElementById("certNumber").textContent = certId;
-
-    certificate.style.display = "block";
-    printBtn.hidden = false;
-
-    certificate.scrollIntoView({behavior:"smooth"});
-  });
-
-  printBtn.addEventListener("click", function(){
-    window.print();
-  });
+    printBtn.addEventListener('click',()=>window.print());
+  } catch(e) {status.textContent='Could not verify your account or membership. Check your connection and try again.';}
 })();
 </script></body>
 </html>
