@@ -3,8 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#12372a">
-<meta name="description" content="Generate your Arabic Language Certificate of Achievement.">
-<title>Arabic Language Certificate</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./config.js"></script><script src="./auth-gate.js"></script><style>
+<meta name="description" content="Generate your Arabic Language Certificate of Achievement."><title>Arabic Language Certificate</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./config.js"></script><script src="./auth-gate.js"></script><style>
 * {
   box-sizing: border-box;
 }
@@ -70,6 +69,7 @@ button:disabled {
   color: #604800;
   padding: 14px;
   border-radius: 8px;
+  overflow-wrap: anywhere;
 }
 
 #certificate {
@@ -140,49 +140,90 @@ button:disabled {
     margin: 10mm;
   }
 }
-</style></head><body><div class="container"><section class="panel"><h1>🎓 Arabic Language Certificate</h1><p>
-Welcome! Complete all four Arabic course examinations with
-a passing score of at least 70% to unlock your certificate.
-</p><div id="status" class="message" role="status" aria-live="polite">
-Checking your account and course progress...
-</div><div id="nameArea" hidden><label for="studentName">
-<strong>Student's full name</strong>
-</label><input
-id="studentName"
-type="text"
-maxlength="80"
-placeholder="Enter your full name"
-autocomplete="name"
+</style></head><body><div class="container">  <section class="panel"><h1>🎓 Arabic Language Certificate</h1>
 
-«»
+<p>
+  Welcome! Complete all four Arabic course examinations
+  with a passing score of at least 70% to unlock your certificate.
+</p>
 
-<button id="generateBtn" type="button">
-Generate Certificate
-</button></div></section><section id="certificate"><div style="font-size:48px">🏅</div><h2>ISLAMIC ARABIC LEARNING DICTIONARY</h2><div class="arabic">
-شهادة الإنجاز في اللغة العربية
-</div><h1 class="cert-title">
-CERTIFICATE OF ACHIEVEMENT
-</h1><p>This certificate is presented to</p><div id="certName" class="student-name"></div><p>
-in recognition of completing the four Arabic learning lessons
-and passing all course examinations.
-</p><div class="arabic">
-بارك الله في علمك وجهدك
-</div><p>
-<strong>Course:</strong> Arabic Language Learning
-</p><p>
-<strong>Completion date:</strong>
-<span id="certDate"></span>
-</p><p class="cert-number">
-<strong>Certificate number:</strong>
-<span id="certNumber"></span>
-</p><p style="margin-top:35px">
-<strong>Islamic Arabic Learning Dictionary</strong><br>
-Digital Certificate of Achievement
-</p></section><div class="back"><a class="button" href="./courses.html">
-← Back to Courses
-</a><button id="printBtn" type="button" hidden>
-Print / Save as PDF
-</button></div></div><script>
+<div id="status" class="message" role="status" aria-live="polite">
+  Checking your account and course progress...
+</div>
+
+<div id="nameArea" hidden>
+
+  <label for="studentName">
+    <strong>Student's full name</strong>
+  </label>
+
+  <input
+    id="studentName"
+    type="text"
+    maxlength="80"
+    placeholder="Enter your full name"
+    autocomplete="name"
+  >
+
+  <button id="generateBtn" type="button">
+    Generate Certificate
+  </button>
+
+</div>
+
+  </section>  <section id="certificate"><div style="font-size:48px">🏅</div>
+
+<h2>ISLAMIC ARABIC LEARNING DICTIONARY</h2>
+
+<div class="arabic">
+  شهادة الإنجاز في اللغة العربية
+</div>
+
+<h1 class="cert-title">
+  CERTIFICATE OF ACHIEVEMENT
+</h1>
+
+<p>This certificate is presented to</p>
+
+<div id="certName" class="student-name"></div>
+
+<p>
+  in recognition of completing the four Arabic learning lessons
+  and passing all course examinations.
+</p>
+
+<div class="arabic">
+  بارك الله في علمك وجهدك
+</div>
+
+<p>
+  <strong>Course:</strong> Arabic Language Learning
+</p>
+
+<p>
+  <strong>Completion date:</strong>
+  <span id="certDate"></span>
+</p>
+
+<p class="cert-number">
+  <strong>Certificate number:</strong>
+  <span id="certNumber"></span>
+</p>
+
+<p style="margin-top:35px">
+  <strong>Islamic Arabic Learning Dictionary</strong><br>
+  Digital Certificate of Achievement
+</p>
+
+  </section>  <div class="back"><a class="button" href="./courses.html">
+  ← Back to Courses
+</a>
+
+<button id="printBtn" type="button" hidden>
+  Print / Save as PDF
+</button>
+
+  </div></div><script>
 (async function () {
 
   "use strict";
@@ -194,20 +235,27 @@ Print / Save as PDF
   const printBtn = document.getElementById("printBtn");
   const generateBtn = document.getElementById("generateBtn");
 
+  let stage = "Starting certificate verification";
+  let certificateUnlocked = false;
+
   function showStatus(message) {
     status.textContent = message;
   }
 
   try {
 
-    /* CHECK SUPABASE CONFIGURATION */
+    /* 1. CHECK SUPABASE CONFIGURATION */
+
+    stage = "Loading Supabase configuration";
 
     if (
       !window.supabase ||
       !window.SUPABASE_URL ||
       !window.SUPABASE_PUBLISHABLE_KEY
     ) {
-      throw new Error("The account service could not load.");
+      throw new Error(
+        "Supabase configuration could not load. Check config.js."
+      );
     }
 
     const client = window.supabase.createClient(
@@ -215,18 +263,26 @@ Print / Save as PDF
       window.SUPABASE_PUBLISHABLE_KEY
     );
 
-    /* CHECK SIGNED-IN USER */
+    /* 2. CHECK SIGNED-IN USER */
+
+    stage = "Checking your login";
 
     const authResult = await client.auth.getUser();
 
-    if (authResult.error || !authResult.data.user) {
+    if (authResult.error) {
+      throw authResult.error;
+    }
+
+    if (!authResult.data.user) {
       location.replace("./login.html?next=certificate.html");
       return;
     }
 
     const user = authResult.data.user;
 
-    /* CHECK PREMIUM MEMBERSHIP */
+    /* 3. CHECK PREMIUM MEMBERSHIP */
+
+    stage = "Checking Premium membership";
 
     const profileResult = await client
       .from("profiles")
@@ -234,11 +290,14 @@ Print / Save as PDF
       .eq("id", user.id)
       .maybeSingle();
 
-    if (profileResult.error || !profileResult.data) {
-      showStatus(
-        "Your membership could not be verified. Please try again."
+    if (profileResult.error) {
+      throw profileResult.error;
+    }
+
+    if (!profileResult.data) {
+      throw new Error(
+        "No membership profile was found for your account."
       );
-      return;
     }
 
     const profile = profileResult.data;
@@ -253,68 +312,51 @@ Print / Save as PDF
       expiry > Date.now();
 
     if (!premiumActive) {
+
       showStatus(
-        "🔒 Certificate access is for active Premium members. " +
-        "Please activate or renew Premium to continue."
+        "🔒 Certificate access requires an active Premium membership. " +
+        "Your membership could not be confirmed as active."
       );
+
       return;
     }
 
-    /* READ THE SAME PROGRESS STORAGE USED BY courses.html */
+    /* 4. CHECK SAVED COURSE PROGRESS */
+
+    stage = "Reading your saved course progress";
 
     const progressKey =
       "iald_course_progress_v3_" + user.id;
 
-    let progress;
+    const savedProgress = localStorage.getItem(progressKey);
 
-    try {
-
-      const savedProgress = localStorage.getItem(progressKey);
-
-      if (!savedProgress) {
-        showStatus(
-          "Certificate locked. You have not completed the course examinations yet. " +
-          "Your progress is 0 of 4 exams passed."
-        );
-        return;
-      }
-
-      progress = JSON.parse(savedProgress);
-
-    } catch (error) {
-
-      console.error("Progress reading error:", error);
+    if (!savedProgress) {
 
       showStatus(
-        "Your course progress could not be read. " +
-        "Please revisit your courses and try again."
+        "Certificate locked. No saved course progress was found " +
+        "for this account on this browser. Please revisit your courses."
       );
 
       return;
     }
 
-    /* VERIFY ALL FOUR EXAMINATIONS */
+    const progress = JSON.parse(savedProgress);
 
-    const lessonProgress = Array.isArray(progress.lessons)
-      ? progress.lessons
-      : [];
+    if (!progress || !Array.isArray(progress.lessons)) {
 
-    if (lessonProgress.length !== 4) {
-      showStatus(
-        "Certificate locked. Complete all four course examinations. " +
-        "Current progress: " +
-        lessonProgress.filter(item =>
-          item &&
-          item.passed === true &&
-          Number.isInteger(item.score) &&
-          item.score >= 7
-        ).length +
-        " of 4 exams passed."
+      throw new Error(
+        "Your saved course progress has an unexpected format."
       );
-      return;
+
     }
 
-    const passedCount = lessonProgress.filter(function (item) {
+    /* 5. VERIFY ALL FOUR EXAMINATIONS */
+
+    stage = "Verifying your four examination results";
+
+    const lessons = progress.lessons;
+
+    const passedCount = lessons.filter(function (item) {
 
       return (
         item &&
@@ -327,41 +369,45 @@ Print / Save as PDF
 
     }).length;
 
-    const allPassed = passedCount === 4;
-
-    if (!allPassed) {
+    if (lessons.length !== 4 || passedCount !== 4) {
 
       showStatus(
-        "Certificate locked. Pass all four course examinations " +
-        "with at least 70%. Current progress: " +
-        passedCount + " of 4 exams passed."
+        "Certificate locked. Verified progress: " +
+        passedCount +
+        " of 4 lessons passed. All four examinations must be passed."
       );
 
       return;
     }
 
-    /* ALLOW CERTIFICATE GENERATION */
+    /* 6. UNLOCK CERTIFICATE */
+
+    certificateUnlocked = true;
 
     showStatus(
-      "✅ All four examinations are passed and your Premium " +
-      "membership is active. Enter your full name to create your certificate."
+      "✅ Congratulations! All four lessons have been passed " +
+      "and your Premium membership is active. Enter your full name."
     );
 
     nameArea.hidden = false;
 
+    /* 7. GENERATE CERTIFICATE */
+
     generateBtn.addEventListener("click", function () {
 
-      const name = nameInput.value.trim();
-
-      if (!name) {
-        showStatus("Please enter your full name.");
-        nameInput.focus();
+      if (!certificateUnlocked) {
+        showStatus("Certificate access has not been verified.");
         return;
       }
 
+      const name = nameInput.value.trim();
+
       if (name.length < 2) {
-        showStatus("Please enter your complete name.");
+
+        showStatus("Please enter your full name.");
+
         nameInput.focus();
+
         return;
       }
 
@@ -399,21 +445,42 @@ Print / Save as PDF
 
     });
 
+    /* 8. PRINT OR SAVE AS PDF */
+
     printBtn.addEventListener("click", function () {
+
+      if (!certificateUnlocked) {
+        showStatus("Certificate access has not been verified.");
+        return;
+      }
+
       window.print();
+
     });
 
   } catch (error) {
 
-    console.error("Certificate verification error:", error);
+    console.error(
+      "Certificate verification failed at:",
+      stage,
+      error
+    );
+
+    const errorMessage =
+      error && error.message
+        ? error.message
+        : "Unknown error";
 
     showStatus(
-      "Could not verify your account, membership or course progress. " +
-      "Check your internet connection and try again."
+      "Verification failed at: " +
+      stage +
+      ". Details: " +
+      errorMessage +
+      ". Please check your internet connection and try again."
     );
 
   }
 
 })();
 </script></body>
-</html>
+  </html>
