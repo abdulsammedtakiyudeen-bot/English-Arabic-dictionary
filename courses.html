@@ -1,224 +1,185 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#12372a">
 <meta name="description" content="Learn Arabic through structured video lessons and practice exams.">
-<title>Arabic Courses | Islamic Arabic Learning Dictionary</title>
-
-<link rel="stylesheet" href="./style.css">
-
-<style>
+<title>Arabic Courses | Islamic Arabic Learning Dictionary</title><link rel="stylesheet" href="./style.css"><style>
 #accessMessage {
-  position: fixed;
-  inset: 0;
-  background: #12372a;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  text-align: center;
-  z-index: 99999;
+  position:fixed;
+  inset:0;
+  background:#12372a;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  text-align:center;
+  z-index:99999;
 }
 
 #accessMessage a {
-  display: inline-block;
-  margin-top: 16px;
-  padding: 12px 18px;
-  background: white;
-  color: #12372a;
-  border-radius: 8px;
-  font-weight: bold;
-  text-decoration: none;
+  display:inline-block;
+  margin-top:16px;
+  padding:12px 18px;
+  background:white;
+  color:#12372a;
+  border-radius:8px;
+  font-weight:bold;
+  text-decoration:none;
 }
 
 .course-wrap {
-  width: min(950px, calc(100% - 28px));
-  margin: 24px auto 80px;
+  width:min(950px,calc(100% - 28px));
+  margin:24px auto 80px;
 }
 
 .course-hero {
-  background: #12372a;
-  color: white;
-  padding: 25px;
-  border-radius: 18px;
+  background:#12372a;
+  color:white;
+  padding:25px;
+  border-radius:18px;
 }
 
-.course-hero p {
-  line-height: 1.7;
-}
+.course-hero p {line-height:1.7;}
 
-/* One lesson per row */
 .course-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 22px;
-  margin: 22px 0;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:22px;
+  margin:22px 0;
 }
 
 .lesson-card {
-  background: var(--card, white);
-  border: 1px solid #dce8df;
-  border-radius: 16px;
-  padding: 18px;
-  min-width: 0;
-  width: 100%;
+  background:var(--card,white);
+  border:1px solid #dce8df;
+  border-radius:16px;
+  padding:18px;
+  width:100%;
+  min-width:0;
 }
 
-.lesson-card h2 {
-  font-size: 1.2rem;
-}
+.lesson-card h2 {font-size:1.2rem;}
 
-.lesson-card p {
-  line-height: 1.6;
-}
+.lesson-card p {line-height:1.6;}
 
 .video-frame {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #111;
-  border-radius: 12px;
-  overflow: hidden;
+  width:100%;
+  aspect-ratio:16/9;
+  background:#111;
+  border-radius:12px;
+  overflow:hidden;
 }
 
 .video-frame iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
+  width:100%;
+  height:100%;
+  border:0;
 }
 
 .action-btn {
-  display: inline-block;
-  background: #12372a;
-  color: white;
-  border: 0;
-  border-radius: 10px;
-  padding: 11px 14px;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  margin: 6px 4px 6px 0;
+  display:inline-block;
+  background:#12372a;
+  color:white;
+  border:0;
+  border-radius:10px;
+  padding:11px 14px;
+  font-weight:700;
+  text-decoration:none;
+  cursor:pointer;
+  margin:6px 4px 6px 0;
 }
 
 .action-btn:disabled {
-  opacity: .55;
-  cursor: not-allowed;
+  opacity:.55;
+  cursor:not-allowed;
 }
 
 .exam {
-  margin-top: 18px;
-  padding-top: 16px;
-  border-top: 2px solid #dce8df;
+  margin-top:18px;
+  padding-top:16px;
+  border-top:2px solid #dce8df;
 }
 
-.exam.locked {
-  opacity: .65;
-}
+.exam.locked {opacity:.65;}
 
 .question {
-  padding: 12px;
-  margin: 12px 0;
-  background: rgba(128,128,128,.07);
-  border-radius: 12px;
+  padding:12px;
+  margin:12px 0;
+  background:rgba(128,128,128,.07);
+  border-radius:12px;
 }
 
-.question p {
-  font-weight: 700;
-}
+.question p {font-weight:700;}
 
 .question label {
-  display: block;
-  padding: 8px 4px;
-  cursor: pointer;
-  line-height: 1.5;
+  display:block;
+  padding:8px 4px;
+  cursor:pointer;
+  line-height:1.5;
 }
 
-.question input {
-  margin-right: 8px;
-}
+.question input {margin-right:8px;}
 
 .result {
-  padding: 12px;
-  border-radius: 10px;
-  margin-top: 12px;
-  font-weight: 700;
+  padding:12px;
+  border-radius:10px;
+  margin-top:12px;
+  font-weight:700;
 }
 
-.pass {
-  background: #dff5e6;
-  color: #155b31;
-}
-
-.fail {
-  background: #fff0d9;
-  color: #754600;
-}
+.pass {background:#dff5e6;color:#155b31;}
+.fail {background:#fff0d9;color:#754600;}
 
 .status {
-  padding: 10px;
-  border-radius: 10px;
-  background: rgba(18,55,42,.08);
-  margin: 12px 0;
-  font-size: .92rem;
+  padding:10px;
+  border-radius:10px;
+  background:rgba(18,55,42,.08);
+  margin:12px 0;
+  font-size:.92rem;
 }
 
 .progress-track {
-  height: 10px;
-  background: rgba(255,255,255,.25);
-  border-radius: 20px;
-  overflow: hidden;
-  margin: 14px 0;
+  height:10px;
+  background:rgba(255,255,255,.25);
+  border-radius:20px;
+  overflow:hidden;
+  margin:14px 0;
 }
 
 .progress-fill {
-  height: 100%;
-  width: 0;
-  background: #a9e6b9;
-  transition: width .3s ease;
+  height:100%;
+  width:0;
+  background:#a9e6b9;
+  transition:width .3s ease;
 }
 
 .locked-panel {
-  background: #f1f3f1;
-  color: #444;
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
+  background:#f1f3f1;
+  color:#444;
+  border-radius:12px;
+  padding:20px;
+  text-align:center;
 }
 
 .locked-panel strong {
-  display: block;
-  font-size: 1.1rem;
-  margin-bottom: 8px;
+  display:block;
+  font-size:1.1rem;
+  margin-bottom:8px;
 }
 
-.small {
-  font-size: .9rem;
+.small {font-size:.9rem;}
+
+@media(max-width:480px) {
+  .course-hero {padding:18px;}
+  .lesson-card {padding:13px;}
 }
-
-@media (max-width: 480px) {
-  .course-hero {
-    padding: 18px;
-  }
-
-  .lesson-card {
-    padding: 13px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<div id="accessMessage" role="status" aria-live="polite">
+</style></head><body><div id="accessMessage" role="status" aria-live="polite">
   <div>
     <h2>Checking Premium membership…</h2>
     <p>Please wait.</p>
   </div>
-</div>
-
-<header class="topbar">
+</div><header class="topbar">
   <a class="brand" href="./learn.html">
     <span class="brand-mark">بِ</span>
     <span>
@@ -227,68 +188,46 @@
     </span>
   </a>
   <a href="./profile.html">My Profile</a>
-</header>
-
-<main class="course-wrap">
-
-  <section class="course-hero">
+</header><main class="course-wrap">  <section class="course-hero">
     <p>STRUCTURED ARABIC LEARNING</p>
-    <h1>Learn Arabic step by step</h1>
+    <h1>Learn Arabic step by step</h1><p>
+  Watch each lesson, complete its examination and progress
+  through your Arabic learning journey.
+</p>
 
-    <p>
-      Watch each lesson, complete its examination and progress
-      through your Arabic learning journey.
-    </p>
+<div class="progress-track">
+  <div id="progressFill" class="progress-fill"></div>
+</div>
 
-    <div class="progress-track">
-      <div id="progressFill" class="progress-fill"></div>
-    </div>
+<p id="progressText">Your progress: 0 of 4 lessons passed.</p>
 
-    <p id="progressText">Your progress: 0 of 4 lessons passed.</p>
+<a class="action-btn" href="./premium.html">Explore Premium</a>
 
-    <a class="action-btn" href="./premium.html">Explore Premium</a>
-  </section>
-
-  <p class="notice">
+  </section>  <p class="notice">
     <strong>How it works:</strong>
-    Watch each lesson video and mark it as completed when you finish.
-    This unlocks its 10-question examination. Score at least 7/10 to
-    pass and unlock the next lesson. Each examination allows only
-    one submission.
-  </p>
-
-  <section id="lessonGrid" class="course-grid"></section>
-
-  <p>
-    <a href="./learn.html">← Return to the Learning Platform</a>
-  </p>
-
-</main>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="./config.js"></script>
-<script src="./auth-gate.js"></script>
-
-<script>
-(function () {
+    Watch each lesson video and mark it as completed.
+    This unlocks its 10-question examination.
+    Score at least 7/10 to pass and unlock the next lesson.
+    Each examination allows only one submission.
+  </p>  <section id="lessonGrid" class="course-grid"></section>  <p><a href="./learn.html">← Return to the Learning Platform</a></p></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./config.js"></script><script src="./auth-gate.js"></script><script>
+(function() {
   "use strict";
 
   const message = document.getElementById("accessMessage");
 
-  function showMessage(title, description, linkText, linkHref) {
+  function showMessage(title,description,linkText,linkHref) {
     message.replaceChildren();
 
     const box = document.createElement("div");
-
     const heading = document.createElement("h2");
-    heading.textContent = title;
-    box.appendChild(heading);
-
     const paragraph = document.createElement("p");
-    paragraph.textContent = description;
-    box.appendChild(paragraph);
 
-    if (linkText && linkHref) {
+    heading.textContent = title;
+    paragraph.textContent = description;
+
+    box.append(heading,paragraph);
+
+    if(linkText && linkHref) {
       const link = document.createElement("a");
       link.href = linkHref;
       link.textContent = linkText;
@@ -300,7 +239,7 @@
 
   async function checkMembership() {
     try {
-      if (
+      if(
         !window.supabase ||
         !window.SUPABASE_URL ||
         !window.SUPABASE_PUBLISHABLE_KEY
@@ -313,19 +252,9 @@
         window.SUPABASE_PUBLISHABLE_KEY
       );
 
-      let timer;
+      const authResult = await client.auth.getUser();
 
-      const authResult = await Promise.race([
-        client.auth.getUser(),
-        new Promise((_, reject) => {
-          timer = setTimeout(
-            () => reject(new Error("Account verification timed out.")),
-            12000
-          );
-        })
-      ]).finally(() => clearTimeout(timer));
-
-      if (authResult.error || !authResult.data.user) {
+      if(authResult.error || !authResult.data.user) {
         showMessage(
           "Please sign in first.",
           "Sign in to check your Premium membership.",
@@ -337,22 +266,13 @@
 
       const user = authResult.data.user;
 
-      let profileTimer;
+      const profileResult = await client
+        .from("profiles")
+        .select("membership,premium_until")
+        .eq("id",user.id)
+        .maybeSingle();
 
-      const profileResult = await Promise.race([
-        client.from("profiles")
-          .select("membership,premium_until")
-          .eq("id", user.id)
-          .maybeSingle(),
-        new Promise((_, reject) => {
-          profileTimer = setTimeout(
-            () => reject(new Error("Membership verification timed out.")),
-            12000
-          );
-        })
-      ]).finally(() => clearTimeout(profileTimer));
-
-      if (profileResult.error) {
+      if(profileResult.error) {
         throw new Error("We could not verify your membership.");
       }
 
@@ -367,7 +287,7 @@
         Number.isFinite(expiry) &&
         expiry > Date.now();
 
-      if (!active) {
+      if(!active) {
         showMessage(
           "An active Premium subscription is required.",
           "Your free dictionary remains available.",
@@ -380,8 +300,8 @@
       message.remove();
       startArabicCourses(user.id);
 
-    } catch (error) {
-      console.error("Membership check failed:", error);
+    } catch(error) {
+      console.error("Membership check failed:",error);
 
       showMessage(
         "Membership verification failed.",
@@ -394,83 +314,81 @@
 
   checkMembership();
 })();
-</script>
-
-<script>
+</script><script>
 function startArabicCourses(userId) {
 "use strict";
 
 const lessons = [
 
 {
-title: "📖 Lesson 1: Arabic Reading",
-description: "Practise basic Arabic letters, sounds and reading.",
-video: "xLGxHenkgDA",
-questions: [
-["Which direction is Arabic normally written?", "Right to left", "Left to right", "Top to bottom", "Bottom to top", 0],
-["Which of these is an Arabic letter?", "A", "ب", "G", "P", 1],
-["What sound does ب commonly represent?", "B", "T", "M", "S", 0],
-["Which letter is ا?", "Alif", "Baa", "Taa", "Jeem", 0],
-["Which letter is م?", "Noon", "Meem", "Laam", "Raa", 1],
-["Which mark commonly represents a short 'a' vowel?", "Fatḥah", "Kasrah", "Sukūn", "Shaddah", 0],
-["Which mark commonly represents a short 'i' vowel?", "Fatḥah", "Kasrah", "Ḍammah", "Sukūn", 1],
-["Which mark commonly represents a short 'u' vowel?", "Kasrah", "Fatḥah", "Ḍammah", "Shaddah", 2],
-["What does Sukūn indicate?", "A doubled consonant", "No vowel after the consonant", "A long 'aa' sound", "A question", 1],
-["What should a beginner practise first?", "Only long sentences", "Letters and their sounds", "Advanced poetry", "Writing without learning letters", 1]
+title:"📖 Lesson 1: Arabic Reading",
+description:"Practise basic Arabic letters, sounds and reading.",
+video:"xLGxHenkgDA",
+questions:[
+["Which direction is Arabic normally written?","Right to left","Left to right","Top to bottom","Bottom to top",0],
+["Which of these is an Arabic letter?","A","ب","G","P",1],
+["What sound does ب commonly represent?","B","T","M","S",0],
+["Which letter is ا?","Alif","Baa","Taa","Jeem",0],
+["Which letter is م?","Noon","Meem","Laam","Raa",1],
+["Which mark commonly represents a short 'a' vowel?","Fatḥah","Kasrah","Sukūn","Shaddah",0],
+["Which mark commonly represents a short 'i' vowel?","Fatḥah","Kasrah","Ḍammah","Sukūn",1],
+["Which mark commonly represents a short 'u' vowel?","Kasrah","Fatḥah","Ḍammah","Shaddah",2],
+["What does Sukūn indicate?","A doubled consonant","No vowel after the consonant","A long 'aa' sound","A question",1],
+["What should a beginner practise first?","Only long sentences","Letters and their sounds","Advanced poetry","Writing without learning letters",1]
 ]
 },
 
 {
-title: "📚 Lesson 2: Arabic Vocabulary",
-description: "Learn greetings, everyday words and useful expressions.",
-video: "b3fu-a1FQzM",
-questions: [
-["What does سَلَام (salaam) commonly mean?", "Peace", "Book", "Water", "School", 0],
-["What does مَاء (maa') mean?", "Food", "Water", "House", "Friend", 1],
-["What does كِتَاب (kitaab) mean?", "Pen", "Door", "Book", "Chair", 2],
-["What does بَيْت (bayt) mean?", "House", "Moon", "Day", "Market", 0],
-["What does كَبِير (kabiir) mean?", "Small", "Far", "Big", "New", 2],
-["What does صَغِير (saghiir) mean?", "Small", "Big", "Beautiful", "Fast", 0],
-["What does نَعَم (na'am) mean?", "No", "Yes", "Please", "Goodbye", 1],
-["What does لَا (laa) mean?", "Yes", "Thank you", "No", "Welcome", 2],
-["What does شُكْرًا (shukran) mean?", "Sorry", "Thank you", "Good morning", "Please sit", 1],
-["What does مَرْحَبًا (marhaban) mean?", "Welcome/hello", "Book", "Water", "Good night", 0]
+title:"📚 Lesson 2: Arabic Vocabulary",
+description:"Learn greetings, everyday words and useful expressions.",
+video:"b3fu-a1FQzM",
+questions:[
+["What does سَلَام (salaam) commonly mean?","Peace","Book","Water","School",0],
+["What does مَاء (maa') mean?","Food","Water","House","Friend",1],
+["What does كِتَاب (kitaab) mean?","Pen","Door","Book","Chair",2],
+["What does بَيْت (bayt) mean?","House","Moon","Day","Market",0],
+["What does كَبِير (kabiir) mean?","Small","Far","Big","New",2],
+["What does صَغِير (saghiir) mean?","Small","Big","Beautiful","Fast",0],
+["What does نَعَم (na'am) mean?","No","Yes","Please","Goodbye",1],
+["What does لَا (laa) mean?","Yes","Thank you","No","Welcome",2],
+["What does شُكْرًا (shukran) mean?","Sorry","Thank you","Good morning","Please sit",1],
+["What does مَرْحَبًا (marhaban) mean?","Welcome/hello","Book","Water","Good night",0]
 ]
 },
 
 {
-title: "🧩 Lesson 3: Arabic Grammar",
-description: "Practise pronouns and basic Arabic sentence structure.",
-video: "vCyCaK_qpdA",
-questions: [
-["What does أَنَا (anaa) mean?", "You", "I", "He", "We", 1],
-["What does أَنْتَ (anta) mean when addressing a male?", "I", "She", "You", "They", 2],
-["What does هُوَ (huwa) mean?", "He", "She", "I", "You", 0],
-["What does هِيَ (hiya) mean?", "He", "We", "She", "You", 2],
-["What does نَحْنُ (nahnu) mean?", "They", "We", "You", "I", 1],
-["Which word means 'student' in Arabic?", "طَالِب (taalib)", "مَاء (maa')", "بَيْت (bayt)", "لَيْل (layl)", 0],
-["What does كَبِير (kabiir) mean?", "Small", "Big", "Near", "Quiet", 1],
-["What does هَذَا (haadhaa) commonly mean?", "This (masculine)", "That (feminine)", "Who?", "Where?", 0],
-["What does مَا (maa) commonly mean in a question?", "Where?", "When?", "What?", "Who?", 2],
-["In a basic Arabic sentence, what should a learner identify?", "Only punctuation", "The words and their roles", "Only the last letter", "Only word length", 1]
+title:"🧩 Lesson 3: Arabic Grammar",
+description:"Practise pronouns and basic Arabic sentence structure.",
+video:"vCyCaK_qpdA",
+questions:[
+["What does أَنَا (anaa) mean?","You","I","He","We",1],
+["What does أَنْتَ (anta) mean when addressing a male?","I","She","You","They",2],
+["What does هُوَ (huwa) mean?","He","She","I","You",0],
+["What does هِيَ (hiya) mean?","He","We","She","You",2],
+["What does نَحْنُ (nahnu) mean?","They","We","You","I",1],
+["Which word means 'student' in Arabic?","طَالِب (taalib)","مَاء (maa')","بَيْت (bayt)","لَيْل (layl)",0],
+["What does كَبِير (kabiir) mean?","Small","Big","Near","Quiet",1],
+["What does هَذَا (haadhaa) commonly mean?","This (masculine)","That (feminine)","Who?","Where?",0],
+["What does مَا (maa) commonly mean in a question?","Where?","When?","What?","Who?",2],
+["In a basic Arabic sentence, what should a learner identify?","Only punctuation","The words and their roles","Only the last letter","Only word length",1]
 ]
 },
 
 {
-title: "💬 Lesson 4: Arabic Conversation",
-description: "Practise greetings and simple everyday expressions.",
-video: "F-h9LxnZe-E",
-questions: [
-["What is a common Arabic greeting?", "مَرْحَبًا", "كِتَاب", "مَاء", "بَيْت", 0],
-["What does كَيْفَ حَالُكَ؟ mean when addressing a male?", "Where is your house?", "How are you?", "What is your name?", "Good night", 1],
-["What does مَا اسْمُكَ؟ commonly mean when addressing a male?", "What is your name?", "How old are you?", "Where are you going?", "Are you well?", 0],
-["How do you say 'thank you' in Arabic?", "لَا", "نَعَم", "شُكْرًا", "مَاء", 2],
-["What does مِنْ فَضْلِكَ mean?", "Please", "Goodbye", "Water", "Welcome home", 0],
-["What does إِلَى اللِّقَاءِ mean?", "Hello", "See you later/goodbye", "Thank you", "Yes", 1],
-["What does أَنَا بِخَيْر mean?", "I am fine", "I am lost", "I am hungry", "I am a teacher", 0],
-["What does أَيْنَ؟ mean?", "When?", "Why?", "Where?", "Who?", 2],
-["What does نَعَم mean?", "No", "Yes", "Maybe", "Please", 1],
-["What is a good way to improve conversation?", "Practise listening and speaking", "Avoid listening", "Memorise without using words", "Never repeat phrases", 0]
+title:"💬 Lesson 4: Arabic Conversation",
+description:"Practise greetings and simple everyday expressions.",
+video:"F-h9LxnZe-E",
+questions:[
+["What is a common Arabic greeting?","مَرْحَبًا","كِتَاب","مَاء","بَيْت",0],
+["What does كَيْفَ حَالُكَ؟ mean when addressing a male?","Where is your house?","How are you?","What is your name?","Good night",1],
+["What does مَا اسْمُكَ؟ commonly mean when addressing a male?","What is your name?","How old are you?","Where are you going?","Are you well?",0],
+["How do you say 'thank you' in Arabic?","لَا","نَعَم","شُكْرًا","مَاء",2],
+["What does مِنْ فَضْلِكَ mean?","Please","Goodbye","Water","Welcome home",0],
+["What does إِلَى اللِّقَاءِ mean?","Hello","See you later/goodbye","Thank you","Yes",1],
+["What does أَنَا بِخَيْر mean?","I am fine","I am lost","I am hungry","I am a teacher",0],
+["What does أَيْنَ؟ mean?","When?","Why?","Where?","Who?",2],
+["What does نَعَم mean?","No","Yes","Maybe","Please",1],
+["What is a good way to improve conversation?","Practise listening and speaking","Avoid listening","Memorise without using words","Never repeat phrases",0]
 ]
 }
 
@@ -484,12 +402,12 @@ const storageKey = "iald_course_progress_v3_" + userId;
 
 function emptyProgress() {
   return {
-    lessons: lessons.map(() => ({
-      videoCompleted: false,
-      examSubmitted: false,
-      score: null,
-      passed: false,
-      submittedAt: null
+    lessons:lessons.map(() => ({
+      videoCompleted:false,
+      examSubmitted:false,
+      score:null,
+      passed:false,
+      submittedAt:null
     }))
   };
 }
@@ -498,7 +416,7 @@ function loadProgress() {
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey));
 
-    if (
+    if(
       !saved ||
       !Array.isArray(saved.lessons) ||
       saved.lessons.length !== lessons.length
@@ -507,21 +425,21 @@ function loadProgress() {
     }
 
     return {
-      lessons: lessons.map((_, index) => {
+      lessons:lessons.map((_,index) => {
         const item = saved.lessons[index] || {};
 
         return {
-          videoCompleted: item.videoCompleted === true,
-          examSubmitted: item.examSubmitted === true,
-          score: Number.isInteger(item.score) ? item.score : null,
-          passed: item.passed === true,
-          submittedAt: item.submittedAt || null
+          videoCompleted:item.videoCompleted === true,
+          examSubmitted:item.examSubmitted === true,
+          score:Number.isInteger(item.score) ? item.score : null,
+          passed:item.passed === true,
+          submittedAt:item.submittedAt || null
         };
       })
     };
 
-  } catch (error) {
-    console.error("Could not load course progress:", error);
+  } catch(error) {
+    console.error("Could not load course progress:",error);
     return emptyProgress();
   }
 }
@@ -530,16 +448,15 @@ let progress = loadProgress();
 
 function saveProgress() {
   try {
-    localStorage.setItem(storageKey, JSON.stringify(progress));
-  } catch (error) {
-    console.error("Could not save course progress:", error);
+    localStorage.setItem(storageKey,JSON.stringify(progress));
+  } catch(error) {
+    console.error("Could not save course progress:",error);
     alert("Your browser could not save your progress. Check your device storage.");
   }
 }
 
 function isVideoUnlocked(index) {
-  if (index === 0) return true;
-
+  if(index === 0) return true;
   return progress.lessons[index - 1].passed === true;
 }
 
@@ -549,18 +466,18 @@ function updateProgressSummary() {
   ).length;
 
   progressText.textContent =
-    "Your progress: " + passedCount + " of " +
-    lessons.length + " lessons passed.";
+    "Your progress: " + passedCount +
+    " of " + lessons.length + " lessons passed.";
 
   progressFill.style.width =
-    ((passedCount / lessons.length) * 100) + "%";
+    (passedCount / lessons.length * 100) + "%";
 }
 
-function makeElement(tag, className, text) {
+function makeElement(tag,className,text) {
   const element = document.createElement(tag);
 
-  if (className) element.className = className;
-  if (text !== undefined) element.textContent = text;
+  if(className) element.className = className;
+  if(text !== undefined) element.textContent = text;
 
   return element;
 }
@@ -568,41 +485,30 @@ function makeElement(tag, className, text) {
 function renderCourses() {
   grid.replaceChildren();
 
-  lessons.forEach(function(lesson, lessonIndex) {
+  lessons.forEach(function(lesson,lessonIndex) {
 
     const state = progress.lessons[lessonIndex];
     const unlocked = isVideoUnlocked(lessonIndex);
 
-    const card = makeElement("article", "lesson-card");
+    const card = makeElement("article","lesson-card");
 
-    card.appendChild(
-      makeElement("h2", "", lesson.title)
-    );
+    card.appendChild(makeElement("h2","",lesson.title));
+    card.appendChild(makeElement("p","",lesson.description));
 
-    card.appendChild(
-      makeElement("p", "", lesson.description)
-    );
+    const status = makeElement("div","status");
 
-    const status = makeElement("div", "status");
-
-    if (!unlocked) {
+    if(!unlocked) {
       status.textContent =
-        "🔒 Locked — pass Lesson " + lessonIndex +
-        " to unlock this lesson.";
-
-    } else if (state.passed) {
+        "🔒 Locked — pass Lesson " + lessonIndex + " to unlock this lesson.";
+    } else if(state.passed) {
       status.textContent =
         "✅ Lesson exam passed — " + state.score + "/10";
-
-    } else if (state.examSubmitted) {
+    } else if(state.examSubmitted) {
       status.textContent =
-        "📝 Exam submitted — " + state.score + "/10. " +
-        "This exam is permanently locked.";
-
-    } else if (state.videoCompleted) {
+        "📝 Exam submitted — " + state.score + "/10.";
+    } else if(state.videoCompleted) {
       status.textContent =
         "✅ Video completed. Your exam is unlocked.";
-
     } else {
       status.textContent =
         "▶ Video unlocked. Watch and complete this lesson.";
@@ -610,12 +516,11 @@ function renderCourses() {
 
     card.appendChild(status);
 
-    /* VIDEO SECTION */
+    /* VIDEO */
 
-    if (unlocked) {
+    if(unlocked) {
 
-      const frame = makeElement("div", "video-frame");
-
+      const frame = makeElement("div","video-frame");
       const iframe = document.createElement("iframe");
 
       iframe.src =
@@ -627,77 +532,61 @@ function renderCourses() {
       iframe.allow =
         "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
 
-      iframe.referrerPolicy =
-        "strict-origin-when-cross-origin";
-
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
       iframe.allowFullscreen = true;
 
       frame.appendChild(iframe);
       card.appendChild(frame);
 
-      const videoHelp = makeElement("p", "small");
-      videoHelp.append("Video not playing? ");
+      const help = makeElement("p","small");
+      help.append("Video not playing? ");
 
-      const videoLink = document.createElement("a");
+      const link = document.createElement("a");
+      link.href = "https://www.youtube.com/watch?v=" + lesson.video;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Open on YouTube";
 
-      videoLink.href =
-        "https://www.youtube.com/watch?v=" + lesson.video;
+      help.appendChild(link);
+      card.appendChild(help);
 
-      videoLink.target = "_blank";
-      videoLink.rel = "noopener noreferrer";
-      videoLink.textContent = "Open on YouTube";
+      if(!state.videoCompleted) {
 
-      videoHelp.appendChild(videoLink);
-      videoHelp.append(".");
-
-      card.appendChild(videoHelp);
-
-      if (!state.videoCompleted) {
-
-        const completeButton = makeElement(
+        const button = makeElement(
           "button",
           "action-btn",
           "I have completed this video"
         );
 
-        completeButton.type = "button";
+        button.type = "button";
 
-        completeButton.addEventListener("click", function() {
-
-          const confirmed = confirm(
-            "Have you finished watching this lesson video?"
-          );
-
-          if (!confirmed) return;
+        button.addEventListener("click",function() {
+          if(!confirm("Have you finished watching this lesson video?")) {
+            return;
+          }
 
           state.videoCompleted = true;
-
           saveProgress();
           renderCourses();
         });
 
-        card.appendChild(completeButton);
+        card.appendChild(button);
 
       } else {
-
         card.appendChild(
-          makeElement(
-            "p",
-            "small",
-            "✓ Video marked as completed."
-          )
+          makeElement("p","small","✓ Video marked as completed.")
         );
       }
 
     } else {
 
-      const lockedPanel = makeElement("div", "locked-panel");
+      const locked = makeElement("div","locked-panel");
 
-      lockedPanel.appendChild(
-        makeElement("strong", "", "🔒 Lesson locked")
+      locked.appendChild(
+        makeElement("strong","","🔒 Lesson locked")
       );
 
-      lockedPanel.appendChild(
+      locked.appendChild(
         makeElement(
           "p",
           "",
@@ -705,26 +594,22 @@ function renderCourses() {
         )
       );
 
-      card.appendChild(lockedPanel);
+      card.appendChild(locked);
     }
 
-    /* EXAMINATION SECTION */
+    /* EXAMINATION: DIRECTLY BELOW VIDEO */
 
-    const exam = makeElement("form", "exam");
+    const exam = makeElement("form","exam");
 
     exam.appendChild(
-      makeElement("h3", "", "📝 Lesson Exam")
+      makeElement("h3","","📝 Lesson Examination")
     );
 
     exam.appendChild(
-      makeElement(
-        "p",
-        "small",
-        "10 questions · Pass mark: 7/10 (70%)"
-      )
+      makeElement("p","small","10 questions · Pass mark: 7/10")
     );
 
-    if (!unlocked) {
+    if(!unlocked) {
 
       exam.classList.add("locked");
 
@@ -732,11 +617,11 @@ function renderCourses() {
         makeElement(
           "p",
           "status",
-          "This examination is locked until its lesson video is unlocked."
+          "This examination is locked until the previous lesson is passed."
         )
       );
 
-    } else if (!state.videoCompleted) {
+    } else if(!state.videoCompleted) {
 
       exam.classList.add("locked");
 
@@ -748,7 +633,7 @@ function renderCourses() {
         )
       );
 
-    } else if (state.examSubmitted) {
+    } else if(state.examSubmitted) {
 
       const result = makeElement(
         "div",
@@ -756,35 +641,26 @@ function renderCourses() {
       );
 
       result.textContent =
-        "Exam submitted: " + state.score + "/10. " +
+        "Your score: " + state.score + "/10. " +
         (state.passed
           ? "Congratulations! You passed."
-          : "You did not reach the 7/10 pass mark. This exam cannot be retaken.") +
-        (state.submittedAt
-          ? " Submitted on: " +
-            new Date(state.submittedAt).toLocaleString()
-          : "");
+          : "You did not reach the 7/10 pass mark. This exam cannot be retaken.");
 
       exam.appendChild(result);
 
     } else {
 
-      lesson.questions.forEach(function(q, qIndex) {
+      lesson.questions.forEach(function(q,qIndex) {
 
-        const block = makeElement("div", "question");
+        const block = makeElement("div","question");
 
         block.appendChild(
-          makeElement(
-            "p",
-            "",
-            (qIndex + 1) + ". " + q[0]
-          )
+          makeElement("p","",(qIndex + 1) + ". " + q[0])
         );
 
-        q.slice(1, 5).forEach(function(option, optionIndex) {
+        q.slice(1,5).forEach(function(option,optionIndex) {
 
           const label = document.createElement("label");
-
           const radio = document.createElement("input");
 
           radio.type = "radio";
@@ -793,10 +669,7 @@ function renderCourses() {
           radio.required = optionIndex === 0;
 
           label.appendChild(radio);
-
-          label.appendChild(
-            document.createTextNode(option)
-          );
+          label.appendChild(document.createTextNode(option));
 
           block.appendChild(label);
         });
@@ -804,4 +677,71 @@ function renderCourses() {
         exam.appendChild(block);
       });
 
-      const submit = makeElemen
+      const submit = makeElement(
+        "button",
+        "action-btn",
+        "Submit Examination"
+      );
+
+      submit.type = "submit";
+
+      exam.appendChild(submit);
+
+      exam.addEventListener("submit",function(event) {
+
+        event.preventDefault();
+
+        if(state.examSubmitted || !state.videoCompleted) return;
+
+        if(!exam.reportValidity()) return;
+
+        const answers = new FormData(exam);
+        let score = 0;
+
+        lesson.questions.forEach(function(q,qIndex) {
+
+          const selected = answers.get(
+            "lesson" + lessonIndex + "q" + qIndex
+          );
+
+          if(selected !== null && Number(selected) === q[5]) {
+            score++;
+          }
+        });
+
+        state.examSubmitted = true;
+        state.score = score;
+        state.passed = score >= 7;
+        state.submittedAt = new Date().toISOString();
+
+        saveProgress();
+        renderCourses();
+        updateProgressSummary();
+
+        if(state.passed) {
+          alert(
+            "Congratulations! You scored " + score +
+            "/10. You passed this examination."
+          );
+        } else {
+          alert(
+            "You scored " + score +
+            "/10. You did not reach the 7/10 pass mark."
+          );
+        }
+      });
+    }
+
+    card.appendChild(exam);
+    grid.appendChild(card);
+  });
+
+  updateProgressSummary();
+}
+
+renderCourses();
+updateProgressSummary();
+
+}
+</script></body>
+  </html>
