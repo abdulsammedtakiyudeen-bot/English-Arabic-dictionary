@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#12372a">
+<meta name="description" content="Premium Arabic learning books.">
+<title>Arabic Books | Islamic Arabic Learning Dictionary</title>
+<link rel="stylesheet" href="./style.css"><style>
+.book-wrap {
+  width: min(850px, calc(100% - 28px));
+  margin: 25px auto 80px;
+}
+
+.book-hero {
+  background: linear-gradient(135deg,#12372a,#245c43);
+  color: white;
+  padding: 25px;
+  border-radius: 18px;
+}
+
+.book-card {
+  margin-top: 22px;
+  padding: 20px;
+  border: 1px solid #dce8df;
+  border-radius: 16px;
+  background: var(--card,white);
+}
+
+.book-card h2 {
+  margin-top: 0;
+}
+
+.book-button {
+  display: inline-block;
+  padding: 12px 17px;
+  background: #12372a;
+  color: white;
+  border-radius: 9px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 8px 8px 0 0;
+}
+
+#accessMessage {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background: #12372a;
+  color: white;
+  text-align: center;
+}
+
+#accessMessage a {
+  display: inline-block;
+  padding: 12px 18px;
+  margin-top: 12px;
+  background: white;
+  color: #12372a;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.book-lock {
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 12px;
+  background: rgba(128,128,128,.1);
+}
+</style></head><body><div id="accessMessage">
+  <div>
+    <h2>Checking Premium membership…</h2>
+    <p>Please wait.</p>
+  </div>
+</div><header class="topbar">
+  <a class="brand" href="./learn.html">
+    <span class="brand-mark">بِ</span>
+    <span>
+      <strong>Arabic Learning</strong>
+      <small>Islamic Arabic Learning Dictionary</small>
+    </span>
+  </a>
+  <a href="./profile.html">My Profile</a>
+</header><main class="book-wrap">  <section class="book-hero">
+    <p>📚 PREMIUM LIBRARY</p>
+    <h1>Arabic Learning Books</h1>
+    <p>
+      Build your Arabic knowledge with learning materials
+      designed to support your studies.
+    </p>
+  </section>  <section id="bookContent" hidden><article class="book-card">
+  <h2>📖 Arabic Learning Easy Book</h2>
+
+  <p>
+    An Arabic learning textbook covering Arabic letters,
+    vowel signs, vocabulary and basic grammar.
+  </p>
+
+  <p><strong>Membership:</strong> Premium</p>
+
+  <a
+    class="book-button"
+    href="./books/Arabic%20learning%20easy%20book.pdf"
+    target="_blank"
+    rel="noopener"
+  >Read Book</a>
+
+  <a
+    class="book-button"
+    href="./books/Arabic%20learning%20easy%20book.pdf"
+    download
+  >Download Book</a>
+</article>
+
+  </section>  <p>
+    <a href="./learn.html">← Return to Learning Platform</a>
+  </p></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./config.js"></script><script src="./auth-gate.js"></script><script>
+(async function() {
+  const message = document.getElementById("accessMessage");
+  const content = document.getElementById("bookContent");
+
+  function showMessage(title, description, linkText, linkHref) {
+    message.replaceChildren();
+
+    const box = document.createElement("div");
+
+    const heading = document.createElement("h2");
+    heading.textContent = title;
+    box.appendChild(heading);
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = description;
+    box.appendChild(paragraph);
+
+    if (linkText && linkHref) {
+      const link = document.createElement("a");
+      link.href = linkHref;
+      link.textContent = linkText;
+      box.appendChild(link);
+    }
+
+    message.appendChild(box);
+  }
+
+  try {
+    if (
+      !window.supabase ||
+      !window.SUPABASE_URL ||
+      !window.SUPABASE_PUBLISHABLE_KEY
+    ) {
+      throw new Error("Account service could not load.");
+    }
+
+    const client = window.supabase.createClient(
+      window.SUPABASE_URL,
+      window.SUPABASE_PUBLISHABLE_KEY
+    );
+
+    const authResult = await client.auth.getUser();
+
+    if (authResult.error || !authResult.data.user) {
+      showMessage(
+        "Sign in required",
+        "Please sign in to access the Premium Books Library.",
+        "Sign in",
+        "./login.html"
+      );
+      return;
+    }
+
+    const user = authResult.data.user;
+
+    const profileResult = await client
+      .from("profiles")
+      .select("membership,premium_until")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (profileResult.error) {
+      throw new Error("Could not verify your membership.");
+    }
+
+    const profile = profileResult.data;
+
+    const expiry = profile && profile.premium_until
+      ? Date.parse(profile.premium_until)
+      : NaN;
+
+    const active = profile &&
+      profile.membership === "premium" &&
+      Number.isFinite(expiry) &&
+      expiry > Date.now();
+
+    if (!active) {
+      showMessage(
+        "⭐ Premium membership required",
+        "Subscribe to Premium to access Arabic learning books.",
+        "Explore Premium",
+        "./premium.html"
+      );
+      return;
+    }
+
+    message.remove();
+    content.hidden = false;
+
+  } catch (error) {
+    console.error(error);
+
+    showMessage(
+      "Verification failed",
+      error.message || "Please check your internet connection.",
+      "Return to Learning",
+      "./learn.html"
+    );
+  }
+})();
+</script></body>
+</html>
