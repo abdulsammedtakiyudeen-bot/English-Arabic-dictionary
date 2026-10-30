@@ -687,49 +687,87 @@ function renderCourses() {
 
       exam.appendChild(submit);
 
-      exam.addEventListener("submit",function(event) {
+      exam.addEventListener("submit", async function(event) {
 
-        event.preventDefault();
+  event.preventDefault();
 
-        if(state.examSubmitted || !state.videoCompleted) return;
+  if(state.examSubmitted || !state.videoCompleted) return;
 
-        if(!exam.reportValidity()) return;
+  if(!exam.reportValidity()) return;
 
-        const answers = new FormData(exam);
-        let score = 0;
+  const formData = new FormData(exam);
+  const answers = [];
 
-        lesson.questions.forEach(function(q,qIndex) {
+  lesson.questions.forEach(function(q, qIndex) {
 
-          const selected = answers.get(
-            "lesson" + lessonIndex + "q" + qIndex
-          );
+    const selected = formData.get(
+      "lesson" + lessonIndex + "q" + qIndex
+    );
 
-          if(selected !== null && Number(selected) === q[5]) {
-            score++;
-          }
-        });
+    answers.push(
+      selected === null ? -1 : Number(selected)
+    );
 
-        state.examSubmitted = true;
-        state.score = score;
-        state.passed = score >= 7;
-        state.submittedAt = new Date().toISOString();
+  });
 
-        saveProgress();
-        renderCourses();
-        updateProgressSummary();
+  const submitButton = exam.querySelector(
+    'button[type="submit"]'
+  );
 
-        if(state.passed) {
-          alert(
-            "Congratulations! You scored " + score +
-            "/10. You passed this examination."
-          );
-        } else {
-          alert(
-            "You scored " + score +
-            "/10. You did not reach the 7/10 pass mark."
-          );
+  submitButton.disabled = true;
+  submitButton.textContent = "Submitting...";
+
+  try {
+
+    const { data, error } = await client.functions.invoke(
+      "submit-course-exam",
+      {
+        body: {
+          lesson_index: lessonIndex,
+          answers: answers
         }
-      });
+      }
+    );
+
+    if(error) {
+      throw error;
+    }
+
+    if(!data || typeof data.score !== "number") {
+      throw new Error("The examination result was not received.");
+    }
+
+    state.examSubmitted = true;
+    state.score = data.score;
+    state.passed = data.passed === true;
+    state.submittedAt = new Date().toISOString();
+
+    saveProgress();
+    renderCourses();
+    updateProgressSummary();
+
+    alert(
+      "Your score: " + data.score + "/10. " +
+      (data.passed
+        ? "Congratulations! You passed."
+        : "You did not reach the 7/10 pass mark.")
+    );
+
+  } catch(error) {
+
+    console.error("Examination submission failed:", error);
+
+    submitButton.disabled = false;
+    submitButton.textContent = "Submit Examination";
+
+    alert(
+      "Your examination could not be submitted. " +
+      "Please check your connection and try again."
+    );
+
+  }
+
+});
     }
 
     card.appendChild(exam);
