@@ -18,6 +18,69 @@ window.SUPABASE_PUBLISHABLE_KEY
 );
 
 let currentUserId = null;
+const AVATAR_BUCKET = 'avatars';
+const avatarInput = $('avatarInput');
+const avatarImage = $('avatarImage');
+const avatarFallback = $('avatarFallback');
+
+function showAvatar(url) {
+  if (url) {
+    avatarImage.src = url;
+    avatarImage.hidden = false;
+    avatarFallback.hidden = true;
+  } else {
+    avatarImage.hidden = true;
+    avatarImage.removeAttribute('src');
+    avatarFallback.hidden = false;
+  }
+}
+
+async function loadAvatar(user) {
+  const path = user.user_metadata?.avatar_path;
+  if (!path) { showAvatar(''); return; }
+  const { data } = client.storage.from(AVATAR_BUCKET).getPublicUrl(path);
+  showAvatar(data?.publicUrl || '');
+}
+
+async function uploadAvatar(file) {
+  if (!file || !currentUserId) return;
+  const allowed = ['image/jpeg', 'image/png', 'image/webp'];
+  if (!allowed.includes(file.type)) {
+    status.textContent = 'Choose a JPG, PNG or WebP image.';
+    return;
+  }
+  if (file.size > 3 * 1024 * 1024) {
+    status.textContent = 'The image must be 3 MB or smaller.';
+    return;
+  }
+
+  avatarInput.disabled = true;
+  status.textContent = 'Uploading your profile picture…';
+  try {
+    const extension = file.type === 'image/png' ? 'png' :
+      file.type === 'image/webp' ? 'webp' : 'jpg';
+    const path = currentUserId + '/avatar.' + extension;
+    const { error: uploadError } = await client.storage
+      .from(AVATAR_BUCKET)
+      .upload(path, file, { upsert: true, contentType: file.type, cacheControl: '3600' });
+    if (uploadError) throw uploadError;
+
+    const { data: updateData, error: updateError } = await client.auth.updateUser({
+      data: { ...( (await client.auth.getUser()).data.user?.user_metadata || {} ), avatar_path: path }
+    });
+    if (updateError) throw updateError;
+
+    const { data } = client.storage.from(AVATAR_BUCKET).getPublicUrl(path);
+    showAvatar(data?.publicUrl ? data.publicUrl + '?v=' + Date.now() : '');
+    status.textContent = 'Profile picture updated successfully.';
+  } catch (error) {
+    console.error('Avatar upload failed:', error);
+    status.textContent = 'Could not upload the picture. Check the Supabase Storage setup guide and try again.';
+  } finally {
+    avatarInput.disabled = false;
+    avatarInput.value = '';
+  }
+}
 
 function addDetail(container, label, value) {
 const row = document.createElement('div');
@@ -60,6 +123,7 @@ if (authError || !user) {
 }
 
 currentUserId = user.id;
+await loadAvatar(user);
 $('loginLink').hidden = true;
 $('signupLink').hidden = true;
 $('logoutBtn').hidden = false;
@@ -223,6 +287,10 @@ try {
   button.disabled = false;
 }
 
+});
+
+avatarInput?.addEventListener('change', event => {
+  uploadAvatar(event.target.files?.[0]);
 });
 
 $('logoutBtn').addEventListener('click', async () => {

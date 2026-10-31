@@ -1,0 +1,17 @@
+ADSENSE SETUP — READ BEFORE ACTIVATING
+
+This project contains a disabled manual-ad framework. No ads are requested while ads-config.js has enabled:false or blank IDs.
+
+1. AdSense account ownership and approval
+   AdSense account holders must meet Google's age and eligibility rules. As the site owner is under 18, a parent/guardian must own and manage any AdSense account and payment profile where required. Do not enter a false date of birth.
+2. Apply using the actual public website and comply with Google's current site, content, privacy and consent requirements.
+3. After approval, copy your own publisher ID (format ca-pub-...) and each manual ad-unit ID from your AdSense account.
+4. In ads-config.js set enabled:true, publisherId to your publisher ID, and fill the slot IDs. Never use example IDs.
+5. Add a slot only to a page and position where it is clearly separated from navigation, buttons, quizzes, exams and download controls. Do not place ads on payment, sign-in, certificate or exam screens.
+6. This script checks the signed-in user's Supabase profiles membership and premium_until before requesting ads. If membership cannot be checked, it fails closed and does not load ads. A browser-side check is a display rule, not a security boundary.
+7. Premium pages must not contain AdSense slots. Do not enable site-wide Auto ads unless Premium URLs and sensitive pages are excluded in AdSense settings.
+8. Google controls whether an ad fills a slot and what creative is shown. A slot does not guarantee an ad will appear or that Google will follow an exact creative layout.
+9. Update privacy.html to describe the actual advertising cookies/data processing and add any legally required consent mechanism before enabling ads. Do not claim ads are active before they are.
+10. Test Free and Premium accounts, logged-out state, mobile layout and all sensitive pages before launch.
+
+Current status: DISABLED — no publisher or ad-unit IDs supplied.

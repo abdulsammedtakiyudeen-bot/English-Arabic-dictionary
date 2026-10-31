@@ -1,0 +1,12 @@
+ADDITIONAL RESOURCE AND PROFILE UPDATE
+
+- Added a public contact email link on Contact Us: theyoungdaee@gmail.com
+- Added persistent profile-picture upload support using Supabase Storage bucket "avatars".
+- Added resource-library.html with additional Free vocabulary, grammar, conversation, reading and Islamic vocabulary content, plus Premium topic previews.
+- Added an Extra Arabic Resource Library card to the main learning page.
+- Reduced certificate spacing and print height while preserving its existing eligibility and generation logic.
+- Added a disabled AdSense configuration framework and setup guide. No live ad requests occur until real approved account IDs are supplied and enabled.
+- Existing installation/PWA files were intentionally left unchanged.
+- Existing Supabase auth, Paystack, course exams and payment code were intentionally left unchanged.
+
+Required one-time setup: follow Supabase-Avatar-and-Ads-Setup.txt for the public avatars bucket and storage policies.

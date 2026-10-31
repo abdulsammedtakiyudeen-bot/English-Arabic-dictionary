@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#12372a">
   <meta name="description" content="Manage your account and membership.">
   <title>My Profile | Islamic Arabic Learning Dictionary</title>
-  <link rel="stylesheet" href="./profile.css">
+  <link rel="stylesheet" href="./profile.css"><style>.avatar-wrap{width:92px;height:92px;margin-bottom:8px;position:relative}.avatar-wrap .avatar{width:92px;height:92px;margin:0}.avatar-image{width:92px;height:92px;border-radius:24px;object-fit:cover;border:2px solid #d8e5db}.avatar-controls{margin:0 0 18px}.avatar-label{display:inline-block}.avatar-controls .small{margin:6px 0 0}.avatar-controls input{display:none}</style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="./config.js"></script><script src="./auth-gate.js"></script>
 </head>
@@ -20,7 +20,15 @@
   <a class="back-link" href="./learn.html">← Back to learning</a>
 </header><main class="wrap">
   <section class="profile-card">
-    <div class="avatar" aria-hidden="true">👤</div>
+    <div class="avatar-wrap">
+      <img id="avatarImage" class="avatar-image" alt="Your profile picture" hidden>
+      <div id="avatarFallback" class="avatar" aria-hidden="true">👤</div>
+    </div>
+    <div class="avatar-controls">
+      <label for="avatarInput" class="secondary avatar-label">Change profile picture</label>
+      <input id="avatarInput" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+      <p class="small">JPG, PNG or WebP · up to 3 MB</p>
+    </div>
     <p class="eyebrow">YOUR ACCOUNT</p>
     <h1>My Profile</h1>
     <p class="muted">Manage your account and membership.</p><div id="status" class="status" role="status" aria-live="polite">
