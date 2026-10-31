@@ -52,3 +52,13 @@ The site now opens at `index.html`, a welcome page with a “Continue my Arabic 
 - Mini Lessons displays a 20-section sequential course. Only the first section is available at the start.
 - A learner opens a section, studies the notes and vocabulary, then taps the next-section button and confirms completion. Confirmed progress unlocks the next section and is stored in this browser.
 - Section progress is local to the device/browser and is not an online account sync.
+
+## Content expansion and installation update (v12)
+- Added `learning-center.html`, a structured learning path with eight guided modules covering the Arabic writing direction and letter forms, short vowels, greetings, pronouns, demonstratives, nominal sentences, present-tense verbs, and selected Islamic/Qur'anic vocabulary.
+- Each module includes learning objectives, lesson notes, Arabic examples, transliteration, English meanings, optional device speech, and a short comprehension check.
+- First five modules are available in the free path; the final three are presented as Premium modules based on the signed-in profile membership and expiry fields already used by the site. This is a front-end access presentation, not a substitute for server-side content protection.
+- Lesson completion is stored locally in this browser. It is not synced to Supabase and does not alter the existing course examination or certificate records.
+- Added a dismissible PWA installation prompt and install button on the welcome, dictionary and new learning-path pages. Browser/device support determines whether the native install dialog is available; other browsers receive home-screen instructions.
+- Updated the service-worker cache name to `iald-cache-v12` and added the new learning and installation assets.
+- Existing Supabase config, authentication, Paystack integration, existing courses, examination logic and certificate files were not intentionally modified.
+- Advertisement containers remain placeholders: no ad-network script or live ads are added by this update. Premium members have the placeholders hidden when membership can be verified; a compliant ad provider must be configured separately before ads can actually display.
