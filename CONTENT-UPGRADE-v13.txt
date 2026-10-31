@@ -1,0 +1,29 @@
+ISLAMIC ARABIC LEARNING DICTIONARY — CONTENT UPGRADE v13
+
+WHAT WAS ADDED
+- Arabic Learning Academy page (academy.html)
+- Smart vocabulary trainer using the existing arabic-words.json library
+- Daily vocabulary set: 10 words for Free and up to 30 for Premium
+- Save-word and mark-known actions
+- Daily challenge: 5 questions for Free and 10 for Premium
+- Pronunciation Academy: 10 starter letters for Free and all 28 letters for Premium
+- Everyday conversation dialogues: 2 Free and 2 Premium
+- Graded reading passages: 1 Free and 2 Premium, with translation and comprehension
+- Local learning dashboard for reviewed words, saved words, practice sessions and streak
+- Academy entry added to the existing learn.html feature list
+- New Academy assets added to the service-worker precache; cache version bumped to v13
+- Existing learning path now opens the saved/current lesson panel when the page loads
+
+PRESERVED
+- Existing dark green theme and global stylesheet
+- Existing 8 structured learning-path lessons and their original Free/Premium labels
+- Existing 1,000-entry arabic-words.json file
+- Supabase configuration, authentication, Paystack/payment files, courses, examinations and certificate files were not intentionally edited
+- Existing install-app.js and manifest were not changed
+
+IMPORTANT NOTES
+- Academy learning statistics, saved words, reviewed words and streak are stored in this browser's local storage. They are not synchronised to Supabase or across devices.
+- Premium visibility in the Academy is a front-end convenience check using the existing profiles membership and premium_until fields. It is not secure content protection. Do not place confidential/paid-only source material in public static files. Secure paid content needs server-side or database authorization.
+- Daily challenge questions are a fixed practice set that appears daily; they are not generated from a remote daily content service.
+- Arabic speech uses browser/device speech synthesis. Availability and voice quality vary by device.
+- The new files passed JavaScript syntax checks. This package still needs live browser/device testing, including Free/Premium account checks and installation testing, before public launch.
