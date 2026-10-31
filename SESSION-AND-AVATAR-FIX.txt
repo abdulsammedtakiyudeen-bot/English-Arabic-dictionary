@@ -1,0 +1,9 @@
+SESSION AND PROFILE PICTURE UPDATE
+
+- Supabase client configuration now explicitly enables persistent sessions and automatic token refresh.
+- Existing Supabase credentials and client usage are preserved.
+- Profile avatar image is constrained to a fixed square with object-fit: cover.
+- The default avatar is hidden while a profile picture is displayed and restored if the image fails to load.
+- Existing installation/PWA files, Paystack integration, lessons, exams and certificates are preserved.
+
+Note: Supabase browser sessions persist in the same browser/app storage. Clearing app/site data, uninstalling the app, or using a different browser/device may require signing in again. Cross-device login persistence requires signing in on that device; the account itself remains the same.

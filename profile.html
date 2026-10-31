@@ -10,7 +10,12 @@
   <link rel="stylesheet" href="./profile.css"><style>.avatar-wrap{width:92px;height:92px;margin-bottom:8px;position:relative}.avatar-wrap .avatar{width:92px;height:92px;margin:0}.avatar-image{width:92px;height:92px;border-radius:24px;object-fit:cover;border:2px solid #d8e5db}.avatar-controls{margin:0 0 18px}.avatar-label{display:inline-block}.avatar-controls .small{margin:6px 0 0}.avatar-controls input{display:none}</style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="./config.js"></script><script src="./auth-gate.js"></script>
-</head>
+<style>
+.avatar-image[hidden], #avatarFallback[hidden] { display:none !important; }
+.avatar-wrap { width:92px; height:92px; position:relative; overflow:hidden; border-radius:24px; flex:0 0 92px; }
+.avatar-wrap .avatar { width:100%; height:100%; margin:0; display:flex; align-items:center; justify-content:center; }
+.avatar-image { width:100%; height:100%; display:block; object-fit:cover; object-position:center; border-radius:24px; }
+</style></head>
 <body>
 <header class="topbar">
   <a class="brand" href="./learn.html">

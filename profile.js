@@ -315,3 +315,9 @@ status.textContent =
 'Could not load your profile. Check your internet connection and try again.';
 });
 })();
+
+\n// If a stored image cannot be loaded, show the default avatar rather than a broken image.
+avatarImage?.addEventListener('error', () => {
+  avatarImage.hidden = true;
+  avatarFallback.hidden = false;
+});
