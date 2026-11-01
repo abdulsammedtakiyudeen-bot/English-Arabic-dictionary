@@ -1,0 +1,29 @@
+ISLAMIC ARABIC LEARNING DICTIONARY — PROFESSIONAL UPGRADE
+
+BASE ARCHIVE
+This package was built directly from the uploaded Islamic-Arabic-Learning-Dictionary-upgraded.zip.
+All original archive files and PDFs were retained. The original folder name and repository structure were preserved.
+
+CHANGES IN THIS PACKAGE
+1. Profile session restoration now reads the saved Supabase session first instead of waiting on a fresh getUser network lookup.
+2. Profile loading has bounded waits for session/profile requests and clearer recovery messages, preventing an indefinite "Loading your profile" state.
+3. Avatar loading no longer blocks the rest of the profile screen.
+4. Protected-page authentication now uses the persisted session and shows a recoverable connection notice if session checking times out.
+5. Supabase session persistence, automatic token refresh and URL session detection are explicitly enabled in the profile/auth-gate clients.
+6. Added a separate Arabic Intelligence Centre page with organised links into the existing vocabulary academy, grammar lessons, video courses, examinations, library and certificate.
+7. Added an entry card for the Intelligence Centre to the learning home page.
+8. Updated the PWA cache to v14 and precached the new hub files.
+
+IMPORTANT PRESERVATION
+- Existing premium.html payment and Paystack flow was not replaced.
+- Existing config.js Supabase project settings were not changed.
+- Existing Arabic vocabulary JSON, lesson content, academy, course exams, certificate, PDFs, manifest and install flow were retained.
+- Existing files were carried over from the uploaded archive without changing their directory paths.
+
+HONEST LIMITATIONS
+- This package does not claim that every new premium pathway is a new automated service. The hub organises and links to existing working learning areas.
+- Academy learning statistics that were already stored in local browser storage remain device/browser-specific unless the existing app synchronises them.
+- Browser/device speech synthesis depends on available Arabic voices.
+- Premium front-end visibility is not secure protection for public static files. Confidential paid content requires server-side/database authorization.
+- Live Supabase, Paystack, avatar storage, mobile browser, offline installation and account-session tests require deployment and real account access. They cannot be fully verified from a ZIP file alone.
+- No Supabase secret/service-role key or Paystack secret key has been added.

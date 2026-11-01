@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#12372a">
+<meta name="description" content="Your Arabic Intelligence Centre: guided vocabulary, grammar, listening, reading, examinations and learning progress.">
+<title>Arabic Intelligence Centre | Islamic Arabic Learning Dictionary</title>
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./intelligence.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./config.js"></script>
+<script src="./auth-gate.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="./learn.html"><span class="mark">بِ</span><span><b>Arabic Learning</b><small>Intelligence Centre</small></span></a>
+  <nav><a href="./learn.html">Home</a><a href="./academy.html">Academy</a><a href="./courses.html">Courses</a><a href="./profile.html">Profile</a></nav>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <p class="eyebrow">YOUR PERSONAL ARABIC LEARNING SPACE</p>
+    <h1>Grow your Arabic with <em>purpose.</em></h1>
+    <p>Bring vocabulary, grammar, listening, reading and structured course practice together in one organised learning centre.</p>
+    <div class="hero-actions"><a class="button gold" href="./academy.html">Start daily practice</a><a class="button outline" href="./courses.html">Open video courses</a></div>
+    <div class="hero-note">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ <span>Learn steadily. Review often. Build understanding.</span></div>
+  </section>
+
+  <section class="membership" aria-live="polite">
+    <div><small>MEMBERSHIP</small><h2 id="memberTitle">Checking your membership…</h2><p id="memberText">Your learning tools are being prepared.</p></div>
+    <a class="button dark" href="./premium.html" id="memberAction">View plans</a>
+  </section>
+
+  <section class="section-head"><div><p class="eyebrow">LEARNING PATHWAYS</p><h2>Choose what to practise</h2></div><p>Open a learning area and continue at your own pace.</p></section>
+  <section class="grid">
+    <a class="tile featured" href="./academy.html"><span>أ</span><h3>Smart Vocabulary Lab</h3><p>Review words, save useful vocabulary, practise daily and track your study activity.</p><b>Open vocabulary practice →</b></a>
+    <a class="tile" href="./learning-center.html"><span>▤</span><h3>Grammar & Foundations</h3><p>Study structured lessons, examples, objectives and short knowledge checks.</p><b>Continue lessons →</b></a>
+    <a class="tile" href="./academy.html#listening"><span>♫</span><h3>Listening & Pronunciation</h3><p>Use available device speech tools to hear and repeat Arabic vocabulary. Voice availability depends on your device.</p><b>Practise listening →</b></a>
+    <a class="tile" href="./academy.html#reading"><span>文</span><h3>Reading Academy</h3><p>Work through graded reading passages and comprehension activities.</p><b>Read and understand →</b></a>
+    <a class="tile" href="./courses.html"><span>▶</span><h3>Video Course Academy</h3><p>Continue the existing course videos, lesson checks and progress sequence.</p><b>Open video courses →</b></a>
+    <a class="tile" href="./courses.html"><span>✓</span><h3>Examination Centre</h3><p>Attempt the available course examinations and review your recorded results.</p><b>Go to examinations →</b></a>
+    <a class="tile" href="./books.html"><span>▣</span><h3>Arabic Learning Library</h3><p>Browse the books and learning resources already included in the library.</p><b>Browse resources →</b></a>
+    <a class="tile" href="./certificate.html"><span>✧</span><h3>Certificates & Achievement</h3><p>Check certificate eligibility after completing the required course examinations.</p><b>View certificate →</b></a>
+  </section>
+
+  <section class="study-panel">
+    <div><p class="eyebrow">A SIMPLE STUDY ROUTINE</p><h2>Make a little progress every day.</h2><p>Try a short vocabulary review, complete one lesson, then test yourself. Return to difficult words instead of rushing through new material.</p></div>
+    <ol><li>Review familiar words.</li><li>Learn one new concept.</li><li>Practise listening or reading.</li><li>Check what you remember.</li></ol>
+  </section>
+  <p class="disclaimer">Some learning records in the Academy are stored on this device. They may not synchronise across browsers or devices. Premium access to public static files is not a security boundary; sensitive paid content must be protected by server-side access controls. Arabic translations are learning aids, not tafsir or religious rulings.</p>
+</main>
+<footer>© <span id="year"></span> Dev. Takiyudeen · <a href="./about.html">About</a> · <a href="./privacy.html">Privacy</a> · <a href="./contact.html">Contact</a></footer>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+(async function(){
+ const title=document.getElementById('memberTitle'), msg=document.getElementById('memberText'), action=document.getElementById('memberAction');
+ if(!window.supabase||!window.SUPABASE_URL||!window.SUPABASE_PUBLISHABLE_KEY){title.textContent='Membership unavailable';msg.textContent='Connect to the account service to check your membership.';return;}
+ try{
+  const c=window.supabase.createClient(window.SUPABASE_URL,window.SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+  const {data:{session}}=await c.auth.getSession();
+  if(!session){title.textContent='Free learning space';msg.textContent='Sign in to check your membership and saved learning progress.';action.textContent='Sign in';action.href='./login.html';return;}
+  const {data:p,error}=await c.from('profiles').select('membership,premium_until').eq('id',session.user.id).maybeSingle();
+  if(error) throw error;
+  const active=String(p?.membership||'free').toLowerCase()==='premium' && p?.premium_until && new Date(p.premium_until).getTime()>Date.now();
+  title.textContent=active?'Premium membership active':'Free membership';
+  msg.textContent=active?'Your Premium membership is active. Explore the learning pathways below.':'You can explore the available learning pathways and view Premium plans for additional access.';
+  action.textContent=active?'Membership details':'Explore Premium plans';
+ }catch(e){console.warn(e);title.textContent='Membership check delayed';msg.textContent='The learning pathways remain available, but membership status could not be refreshed. Try again when connected.';}
+})();
+</script>
+</body></html>
