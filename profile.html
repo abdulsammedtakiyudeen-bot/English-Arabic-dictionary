@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#12372a">
   <meta name="description" content="Manage your account and membership.">
   <title>My Profile | Islamic Arabic Learning Dictionary</title>
-  <link rel="stylesheet" href="./profile.css"><style>.avatar-wrap{width:92px;height:92px;margin-bottom:8px;position:relative}.avatar-wrap .avatar{width:92px;height:92px;margin:0}.avatar-image{width:92px;height:92px;border-radius:24px;object-fit:cover;border:2px solid #d8e5db}.avatar-controls{margin:0 0 18px}.avatar-label{display:inline-block}.avatar-controls .small{margin:6px 0 0}.avatar-controls input{display:none}</style>
+  <link rel="stylesheet" href="./profile.css"><link rel="stylesheet" href="./upgrade.css"><style>.avatar-wrap{width:92px;height:92px;margin-bottom:8px;position:relative}.avatar-wrap .avatar{width:92px;height:92px;margin:0}.avatar-image{width:92px;height:92px;border-radius:24px;object-fit:cover;border:2px solid #d8e5db}.avatar-controls{margin:0 0 18px}.avatar-label{display:inline-block}.avatar-controls .small{margin:6px 0 0}.avatar-controls input{display:none}</style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="./config.js"></script><script src="./auth-gate.js"></script>
 </head>
@@ -31,7 +31,7 @@
     </div>
     <p class="eyebrow">YOUR ACCOUNT</p>
     <h1>My Profile</h1>
-    <p class="muted">Manage your account and membership.</p><div id="status" class="status" role="status" aria-live="polite">
+    <p class="muted">Your learning identity and membership at a glance.</p><div id="status" class="status" role="status" aria-live="polite">
   Checking your account…
 </div>
 
@@ -47,13 +47,7 @@
   </a>
 </section>
 
-<form id="editForm" hidden>
-  <h2>Account Settings</h2>
-  <label for="displayName">Display name</label>
-  <input id="displayName" maxlength="80" autocomplete="name" placeholder="Enter your name">
-  <button class="primary" type="submit">Save Name</button>
-</form>
-
+<div class="account-links"><a class="secondary" href="./account-privacy.html">Account &amp; Privacy</a><a class="secondary" href="./notifications.html">Notifications</a></div>
 <div class="actions">
   <a id="loginLink" class="primary" href="./login.html">Log In</a>
   <a id="signupLink" class="secondary" href="./signup.html">Create Account</a>

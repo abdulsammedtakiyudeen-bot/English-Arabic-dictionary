@@ -1,0 +1,30 @@
+ISLAMIC ARABIC LEARNING DICTIONARY — FINAL UPGRADE PACKAGE
+Prepared: 3 November 2026
+
+IMPLEMENTED IN THIS PACKAGE
+- Profile page no longer contains the Account Settings / Save Name editor. Username is displayed from available auth metadata (or a derived email handle); no username editing control is shown.
+- Added a dedicated Account & Privacy page with password change and a password re-verification + DELETE confirmation flow.
+- Added a secure Supabase Edge Function source for account deletion. It verifies the caller's bearer token server-side and uses the service-role key only in Edge Function secrets.
+- Added a notifications centre with unread/read controls and a user-scoped Supabase table migration with RLS.
+- Added Explore Library and Continue My Arabic Learning Journey quick links immediately after Bismillah; the main Continue button opens learning.
+- Added a professional green/gold styling layer for new account and notification pages.
+- Applied shared tab-scoped Supabase session storage to all existing client initializations through config.js. This keeps sign-in consistent while navigating/reloading within the same tab and normally clears when the tab/app window is closed. Browsers may restore tabs, so guaranteed logout on app close cannot be promised.
+- Bumped service-worker cache to v14 and added the new pages/assets.
+- Removed one redundant duplicate PDF copy; the root and books/ copies remain.
+
+REQUIRED SUPABASE SETUP BEFORE USING BACKEND FEATURES
+1. Run supabase/migrations/20261103_notifications.sql in the Supabase SQL editor.
+2. Deploy supabase/functions/delete-account/index.ts as the Edge Function named delete-account. Ensure SUPABASE_URL, SUPABASE_ANON_KEY and SUPABASE_SERVICE_ROLE_KEY are configured as function secrets. Never put the service-role key in config.js or any public file.
+3. Review your foreign-key deletion and payment-retention rules before enabling account deletion in production. Auth user deletion cascades only where the database schema is configured to do so. Preserve legally required payment records.
+4. Notification centre can display records once trusted server-side workflows insert genuine events. This ZIP does not fabricate notifications or automatically create every event trigger.
+
+IMPORTANT LIMITATIONS / NOT VERIFIED
+- No live Supabase connection, account registration, password reset, Paystack transaction, Edge Function deployment, RLS execution, or real account deletion was performed during packaging.
+- Existing Academy localStorage progress remains browser-specific and is not converted to cloud sync in this package.
+- Existing Premium visibility checks in static pages are not server-side protection. Keep sensitive paid materials behind database/function authorization.
+- Account deletion must be tested on a non-production test account first. Confirm profile/learning-data cleanup and payment-record retention.
+- Browser/PWA lifecycle events cannot guarantee a logout at the exact instant the app is closed. The package uses tab-scoped storage as a practical best-effort policy.
+- Existing Paystack plan amounts remain unchanged in the existing source: monthly GHS 15 and yearly GHS 120. Live payment verification still requires backend testing.
+
+DEPLOYMENT
+Upload the contents of English-Arabic-dictionary-main/ to the GitHub Pages repository root, preserving folders. Then apply the Supabase setup above, hard-refresh the site, and test login/logout, navigation, password update, notifications, profile, Premium and payment flows.

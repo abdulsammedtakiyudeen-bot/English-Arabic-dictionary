@@ -14,14 +14,7 @@ return;
 
 const client = window.supabase.createClient(
 window.SUPABASE_URL,
-window.SUPABASE_PUBLISHABLE_KEY,
-  {
-    auth: {
-      persistSession: true,
-      autoRefreshToken: true,
-      detectSessionInUrl: true
-    }
-  }
+window.SUPABASE_PUBLISHABLE_KEY
 );
 
 let currentUserId = null;
@@ -73,7 +66,7 @@ async function uploadAvatar(file) {
     if (uploadError) throw uploadError;
 
     const { data: updateData, error: updateError } = await client.auth.updateUser({
-      data: { ...(user?.user_metadata || {}), avatar_path: path }
+      data: { ...( (await client.auth.getUser()).data.user?.user_metadata || {} ), avatar_path: path }
     });
     if (updateError) throw updateError;
 
@@ -109,39 +102,20 @@ currentUserId = null;
 $('loginLink').hidden = false;
 $('signupLink').hidden = false;
 $('logoutBtn').hidden = true;
-$('editForm').hidden = true;
+
 $('profileDetails').hidden = true;
 $('membershipCard').hidden = true;
 }
 
-async function withTimeout(promise, ms, label) {
-  let timer;
-  try {
-    return await Promise.race([
-      promise,
-      new Promise((_, reject) => {
-        timer = setTimeout(() => reject(new Error(label || 'Request timed out')), ms);
-      })
-    ]);
-  } finally {
-    clearTimeout(timer);
-  }
-}
-
 async function init() {
-status.textContent = 'Restoring your saved session…';
+status.textContent = 'Loading your profile…';
 
-let sessionResult;
-try {
-  sessionResult = await withTimeout(client.auth.getSession(), 8000, 'Session check timed out');
-} catch (error) {
-  console.error('Session restore failed:', error);
-  status.textContent = 'Your saved session could not be checked. Check your connection, then refresh. You do not need to create another account.';
-  return;
-}
-const user = sessionResult?.data?.session?.user || null;
+const {
+  data: { user },
+  error: authError
+} = await client.auth.getUser();
 
-if (!user) {
+if (authError || !user) {
   hideAccount();
   status.textContent =
     'You are not logged in. Log in or create an account to view your profile.';
@@ -149,30 +123,17 @@ if (!user) {
 }
 
 currentUserId = user.id;
-loadAvatar(user).catch(error => console.warn('Avatar could not be loaded:', error));
+await loadAvatar(user);
 $('loginLink').hidden = true;
 $('signupLink').hidden = true;
 $('logoutBtn').hidden = false;
-$('editForm').hidden = false;
 
-let profileResult;
-try {
-  profileResult = await withTimeout(
-    client.from('profiles')
-      .select('email,display_name,membership,premium_until,created_at')
-      .eq('id', user.id)
-      .maybeSingle(),
-    12000,
-    'Profile request timed out'
-  );
-} catch (requestError) {
-  console.error('Profile query failed:', requestError);
-  $('profileDetails').hidden = true;
-  $('membershipCard').hidden = true;
-  status.textContent = 'You are signed in, but profile details are taking too long to load. Your session is still saved. Check your connection and refresh.';
-  return;
-}
-const { data: profile, error } = profileResult;
+
+const { data: profile, error } = await client
+  .from('profiles')
+  .select('email,display_name,membership,premium_until,created_at')
+  .eq('id', user.id)
+  .maybeSingle();
 
 if (error) {
   $('profileDetails').hidden = true;
@@ -196,12 +157,13 @@ const name = (
   ''
 ).trim();
 
-$('displayName').value = name;
 
 const details = $('profileDetails');
 details.replaceChildren();
 details.hidden = false;
 
+const username = String(user.user_metadata?.username || user.user_metadata?.user_name || (user.email ? user.email.split('@')[0] : 'learner')).trim();
+addDetail(details, 'Username', '@' + username.replace(/^@/, ''));
 addDetail(details, 'Name', name || 'Not set');
 addDetail(details, 'Email', user.email || profile.email || 'Not available');
 
@@ -276,55 +238,6 @@ addDetail(details, 'Membership', membershipLabel);
 status.textContent = 'Your profile loaded successfully.';
 
 }
-
-$('editForm').addEventListener('submit', async event => {
-event.preventDefault();
-
-const { data: sessionData } = await client.auth.getSession();
-const user = sessionData?.session?.user || null;
-
-if (!user || user.id !== currentUserId) {
-  status.textContent = 'Please log in again before saving your name.';
-  return;
-}
-
-const name = $('displayName').value.trim();
-
-if (name.length > 80) {
-  status.textContent = 'Your name must be 80 characters or fewer.';
-  return;
-}
-
-const button = $('editForm').querySelector('button[type="submit"]');
-button.disabled = true;
-status.textContent = 'Saving your name…';
-
-try {
-  const { error } = await client
-    .from('profiles')
-    .update({ display_name: name })
-    .eq('id', user.id);
-
-  if (error) {
-    status.textContent =
-      'Could not save your name. Please try again.';
-    return;
-  }
-
-  const { error: metadataError } = await client.auth.updateUser({
-    data: { display_name: name }
-  });
-
-  status.textContent = metadataError
-    ? 'Name saved to your profile, but account metadata could not be updated.'
-    : 'Profile updated successfully.';
-
-  await init();
-} finally {
-  button.disabled = false;
-}
-
-});
 
 avatarInput?.addEventListener('change', event => {
   uploadAvatar(event.target.files?.[0]);

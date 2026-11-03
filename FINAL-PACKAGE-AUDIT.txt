@@ -1,0 +1,11 @@
+FINAL PACKAGE AUDIT
+Vocabulary records parsed: 1000
+Unique IDs: 1000
+Unique English/Arabic pairs: 1000
+New pages: account-privacy.html, notifications.html
+New JS: account-privacy.js, notifications.js
+New backend function source: supabase/functions/delete-account/index.ts
+New SQL migration: supabase/migrations/20261103_notifications.sql
+Profile editor removed: yes
+Service worker cache: iald-cache-v14
+Live backend tests: not performed
