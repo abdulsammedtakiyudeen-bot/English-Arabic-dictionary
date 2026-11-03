@@ -1,0 +1,31 @@
+ISLAMIC ARABIC LEARNING DICTIONARY — MAINTENANCE UPDATE
+
+Changes in this package:
+- Moved Extra Arabic Resource Library below the Discover Arabic hero on learn.html.
+- Corrected profile avatar visibility/stacking so the fallback icon is hidden only after the uploaded image loads; added cache-busting on profile load.
+- Kept profile focused on identity and membership; Account & Privacy is a separate informational page.
+- No account-deletion button, page workflow, or deletion Edge Function integration is included. Existing Supabase deletion tables/functions were not modified by this website package.
+- Made Supabase browser clients explicitly persist sessions and auto-refresh tokens using localStorage. This relies on the browser/PWA retaining site storage; clearing app data, private browsing, revoking sessions or storage restrictions can still require a new login.
+- Added canonical/Open Graph metadata to key public pages, robots.txt and sitemap.xml.
+- Bumped service worker cache to v15 so installed copies can update.
+
+GITHUB PAGES DEPLOYMENT
+1. Back up the current repository.
+2. Extract this ZIP and upload the contents of the English-Arabic-dictionary-main folder to the repository root (not the enclosing folder).
+3. Commit to the published branch and wait for GitHub Pages to finish deploying.
+4. Open the site in Chrome, refresh, and if an old PWA view remains, close it and reopen after the service worker update. Do not clear all browser storage unless you are prepared to sign in again.
+
+GOOGLE SEARCH CONSOLE
+- This package adds robots.txt and sitemap.xml; it does NOT submit the site to Google automatically.
+- In Google Search Console, add/verify the property https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/ (URL-prefix property is suitable).
+- Submit sitemap.xml in the Sitemaps section.
+- Use URL Inspection for the homepage and request indexing after the new deployment is live.
+- Indexing is decided by Google and is not guaranteed or immediate.
+
+IMPORTANT TESTS BEFORE CALLING THIS RELEASE COMPLETE
+- Test avatar upload with an actual Storage bucket named avatars and correct user-folder policies.
+- Test session persistence by signing in, fully closing the browser/PWA, then reopening. Browser storage settings can affect results.
+- Confirm resource-library card appears below the hero on mobile and desktop.
+- Confirm Google Search Console property verification and sitemap processing.
+- Account-deletion feature intentionally remains disabled/unlinked.
+- No live payment, email delivery, database RLS, or privileged Edge Function tests are claimed by this package.

@@ -14,7 +14,7 @@ return;
 
 const client = window.supabase.createClient(
 window.SUPABASE_URL,
-window.SUPABASE_PUBLISHABLE_KEY
+window.SUPABASE_PUBLISHABLE_KEY, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storage: window.localStorage } }
 );
 
 let currentUserId = null;
@@ -25,9 +25,11 @@ const avatarFallback = $('avatarFallback');
 
 function showAvatar(url) {
   if (url) {
+    avatarImage.onload = () => { avatarImage.hidden = false; avatarFallback.hidden = true; };
+    avatarImage.onerror = () => { avatarImage.hidden = true; avatarFallback.hidden = false; };
+    avatarImage.hidden = true;
+    avatarFallback.hidden = false;
     avatarImage.src = url;
-    avatarImage.hidden = false;
-    avatarFallback.hidden = true;
   } else {
     avatarImage.hidden = true;
     avatarImage.removeAttribute('src');
@@ -39,7 +41,7 @@ async function loadAvatar(user) {
   const path = user.user_metadata?.avatar_path;
   if (!path) { showAvatar(''); return; }
   const { data } = client.storage.from(AVATAR_BUCKET).getPublicUrl(path);
-  showAvatar(data?.publicUrl || '');
+  showAvatar(data?.publicUrl ? data.publicUrl + '?v=' + Date.now() : '');
 }
 
 async function uploadAvatar(file) {
@@ -102,7 +104,7 @@ currentUserId = null;
 $('loginLink').hidden = false;
 $('signupLink').hidden = false;
 $('logoutBtn').hidden = true;
-
+$('editForm').hidden = true;
 $('profileDetails').hidden = true;
 $('membershipCard').hidden = true;
 }
@@ -127,7 +129,7 @@ await loadAvatar(user);
 $('loginLink').hidden = true;
 $('signupLink').hidden = true;
 $('logoutBtn').hidden = false;
-
+$('editForm').hidden = false;
 
 const { data: profile, error } = await client
   .from('profiles')
@@ -157,13 +159,12 @@ const name = (
   ''
 ).trim();
 
+$('displayName').value = name;
 
 const details = $('profileDetails');
 details.replaceChildren();
 details.hidden = false;
 
-const username = String(user.user_metadata?.username || user.user_metadata?.user_name || (user.email ? user.email.split('@')[0] : 'learner')).trim();
-addDetail(details, 'Username', '@' + username.replace(/^@/, ''));
 addDetail(details, 'Name', name || 'Not set');
 addDetail(details, 'Email', user.email || profile.email || 'Not available');
 
@@ -238,6 +239,57 @@ addDetail(details, 'Membership', membershipLabel);
 status.textContent = 'Your profile loaded successfully.';
 
 }
+
+$('editForm').addEventListener('submit', async event => {
+event.preventDefault();
+
+const {
+  data: { user },
+  error: authError
+} = await client.auth.getUser();
+
+if (authError || !user || user.id !== currentUserId) {
+  status.textContent = 'Please log in again before saving your name.';
+  return;
+}
+
+const name = $('displayName').value.trim();
+
+if (name.length > 80) {
+  status.textContent = 'Your name must be 80 characters or fewer.';
+  return;
+}
+
+const button = $('editForm').querySelector('button[type="submit"]');
+button.disabled = true;
+status.textContent = 'Saving your name…';
+
+try {
+  const { error } = await client
+    .from('profiles')
+    .update({ display_name: name })
+    .eq('id', user.id);
+
+  if (error) {
+    status.textContent =
+      'Could not save your name. Please try again.';
+    return;
+  }
+
+  const { error: metadataError } = await client.auth.updateUser({
+    data: { display_name: name }
+  });
+
+  status.textContent = metadataError
+    ? 'Name saved to your profile, but account metadata could not be updated.'
+    : 'Profile updated successfully.';
+
+  await init();
+} finally {
+  button.disabled = false;
+}
+
+});
 
 avatarInput?.addEventListener('change', event => {
   uploadAvatar(event.target.files?.[0]);

@@ -15,7 +15,7 @@
     document.body.prepend(note); return;
   }
   try {
-    const client = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_PUBLISHABLE_KEY);
+    const client = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_PUBLISHABLE_KEY, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storage: window.localStorage } });
     const { data, error } = await client.auth.getUser();
     if (error || !data.user) { redirect(); return; }
     document.documentElement.dataset.authenticated = 'true';
