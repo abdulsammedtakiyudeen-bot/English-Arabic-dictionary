@@ -14,7 +14,15 @@ return;
 
 const client = window.supabase.createClient(
 window.SUPABASE_URL,
-window.SUPABASE_PUBLISHABLE_KEY, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storage: window.localStorage } }
+window.SUPABASE_PUBLISHABLE_KEY,
+  {
+    auth: {
+      storage: window.localStorage,
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true
+    }
+  }
 );
 
 let currentUserId = null;
@@ -25,11 +33,9 @@ const avatarFallback = $('avatarFallback');
 
 function showAvatar(url) {
   if (url) {
-    avatarImage.onload = () => { avatarImage.hidden = false; avatarFallback.hidden = true; };
-    avatarImage.onerror = () => { avatarImage.hidden = true; avatarFallback.hidden = false; };
-    avatarImage.hidden = true;
-    avatarFallback.hidden = false;
     avatarImage.src = url;
+    avatarImage.hidden = false;
+    avatarFallback.hidden = true;
   } else {
     avatarImage.hidden = true;
     avatarImage.removeAttribute('src');
@@ -41,7 +47,7 @@ async function loadAvatar(user) {
   const path = user.user_metadata?.avatar_path;
   if (!path) { showAvatar(''); return; }
   const { data } = client.storage.from(AVATAR_BUCKET).getPublicUrl(path);
-  showAvatar(data?.publicUrl ? data.publicUrl + '?v=' + Date.now() : '');
+  showAvatar(data?.publicUrl || '');
 }
 
 async function uploadAvatar(file) {
@@ -68,7 +74,7 @@ async function uploadAvatar(file) {
     if (uploadError) throw uploadError;
 
     const { data: updateData, error: updateError } = await client.auth.updateUser({
-      data: { ...( (await client.auth.getUser()).data.user?.user_metadata || {} ), avatar_path: path }
+      data: { ...(user?.user_metadata || {}), avatar_path: path }
     });
     if (updateError) throw updateError;
 
@@ -109,15 +115,34 @@ $('profileDetails').hidden = true;
 $('membershipCard').hidden = true;
 }
 
+async function withTimeout(promise, ms, label) {
+  let timer;
+  try {
+    return await Promise.race([
+      promise,
+      new Promise((_, reject) => {
+        timer = setTimeout(() => reject(new Error(label || 'Request timed out')), ms);
+      })
+    ]);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function init() {
-status.textContent = 'Loading your profile…';
+status.textContent = 'Restoring your saved session…';
 
-const {
-  data: { user },
-  error: authError
-} = await client.auth.getUser();
+let sessionResult;
+try {
+  sessionResult = await withTimeout(client.auth.getSession(), 8000, 'Session check timed out');
+} catch (error) {
+  console.error('Session restore failed:', error);
+  status.textContent = 'Your saved session could not be checked. Check your connection, then refresh. You do not need to create another account.';
+  return;
+}
+const user = sessionResult?.data?.session?.user || null;
 
-if (authError || !user) {
+if (!user) {
   hideAccount();
   status.textContent =
     'You are not logged in. Log in or create an account to view your profile.';
@@ -125,17 +150,30 @@ if (authError || !user) {
 }
 
 currentUserId = user.id;
-await loadAvatar(user);
+loadAvatar(user).catch(error => console.warn('Avatar could not be loaded:', error));
 $('loginLink').hidden = true;
 $('signupLink').hidden = true;
 $('logoutBtn').hidden = false;
 $('editForm').hidden = false;
 
-const { data: profile, error } = await client
-  .from('profiles')
-  .select('email,display_name,membership,premium_until,created_at')
-  .eq('id', user.id)
-  .maybeSingle();
+let profileResult;
+try {
+  profileResult = await withTimeout(
+    client.from('profiles')
+      .select('email,display_name,membership,premium_until,created_at')
+      .eq('id', user.id)
+      .maybeSingle(),
+    12000,
+    'Profile request timed out'
+  );
+} catch (requestError) {
+  console.error('Profile query failed:', requestError);
+  $('profileDetails').hidden = true;
+  $('membershipCard').hidden = true;
+  status.textContent = 'You are signed in, but profile details are taking too long to load. Your session is still saved. Check your connection and refresh.';
+  return;
+}
+const { data: profile, error } = profileResult;
 
 if (error) {
   $('profileDetails').hidden = true;
@@ -243,12 +281,10 @@ status.textContent = 'Your profile loaded successfully.';
 $('editForm').addEventListener('submit', async event => {
 event.preventDefault();
 
-const {
-  data: { user },
-  error: authError
-} = await client.auth.getUser();
+const { data: sessionData } = await client.auth.getSession();
+const user = sessionData?.session?.user || null;
 
-if (authError || !user || user.id !== currentUserId) {
+if (!user || user.id !== currentUserId) {
   status.textContent = 'Please log in again before saving your name.';
   return;
 }

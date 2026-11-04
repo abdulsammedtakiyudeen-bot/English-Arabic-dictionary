@@ -1,7 +1,18 @@
 (() => {
   const show = (msg, type='ok') => { const el=document.getElementById('message'); if(!el)return; el.textContent=msg; el.className=`message show ${type}`; };
   if (!window.supabase || !window.SUPABASE_URL || !window.SUPABASE_PUBLISHABLE_KEY) { show('The account service could not load. Check your internet connection and config.js.', 'error'); return; }
-  const client = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_PUBLISHABLE_KEY, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storage: window.localStorage } });
+  const client = window.supabase.createClient(
+    window.SUPABASE_URL,
+    window.SUPABASE_PUBLISHABLE_KEY,
+    {
+      auth: {
+        storage: window.localStorage,
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true
+      }
+    }
+  );
   function safeNext(){ const raw=new URLSearchParams(location.search).get('next')||'dashboard.html'; const allowed=new Set(['learn.html','courses.html','dashboard.html','profile.html','premium.html','payment.html','certificate.html']); const page=raw.split(/[?#]/)[0]; return allowed.has(page)?'./'+raw:'./dashboard.html'; }
   const signup = document.getElementById('signupForm');
   if (signup) signup.addEventListener('submit', async e => {

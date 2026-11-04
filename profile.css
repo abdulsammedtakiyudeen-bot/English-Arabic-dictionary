@@ -11,11 +11,3 @@ body{background:radial-gradient(ellipse at top left,#e8edf2 0,transparent 45%),v
 .avatar{background:#edf2f6}
 .eyebrow{color:#9b8050}
 .status{background:#edf2f6}
-
-/* Fix avatar overlap: the visible fallback and uploaded image must never occupy the same slot. */
-[hidden]{display:none!important}
-.avatar-wrap{display:block;flex:0 0 92px;width:92px;height:92px;overflow:hidden;border-radius:24px}
-.avatar-wrap .avatar,.avatar-wrap .avatar-image{display:block;width:92px;height:92px;margin:0;object-fit:cover;border-radius:24px}
-.avatar-wrap .avatar{display:grid;place-items:center}
-.avatar-controls{display:block;clear:both;position:relative;z-index:1}
-.avatar-label{max-width:100%;white-space:normal}

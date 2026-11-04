@@ -5,22 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#12372a">
   <meta name="description" content="Begin your Arabic learning journey with vocabulary, step-by-step lessons, listening practice, quizzes, and Islamic expressions.">
-  <title>Islamic Arabic Learning Dictionary | Learn Arabic Online</title>
-  <link rel="canonical" href="https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Islamic Arabic Learning Dictionary">
-  <meta property="og:description" content="Learn Arabic vocabulary, grammar, conversations and Islamic expressions step by step.">
-  <meta property="og:url" content="https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/">
+  <title>Welcome | Islamic Arabic Learning Dictionary</title>
 
-  <!-- Show the introduction to visitors who have not completed it -->
+  <!-- Returning signed-in learners go directly to their learning area.
+       New visitors continue through the introduction and onboarding. -->
   <script>
     (function () {
       try {
+        var projectRef = "ivnxhisezpxamutweifl";
+        var sessionKey = "sb-" + projectRef + "-auth-token";
+        var saved = localStorage.getItem(sessionKey);
+
+        if (saved) {
+          var session = JSON.parse(saved);
+          if (session && session.access_token && session.user) {
+            window.location.replace("./learn.html");
+            return;
+          }
+        }
+
         if (localStorage.getItem("arabicIntroSeen") !== "yes") {
           window.location.replace("./intro.html");
         }
       } catch (error) {
-        // If browser storage is unavailable, keep the welcome page usable.
+        console.warn("Could not restore the saved sign-in on the welcome page:", error);
       }
     })();
   </script>
