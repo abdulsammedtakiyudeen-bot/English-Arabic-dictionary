@@ -57,7 +57,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
  const title=document.getElementById('memberTitle'), msg=document.getElementById('memberText'), action=document.getElementById('memberAction');
  if(!window.supabase||!window.SUPABASE_URL||!window.SUPABASE_PUBLISHABLE_KEY){title.textContent='Membership unavailable';msg.textContent='Connect to the account service to check your membership.';return;}
  try{
-  const c=window.supabase.createClient(window.SUPABASE_URL,window.SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+  const c=window.supabase.createClient(window.SUPABASE_URL,window.SUPABASE_PUBLISHABLE_KEY,{auth:{storage:window.localStorage,persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
   const {data:{session}}=await c.auth.getSession();
   if(!session){title.textContent='Free learning space';msg.textContent='Sign in to check your membership and saved learning progress.';action.textContent='Sign in';action.href='./login.html';return;}
   const {data:p,error}=await c.from('profiles').select('membership,premium_until').eq('id',session.user.id).maybeSingle();

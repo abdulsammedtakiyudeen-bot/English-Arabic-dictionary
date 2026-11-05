@@ -89,7 +89,7 @@
 
       const client = window.supabase.createClient(
         window.SUPABASE_URL,
-        window.SUPABASE_PUBLISHABLE_KEY
+        window.SUPABASE_PUBLISHABLE_KEY, { auth: { storage: window.localStorage, persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } }
       );
 
       const params = new URLSearchParams(window.location.search);

@@ -11,7 +11,7 @@ function setAdVisibility(isPremium){
 setAdVisibility(false);
 if(!window.supabase||!window.SUPABASE_URL||!window.SUPABASE_PUBLISHABLE_KEY)return;
 try{
- const client=window.supabase.createClient(window.SUPABASE_URL,window.SUPABASE_PUBLISHABLE_KEY);
+ const client=window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_PUBLISHABLE_KEY, { auth: { storage: window.localStorage, persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } });
  async function updatePromotion(){
   const {data:{user},error:authError}=await client.auth.getUser();
   if(authError||!user){banner.hidden=false;setAdVisibility(false);return;}

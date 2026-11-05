@@ -1,0 +1,15 @@
+ISLAMIC ARABIC LEARNING DICTIONARY — FINAL POLISH
+
+Changes in this package:
+1. Preserved the existing project, pages, dictionary data, PDFs, lessons, payments and Supabase configuration.
+2. Standardised Supabase browser clients to use localStorage persistence, persistent sessions and automatic token refresh wherever a client is created.
+3. Fixed a profile-picture upload bug: the upload handler previously referenced a user variable that was not in its scope. It now retrieves and verifies the current session before updating avatar metadata.
+4. Added a safe image-load fallback so a missing/private avatar does not leave a broken image visible.
+5. Reordered the learning homepage so the Discover Arabic introduction appears before the Extra Arabic Resource Library card.
+6. Updated the service-worker cache version to help installed PWAs receive the revised files.
+
+Important:
+- This package does not change Supabase project credentials, Paystack settings, prices, database tables, or account-deletion backend objects.
+- Avatar uploads still require a Supabase Storage bucket named "avatars" with suitable authenticated-user upload policies. If the bucket or policies are missing, the app will show an upload error.
+- Persistent login works within the same browser/app storage profile. Clearing app storage, uninstalling the PWA, or using another browser/device may require signing in again.
+- ZIP integrity and static code changes were checked. Live Supabase login, storage upload, Paystack transactions, and Google indexing cannot be verified from this offline package build.

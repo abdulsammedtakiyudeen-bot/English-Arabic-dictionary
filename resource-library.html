@@ -60,7 +60,7 @@
  let premium=false;
  try{
   if(window.supabase&&window.SUPABASE_URL&&window.SUPABASE_PUBLISHABLE_KEY){
-   const c=window.supabase.createClient(window.SUPABASE_URL,window.SUPABASE_PUBLISHABLE_KEY);
+   const c=window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_PUBLISHABLE_KEY, { auth: { storage: window.localStorage, persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } });
    const {data:{user}}=await c.auth.getUser();
    if(user){
     const {data:p}=await c.from('profiles').select('membership,premium_until').eq('id',user.id).maybeSingle();

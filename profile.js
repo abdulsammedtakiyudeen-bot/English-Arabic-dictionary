@@ -33,11 +33,16 @@ const avatarFallback = $('avatarFallback');
 
 function showAvatar(url) {
   if (url) {
-    avatarImage.src = url;
     avatarImage.hidden = false;
     avatarFallback.hidden = true;
+    avatarImage.onerror = () => {
+      avatarImage.hidden = true;
+      avatarFallback.hidden = false;
+    };
+    avatarImage.src = url;
   } else {
     avatarImage.hidden = true;
+    avatarImage.onerror = null;
     avatarImage.removeAttribute('src');
     avatarFallback.hidden = false;
   }
@@ -73,8 +78,14 @@ async function uploadAvatar(file) {
       .upload(path, file, { upsert: true, contentType: file.type, cacheControl: '3600' });
     if (uploadError) throw uploadError;
 
-    const { data: updateData, error: updateError } = await client.auth.updateUser({
-      data: { ...(user?.user_metadata || {}), avatar_path: path }
+    const { data: sessionData, error: sessionError } = await client.auth.getSession();
+    if (sessionError) throw sessionError;
+    const signedInUser = sessionData?.session?.user;
+    if (!signedInUser || signedInUser.id !== currentUserId) {
+      throw new Error('Your login session could not be confirmed. Please sign in again.');
+    }
+    const { error: updateError } = await client.auth.updateUser({
+      data: { ...(signedInUser.user_metadata || {}), avatar_path: path }
     });
     if (updateError) throw updateError;
 
