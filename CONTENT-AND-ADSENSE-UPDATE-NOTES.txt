@@ -1,0 +1,32 @@
+CONTENT AND PUBLIC-PAGE UPDATE — 6 NOVEMBER 2026
+
+Added to the existing public Resource Library:
+- Definite article (الـ)
+- Masculine and feminine noun patterns
+- Singular, dual and plural
+- Common prepositions
+- Question words
+- Iḍāfah (noun-to-noun construction)
+- Past and present verb examples
+- Market dialogue
+- Islamic learning vocabulary
+- Reading passage with comprehension answers
+- Seven-day revision routine
+
+AdSense preparation:
+- Updated the privacy notice to describe the supplied Supabase, Paystack, local-storage and hosting architecture.
+- Kept AdSense disabled; no publisher or ad-unit IDs were invented.
+- Changed the ad loader to fail closed if authentication or membership cannot be verified.
+- Added a public-only sitemap and robots.txt.
+- Added a visible link from the welcome page to the public Resource Library.
+- Changed the Resource Library home/back links to the public homepage.
+- Bumped the service-worker cache and added the public Resource Library to its core assets.
+
+Preservation:
+- Existing application, dictionary data, authentication, Premium, Paystack, Supabase, course, certificate and profile files were retained in the ZIP.
+- No backend settings, database records, payment settings or live repository files were changed.
+
+Important testing note:
+- This ZIP was structurally checked, but it has not been deployed or tested in a live browser.
+- Verify all pages and membership/payment flows on a staging copy before replacing the live site.
+- Do not enable AdSense until Google approval, real publisher/ad-unit IDs, and any required consent controls are in place.

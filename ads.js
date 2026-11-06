@@ -1,29 +1,49 @@
-/* Free-only manual ad loader. Premium users never load the AdSense script.
-   Empty configuration means no ad requests are made. */
+/* Free-only manual ad loader.
+   Ads are disabled until approval and valid publisher/slot IDs are configured.
+   If membership cannot be verified, no ad request is made. */
 (async function () {
+  "use strict";
   const cfg = window.IALD_ADS_CONFIG || {};
   if (!cfg.enabled || !/^ca-pub-\d+$/.test(cfg.publisherId || "")) return;
+  if (!window.supabase || !window.SUPABASE_URL || !window.SUPABASE_PUBLISHABLE_KEY) return;
 
-  let premium = false;
+  let eligibleForAds = false;
   try {
-    if (window.supabase && window.SUPABASE_URL && window.SUPABASE_PUBLISHABLE_KEY) {
-      const client = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_PUBLISHABLE_KEY, { auth: { storage: window.localStorage, persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } });
-      const { data: { user } } = await client.auth.getUser();
-      if (user) {
-        const { data } = await client.from("profiles")
-          .select("membership,premium_until").eq("id", user.id).maybeSingle();
-        const expiry = data?.premium_until ? new Date(data.premium_until).getTime() : 0;
-        premium = String(data?.membership || "").toLowerCase() === "premium" && expiry > Date.now();
-      }
+    const client = window.supabase.createClient(
+      window.SUPABASE_URL,
+      window.SUPABASE_PUBLISHABLE_KEY,
+      { auth: { storage: window.localStorage, persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } }
+    );
+    const authResult = await client.auth.getUser();
+    if (authResult.error) return;
+    const user = authResult.data && authResult.data.user;
+
+    // A confirmed anonymous visitor is a free visitor.
+    if (!user) {
+      eligibleForAds = true;
+    } else {
+      const profileResult = await client.from("profiles")
+        .select("membership,premium_until")
+        .eq("id", user.id)
+        .maybeSingle();
+      if (profileResult.error || !profileResult.data) return;
+
+      const membership = String(profileResult.data.membership || "").toLowerCase();
+      const expiry = profileResult.data.premium_until
+        ? new Date(profileResult.data.premium_until).getTime()
+        : 0;
+      const activePremium = membership === "premium" && Number.isFinite(expiry) && expiry > Date.now();
+      eligibleForAds = !activePremium;
     }
   } catch (error) {
-    console.warn("Ad eligibility could not be checked; ads remain disabled on this page.", error);
+    console.warn("Ad eligibility could not be verified; ads remain disabled.", error);
     return;
   }
-  if (premium) return;
 
+  if (!eligibleForAds) return;
   const slots = document.querySelectorAll("[data-iald-ad]");
   if (!slots.length) return;
+
   const script = document.createElement("script");
   script.async = true;
   script.crossOrigin = "anonymous";
@@ -31,7 +51,7 @@
   script.onload = () => {
     slots.forEach(slot => {
       const key = slot.getAttribute("data-iald-ad");
-      const slotId = cfg.slots?.[key];
+      const slotId = cfg.slots && cfg.slots[key];
       if (!/^\d+$/.test(slotId || "")) return;
       const ad = document.createElement("ins");
       ad.className = "adsbygoogle";

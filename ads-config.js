@@ -1,6 +1,4 @@
-/* AdSense configuration.
-   Keep values empty until the site has an approved AdSense account and real ad-unit IDs.
-   Never copy another publisher's IDs. */
+/* AdSense remains OFF until the account is approved and real ad-unit IDs are supplied. */
 window.IALD_ADS_CONFIG = {
   enabled: false,
   publisherId: "",

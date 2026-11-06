@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/</loc></url>
-  <url><loc>https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/learn.html</loc></url>
-  <url><loc>https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/books.html</loc></url>
-  <url><loc>https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/courses.html</loc></url>
+  <url><loc>https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/intro.html</loc></url>
+  <url><loc>https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/guide.html</loc></url>
+  <url><loc>https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/explore.html</loc></url>
   <url><loc>https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/resource-library.html</loc></url>
   <url><loc>https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/about.html</loc></url>
   <url><loc>https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/contact.html</loc></url>
   <url><loc>https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/privacy.html</loc></url>
   <url><loc>https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/terms.html</loc></url>
-  <url><loc>https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/login.html</loc></url>
-  <url><loc>https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/signup.html</loc></url>
 </urlset>

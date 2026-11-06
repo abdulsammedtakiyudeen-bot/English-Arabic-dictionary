@@ -9,9 +9,21 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./config.js"></script>
 <style>
 .library{max-width:1000px;margin:auto;padding:24px 16px 100px}.library-hero{background:linear-gradient(135deg,#12372a,#286348);color:white;padding:26px;border-radius:22px}.library-hero p{color:#e8f2eb;line-height:1.7}.resource-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:20px 0}.resource{background:var(--card,#fff);border:1px solid var(--line,#dce5dd);border-radius:17px;padding:18px}.resource h2{font-size:19px;margin:0 0 8px}.resource p,.resource li{line-height:1.65}.tag{display:inline-block;border-radius:20px;padding:4px 9px;background:#eaf2eb;color:#17422f;font-size:12px;font-weight:700}.arabic{font-size:24px;direction:rtl;text-align:right;color:#12372a}.example{border-left:3px solid #c7a75c;padding:9px 12px;margin:10px 0;background:#f7f8f4;border-radius:0 10px 10px 0}.premium-lock{border:1px dashed #b89a63;background:#fffaf0}.premium-lock button{border:0;background:#12372a;color:#fff;padding:10px 14px;border-radius:9px;font-weight:700}.resource details{margin-top:10px}.resource summary{cursor:pointer;font-weight:700}.resource .meaning{font-size:14px;color:#5b685f}.notice{padding:14px;border-radius:12px;background:#eef4ef;line-height:1.6}
+
+.study-unit{background:var(--card,#fff);border:1px solid var(--line,#dce5dd);border-radius:17px;padding:18px;margin:14px 0}
+.study-unit h3{margin:0 0 8px;font-size:18px}
+.study-unit p,.study-unit li{line-height:1.7}
+.study-unit .arabic{font-size:25px;line-height:1.9}
+.study-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+.study-table th,.study-table td{padding:10px;border-bottom:1px solid var(--line,#dce5dd);text-align:left;vertical-align:top}
+.study-table th{background:#eef4ef;color:#12372a}
+.study-check{background:#f4f7f3;border-radius:12px;padding:12px;margin-top:12px}
+.study-check summary{font-weight:700;cursor:pointer}
+.study-note{border-left:4px solid #c7a75c;padding:10px 13px;background:#faf8f1;border-radius:0 10px 10px 0;line-height:1.7}
+@media(max-width:560px){.study-table{font-size:13px}.study-table th,.study-table td{padding:8px}}
 </style><script src="./ads-config.js"></script><script src="./ads.js" defer></script></head>
 <body>
-<header class="topbar"><a class="brand" href="./learn.html"><span class="brand-mark">بِ</span><span><strong>Arabic Learning</strong><small>Resource library</small></span></a><a class="back-link" href="./learn.html">← Dictionary</a></header>
+<header class="topbar"><a class="brand" href="./index.html"><span class="brand-mark">بِ</span><span><strong>Arabic Learning</strong><small>Resource library</small></span></a><a class="back-link" href="./index.html">← Home</a></header>
 <main class="library">
 <section class="library-hero"><p class="eyebrow">KEEP BUILDING YOUR SKILLS</p><h1>Arabic Resource Library</h1><p>Use these guided notes to strengthen vocabulary, sentence building, conversation, reading and Islamic Arabic. Study a small section, say the examples aloud, then test yourself without looking.</p></section>
 <div class="notice" style="margin-top:16px">Learning tip: read the Arabic, listen or pronounce it slowly, cover the English meaning, and try to recall it. Review difficult items again tomorrow.</div>
@@ -43,6 +55,164 @@
 <article class="resource"><span class="tag">FREE · Islamic vocabulary</span><h2>Words used in Islamic learning</h2>
 <ul><li><span class="arabic">مَسْجِدٌ</span> — masjidun — mosque</li><li><span class="arabic">صَلَاةٌ</span> — ṣalātun — prayer</li><li><span class="arabic">قُرْآنٌ</span> — qurʾānun — Qur’an</li><li><span class="arabic">عِلْمٌ</span> — ʿilmun — knowledge</li><li><span class="arabic">دُعَاءٌ</span> — duʿāʾun — supplication</li></ul><p>These are vocabulary notes for language study, not religious rulings or tafsīr.</p></article>
 </section>
+
+<h2 id="expanded-guides">Expanded free Arabic study guides</h2>
+<p>These lessons add guided explanations and examples to the dictionary. Read the explanation first, pronounce each example slowly, then answer the quick-check question. The transliterations are learning aids; pronunciation can vary between Arabic-speaking regions.</p>
+
+<article class="study-unit">
+<span class="tag">FREE · Grammar foundation</span>
+<h3>1. The definite article: الـ (al-)</h3>
+<p>In Arabic, <span class="arabic" style="display:inline">الـ</span> is commonly placed at the beginning of a noun to make it definite, often corresponding to “the” in English.</p>
+<table class="study-table"><thead><tr><th>Arabic</th><th>Transliteration</th><th>Meaning</th></tr></thead><tbody>
+<tr><td lang="ar" dir="rtl">كِتَابٌ</td><td>kitābun</td><td>a book</td></tr>
+<tr><td lang="ar" dir="rtl">الْكِتَابُ</td><td>al-kitābu</td><td>the book</td></tr>
+<tr><td lang="ar" dir="rtl">بَيْتٌ</td><td>baytun</td><td>a house</td></tr>
+<tr><td lang="ar" dir="rtl">الْبَيْتُ</td><td>al-baytu</td><td>the house</td></tr>
+</tbody></table>
+<p>When الـ is added, the final tanwīn (the double vowel ending) is normally removed. The article is written as ال even when its pronunciation changes before certain letters.</p>
+<div class="study-note"><strong>Remember:</strong> The letters that affect the pronunciation of ل in الـ are traditionally grouped as “sun letters”; with “moon letters”, the ل is pronounced clearly. Learn the spelling first, then practise listening to the sound.</div>
+<details class="study-check"><summary>Quick check</summary><p><strong>Question:</strong> Which expression means “the house”?</p><p><strong>Answer:</strong> الْبَيْتُ (al-baytu).</p></details>
+</article>
+
+<article class="study-unit">
+<span class="tag">FREE · Grammar foundation</span>
+<h3>2. Masculine and feminine nouns</h3>
+<p>Arabic nouns have grammatical gender. Many feminine nouns end in <span class="arabic" style="display:inline">ة</span> (tāʾ marbūṭah), although this is a useful pattern rather than a rule that works for every noun.</p>
+<table class="study-table"><thead><tr><th>Arabic</th><th>Transliteration</th><th>Meaning</th></tr></thead><tbody>
+<tr><td lang="ar" dir="rtl">طَالِبٌ</td><td>ṭālibun</td><td>male student</td></tr>
+<tr><td lang="ar" dir="rtl">طَالِبَةٌ</td><td>ṭālibatun</td><td>female student</td></tr>
+<tr><td lang="ar" dir="rtl">مُعَلِّمٌ</td><td>muʿallimun</td><td>male teacher</td></tr>
+<tr><td lang="ar" dir="rtl">مُعَلِّمَةٌ</td><td>muʿallimatun</td><td>female teacher</td></tr>
+</tbody></table>
+<p>Adjectives usually agree with the nouns they describe in gender and number. For example, <span class="arabic" style="display:inline">طَالِبٌ مُجْتَهِدٌ</span> means “a hardworking male student”, while <span class="arabic" style="display:inline">طَالِبَةٌ مُجْتَهِدَةٌ</span> means “a hardworking female student”.</p>
+<details class="study-check"><summary>Quick check</summary><p><strong>Question:</strong> What is a common feminine form of طَالِبٌ?</p><p><strong>Answer:</strong> طَالِبَةٌ (ṭālibatun).</p></details>
+</article>
+
+<article class="study-unit">
+<span class="tag">FREE · Grammar foundation</span>
+<h3>3. Singular, dual and plural</h3>
+<p>Arabic distinguishes one, two, and more than two. The dual is a special feature that English usually expresses with “two”. The exact endings depend on grammatical position and word type, so begin by recognising the pattern.</p>
+<table class="study-table"><thead><tr><th>Form</th><th>Arabic</th><th>Meaning</th></tr></thead><tbody>
+<tr><td>Singular</td><td lang="ar" dir="rtl">طَالِبٌ</td><td>one student</td></tr>
+<tr><td>Dual</td><td lang="ar" dir="rtl">طَالِبَانِ</td><td>two students (nominative form)</td></tr>
+<tr><td>Plural</td><td lang="ar" dir="rtl">طُلَّابٌ</td><td>students</td></tr>
+</tbody></table>
+<p>Arabic plurals include sound plurals and broken plurals. A broken plural changes the internal pattern of the word, as in طَالِبٌ → طُلَّابٌ. It is often best to learn a noun together with its plural form.</p>
+<details class="study-check"><summary>Quick check</summary><p><strong>Question:</strong> Which form above means “two students”?</p><p><strong>Answer:</strong> طَالِبَانِ (ṭālibāni).</p></details>
+</article>
+
+<article class="study-unit">
+<span class="tag">FREE · Useful grammar</span>
+<h3>4. Five useful Arabic prepositions</h3>
+<p>Prepositions show relationships such as place, direction, origin and companionship. A noun following a preposition is generally in the genitive case.</p>
+<table class="study-table"><thead><tr><th>Arabic</th><th>Transliteration</th><th>Common meaning</th></tr></thead><tbody>
+<tr><td lang="ar" dir="rtl">فِي</td><td>fī</td><td>in / inside</td></tr>
+<tr><td lang="ar" dir="rtl">مِنْ</td><td>min</td><td>from</td></tr>
+<tr><td lang="ar" dir="rtl">إِلَى</td><td>ilā</td><td>to / towards</td></tr>
+<tr><td lang="ar" dir="rtl">عَلَى</td><td>ʿalā</td><td>on / upon</td></tr>
+<tr><td lang="ar" dir="rtl">مَعَ</td><td>maʿa</td><td>with</td></tr>
+</tbody></table>
+<div class="example"><div class="arabic">أَنَا فِي الْمَدْرَسَةِ</div><strong>Anā fī al-madrasati</strong><div class="meaning">I am at school.</div></div>
+<div class="example"><div class="arabic">أَنَا مِنْ غَانَا</div><strong>Anā min Ghānā</strong><div class="meaning">I am from Ghana.</div></div>
+<details class="study-check"><summary>Quick check</summary><p><strong>Question:</strong> Which preposition commonly means “with”?</p><p><strong>Answer:</strong> مَعَ (maʿa).</p></details>
+</article>
+
+<article class="study-unit">
+<span class="tag">FREE · Asking questions</span>
+<h3>5. Question words for everyday Arabic</h3>
+<table class="study-table"><thead><tr><th>Arabic</th><th>Transliteration</th><th>Meaning</th></tr></thead><tbody>
+<tr><td lang="ar" dir="rtl">مَنْ؟</td><td>man?</td><td>who?</td></tr>
+<tr><td lang="ar" dir="rtl">مَا؟ / مَاذَا؟</td><td>mā? / mādhā?</td><td>what?</td></tr>
+<tr><td lang="ar" dir="rtl">أَيْنَ؟</td><td>ayna?</td><td>where?</td></tr>
+<tr><td lang="ar" dir="rtl">مَتَى؟</td><td>matā?</td><td>when?</td></tr>
+<tr><td lang="ar" dir="rtl">كَيْفَ؟</td><td>kayfa?</td><td>how?</td></tr>
+<tr><td lang="ar" dir="rtl">لِمَاذَا؟</td><td>limādhā?</td><td>why?</td></tr>
+<tr><td lang="ar" dir="rtl">كَمْ؟</td><td>kam?</td><td>how many / how much?</td></tr>
+</tbody></table>
+<div class="example"><div class="arabic">أَيْنَ الْمَسْجِدُ؟</div><strong>Ayna al-masjidu?</strong><div class="meaning">Where is the mosque?</div></div>
+<div class="example"><div class="arabic">كَيْفَ حَالُكَ؟</div><strong>Kayfa ḥāluka?</strong><div class="meaning">How are you? (addressing a male)</div></div>
+<div class="example"><div class="arabic">مَا اسْمُكِ؟</div><strong>Mā ismuki?</strong><div class="meaning">What is your name? (addressing a female)</div></div>
+<details class="study-check"><summary>Quick check</summary><p><strong>Question:</strong> Which word asks “when?”</p><p><strong>Answer:</strong> مَتَى؟ (matā?).</p></details>
+</article>
+
+<article class="study-unit">
+<span class="tag">FREE · Sentence building</span>
+<h3>6. The iḍāfah: showing possession or connection</h3>
+<p>An iḍāfah is a common Arabic noun construction that links two nouns. It can express possession, association or a relationship. The first noun is the مضاف (muḍāf), and the second is the مضاف إليه (muḍāf ilayh).</p>
+<div class="example"><div class="arabic">كِتَابُ الطَّالِبِ</div><strong>Kitābu aṭ-ṭālibi</strong><div class="meaning">The student's book.</div></div>
+<div class="example"><div class="arabic">بَابُ الْمَسْجِدِ</div><strong>Bābu al-masjidi</strong><div class="meaning">The door of the mosque.</div></div>
+<ul><li>The first noun is normally not given ال or tanwīn in this construction.</li><li>The second noun is in the genitive case.</li><li>Read the two nouns together as one connected expression.</li></ul>
+<details class="study-check"><summary>Quick check</summary><p><strong>Question:</strong> What does كِتَابُ الطَّالِبِ mean?</p><p><strong>Answer:</strong> The student's book.</p></details>
+</article>
+
+<article class="study-unit">
+<span class="tag">FREE · Verb patterns</span>
+<h3>7. Past and present verbs</h3>
+<p>Arabic verbs change form to show who performs an action and when it happens. These examples introduce the idea using the verb “to write”.</p>
+<table class="study-table"><thead><tr><th>Arabic</th><th>Transliteration</th><th>Meaning</th></tr></thead><tbody>
+<tr><td lang="ar" dir="rtl">كَتَبَ</td><td>kataba</td><td>he wrote</td></tr>
+<tr><td lang="ar" dir="rtl">يَكْتُبُ</td><td>yaktubu</td><td>he writes / is writing</td></tr>
+<tr><td lang="ar" dir="rtl">أَكْتُبُ</td><td>aktubu</td><td>I write / am writing</td></tr>
+<tr><td lang="ar" dir="rtl">نَكْتُبُ</td><td>naktubu</td><td>we write / are writing</td></tr>
+</tbody></table>
+<p>In many beginner examples, the present-tense form begins with one of the letters أ، ن، ي، ت. These are sometimes taught together as the present-tense prefixes. The full conjugation depends on the subject.</p>
+<div class="example"><div class="arabic">أَنَا أَكْتُبُ دَرْسًا</div><strong>Anā aktubu darsan</strong><div class="meaning">I write a lesson.</div></div>
+<details class="study-check"><summary>Quick check</summary><p><strong>Question:</strong> Which form means “I write”?</p><p><strong>Answer:</strong> أَكْتُبُ (aktubu).</p></details>
+</article>
+
+<article class="study-unit">
+<span class="tag">FREE · Conversation practice</span>
+<h3>8. At the market: a short dialogue</h3>
+<div class="example"><div class="arabic">الْبَائِعُ: السَّلَامُ عَلَيْكُمْ</div><strong>Al-bāʾiʿu: as-salāmu ʿalaykum</strong><div class="meaning">Seller: Peace be upon you.</div></div>
+<div class="example"><div class="arabic">الزَّبُونُ: وَعَلَيْكُمُ السَّلَامُ. بِكَمْ هَذَا؟</div><strong>Az-zabūnu: wa ʿalaykumu s-salām. Bikam hādhā?</strong><div class="meaning">Customer: And peace be upon you. How much is this?</div></div>
+<div class="example"><div class="arabic">الْبَائِعُ: بِعَشَرَةِ دَرَاهِمَ</div><strong>Al-bāʾiʿu: bi-ʿasharati darāhima</strong><div class="meaning">Seller: It is ten dirhams.</div></div>
+<div class="example"><div class="arabic">الزَّبُونُ: شُكْرًا</div><strong>Az-zabūnu: shukran</strong><div class="meaning">Customer: Thank you.</div></div>
+<p class="study-note">This is a simple model dialogue. Currency names and prices differ by country; replace دَرَاهِمَ (dirhams) with the currency used in your own practice situation.</p>
+<details class="study-check"><summary>Quick check</summary><p><strong>Question:</strong> What does بِكَمْ هَذَا؟ ask?</p><p><strong>Answer:</strong> “How much is this?”</p></details>
+</article>
+
+<article class="study-unit">
+<span class="tag">FREE · Islamic vocabulary</span>
+<h3>9. Common words in Islamic learning</h3>
+<p>These are language-learning meanings for common terms. A word's precise meaning can depend on its sentence and scholarly context.</p>
+<table class="study-table"><thead><tr><th>Arabic</th><th>Transliteration</th><th>Basic learning meaning</th></tr></thead><tbody>
+<tr><td lang="ar" dir="rtl">إِيمَانٌ</td><td>īmān</td><td>faith</td></tr>
+<tr><td lang="ar" dir="rtl">عِبَادَةٌ</td><td>ʿibādah</td><td>worship</td></tr>
+<tr><td lang="ar" dir="rtl">رَحْمَةٌ</td><td>raḥmah</td><td>mercy</td></tr>
+<tr><td lang="ar" dir="rtl">تَوْبَةٌ</td><td>tawbah</td><td>repentance</td></tr>
+<tr><td lang="ar" dir="rtl">صَبْرٌ</td><td>ṣabr</td><td>patience</td></tr>
+<tr><td lang="ar" dir="rtl">شُكْرٌ</td><td>shukr</td><td>gratitude / thankfulness</td></tr>
+<tr><td lang="ar" dir="rtl">هُدًى</td><td>hudā</td><td>guidance</td></tr>
+<tr><td lang="ar" dir="rtl">آيَةٌ</td><td>āyah</td><td>sign; verse (in Qur'anic context)</td></tr>
+</tbody></table>
+<p>For Qur'anic interpretation, legal rulings and detailed religious explanations, use reliable tafsīr and qualified teachers. This section teaches vocabulary, not independent religious rulings.</p>
+</article>
+
+<article class="study-unit">
+<span class="tag">FREE · Reading comprehension</span>
+<h3>10. Reading passage: A learner's day</h3>
+<p>Read the short passage once without looking at the translation. Then read it again and identify familiar verbs and nouns.</p>
+<div class="example"><div class="arabic">أَنَا طَالِبٌ. أَسْتَيْقِظُ صَبَاحًا. أَذْهَبُ إِلَى الْمَدْرَسَةِ. أَقْرَأُ كِتَابًا وَأَكْتُبُ دَرْسًا. أُحِبُّ اللُّغَةَ الْعَرَبِيَّةَ.</div></div>
+<p><strong>Transliteration:</strong> Anā ṭālibun. Astayqiẓu ṣabāḥan. Adhhabu ilā al-madrasati. Aqraʾu kitāban wa-aktubu darsan. Uḥibbu al-lughata al-ʿarabiyyata.</p>
+<details class="study-check"><summary>Show English meaning</summary><p>I am a student. I wake up in the morning. I go to school. I read a book and write a lesson. I love the Arabic language.</p></details>
+<details class="study-check"><summary>Comprehension questions and answers</summary><ol><li>Who is speaking? <strong>A student.</strong></li><li>Where does the student go? <strong>To school.</strong></li><li>What does the student read? <strong>A book.</strong></li><li>Which language does the student love? <strong>Arabic.</strong></li></ol></details>
+</article>
+
+<article class="study-unit">
+<span class="tag">FREE · Study skills</span>
+<h3>11. A simple seven-day revision routine</h3>
+<ul>
+<li><strong>Day 1:</strong> Review 10 familiar words and learn 5 new words.</li>
+<li><strong>Day 2:</strong> Read the words aloud and write each one once.</li>
+<li><strong>Day 3:</strong> Build five short sentences using pronouns and verbs.</li>
+<li><strong>Day 4:</strong> Review question words and practise asking questions.</li>
+<li><strong>Day 5:</strong> Read the short passage and answer the comprehension questions.</li>
+<li><strong>Day 6:</strong> Practise the market dialogue with a study partner.</li>
+<li><strong>Day 7:</strong> Test yourself without looking at the notes, then revisit difficult items.</li>
+</ul>
+<p>Short, regular practice is usually more useful than trying to memorise a very large amount in one sitting. Keep a notebook of words you confuse and review them again later.</p>
+</article>
+
 <h2>Premium extended study</h2>
 <p>These previews show the topics available for deeper study. Sign in with an active Premium membership to access the extended notes and practice.</p>
 <section class="resource-grid">

@@ -1,5 +1,5 @@
-const CACHE_NAME = "iald-v18-final-polish";
-const CORE_ASSETS = ["./", "./index.html", "./learn.html", "./profile.html", "./profile.js", "./auth.js", "./welcome.css", "./guide.html", "./explore.html", "./onboarding.css", "./style.css", "./app.js", "./auth-gate.js", "./manifest.json", "./arabic-words.json", "./icon.svg", "./learning-center.html", "./learning-center.css", "./learning-center.js", "./academy.html", "./academy.css", "./academy.js", "./intelligence.html", "./intelligence.css", "./install-app.js", "./install-app.css", "./about.html", "./contact.html", "./privacy.html", "./terms.html"];
+const CACHE_NAME = "iald-v19-content-enrichment";
+const CORE_ASSETS = ["./", "./index.html", "./learn.html", "./profile.html", "./profile.js", "./auth.js", "./welcome.css", "./guide.html", "./explore.html", "./onboarding.css", "./style.css", "./app.js", "./auth-gate.js", "./manifest.json", "./arabic-words.json", "./icon.svg", "./learning-center.html", "./resource-library.html", "./learning-center.css", "./learning-center.js", "./academy.html", "./academy.css", "./academy.js", "./intelligence.html", "./intelligence.css", "./install-app.js", "./install-app.css", "./about.html", "./contact.html", "./privacy.html", "./terms.html"];
 self.addEventListener("install", event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
@@ -15,7 +15,7 @@ self.addEventListener("install", event => {
 self.addEventListener("activate", event => {
   event.waitUntil((async () => {
     const keys = await caches.keys();
-    await Promise.all(keys.filter(key => key.startsWith("iald-cache-") && key !== CACHE_NAME).map(key => caches.delete(key)));
+    await Promise.all(keys.filter(key => key.startsWith("iald-") && key !== CACHE_NAME).map(key => caches.delete(key)));
     await self.clients.claim();
   })());
 });
