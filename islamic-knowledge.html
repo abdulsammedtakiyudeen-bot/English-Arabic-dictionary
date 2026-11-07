@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#12372a">
+<meta name="description" content="Study authentic Qur'anic duas, carefully referenced hadith and stories of the Prophets with Arabic, meanings and illustrated learning guides.">
+<title>Islamic Knowledge &amp; Guidance | Islamic Arabic Learning Dictionary</title>
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./config.js"></script>
+<script src="./ads-config.js"></script>
+<script src="./ads.js" defer></script>
+<style>
+:root{--ik-green:#12372a;--ik-gold:#c7a45b;--ik-paper:#f7f8f4}
+.ik-wrap{max-width:1060px;margin:auto;padding:22px 16px 100px}
+.ik-hero{overflow:hidden;border-radius:24px;background:linear-gradient(135deg,#12372a,#286348);color:#fff;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:20px;padding:26px}
+.ik-hero h1{font-size:clamp(28px,5vw,43px);line-height:1.13;margin:8px 0 12px}
+.ik-hero p{line-height:1.75;color:#e6f0e9}
+.ik-kicker{font-size:11px;letter-spacing:1.7px;font-weight:800;color:#e5cb8a}
+.ik-hero-art{width:100%;height:220px;object-fit:cover;border-radius:17px;border:1px solid #ffffff38}
+.ik-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.ik-btn{display:inline-block;text-decoration:none;border-radius:11px;padding:11px 15px;font-weight:800;font-size:13px;background:#e6c77e;color:#183a2b}
+.ik-btn.ghost{background:transparent;border:1px solid #ffffff80;color:#fff}
+.ik-intro{line-height:1.75;color:var(--muted,#637066);margin:18px 2px}
+.ik-jump{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0 28px}
+.ik-jump a{border:1px solid var(--line,#dce5dd);border-radius:999px;padding:9px 13px;text-decoration:none;color:var(--green,#12372a);font-size:12px;font-weight:800;background:var(--card,#fff)}
+.ik-section{margin:34px 0}
+.ik-section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:15px}
+.ik-section-head h2{margin:0;font-size:25px;color:var(--ink,#183a2b)}
+.ik-section-head p{margin:5px 0 0;color:var(--muted,#637066);font-size:13px;line-height:1.6}
+.ik-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
+.ik-card{background:var(--card,#fff);border:1px solid var(--line,#dce5dd);border-radius:18px;overflow:hidden;box-shadow:0 8px 24px #183d2508}
+.ik-card img{display:block;width:100%;height:165px;object-fit:cover;background:#e8eee8}
+.ik-card-body{padding:17px}
+.ik-pill{display:inline-block;border-radius:999px;padding:5px 9px;font-size:10px;letter-spacing:.5px;font-weight:900;background:#eaf2eb;color:#17422f}
+.ik-pill.premium{background:#f7efd9;color:#76551b}
+.ik-card h3{font-size:18px;margin:11px 0 7px;color:var(--ink,#183a2b)}
+.ik-card p,.ik-card li{font-size:13px;line-height:1.7;color:var(--muted,#637066)}
+.ik-card ul{padding-left:19px}
+.ik-arabic{font-family:"Amiri","Noto Naskh Arabic",serif;font-size:27px;line-height:1.9;direction:rtl;text-align:right;color:#174a34;margin:12px 0}
+.ik-translit{font-size:12px;color:#8a6a2d;font-weight:700;line-height:1.7}
+.ik-meaning{font-size:13px;line-height:1.75;color:var(--ink,#263c30);background:#f4f7f2;padding:11px;border-radius:10px;margin:10px 0}
+.ik-source{font-size:11px;color:var(--muted,#637066);line-height:1.6;margin-top:10px}
+.ik-source a,.ik-text-link{color:#286348;font-weight:800}
+.ik-note{background:#f4f7f2;border-left:4px solid var(--ik-gold);border-radius:0 12px 12px 0;padding:13px 15px;color:#435448;font-size:12px;line-height:1.7;margin:16px 0}
+.ik-story{display:grid;grid-template-columns:220px 1fr;gap:0}
+.ik-story img{height:100%;min-height:220px}
+.ik-story .ik-card-body{padding:19px}
+.ik-lock{background:linear-gradient(145deg,#fffdf7,#f7f1e3);border:1px dashed #c5a86c}
+.ik-lock .ik-card-body{padding:19px}
+.ik-lock h3{color:#5d4927}
+.ik-lock p{color:#6f654f}
+.ik-lock button{border:0;border-radius:10px;background:#12372a;color:white;padding:11px 14px;font-weight:800;cursor:pointer}
+.ik-disclaimer{font-size:11px;color:var(--muted,#637066);line-height:1.7;margin-top:26px;border-top:1px solid var(--line,#dce5dd);padding-top:17px}
+.ik-bottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:30px;padding:17px;border:1px solid var(--line,#dce5dd);border-radius:16px}
+.ik-bottom a{color:#286348;font-weight:800}
+@media(max-width:680px){.ik-hero{grid-template-columns:1fr;padding:21px}.ik-hero-art{height:175px}.ik-story{grid-template-columns:1fr}.ik-story img{height:170px;min-height:0}.ik-section-head h2{font-size:22px}}
+.dark .ik-arabic{color:#e4d19a}.dark .ik-meaning,.dark .ik-note{background:#24382c;color:#e5ece6}.dark .ik-lock{background:#2e2a20;border-color:#78663c}.dark .ik-lock h3,.dark .ik-lock p{color:#eee0bb}.dark .ik-pill{background:#24382c;color:#e4d19a}
+</style>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="./index.html"><span class="brand-mark">بِ</span><span><strong>Arabic Learning</strong><small>Islamic Knowledge &amp; Guidance</small></span></a>
+<a class="back-link" href="./resource-library.html">← Resource Library</a>
+</header>
+<main class="ik-wrap">
+<section class="ik-hero">
+<div>
+<div class="ik-kicker">عِلْمٌ نَافِعٌ · BENEFICIAL KNOWLEDGE</div>
+<h1>Islamic Knowledge<br>&amp; Guidance</h1>
+<p>Learn selected authentic supplications, read carefully referenced hadith, and explore lessons from the lives of the Prophets. Arabic text, simple meanings, sources and illustrations are brought together in one study space.</p>
+<div class="ik-actions"><a class="ik-btn" href="#duas">Explore the lessons ↓</a><a class="ik-btn ghost" href="./index.html">Main home</a></div>
+</div>
+<img class="ik-hero-art" src="./knowledge-desert.svg" alt="Symbolic illustration of an old learning centre in a peaceful desert landscape; no Prophet is depicted">
+</section>
+
+<p class="ik-intro">This section is designed for learning and reflection. Free lessons are available to everyone. Premium previews show where extended study packs, guided revision and quizzes are offered through the existing Premium learning area.</p>
+<nav class="ik-jump" aria-label="Islamic knowledge topics">
+<a href="#duas">Authentic Duas</a><a href="#hadith">Authentic Hadith</a><a href="#prophets">Stories of the Prophets</a><a href="#premium-study">Premium Study</a>
+</nav>
+
+<section class="ik-section" id="duas">
+<div class="ik-section-head"><div><h2>Authentic Duas · أدعية صحيحة</h2><p>Supplications from the Qur’an and established Sunnah, with when to use them.</p></div><span class="ik-pill">FREE STARTER COLLECTION</span></div>
+<div class="ik-grid">
+<article class="ik-card">
+<div class="ik-card-body">
+<span class="ik-pill">FREE · Qur’an 2:201</span><h3>Asking for good in both lives</h3>
+<div class="ik-arabic" lang="ar">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div>
+<div class="ik-translit">Rabbanā ātinā fid-dunyā ḥasanatan wa fil-ākhirati ḥasanatan wa qinā ʿadhāban-nār.</div>
+<div class="ik-meaning">Meaning: Our Lord, grant us what is good in this world and what is good in the Hereafter, and protect us from the punishment of the Fire.</div>
+<p><strong>When to use it:</strong> A broad Qur’anic supplication you can make when asking Allah for goodness in your worldly life and the Hereafter.</p>
+<p class="ik-source">Source: Qur’an, Surah al-Baqarah 2:201. <a href="https://quran.com/al-baqarah/201" target="_blank" rel="noopener">Read the verse</a>.</p>
+</div></article>
+
+<article class="ik-card">
+<div class="ik-card-body">
+<span class="ik-pill">FREE · Qur’an 20:25–28</span><h3>Asking Allah for ease and clear speech</h3>
+<div class="ik-arabic" lang="ar">رَبِّ اشْرَحْ لِي صَدْرِي ۝ وَيَسِّرْ لِي أَمْرِي ۝ وَاحْلُلْ عُقْدَةً مِنْ لِسَانِي ۝ يَفْقَهُوا قَوْلِي</div>
+<div class="ik-translit">Rabbi-shraḥ lī ṣadrī, wa yassir lī amrī, waḥlul ʿuqdatan min lisānī, yafqahū qawlī.</div>
+<div class="ik-meaning">Meaning: My Lord, open my heart for me, make my task easy, and loosen the difficulty in my speech so that people may understand me.</div>
+<p><strong>When to use it:</strong> A Qur’anic supplication of Prophet Musa عليه السلام. You may recite it when asking Allah for ease, confidence and clarity while communicating.</p>
+<p class="ik-source">Source: Qur’an, Surah Ṭā Hā 20:25–28. <a href="https://quran.com/taha/25-28" target="_blank" rel="noopener">Read the passage</a>.</p>
+</div></article>
+
+<article class="ik-card">
+<div class="ik-card-body">
+<span class="ik-pill">FREE · Sahih al-Bukhari 6324</span><h3>Supplication before sleeping</h3>
+<div class="ik-arabic" lang="ar">بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا</div>
+<div class="ik-translit">Bismika Allāhumma amūtu wa aḥyā.</div>
+<div class="ik-meaning">Meaning: In Your name, O Allah, I die and I live.</div>
+<p><strong>When to use it:</strong> The narration reports that the Prophet ﷺ said this when going to bed.</p>
+<p class="ik-source">Narrated by Hudhayfah. Source: Sahih al-Bukhari 6324, Book of Invocations. <a href="https://sunnah.com/bukhari:6324" target="_blank" rel="noopener">Read the hadith</a>.</p>
+</div></article>
+</div>
+<div class="ik-note"><strong>Learning note:</strong> The first two are Qur’anic supplications, not hadith quotations. The bedtime supplication is reported in Sahih al-Bukhari. Learn the Arabic carefully and check pronunciation with a trusted teacher or recitation.</div>
+</section>
+
+<section class="ik-section" id="hadith">
+<div class="ik-section-head"><div><h2>Authentic Hadith · الحديث الصحيح</h2><p>Short selections from well-known authentic collections, with narrator and reference.</p></div><span class="ik-pill">FREE STARTER COLLECTION</span></div>
+<div class="ik-grid">
+<article class="ik-card">
+<div class="ik-card-body">
+<span class="ik-pill">FREE · SAHIH</span><h3>Deeds are judged by intentions</h3>
+<div class="ik-arabic" lang="ar">إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ</div>
+<div class="ik-meaning">Meaning: Deeds are judged by intentions, and each person receives according to what they intended.</div>
+<p><strong>Lesson:</strong> Before doing something good, renew your intention and seek Allah’s pleasure. A sincere intention matters.</p>
+<p class="ik-source">Narrated by ʿUmar ibn al-Khaṭṭāb. Sahih al-Bukhari 1, Book of Revelation, Hadith 1. <a href="https://sunnah.com/bukhari:1" target="_blank" rel="noopener">Read the full narration</a>.</p>
+</div></article>
+<article class="ik-card">
+<div class="ik-card-body">
+<span class="ik-pill">FREE · SAHIH</span><h3>Show mercy to others</h3>
+<div class="ik-arabic" lang="ar">مَنْ لَا يَرْحَمُ لَا يُرْحَمُ</div>
+<div class="ik-meaning">Meaning: Whoever does not show mercy will not be shown mercy.</div>
+<p><strong>Lesson:</strong> Treat children, family members and other people with compassion. The narration describes the Prophet’s kindness towards children.</p>
+<p class="ik-source">Narrated by Abū Hurayrah. Sahih Muslim 2318a, Book of Virtues. <a href="https://sunnah.com/muslim:2318a" target="_blank" rel="noopener">Read the narration</a>.</p>
+</div></article>
+</div>
+<div class="ik-note"><strong>Authenticity policy:</strong> These starter narrations are cited to Sahih al-Bukhari and Sahih Muslim. Future additions will identify the collection and reference and will not label a narration “Sahih” unless its grading is supported. Hadith numbering can differ between editions, so the collection and book are included too.</div>
+</section>
+
+<section class="ik-section" id="prophets">
+<div class="ik-section-head"><div><h2>Stories of the Prophets · قصص الأنبياء</h2><p>Qur’an-based story summaries, source passages and lessons for reflection.</p></div><span class="ik-pill">FREE STORIES</span></div>
+<div class="ik-grid">
+<article class="ik-card ik-story">
+<img src="./ark-waters.svg" alt="Symbolic illustration of an ark on calm water, with no people shown">
+<div class="ik-card-body"><span class="ik-pill">FREE · PROPHET NUH عليه السلام</span><h3>Patience in calling people to Allah</h3>
+<p>The Qur’an tells how Nuh عليه السلام called his people to worship Allah, how most rejected his message, and how Allah instructed him to build the Ark. The believers were saved through Allah’s command. The account also reminds readers that family connection alone does not replace faith.</p>
+<p><strong>Lessons:</strong> Patience, trust in Allah, perseverance and the importance of faith.</p>
+<p class="ik-source">Qur’an: Surah Hūd 11:25–49; see also Surah Nūḥ. <a href="https://quran.com/hud/25-49" target="_blank" rel="noopener">Read the passage</a>.</p></div>
+</article>
+<article class="ik-card ik-story">
+<img src="./ancient-well.svg" alt="Symbolic illustration of an ancient stone well in a desert setting, with no people shown">
+<div class="ik-card-body"><span class="ik-pill">FREE · PROPHET YUSUF عليه السلام</span><h3>Integrity through hardship</h3>
+<p>Surah Yusuf tells of Yusuf’s dream, the jealousy of his brothers, his separation from his family, the tests he faced in Egypt, his imprisonment, and his eventual rise to a position of responsibility. When reunited with his family, he chose forgiveness rather than revenge.</p>
+<p><strong>Lessons:</strong> Patience, honesty, resisting wrongdoing, forgiveness and trusting Allah through difficult times.</p>
+<p class="ik-source">Qur’an: Surah Yūsuf 12:4–101. <a href="https://quran.com/yusuf" target="_blank" rel="noopener">Read Surah Yusuf</a>.</p></div>
+</article>
+<article class="ik-card ik-story">
+<img src="./palm-city.svg" alt="Symbolic illustration of an ancient town and palm trees; no people or Prophets are depicted">
+<div class="ik-card-body"><span class="ik-pill">FREE · PROPHET ʿISA عليه السلام</span><h3>Maryam and the miraculous birth</h3>
+<p>The Qur’an describes the glad tidings given to Maryam, the miraculous birth of ʿIsa عليه السلام, and his speaking as an infant by Allah’s permission. It also describes signs given to him and his call to worship Allah. Muslims honour ʿIsa as a mighty Messenger of Allah.</p>
+<p><strong>Lessons:</strong> Allah’s power, devotion, humility and the honour of Maryam.</p>
+<p class="ik-source">Qur’an: Surah Āl ʿImrān 3:45–55 and Surah Maryam 19:16–36. <a href="https://quran.com/ali-imran/45-55" target="_blank" rel="noopener">Read Āl ʿImrān 3:45–55</a> · <a href="https://quran.com/maryam/16-36" target="_blank" rel="noopener">Read Maryam 19:16–36</a>.</p></div>
+</article>
+<article class="ik-card ik-story">
+<img src="./knowledge-desert.svg" alt="Symbolic illustration of a peaceful learning centre and desert landscape; no Prophet is depicted">
+<div class="ik-card-body"><span class="ik-pill">FREE · PROPHET MUHAMMAD ﷺ</span><h3>Mercy and excellent character</h3>
+<p>The Qur’an describes the Messenger of Allah ﷺ as a mercy to all worlds and presents him as an excellent example. In an authentic narration, the Prophet ﷺ showed affection to a child, and taught that those who do not show mercy will not be shown mercy.</p>
+<p><strong>Lessons:</strong> Mercy, gentleness, humility and good treatment of others.</p>
+<p class="ik-source">Qur’an: 21:107 and 33:21. Hadith: Sahih Muslim 2318a. <a href="https://quran.com/al-anbya/107" target="_blank" rel="noopener">Qur’an 21:107</a> · <a href="https://sunnah.com/muslim:2318a" target="_blank" rel="noopener">Hadith reference</a>.</p></div>
+</article>
+</div>
+<div class="ik-note"><strong>Respectful illustration policy:</strong> Images in this section are symbolic landscapes and settings only. They do not portray any Prophet, Messenger, or revered religious figure.</div>
+</section>
+
+<div class="ad-slot" data-iald-ad="resourceLibrary"><span>ADVERTISEMENT</span><p>Advertisements may appear here for eligible free visitors after approval and setup.</p></div>
+
+<section class="ik-section" id="premium-study">
+<div class="ik-section-head"><div><h2>Premium Islamic Study</h2><p>Extended learning packs are offered through the existing Premium learning area.</p></div><span class="ik-pill premium">PREMIUM</span></div>
+<div class="ik-grid">
+<article class="ik-card ik-lock"><div class="ik-card-body"><span class="ik-pill premium">PREMIUM STUDY PACK</span><h3>Expanded Dua Collection</h3><p>Additional Qur’anic and hadith-based supplications, pronunciation support, occasions for use, source references and guided revision.</p><button type="button" data-premium-action>Check Premium access</button></div></article>
+<article class="ik-card ik-lock"><div class="ik-card-body"><span class="ik-pill premium">PREMIUM STUDY PACK</span><h3>Hadith Study &amp; Explanation</h3><p>More narrations with narrator details, source locations, authenticity notes, vocabulary explanations and practical reflection questions.</p><button type="button" data-premium-action>Check Premium access</button></div></article>
+<article class="ik-card ik-lock"><div class="ik-card-body"><span class="ik-pill premium">PREMIUM STUDY PACK</span><h3>Extended Stories of the Prophets</h3><p>Longer Qur’an-based study guides about Ibrahim, Musa, Ayyub, Yunus and other Prophets, with passage references and lessons.</p><button type="button" data-premium-action>Check Premium access</button></div></article>
+<article class="ik-card ik-lock"><div class="ik-card-body"><span class="ik-pill premium">PREMIUM STUDY PACK</span><h3>Revision, Vocabulary &amp; Quizzes</h3><p>Arabic vocabulary from the lessons, comprehension questions, revision activities and knowledge checks.</p><button type="button" data-premium-action>Check Premium access</button></div></article>
+</div>
+
+<section class="ik-section" id="premium-content" hidden>
+<div class="ik-section-head"><div><h2>Premium Extended Lessons</h2><p>Your active membership is confirmed. Continue with these additional study notes.</p></div><span class="ik-pill premium">ACTIVE PREMIUM</span></div>
+<div class="ik-grid">
+<article class="ik-card"><div class="ik-card-body"><span class="ik-pill premium">PREMIUM · QUR’AN 28:24</span><h3>A dua when seeking Allah’s provision</h3>
+<div class="ik-arabic" lang="ar">رَبِّ إِنِّي لِمَا أَنْزَلْتَ إِلَيَّ مِنْ خَيْرٍ فَقِيرٌ</div>
+<div class="ik-translit">Rabbi innī limā anzalta ilayya min khayrin faqīr.</div>
+<div class="ik-meaning">Meaning: My Lord, I am truly in need of whatever good You send down to me.</div>
+<p><strong>Context:</strong> This is the supplication of Musa عليه السلام in the Qur’anic account after he helped two women water their flock and then withdrew to seek Allah’s provision.</p>
+<p class="ik-source">Qur’an, Surah al-Qaṣaṣ 28:24. <a href="https://quran.com/al-qasas/24" target="_blank" rel="noopener">Read the verse</a>.</p></div></article>
+<article class="ik-card"><div class="ik-card-body"><span class="ik-pill premium">PREMIUM · QUR’AN 3:8</span><h3>Asking Allah to keep the heart guided</h3>
+<div class="ik-arabic" lang="ar">رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِنْ لَدُنْكَ رَحْمَةً ۚ إِنَّكَ أَنْتَ الْوَهَّابُ</div>
+<div class="ik-translit">Rabbanā lā tuzigh qulūbanā baʿda idh hadaytanā wa hab lanā min ladunka raḥmah, innaka antal-Wahhāb.</div>
+<div class="ik-meaning">Meaning: Our Lord, do not let our hearts deviate after You have guided us, and grant us mercy from Yourself. You are the Bestower.</div>
+<p><strong>When to use it:</strong> A Qur’anic supplication asking Allah for steadfastness and mercy.</p>
+<p class="ik-source">Qur’an, Surah Āl ʿImrān 3:8. <a href="https://quran.com/ali-imran/8" target="_blank" rel="noopener">Read the verse</a>.</p></div></article>
+<article class="ik-card"><div class="ik-card-body"><span class="ik-pill premium">PREMIUM · SAHIH</span><h3>Wishing good for others</h3>
+<div class="ik-arabic" lang="ar">لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ</div>
+<div class="ik-meaning">Meaning: A person’s faith is not complete until they wish for their fellow Muslim what they wish for themselves.</div>
+<p><strong>Lesson:</strong> Avoid envy and selfishness. Want good for others and treat them fairly.</p>
+<p class="ik-source">Narrated by Anas ibn Mālik. Sahih al-Bukhari 13, Book of Belief, Hadith 6. <a href="https://sunnah.com/bukhari:13" target="_blank" rel="noopener">Read the hadith</a>.</p></div></article>
+<article class="ik-card"><div class="ik-card-body"><span class="ik-pill premium">PREMIUM · SAHIH</span><h3>Speak good or remain silent</h3>
+<div class="ik-arabic" lang="ar">فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ</div>
+<div class="ik-meaning">Meaning: Let the person speak what is good, or remain silent.</div>
+<p><strong>Lesson:</strong> Think before speaking. Avoid insults, gossip and words that harm others.</p>
+<p class="ik-source">Narrated by Abū Hurayrah. Sahih al-Bukhari 6018, Book of Good Manners, Hadith 49. <a href="https://sunnah.com/bukhari:6018" target="_blank" rel="noopener">Read the hadith</a>.</p></div></article>
+<article class="ik-card ik-story"><img src="./knowledge-desert.svg" alt="Symbolic desert mountain landscape, with no people shown"><div class="ik-card-body"><span class="ik-pill premium">PREMIUM · PROPHET IBRAHIM عليه السلام</span><h3>Faith, trust and devotion</h3><p>The Qur’an presents Ibrahim عليه السلام as a model of devotion to Allah. His story includes his rejection of idol worship, his call to his people, his trust in Allah, and the trial involving his son. The Qur’an describes his willingness to obey Allah and the mercy Allah granted.</p><p><strong>Study themes:</strong> Tawḥīd, courage, obedience, reliance on Allah and gratitude.</p><p class="ik-source">Qur’an: Surah al-Anʿām 6:74–83; al-Anbiyāʾ 21:51–70; aṣ-Ṣāffāt 37:99–111. <a href="https://quran.com/al-anbya/51-70" target="_blank" rel="noopener">Read 21:51–70</a>.</p></div></article>
+<article class="ik-card ik-story"><img src="./ark-waters.svg" alt="Symbolic water and distant landscape, no people shown"><div class="ik-card-body"><span class="ik-pill premium">PREMIUM · PROPHET MUSA عليه السلام</span><h3>Courage and trust in Allah</h3><p>The Qur’an recounts Musa’s call, his mission to Firʿawn, the signs Allah gave him, and the deliverance of the Children of Israel. The account repeatedly highlights Allah’s support and the importance of remaining firm upon truth.</p><p><strong>Study themes:</strong> Courage, patience, leadership, reliance on Allah and gratitude after deliverance.</p><p class="ik-source">Qur’an: Surah Ṭā Hā 20:9–98; al-Qaṣaṣ 28:3–46. <a href="https://quran.com/taha" target="_blank" rel="noopener">Read Surah Ṭā Hā</a>.</p></div></article>
+</div>
+<div class="ik-note">These are concise study summaries. Read the cited Qur’anic passages in full and use reliable tafsir for deeper explanation.</div>
+</section>
+
+<p class="ik-disclaimer">Important: This page provides selected educational summaries, not fatwas or a substitute for qualified Islamic scholarship. Qur’anic story summaries are paraphrases with references, not full translations. Please consult the Qur’an, reliable tafsir, established hadith collections and qualified teachers for deeper study. Essential religious knowledge should remain accessible; Premium is for extended learning activities and additional study materials.</p>
+</section>
+
+<div class="ik-bottom"><span>Continue your Arabic learning journey</span><span><a href="./resource-library.html">Arabic Resource Library</a> · <a href="./learn.html">My learning area</a> · <a href="./premium.html">Premium plans</a></span></div>
+<footer><p>Created by <strong>Dev. Takiyudeen</strong></p><p><a href="./about.html">About</a> · <a href="./contact.html">Contact</a> · <a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a></p></footer>
+</main>
+<script>
+(async function(){
+ let premium=false;
+ try{
+  if(window.supabase&&window.SUPABASE_URL&&window.SUPABASE_PUBLISHABLE_KEY){
+   const client=window.supabase.createClient(window.SUPABASE_URL,window.SUPABASE_PUBLISHABLE_KEY,{auth:{storage:window.localStorage,persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+   const {data:{user},error}=await client.auth.getUser();
+   if(!error&&user){
+    const {data:profile,error:profileError}=await client.from("profiles").select("membership,premium_until").eq("id",user.id).maybeSingle();
+    if(!profileError&&profile){
+     const expiry=profile.premium_until?new Date(profile.premium_until).getTime():0;
+     premium=String(profile.membership||"").toLowerCase()==="premium"&&Number.isFinite(expiry)&&expiry>Date.now();
+    }
+   }
+  }
+ }catch(error){console.warn("Premium status could not be confirmed; showing the safe free-access state.",error)}
+ const premiumContent=document.getElementById("premium-content");
+ if(premiumContent){premiumContent.hidden=!premium;}
+ document.querySelectorAll("[data-premium-action]").forEach(button=>{
+  button.textContent=premium?"Open extended Islamic lessons":"View Premium plans";
+  button.addEventListener("click",()=>{
+   if(premium){
+    if(premiumContent){premiumContent.hidden=false;premiumContent.scrollIntoView({behavior:"smooth",block:"start"});}
+   }else{location.href="./premium.html";}
+  });
+ });
+})();
+</script>
+</body>
+</html>

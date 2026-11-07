@@ -1,0 +1,18 @@
+ISLAMIC KNOWLEDGE & GUIDANCE ADDITION
+====================================
+
+Added:
+- islamic-knowledge.html as a new main learning destination.
+- Four original symbolic SVG illustrations (no Prophets or revered figures are depicted).
+- Free Qur'anic supplications with Arabic, transliteration, meaning, use guidance and verse references.
+- Free selected hadith from Sahih al-Bukhari and Sahih Muslim with narrator and reference.
+- Free Qur'an-based story summaries for Nuh, Yusuf, Isa and Muhammad (peace be upon them), each with source passages.
+- Premium extended lessons for active Premium members, including additional Qur'anic duas, hadith and stories of Ibrahim and Musa.
+- Entry links on the welcome page and existing Resource Library.
+- Sitemap and service-worker cache updates.
+
+Important implementation note:
+The Premium display follows the website's existing client-side membership-check pattern. As the website is hosted as static GitHub Pages content, hiding a section in the browser is not a server-side security boundary. Do not treat client-side-only visibility as protection for highly sensitive paid content. A future server/database-backed content delivery policy would be needed for strong content protection.
+
+Religious-content note:
+Translations are concise learning renderings, not reproduced full copyrighted translations. Qur'anic story summaries are paraphrases with references. Hadith references are linked to their collections. Check Arabic and source references with a qualified teacher before expanding this material.
