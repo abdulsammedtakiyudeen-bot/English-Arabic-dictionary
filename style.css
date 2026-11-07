@@ -51,3 +51,39 @@
 .dark .about-card{background:#2b3038;border-color:#46505a}
 .dark .about-card p,.dark .about-card small{color:#d0d7df}
 .dark .lesson-unlocked-notice{background:#203c39;border-color:#345d56;color:#d9eee8}
+
+/* Visual covers for the main learning destinations */
+.feature-grid .feature-card {
+  padding: 0;
+  overflow: hidden;
+  display: block;
+  min-height: 0;
+  text-decoration: none;
+}
+.feature-grid .feature-card .feature-art {
+  display: block;
+  width: 100%;
+  height: 112px;
+  object-fit: cover;
+  background: #12372a;
+}
+.feature-grid .feature-card .feature-copy {
+  display: block;
+  padding: 13px 15px 16px;
+}
+.feature-grid .feature-card .feature-icon {
+  margin: 0 0 9px;
+  width: 31px;
+  height: 31px;
+  font-size: 16px;
+}
+.feature-grid .feature-card strong { padding-right: 16px; }
+.feature-grid .feature-card .card-arrow { top: 126px; right: 14px; }
+.feature-grid .feature-card:focus-visible {
+  outline: 3px solid #d9bd75;
+  outline-offset: 3px;
+}
+@media (min-width: 760px) {
+  .feature-grid .feature-card .feature-art { height: 132px; }
+  .feature-grid .feature-card .card-arrow { top: 146px; }
+}

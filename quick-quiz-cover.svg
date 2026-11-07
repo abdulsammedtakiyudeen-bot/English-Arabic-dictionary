@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+<title id="title">Quick Quiz</title><desc id="desc">Decorative educational illustration for Quick Quiz.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#12372a"/><stop offset="1" stop-color="#2b694b"/></linearGradient><pattern id="dots" width="42" height="42" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2" fill="#ffffff" opacity=".12"/></pattern></defs>
+<rect width="1120" height="560" fill="url(#bg)"/><rect width="1120" height="560" fill="url(#dots)"/>
+<circle cx="160" cy="95" r="130" fill="#ffffff" opacity=".035"/><circle cx="960" cy="465" r="180" fill="#d9b86e" opacity=".08"/>
+<path d="M0 475Q280 415 560 485T1120 460V560H0Z" fill="#0b291e" opacity=".28"/>
+<g><rect x="410" y="125" width="300" height="350" rx="28" fill="#f8efd9" stroke="#fff7e5" stroke-width="8"/><path d="M470 220L495 245L545 190M470 305L495 330L545 275M470 390L495 415L545 360" fill="none" stroke="#2e7652" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M580 220H660M580 305H660M580 390H640" stroke="#b78b42" stroke-width="12" stroke-linecap="round"/></g>
+<g fill="none" stroke="#f2d99d" stroke-width="4" opacity=".6"><path d="M75 95h55M102 68v55M990 115h55M1017 88v55"/></g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+<title id="title">Arabic Books</title><desc id="desc">Decorative educational illustration for Arabic Books.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#12372a"/><stop offset="1" stop-color="#2b694b"/></linearGradient><pattern id="dots" width="42" height="42" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2" fill="#ffffff" opacity=".12"/></pattern></defs>
+<rect width="1120" height="560" fill="url(#bg)"/><rect width="1120" height="560" fill="url(#dots)"/>
+<circle cx="160" cy="95" r="130" fill="#ffffff" opacity=".035"/><circle cx="960" cy="465" r="180" fill="#d9b86e" opacity=".08"/>
+<path d="M0 475Q280 415 560 485T1120 460V560H0Z" fill="#0b291e" opacity=".28"/>
+<g><path d="M380 340L650 265L730 320L460 395Z" fill="#f5e7c5" stroke="#fff4d9" stroke-width="8"/><path d="M380 340V390L460 445V395Z" fill="#bd9146"/><path d="M460 395L730 320V370L460 445Z" fill="#2e7652"/><path d="M420 255L665 190L735 240L490 310Z" fill="#fff4d9" stroke="#fff4d9" stroke-width="8"/><path d="M420 255V305L490 355V310Z" fill="#bd9146"/><path d="M490 310L735 240V290L490 355Z" fill="#397d5a"/></g>
+<g fill="none" stroke="#f2d99d" stroke-width="4" opacity=".6"><path d="M75 95h55M102 68v55M990 115h55M1017 88v55"/></g>
+</svg>
