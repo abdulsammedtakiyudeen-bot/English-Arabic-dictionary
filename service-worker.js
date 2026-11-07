@@ -1,4 +1,4 @@
-const CACHE_NAME = "iald-v20-islamic-knowledge";
+const CACHE_NAME = "iald-v21-islamic-courses";
 const CORE_ASSETS = ["./", "./index.html", "./islamic-knowledge.html", "./knowledge-desert.svg", "./ark-waters.svg", "./ancient-well.svg", "./palm-city.svg", "./learn.html", "./profile.html", "./profile.js", "./auth.js", "./welcome.css", "./guide.html", "./explore.html", "./onboarding.css", "./style.css", "./app.js", "./auth-gate.js", "./manifest.json", "./arabic-words.json", "./icon.svg", "./learning-center.html", "./resource-library.html", "./learning-center.css", "./learning-center.js", "./academy.html", "./academy.css", "./academy.js", "./intelligence.html", "./intelligence.css", "./install-app.js", "./install-app.css", "./about.html", "./contact.html", "./privacy.html", "./terms.html"];
 self.addEventListener("install", event => {
   event.waitUntil((async () => {

@@ -1,0 +1,20 @@
+ISLAMIC KNOWLEDGE & GUIDANCE — COURSE STRUCTURE UPDATE
+======================================================
+
+Changes:
+- Reorganised the Islamic Knowledge page around two clear learning formats:
+  1. Mini Lessons — short independent lessons linked to the existing authentic duas, hadith and Prophet story material.
+  2. Structured Courses — ordered learning pathways for Daily Duas & Dhikr, Authentic Hadith & Character, Stories of the Prophets, and an advanced Premium study pathway.
+- Added course module outlines and direct links to the exact lesson content.
+- Added clear FREE and PREMIUM labels.
+- Added a direct Islamic Knowledge & Guidance card to the signed-in learning dashboard.
+- Changed the Islamic Knowledge page's top navigation link to return to the learning dashboard.
+- Bumped the service-worker cache version to refresh updated files.
+- Preserved existing content, auth, Supabase, Paystack, payment plans, Premium checks, ad configuration, and existing pages.
+
+Access note:
+The existing Premium content display is based on a client-side membership check. Static GitHub Pages cannot securely conceal paid content from source inspection. Strong protection requires server/database-side access control. This update does not alter payment or backend settings.
+
+Verification:
+- ZIP archive integrity and HTML structure were checked locally.
+- This is not a live-browser, Supabase, payment, or mobile-device test.
