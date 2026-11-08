@@ -413,5 +413,58 @@
  });
 })();
 </script>
+  
+<script>
+(function () {
+  const duaSection = document.getElementById("more-duas");
+  if (!duaSection) return;
+
+  duaSection.querySelectorAll(".ik-card").forEach(card => {
+    const arabic = card.querySelector(".ik-arabic");
+    if (!arabic) return;
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "🔊 Listen to Dua";
+    button.style.cssText =
+      "display:inline-block;margin-top:12px;padding:10px 16px;background:#12372a;color:white;border:0;border-radius:8px;font-size:14px;cursor:pointer;";
+
+    button.addEventListener("click", function () {
+      if (!("speechSynthesis" in window)) {
+        alert("Audio pronunciation is not supported by this browser.");
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+
+      const speech = new SpeechSynthesisUtterance(
+        arabic.textContent.trim()
+      );
+
+      speech.lang = "ar-SA";
+      speech.rate = 0.75;
+      speech.pitch = 1;
+
+      speech.onstart = () => {
+        button.textContent = "▶ Playing...";
+      };
+
+      speech.onend = () => {
+        button.textContent = "🔊 Listen to Dua";
+      };
+
+      speech.onerror = () => {
+        button.textContent = "🔊 Listen to Dua";
+        alert("Audio could not play. Please try again.");
+      };
+
+      window.speechSynthesis.speak(speech);
+    });
+
+    arabic.insertAdjacentElement("afterend", button);
+  });
+})();
+</script>
+  
 </body>
 </html>
