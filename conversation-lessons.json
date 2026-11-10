@@ -1,0 +1,1274 @@
+[
+  {
+    "title": "Greetings and Introductions",
+    "objective": "Greet people politely and introduce yourself.",
+    "target": "السَّلَامُ عَلَيْكُمْ",
+    "meaning": "Peace be upon you",
+    "vocab": [
+      [
+        "السَّلَامُ عَلَيْكُمْ",
+        "Peace be upon you"
+      ],
+      [
+        "وَعَلَيْكُمُ السَّلَامُ",
+        "And peace be upon you"
+      ],
+      [
+        "مَرْحَبًا",
+        "Hello"
+      ],
+      [
+        "صَبَاحُ الْخَيْرِ",
+        "Good morning"
+      ],
+      [
+        "مَسَاءُ الْخَيْرِ",
+        "Good evening"
+      ],
+      [
+        "مَا اسْمُكَ؟",
+        "What is your name?"
+      ],
+      [
+        "اسْمِي ...",
+        "My name is ..."
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "السَّلَامُ عَلَيْكُمْ"
+      ],
+      [
+        "Student",
+        "وَعَلَيْكُمُ السَّلَامُ"
+      ],
+      [
+        "Tutor",
+        "مَا اسْمُكَ؟"
+      ],
+      [
+        "Student",
+        "اسْمِي أَحْمَدُ"
+      ]
+    ],
+    "question": "Which phrase means 'What is your name?'",
+    "options": [
+      "مَا اسْمُكَ؟",
+      "كَيْفَ حَالُكَ؟",
+      "مِنْ أَيْنَ أَنْتَ؟"
+    ],
+    "answer": 0,
+    "grammar": "Notice how the Arabic expression is built. Repeat the complete phrase, then practise replacing one word with a new example.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Names and Personal Introductions",
+    "objective": "Say your name and ask another person's name.",
+    "target": "أَنَا اسْمِي ...",
+    "meaning": "My name is ...",
+    "vocab": [
+      [
+        "أَنَا",
+        "I"
+      ],
+      [
+        "أَنْتَ",
+        "You (male)"
+      ],
+      [
+        "أَنْتِ",
+        "You (female)"
+      ],
+      [
+        "هُوَ",
+        "He"
+      ],
+      [
+        "هِيَ",
+        "She"
+      ],
+      [
+        "اسْمٌ",
+        "Name"
+      ],
+      [
+        "تَشَرَّفْنَا",
+        "Pleased to meet you"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "مَا اسْمُكَ؟"
+      ],
+      [
+        "Student",
+        "اسْمِي يُوسُفُ."
+      ],
+      [
+        "Tutor",
+        "تَشَرَّفْنَا."
+      ],
+      [
+        "Student",
+        "وَأَنَا أَيْضًا."
+      ]
+    ],
+    "question": "What does أَنَا mean?",
+    "options": [
+      "You",
+      "I",
+      "He"
+    ],
+    "answer": 1,
+    "grammar": "Pay attention to word order and the way the expression changes according to the person or situation.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Numbers and Age",
+    "objective": "Count and tell someone your age.",
+    "target": "عُمْرِي خَمْسَ عَشْرَةَ سَنَةً",
+    "meaning": "I am fifteen years old",
+    "vocab": [
+      [
+        "وَاحِدٌ",
+        "One"
+      ],
+      [
+        "اِثْنَانِ",
+        "Two"
+      ],
+      [
+        "ثَلَاثَةٌ",
+        "Three"
+      ],
+      [
+        "أَرْبَعَةٌ",
+        "Four"
+      ],
+      [
+        "خَمْسَةٌ",
+        "Five"
+      ],
+      [
+        "كَمْ عُمْرُكَ؟",
+        "How old are you?"
+      ],
+      [
+        "عُمْرِي ... سَنَةً",
+        "I am ... years old"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "كَمْ عُمْرُكَ؟"
+      ],
+      [
+        "Student",
+        "عُمْرِي خَمْسَ عَشْرَةَ سَنَةً."
+      ],
+      [
+        "Tutor",
+        "مُمْتَازٌ!"
+      ]
+    ],
+    "question": "Which word means 'age'?",
+    "options": [
+      "عُمْرٌ",
+      "اِسْمٌ",
+      "بَيْتٌ"
+    ],
+    "answer": 0,
+    "grammar": "Read the Arabic slowly from right to left. Listen first, repeat aloud, then try without looking at the English meaning.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Countries and Nationalities",
+    "objective": "Say where you are from and name nationalities.",
+    "target": "أَنَا مِنْ غَانَا",
+    "meaning": "I am from Ghana",
+    "vocab": [
+      [
+        "مِنْ",
+        "From"
+      ],
+      [
+        "غَانَا",
+        "Ghana"
+      ],
+      [
+        "مِصْرُ",
+        "Egypt"
+      ],
+      [
+        "السُّعُودِيَّةُ",
+        "Saudi Arabia"
+      ],
+      [
+        "أَنَا مِنْ ...",
+        "I am from ..."
+      ],
+      [
+        "جِنْسِيَّةٌ",
+        "Nationality"
+      ],
+      [
+        "غَانِيٌّ",
+        "Ghanaian (male)"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "مِنْ أَيْنَ أَنْتَ؟"
+      ],
+      [
+        "Student",
+        "أَنَا مِنْ غَانَا."
+      ],
+      [
+        "Tutor",
+        "أَهْلًا بِكَ!"
+      ]
+    ],
+    "question": "What does مِنْ mean?",
+    "options": [
+      "To",
+      "From",
+      "With"
+    ],
+    "answer": 1,
+    "grammar": "Notice how the Arabic expression is built. Repeat the complete phrase, then practise replacing one word with a new example.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Family Members",
+    "objective": "Talk about close family members.",
+    "target": "هَذِهِ أُسْرَتِي",
+    "meaning": "This is my family",
+    "vocab": [
+      [
+        "أَبٌ",
+        "Father"
+      ],
+      [
+        "أُمٌّ",
+        "Mother"
+      ],
+      [
+        "أَخٌ",
+        "Brother"
+      ],
+      [
+        "أُخْتٌ",
+        "Sister"
+      ],
+      [
+        "جَدٌّ",
+        "Grandfather"
+      ],
+      [
+        "جَدَّةٌ",
+        "Grandmother"
+      ],
+      [
+        "أُسْرَةٌ",
+        "Family"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "هَلْ لَدَيْكَ أَخٌ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، لَدَيَّ أَخٌ."
+      ],
+      [
+        "Tutor",
+        "وَهَلْ لَدَيْكَ أُخْتٌ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، لَدَيَّ أُخْتٌ."
+      ]
+    ],
+    "question": "What is the Arabic word for sister?",
+    "options": [
+      "أَخٌ",
+      "أُخْتٌ",
+      "أَبٌ"
+    ],
+    "answer": 1,
+    "grammar": "Pay attention to word order and the way the expression changes according to the person or situation.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Daily Routines",
+    "objective": "Describe simple daily activities.",
+    "target": "أَدْرُسُ فِي الصَّبَاحِ",
+    "meaning": "I study in the morning",
+    "vocab": [
+      [
+        "أَسْتَيْقِظُ",
+        "I wake up"
+      ],
+      [
+        "أَذْهَبُ",
+        "I go"
+      ],
+      [
+        "أَقْرَأُ",
+        "I read"
+      ],
+      [
+        "أَكْتُبُ",
+        "I write"
+      ],
+      [
+        "أَدْرُسُ",
+        "I study"
+      ],
+      [
+        "أَتَعَلَّمُ",
+        "I learn"
+      ],
+      [
+        "أَنَامُ",
+        "I sleep"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "مَاذَا تَفْعَلُ فِي الصَّبَاحِ؟"
+      ],
+      [
+        "Student",
+        "أَدْرُسُ فِي الصَّبَاحِ."
+      ],
+      [
+        "Tutor",
+        "هَلْ تَقْرَأُ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، أَقْرَأُ كِتَابًا."
+      ]
+    ],
+    "question": "What does أَقْرَأُ mean?",
+    "options": [
+      "I sleep",
+      "I read",
+      "I go"
+    ],
+    "answer": 1,
+    "grammar": "Read the Arabic slowly from right to left. Listen first, repeat aloud, then try without looking at the English meaning.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Asking Simple Questions",
+    "objective": "Use common question words in short conversations.",
+    "target": "أَيْنَ تَدْرُسُ؟",
+    "meaning": "Where do you study?",
+    "vocab": [
+      [
+        "مَاذَا؟",
+        "What?"
+      ],
+      [
+        "أَيْنَ؟",
+        "Where?"
+      ],
+      [
+        "مَتَى؟",
+        "When?"
+      ],
+      [
+        "لِمَاذَا؟",
+        "Why?"
+      ],
+      [
+        "كَيْفَ؟",
+        "How?"
+      ],
+      [
+        "مَنْ؟",
+        "Who?"
+      ],
+      [
+        "كَمْ؟",
+        "How many? / How much?"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "أَيْنَ تَدْرُسُ؟"
+      ],
+      [
+        "Student",
+        "أَدْرُسُ فِي الْمَدْرَسَةِ."
+      ],
+      [
+        "Tutor",
+        "مَاذَا تَدْرُسُ؟"
+      ],
+      [
+        "Student",
+        "أَدْرُسُ اللُّغَةَ الْعَرَبِيَّةَ."
+      ]
+    ],
+    "question": "Which word means 'where'?",
+    "options": [
+      "مَتَى؟",
+      "أَيْنَ؟",
+      "لِمَاذَا؟"
+    ],
+    "answer": 1,
+    "grammar": "Notice how the Arabic expression is built. Repeat the complete phrase, then practise replacing one word with a new example.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Shopping and Prices",
+    "objective": "Ask for an item, its price and a suitable quantity.",
+    "target": "بِكَمْ هَذَا؟",
+    "meaning": "How much is this?",
+    "vocab": [
+      [
+        "بِكَمْ؟",
+        "How much?"
+      ],
+      [
+        "هَذَا",
+        "This (masculine)"
+      ],
+      [
+        "هَذِهِ",
+        "This (feminine)"
+      ],
+      [
+        "غَالٍ",
+        "Expensive"
+      ],
+      [
+        "رَخِيصٌ",
+        "Cheap"
+      ],
+      [
+        "أُرِيدُ",
+        "I want"
+      ],
+      [
+        "مِنْ فَضْلِكَ",
+        "Please"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "بِكَمْ هَذَا؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، فَهِمْتُ."
+      ],
+      [
+        "Tutor",
+        "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، بِكُلِّ سُرُورٍ."
+      ]
+    ],
+    "question": "What does بِكَمْ mean?",
+    "options": [
+      "Where?",
+      "How much?",
+      "When?"
+    ],
+    "answer": 1,
+    "grammar": "Pay attention to word order and the way the expression changes according to the person or situation.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Food, Drinks and Restaurants",
+    "objective": "Order food and express preferences politely.",
+    "target": "أُرِيدُ مَاءً مِنْ فَضْلِكَ",
+    "meaning": "I would like water, please.",
+    "vocab": [
+      [
+        "طَعَامٌ",
+        "Food"
+      ],
+      [
+        "مَاءٌ",
+        "Water"
+      ],
+      [
+        "خُبْزٌ",
+        "Bread"
+      ],
+      [
+        "أَرُزٌّ",
+        "Rice"
+      ],
+      [
+        "حَلِيبٌ",
+        "Milk"
+      ],
+      [
+        "قَائِمَةٌ",
+        "Menu"
+      ],
+      [
+        "الْحِسَابُ",
+        "The bill"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "أُرِيدُ مَاءً مِنْ فَضْلِكَ"
+      ],
+      [
+        "Student",
+        "نَعَمْ، فَهِمْتُ."
+      ],
+      [
+        "Tutor",
+        "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، بِكُلِّ سُرُورٍ."
+      ]
+    ],
+    "question": "What does مَاءٌ mean?",
+    "options": [
+      "Bread",
+      "Water",
+      "Rice"
+    ],
+    "answer": 1,
+    "grammar": "Read the Arabic slowly from right to left. Listen first, repeat aloud, then try without looking at the English meaning.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "School and Education",
+    "objective": "Talk about subjects, classrooms and learning.",
+    "target": "أَدْرُسُ اللُّغَةَ الْعَرَبِيَّةَ",
+    "meaning": "I study Arabic.",
+    "vocab": [
+      [
+        "مَدْرَسَةٌ",
+        "School"
+      ],
+      [
+        "فَصْلٌ",
+        "Classroom"
+      ],
+      [
+        "مُعَلِّمٌ",
+        "Teacher (male)"
+      ],
+      [
+        "طَالِبٌ",
+        "Student (male)"
+      ],
+      [
+        "كِتَابٌ",
+        "Book"
+      ],
+      [
+        "قَلَمٌ",
+        "Pen"
+      ],
+      [
+        "اِمْتِحَانٌ",
+        "Examination"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "أَدْرُسُ اللُّغَةَ الْعَرَبِيَّةَ"
+      ],
+      [
+        "Student",
+        "نَعَمْ، فَهِمْتُ."
+      ],
+      [
+        "Tutor",
+        "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، بِكُلِّ سُرُورٍ."
+      ]
+    ],
+    "question": "What is كِتَابٌ?",
+    "options": [
+      "Book",
+      "Pen",
+      "Teacher"
+    ],
+    "answer": 0,
+    "grammar": "Notice how the Arabic expression is built. Repeat the complete phrase, then practise replacing one word with a new example.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Time, Dates and Appointments",
+    "objective": "Ask and answer about time and appointments.",
+    "target": "كَمِ السَّاعَةُ؟",
+    "meaning": "What time is it?",
+    "vocab": [
+      [
+        "الْيَوْمَ",
+        "Today"
+      ],
+      [
+        "غَدًا",
+        "Tomorrow"
+      ],
+      [
+        "أَمْسِ",
+        "Yesterday"
+      ],
+      [
+        "السَّاعَةُ",
+        "Clock / hour"
+      ],
+      [
+        "دَقِيقَةٌ",
+        "Minute"
+      ],
+      [
+        "مَوْعِدٌ",
+        "Appointment"
+      ],
+      [
+        "مَتَى؟",
+        "When?"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "كَمِ السَّاعَةُ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، فَهِمْتُ."
+      ],
+      [
+        "Tutor",
+        "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، بِكُلِّ سُرُورٍ."
+      ]
+    ],
+    "question": "What does غَدًا mean?",
+    "options": [
+      "Yesterday",
+      "Tomorrow",
+      "Today"
+    ],
+    "answer": 1,
+    "grammar": "Pay attention to word order and the way the expression changes according to the person or situation.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Directions and Transport",
+    "objective": "Ask for directions and discuss transport.",
+    "target": "أَيْنَ الْمَحَطَّةُ؟",
+    "meaning": "Where is the station?",
+    "vocab": [
+      [
+        "يَمِينٌ",
+        "Right"
+      ],
+      [
+        "يَسَارٌ",
+        "Left"
+      ],
+      [
+        "أَمَامَ",
+        "In front of"
+      ],
+      [
+        "خَلْفَ",
+        "Behind"
+      ],
+      [
+        "قَرِيبٌ",
+        "Near"
+      ],
+      [
+        "بَعِيدٌ",
+        "Far"
+      ],
+      [
+        "مَحَطَّةٌ",
+        "Station"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "أَيْنَ الْمَحَطَّةُ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، فَهِمْتُ."
+      ],
+      [
+        "Tutor",
+        "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، بِكُلِّ سُرُورٍ."
+      ]
+    ],
+    "question": "What does يَمِينٌ mean?",
+    "options": [
+      "Left",
+      "Right",
+      "Behind"
+    ],
+    "answer": 1,
+    "grammar": "Read the Arabic slowly from right to left. Listen first, repeat aloud, then try without looking at the English meaning.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Describing People and Places",
+    "objective": "Use adjectives to describe people and places respectfully.",
+    "target": "الْمَكَانُ جَمِيلٌ",
+    "meaning": "The place is beautiful.",
+    "vocab": [
+      [
+        "كَبِيرٌ",
+        "Big"
+      ],
+      [
+        "صَغِيرٌ",
+        "Small"
+      ],
+      [
+        "جَمِيلٌ",
+        "Beautiful"
+      ],
+      [
+        "جَدِيدٌ",
+        "New"
+      ],
+      [
+        "قَدِيمٌ",
+        "Old"
+      ],
+      [
+        "سَرِيعٌ",
+        "Fast"
+      ],
+      [
+        "بَطِيءٌ",
+        "Slow"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "الْمَكَانُ جَمِيلٌ"
+      ],
+      [
+        "Student",
+        "نَعَمْ، فَهِمْتُ."
+      ],
+      [
+        "Tutor",
+        "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، بِكُلِّ سُرُورٍ."
+      ]
+    ],
+    "question": "What does كَبِيرٌ mean?",
+    "options": [
+      "Small",
+      "Big",
+      "Old"
+    ],
+    "answer": 1,
+    "grammar": "Notice how the Arabic expression is built. Repeat the complete phrase, then practise replacing one word with a new example.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Opinions and Preferences",
+    "objective": "Express likes, dislikes and simple opinions.",
+    "target": "أُحِبُّ اللُّغَةَ الْعَرَبِيَّةَ",
+    "meaning": "I love the Arabic language.",
+    "vocab": [
+      [
+        "أُحِبُّ",
+        "I like/love"
+      ],
+      [
+        "لَا أُحِبُّ",
+        "I do not like"
+      ],
+      [
+        "أُفَضِّلُ",
+        "I prefer"
+      ],
+      [
+        "رَأْيٌ",
+        "Opinion"
+      ],
+      [
+        "مُمْتَازٌ",
+        "Excellent"
+      ],
+      [
+        "مُمْكِنٌ",
+        "Possible"
+      ],
+      [
+        "لَكِنْ",
+        "But"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "أُحِبُّ اللُّغَةَ الْعَرَبِيَّةَ"
+      ],
+      [
+        "Student",
+        "نَعَمْ، فَهِمْتُ."
+      ],
+      [
+        "Tutor",
+        "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، بِكُلِّ سُرُورٍ."
+      ]
+    ],
+    "question": "What does أُحِبُّ mean?",
+    "options": [
+      "I love",
+      "I leave",
+      "I ask"
+    ],
+    "answer": 0,
+    "grammar": "Pay attention to word order and the way the expression changes according to the person or situation.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Past, Present and Future",
+    "objective": "Recognise basic time references and verb patterns.",
+    "target": "ذَهَبْتُ إِلَى الْمَدْرَسَةِ",
+    "meaning": "I went to school.",
+    "vocab": [
+      [
+        "ذَهَبَ",
+        "He went"
+      ],
+      [
+        "ذَهَبْتُ",
+        "I went"
+      ],
+      [
+        "أَذْهَبُ",
+        "I go"
+      ],
+      [
+        "سَأَذْهَبُ",
+        "I will go"
+      ],
+      [
+        "الْآنَ",
+        "Now"
+      ],
+      [
+        "أَمْسِ",
+        "Yesterday"
+      ],
+      [
+        "غَدًا",
+        "Tomorrow"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "ذَهَبْتُ إِلَى الْمَدْرَسَةِ"
+      ],
+      [
+        "Student",
+        "نَعَمْ، فَهِمْتُ."
+      ],
+      [
+        "Tutor",
+        "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، بِكُلِّ سُرُورٍ."
+      ]
+    ],
+    "question": "Which expression means 'I will go'?",
+    "options": [
+      "ذَهَبْتُ",
+      "أَذْهَبُ",
+      "سَأَذْهَبُ"
+    ],
+    "answer": 2,
+    "grammar": "Read the Arabic slowly from right to left. Listen first, repeat aloud, then try without looking at the English meaning.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Storytelling in Arabic",
+    "objective": "Connect short sentences to tell a simple story.",
+    "target": "ثُمَّ ذَهَبْتُ إِلَى الْبَيْتِ",
+    "meaning": "Then I went home.",
+    "vocab": [
+      [
+        "أَوَّلًا",
+        "First"
+      ],
+      [
+        "ثُمَّ",
+        "Then"
+      ],
+      [
+        "بَعْدَ ذَلِكَ",
+        "After that"
+      ],
+      [
+        "أَخِيرًا",
+        "Finally"
+      ],
+      [
+        "قِصَّةٌ",
+        "Story"
+      ],
+      [
+        "يَوْمٌ",
+        "Day"
+      ],
+      [
+        "فَرِحٌ",
+        "Happy"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "ثُمَّ ذَهَبْتُ إِلَى الْبَيْتِ"
+      ],
+      [
+        "Student",
+        "نَعَمْ، فَهِمْتُ."
+      ],
+      [
+        "Tutor",
+        "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، بِكُلِّ سُرُورٍ."
+      ]
+    ],
+    "question": "What does ثُمَّ mean?",
+    "options": [
+      "Then",
+      "Because",
+      "Before"
+    ],
+    "answer": 0,
+    "grammar": "Notice how the Arabic expression is built. Repeat the complete phrase, then practise replacing one word with a new example.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Formal Arabic Conversations",
+    "objective": "Use respectful expressions in formal situations.",
+    "target": "كَيْفَ يُمْكِنُنِي مُسَاعَدَتُكَ؟",
+    "meaning": "How may I help you?",
+    "vocab": [
+      [
+        "مِنْ فَضْلِكَ",
+        "Please"
+      ],
+      [
+        "شُكْرًا جَزِيلًا",
+        "Thank you very much"
+      ],
+      [
+        "عَفْوًا",
+        "You're welcome / excuse me"
+      ],
+      [
+        "يُمْكِنُ",
+        "It is possible"
+      ],
+      [
+        "مُسَاعَدَةٌ",
+        "Assistance"
+      ],
+      [
+        "تَفَضَّلْ",
+        "Please go ahead"
+      ],
+      [
+        "بِكُلِّ سُرُورٍ",
+        "With pleasure"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "كَيْفَ يُمْكِنُنِي مُسَاعَدَتُكَ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، فَهِمْتُ."
+      ],
+      [
+        "Tutor",
+        "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، بِكُلِّ سُرُورٍ."
+      ]
+    ],
+    "question": "Which phrase means 'thank you very much'?",
+    "options": [
+      "شُكْرًا جَزِيلًا",
+      "عَفْوًا",
+      "مَرْحَبًا"
+    ],
+    "answer": 0,
+    "grammar": "Pay attention to word order and the way the expression changes according to the person or situation.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Debates and Discussions",
+    "objective": "Agree, disagree and support a simple opinion.",
+    "target": "أَتَّفِقُ مَعَكَ",
+    "meaning": "I agree with you.",
+    "vocab": [
+      [
+        "أَتَّفِقُ",
+        "I agree"
+      ],
+      [
+        "لَا أَتَّفِقُ",
+        "I disagree"
+      ],
+      [
+        "لِأَنَّ",
+        "Because"
+      ],
+      [
+        "مِنْ جِهَةٍ أُخْرَى",
+        "On the other hand"
+      ],
+      [
+        "مِثَالٌ",
+        "Example"
+      ],
+      [
+        "فِكْرَةٌ",
+        "Idea"
+      ],
+      [
+        "نَقَاشٌ",
+        "Discussion"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "أَتَّفِقُ مَعَكَ"
+      ],
+      [
+        "Student",
+        "نَعَمْ، فَهِمْتُ."
+      ],
+      [
+        "Tutor",
+        "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، بِكُلِّ سُرُورٍ."
+      ]
+    ],
+    "question": "What does أَتَّفِقُ mean?",
+    "options": [
+      "I agree",
+      "I forget",
+      "I travel"
+    ],
+    "answer": 0,
+    "grammar": "Read the Arabic slowly from right to left. Listen first, repeat aloud, then try without looking at the English meaning.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Professional Communication",
+    "objective": "Use courteous Arabic in simple workplace interactions.",
+    "target": "أَرْجُو إِرْسَالَ التَّفَاصِيلِ",
+    "meaning": "Please send the details.",
+    "vocab": [
+      [
+        "اِجْتِمَاعٌ",
+        "Meeting"
+      ],
+      [
+        "عَمَلٌ",
+        "Work"
+      ],
+      [
+        "رِسَالَةٌ",
+        "Message / letter"
+      ],
+      [
+        "تَفَاصِيلُ",
+        "Details"
+      ],
+      [
+        "مَشْرُوعٌ",
+        "Project"
+      ],
+      [
+        "مَسْؤُولٌ",
+        "Responsible person"
+      ],
+      [
+        "مَوْعِدٌ",
+        "Appointment"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "أَرْجُو إِرْسَالَ التَّفَاصِيلِ"
+      ],
+      [
+        "Student",
+        "نَعَمْ، فَهِمْتُ."
+      ],
+      [
+        "Tutor",
+        "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، بِكُلِّ سُرُورٍ."
+      ]
+    ],
+    "question": "What does اِجْتِمَاعٌ mean?",
+    "options": [
+      "Meeting",
+      "Book",
+      "Journey"
+    ],
+    "answer": 0,
+    "grammar": "Notice how the Arabic expression is built. Repeat the complete phrase, then practise replacing one word with a new example.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  },
+  {
+    "title": "Academic Communication",
+    "objective": "Ask questions, explain ideas and discuss study.",
+    "target": "هَلْ يُمْكِنُكَ شَرْحُ هَذَا؟",
+    "meaning": "Can you explain this?",
+    "vocab": [
+      [
+        "شَرْحٌ",
+        "Explanation"
+      ],
+      [
+        "بَحْثٌ",
+        "Research"
+      ],
+      [
+        "مَعْلُومَةٌ",
+        "Information"
+      ],
+      [
+        "مَصْدَرٌ",
+        "Source"
+      ],
+      [
+        "نَتِيجَةٌ",
+        "Result"
+      ],
+      [
+        "سُؤَالٌ",
+        "Question"
+      ],
+      [
+        "إِجَابَةٌ",
+        "Answer"
+      ]
+    ],
+    "dialogue": [
+      [
+        "Tutor",
+        "هَلْ يُمْكِنُكَ شَرْحُ هَذَا؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، فَهِمْتُ."
+      ],
+      [
+        "Tutor",
+        "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ؟"
+      ],
+      [
+        "Student",
+        "نَعَمْ، بِكُلِّ سُرُورٍ."
+      ]
+    ],
+    "question": "What does بَحْثٌ mean?",
+    "options": [
+      "Research",
+      "Answer",
+      "Question"
+    ],
+    "answer": 0,
+    "grammar": "Pay attention to word order and the way the expression changes according to the person or situation.",
+    "practice": "Say the target expression aloud three times. Then create one new sentence using a vocabulary item from this lesson.",
+    "review": "Explain the meaning in English, then say the Arabic expression without reading it."
+  }
+]

@@ -1,127 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#12372a">
-<meta name="description" content="Learn spoken Arabic with Tutor Takiyudeen at the Islamic Arabic Learning Dictionary.">
+<meta name="description" content="Learn spoken Arabic through guided conversations, listening, pronunciation and assessments with Tutor Takiyudeen.">
 <title>Arabic Conversation Academy | Islamic Arabic Learning Dictionary</title>
-<style>
-:root{--green:#12372a;--green2:#1c4b38;--gold:#d6b46a;--cream:#f7f5ef;--white:#fff;--text:#26352e;--muted:#718078;--border:#e3e9e4;--red:#a43d3d}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
-button,input{font:inherit}button{cursor:pointer}header{background:var(--green);color:white;padding:15px 5%;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
-.brand{font-size:19px;font-weight:800}.brand span{color:var(--gold)}header a{color:white;text-decoration:none;font-size:14px}
-.hero{background:linear-gradient(135deg,#12372a,#245640);color:white;padding:55px 6%;text-align:center}.hero .tag{color:var(--gold);font-size:12px;font-weight:bold;letter-spacing:2px}
-.hero h1{font-size:clamp(30px,6vw,48px);margin:12px 0}.hero p{max-width:700px;margin:0 auto 22px;color:#e2ebe5}
-.primary-btn,.gold-btn,.secondary-btn,.danger-btn{border:0;border-radius:9px;padding:12px 18px;font-weight:bold}.primary-btn{background:var(--gold);color:#173528}.gold-btn{background:var(--green);color:white}.secondary-btn{background:#e9eee9;color:var(--green)}.danger-btn{background:#f7e8e8;color:var(--red)}
-.container{max-width:1100px;margin:auto;padding:28px 17px}.section-heading{margin-bottom:18px}.section-heading h2{color:var(--green);margin-bottom:4px}.section-heading p{color:var(--muted);margin-top:0}
-.welcome-card,.panel,.lesson-card,.tutor-card{background:white;border:1px solid var(--border);border-radius:15px;padding:20px;box-shadow:0 4px 16px #12372a0b}
-.welcome-card{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}.welcome-card h2{margin:0;color:var(--green)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.stat{background:white;border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}.stat strong{display:block;font-size:25px;color:var(--green)}.stat small{color:var(--muted)}
-.progress-track{height:9px;background:#e7ece8;border-radius:20px;overflow:hidden;margin-top:10px}.progress-fill{height:100%;width:0;background:#269365;transition:width .3s}
-.lesson-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px}.lesson-card{position:relative}.lesson-card h3{margin:8px 0;color:var(--green)}.lesson-card p{font-size:13px;color:var(--muted)}
-.lesson-number{font-size:12px;font-weight:bold;color:#9a7a35}.lesson-status{display:inline-block;font-size:11px;padding:4px 9px;border-radius:20px;background:#e8f3ec;color:#276344;font-weight:bold}.lesson-status.locked{background:#f4eeee;color:#9a4141}
-.lesson-card button{width:100%;margin-top:10px}.lesson-card.completed{border-color:#8cb99b}#classroom{display:none}
-.classroom-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}.classroom-top h2{color:var(--green);margin:0}
-.tutor-card{background:#eef4ef;border-color:#dce8df;margin-bottom:15px}.tutor-name{font-weight:bold;color:var(--green)}.tutor-message{margin:5px 0}
-.lesson-section{margin:18px 0}.lesson-section h3{color:var(--green);margin-bottom:8px}.vocab-table{width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden}
-.vocab-table th,.vocab-table td{padding:12px 9px;border-bottom:1px solid var(--border);text-align:left;font-size:14px}.vocab-table th{background:#edf3ee;color:var(--green)}
-.arabic{font-size:22px;direction:rtl;text-align:right;font-family:Arial,sans-serif}.audio-btn{border:0;background:#e8f1ea;color:var(--green);border-radius:7px;padding:7px 10px}
-.practice-box{background:#f7f8f4;border:1px solid var(--border);border-radius:12px;padding:16px;margin:12px 0}.practice-box .arabic{font-size:27px}
-.answer-input{width:100%;padding:12px;border:1px solid #ccd8cf;border-radius:8px;margin:8px 0;background:white}.feedback{font-weight:bold;margin-top:10px}.good{color:#237348}.bad{color:#a43d3d}
-.quiz-option{display:block;width:100%;text-align:left;background:white;border:1px solid var(--border);border-radius:8px;padding:11px;margin:7px 0}.quiz-option:focus,.quiz-option:hover{border-color:var(--green)}.quiz-option.selected{background:#e9f2eb;border-color:var(--green)}
-.action-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.notice{background:#fff7e5;border:1px solid #ead8a9;border-radius:10px;padding:12px;color:#68552a;font-size:13px}
-.locked-message{background:white;padding:30px 20px;text-align:center;border-radius:14px;border:1px solid var(--border)}
-footer{background:var(--green);color:#e4ece6;text-align:center;padding:25px 15px;margin-top:35px;font-size:13px}footer a{color:var(--gold)}.hidden{display:none!important}
-.extra-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:13px;margin:18px 0}.daily-arabic{font-size:29px;direction:rtl;color:var(--green);font-weight:bold}.review-item{padding:12px;border-bottom:1px solid var(--border)}.review-item:last-child{border:0}
-.modal-backdrop{position:fixed;inset:0;background:#071b13b8;display:none;align-items:center;justify-content:center;padding:18px;z-index:9999}.modal-backdrop.show{display:flex}
-.update-modal{width:min(100%,480px);background:white;border-radius:18px;padding:25px;box-shadow:0 18px 60px #0005;position:relative}.update-modal h2{color:var(--green);margin:5px 0 8px}.update-modal .update-mark{font-size:34px}.update-modal p{color:#53635a}.update-modal .modal-count{font-size:12px;color:#8a7445;font-weight:bold}.update-modal button{width:100%;margin-top:12px}
-@media(max-width:600px){.stats{grid-template-columns:repeat(3,1fr)}.stat{padding:12px 5px}.stat strong{font-size:21px}.vocab-table th,.vocab-table td{font-size:12px;padding:9px 5px}.update-modal{padding:21px}}
-</style>
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./conversation-academy.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./config.js"></script>
 </head>
 <body>
-<header><div class="brand">Arabic <span>Conversation Academy</span></div><a href="./index.html">← Main Website</a></header>
-<section class="hero"><div class="tag">ISLAMIC ARABIC LEARNING DICTIONARY</div><h1>Speak Arabic with Confidence</h1><p>Learn Arabic step by step through conversations, listening, pronunciation, speaking exercises and quizzes with your virtual tutor.</p><button class="primary-btn" onclick="showLessons()">Start Learning</button></section>
-<main class="container">
-<section id="dashboard">
-<div class="welcome-card"><div><h2>Welcome to your Arabic classroom!</h2><p>Meet your virtual tutor, <strong>Tutor Takiyudeen</strong>.</p></div><span class="lesson-status">7 FREE LESSONS</span></div>
-<div class="stats"><div class="stat"><strong id="completedCount">0</strong><small>Completed</small></div><div class="stat"><strong>7</strong><small>Free lessons</small></div><div class="stat"><strong>20</strong><small>Total lessons</small></div></div>
-<div class="panel"><strong>My learning progress</strong><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><small id="progressText">0 of 7 free lessons completed</small></div>
-<div class="extra-grid">
- <div class="panel"><strong>🔥 Learning streak</strong><p><span id="streakCount">0</span> day(s) of learning in a row.</p><small>Complete a lesson to record today's learning activity.</small></div>
- <div class="panel"><strong>🌟 Daily Arabic word</strong><div class="daily-arabic" id="dailyArabic" lang="ar" dir="rtl"></div><p id="dailyMeaning"></p><button class="audio-btn" id="dailyListen">🔊 Listen</button></div>
-</div>
-<div class="panel"><strong>📚 Quick vocabulary review</strong><p>Revise words from your free lessons. Tap a card to reveal its meaning.</p><div id="reviewCards"></div><div class="action-row"><button class="secondary-btn" id="nextReview">Next word</button></div></div>
-<div class="section-heading" style="margin-top:30px"><h2>Meet Tutor Takiyudeen</h2><p>Your virtual guide to spoken Arabic.</p></div>
-<div class="tutor-card"><div class="tutor-name">Tutor Takiyudeen</div><p class="tutor-message">السَّلَامُ عَلَيْكُمْ! أَهْلًا وَسَهْلًا!</p><p class="tutor-message">Assalamu Alaikum! Welcome to our Arabic Conversation Academy. I will guide you through Arabic vocabulary, pronunciation and conversation. Let's learn together!</p><button class="audio-btn" onclick="speak('السلام عليكم! أهلاً وسهلاً!')">🔊 Listen to tutor</button></div>
-<div class="section-heading" id="lessonHeading" style="margin-top:30px"><h2>Your 20 Arabic Lessons</h2><p>Complete the seven free foundation lessons before moving to the Premium programme.</p></div>
-<div class="lesson-grid" id="lessonGrid"></div>
+<header class="topbar">
+  <a class="brand" href="./index.html"><span class="mark">بِ</span><span><b>Arabic Conversation Academy</b><small>Islamic Arabic Learning Dictionary</small></span></a>
+  <nav><a href="./learn.html">Dictionary</a><a href="./academy.html">Learning Academy</a><a href="./premium.html">Premium</a><a href="./profile.html">My account</a></nav>
+</header>
+<main>
+<section class="hero">
+  <img class="hero-art" src="./conversation-academy-hero.png" alt="Tutor presenting the Arabic Conversation Academy with a laptop">
+  <div class="hero-copy">
+    <p class="eyebrow">YOUR DAILY ARABIC COMPANION</p>
+    <h1>Speak Arabic with confidence.</h1>
+    <p>Build real-life Arabic skills through guided lessons, conversation practice, listening, pronunciation and quizzes with Tutor Takiyudeen.</p>
+    <button class="gold" id="startLearning">Start learning now</button>
+    <p class="small-note">Use a nickname or fictional details in practice. You never need to share private personal information.</p>
+  </div>
 </section>
-<section id="classroom">
-<div class="classroom-top"><h2 id="classTitle">Lesson 1</h2><button class="secondary-btn" onclick="backToLessons()">← All lessons</button></div>
-<div class="tutor-card"><div class="tutor-name">Tutor Takiyudeen</div><p id="tutorGreeting" class="tutor-message"></p><button class="audio-btn" id="greetingAudio">🔊 Listen</button></div>
-<div class="panel">
-<div class="lesson-section"><h3>1. What you will learn</h3><p id="lessonObjective"></p></div>
-<div class="lesson-section"><h3>2. Arabic vocabulary</h3><div style="overflow-x:auto"><table class="vocab-table"><thead><tr><th>Arabic</th><th>English meaning</th><th>Listen</th></tr></thead><tbody id="vocabulary"></tbody></table></div></div>
-<div class="lesson-section"><h3>3. Grammar classroom</h3><div class="practice-box" id="grammarExplanation"></div></div>
-<div class="lesson-section"><h3>4. Conversation with your tutor</h3><div class="practice-box" id="conversation"></div></div>
-<div class="lesson-section"><h3>5. Speaking practice</h3><div class="practice-box"><p><strong>Say this Arabic expression aloud:</strong></p><div class="arabic" id="speakingArabic"></div><p id="speakingMeaning"></p><div class="action-row"><button class="gold-btn" id="speakButton">🔊 Hear pronunciation</button><button class="secondary-btn" id="recordButton">🎙 Start speaking</button></div><p id="speechStatus" class="feedback"></p><p id="speechResult"></p><div class="notice">Microphone practice depends on browser support and microphone permission. Speech recognition may not be available on every device. Your browser may process recognition online.</div></div></div>
-<div class="lesson-section"><h3>6. Test your understanding</h3><div class="practice-box"><p id="quizQuestion"></p><div id="quizOptions"></div><p id="quizFeedback" class="feedback"></p><button class="gold-btn" id="checkQuiz">Check answer</button></div></div>
-<div class="lesson-section"><h3>7. Lesson completion</h3><p>Complete the quiz to mark this lesson as completed.</p><button class="gold-btn" id="completeLesson" disabled>Complete lesson</button><p id="completionMessage" class="feedback"></p></div>
-<div class="action-row"><button class="secondary-btn" onclick="backToLessons()">Return to lessons</button></div>
-</div></section>
+<section class="stats">
+  <div><strong id="completedCount">0</strong><span>Lessons completed</span></div>
+  <div><strong id="progressPercent">0%</strong><span>Course progress</span></div>
+  <div><strong id="streakCount">0</strong><span>Learning streak</span></div>
+  <div><strong id="accountState">Checking…</strong><span>Account status</span></div>
+</section>
+<div class="notice" id="accountNotice" role="status">Checking your account and Premium access…</div>
+<section class="section" id="course">
+  <div class="section-head"><div><p class="eyebrow">THE COMPLETE PROGRAMME</p><h2>20 guided Arabic lessons</h2><p>Lessons 1–7 are free. Lessons 8–20 require an active Premium membership.</p></div><a class="outline" href="./premium.html">View Premium</a></div>
+  <div class="progress-track"><div id="progressBar"></div></div>
+  <div class="lesson-grid" id="lessonGrid"></div>
+</section>
+<section class="section split">
+ <article class="panel tutor-panel">
+  <p class="eyebrow">YOUR CONVERSATION PARTNER</p><h2>Meet Tutor Takiyudeen</h2>
+  <p>Assalāmu ʿalaykum! I will guide you step by step. Listen, repeat, answer, and practise at your own pace.</p>
+  <button class="primary" id="tutorGreeting">Listen to tutor greeting 🔊</button>
+ </article>
+ <article class="panel">
+  <p class="eyebrow">DAILY PRACTICE</p><h2>Word of the day</h2><div class="daily-arabic" id="dailyArabic">عِلْمٌ</div><p id="dailyMeaning">Knowledge</p><button class="outline" id="dailyListen">Listen 🔊</button>
+ </article>
+</section>
+<section class="section">
+ <div class="section-head"><div><p class="eyebrow">PRACTISE BETWEEN LESSONS</p><h2>Quick vocabulary revision</h2></div><button class="outline" id="nextReview">Next word →</button></div>
+ <div class="panel review-panel"><div class="daily-arabic" id="reviewArabic">السَّلَامُ</div><button class="outline" id="revealMeaning">Reveal meaning</button><p id="reviewMeaning" hidden>Peace</p></div>
+</section>
+<section class="section panel" id="certificateArea">
+ <p class="eyebrow">COURSE ACHIEVEMENT</p><h2>Your completion certificate</h2>
+ <p>Complete all 20 lessons and pass their quizzes to unlock the printable certificate. Sign in to save your course progress to your account.</p>
+ <p id="certificateStatus">Certificate locked: complete the full course first.</p>
+ <label for="certificateName">Name to print on certificate</label><input id="certificateName" maxlength="70" placeholder="Enter a name or learning name">
+ <button class="gold" id="certificateButton" disabled>Download / Print certificate</button>
+</section>
+<section class="section panel">
+ <p class="eyebrow">ABOUT SPEAKING AND LISTENING</p><h2>Practise with the tools your device supports</h2>
+ <p>Audio playback uses Arabic voices installed in your browser or device. Microphone recognition is browser-dependent and may require internet access. If recognition is unavailable, use the listen-and-repeat exercise and compare your pronunciation with the model phrase.</p>
+ <p>AI tutor conversations are available only after the secure Supabase function and its AI provider secret have been configured by the site owner. Prepared lesson conversations and quizzes work without that service.</p>
+</section>
 </main>
-<footer><strong>Islamic Arabic Learning Dictionary</strong><br>Arabic Conversation Academy · Tutor Takiyudeen<br><a href="https://arabiclearningdictionary.com">arabiclearningdictionary.com</a></footer>
+<footer><a href="./index.html">Islamic Arabic Learning Dictionary</a> · <a href="./privacy.html">Privacy</a> · <a href="./contact.html">Contact</a><p>Knowledge Today… Confidence Tomorrow…</p></footer>
 
-<div class="modal-backdrop" id="updatePopup" role="dialog" aria-modal="true" aria-labelledby="updateTitle">
- <div class="update-modal">
-  <div class="update-mark">🎉 📚</div><div class="modal-count" id="popupCount">ACADEMY UPDATE</div>
-  <h2 id="updateTitle">The Academy has been updated!</h2>
-  <p>Discover your Arabic classroom with Tutor Takiyudeen. You can now explore seven free foundation lessons, daily vocabulary, quick word revision, learning-streak tracking, listening, speaking practice and quizzes.</p>
-  <p><strong>Your learning journey starts with one lesson at a time.</strong></p>
-  <button class="gold-btn" id="closeUpdate">Explore the Academy</button>
+<div class="modal" id="lessonModal" aria-hidden="true">
+ <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="lessonTitle">
+  <button class="close" id="closeLesson" aria-label="Close">×</button>
+  <p class="eyebrow" id="lessonNumber">LESSON</p><h2 id="lessonTitle"></h2><p id="lessonObjective"></p>
+  <div class="lesson-tabs"><button class="tab active" data-tab="study">Study</button><button class="tab" data-tab="conversation">Conversation</button><button class="tab" data-tab="speak">Speaking</button><button class="tab" data-tab="exam">Quiz</button></div>
+  <div class="tab-pane" id="pane-study"><h3>Lesson notes</h3><p id="grammarText"></p><h3>Vocabulary</h3><div id="vocabularyList"></div><div class="visual-lesson"><span class="eyebrow">GUIDED VISUAL LESSON</span><h3 id="visualArabic"></h3><p id="visualMeaning"></p><p id="visualStep">Listen, repeat, and practise the target expression.</p><button class="primary" id="playVisual">Play narrated lesson ▶</button></div></div>
+  <div class="tab-pane" id="pane-conversation" hidden><h3>Practise the dialogue</h3><div id="dialogueList"></div><label for="aiMessage">Ask Tutor Takiyudeen a question (optional AI service)</label><textarea id="aiMessage" rows="3" maxlength="500" placeholder="Ask about the Arabic phrase…"></textarea><button class="primary" id="askTutor">Ask the tutor</button><p id="aiReply" class="feedback" role="status"></p></div>
+  <div class="tab-pane" id="pane-speak" hidden><h3>Listen and speak</h3><div class="daily-arabic" id="targetArabic"></div><p id="targetMeaning"></p><button class="primary" id="listenTarget">Listen to Arabic 🔊</button><button class="outline" id="recordSpeech">Practise with microphone 🎙</button><p id="speechFeedback" class="feedback" role="status"></p><p id="speechTranscript"></p><p class="hint">Microphone recognition is not available in every browser. You can still practise aloud.</p></div>
+  <div class="tab-pane" id="pane-exam" hidden><h3>Lesson check</h3><p id="quizQuestion"></p><div id="quizOptions"></div><p id="quizFeedback" class="feedback" role="status"></p><button class="primary" id="checkAnswer">Check answer</button><button class="gold" id="completeLesson" disabled>Complete lesson</button></div>
  </div>
 </div>
-
-<script>
-const lessons = [
-{title:"Greetings and Introductions",objective:"Learn how to greet people, respond to greetings and introduce yourself.",greeting:"السَّلَامُ عَلَيْكُمْ! أَهْلًا بِكَ فِي دَرْسِنَا الْأَوَّلِ. هَيَّا نَتَعَلَّمُ!",grammar:"In Arabic, مَا اسْمُكَ؟ means 'What is your name?' when speaking to a male. مَا اسْمُكِ؟ is used when speaking to a female. The ending changes depending on whom you are addressing.",vocab:[["السَّلَامُ عَلَيْكُمْ","Peace be upon you."],["وَعَلَيْكُمُ السَّلَامُ","And peace be upon you."],["مَا اسْمُكَ؟","What is your name? (to a male)"],["مَا اسْمُكِ؟","What is your name? (to a female)"],["اسْمِي ...","My name is ..."],["كَيْفَ حَالُكَ؟","How are you? (to a male)"],["أَنَا بِخَيْرٍ","I am fine."]],conversation:[["Tutor","السَّلَامُ عَلَيْكُمْ!"],["Student","وَعَلَيْكُمُ السَّلَامُ."],["Tutor","مَا اسْمُكَ؟"],["Student","اسْمِي أَحْمَدُ."],["Tutor","كَيْفَ حَالُكَ؟"],["Student","أَنَا بِخَيْرٍ، الْحَمْدُ لِلَّهِ."]],speaking:"السَّلَامُ عَلَيْكُمْ",meaning:"Peace be upon you.",question:"What does اسْمِي mean?",options:["My name is","How are you?","Goodbye"],answer:0},
-{title:"Names and Personal Introductions",objective:"Learn how to introduce yourself and ask simple questions about another person.",greeting:"مَرْحَبًا! الْيَوْمَ سَنَتَعَلَّمُ كَيْفَ نُعَرِّفُ بِأَنْفُسِنَا.",grammar:"The expression أَنَا means 'I'. The expression أَنْتَ means 'you' when speaking to a male, while أَنْتِ is used for a female.",vocab:[["أَنَا","I"],["أَنْتَ","You (male)"],["أَنْتِ","You (female)"],["مَنْ؟","Who?"],["مِنْ أَيْنَ؟","From where?"],["أَنَا طَالِبٌ","I am a male student."],["أَنَا طَالِبَةٌ","I am a female student."]],conversation:[["Tutor","مَنْ أَنْتَ؟"],["Student","أَنَا طَالِبٌ."],["Tutor","مِنْ أَيْنَ أَنْتَ؟"],["Student","أَنَا مِنْ غَانَا."]],speaking:"أَنَا مِنْ غَانَا",meaning:"I am from Ghana.",question:"What does أَنَا mean?",options:["You","I","Who"],answer:1},
-{title:"Numbers and Age",objective:"Learn basic Arabic numbers and how to talk about age.",greeting:"أَهْلًا! هَيَّا نَتَعَلَّمُ الْأَعْدَادَ بِاللُّغَةِ الْعَرَبِيَّةِ.",grammar:"Arabic numbers have different forms in some grammatical situations. Start by recognising and remembering the basic number words.",vocab:[["وَاحِدٌ","One"],["اِثْنَانِ","Two"],["ثَلَاثَةٌ","Three"],["أَرْبَعَةٌ","Four"],["خَمْسَةٌ","Five"],["سِتَّةٌ","Six"],["عَشَرَةٌ","Ten"],["كَمْ عُمْرُكَ؟","How old are you? (male)"]],conversation:[["Tutor","كَمْ عُمْرُكَ؟"],["Student","عُمْرِي خَمْسَةَ عَشَرَ عَامًا."],["Tutor","مُمْتَازٌ!"],["Student","شُكْرًا!"]],speaking:"وَاحِدٌ، اِثْنَانِ، ثَلَاثَةٌ",meaning:"One, two, three.",question:"What is the Arabic word for five?",options:["ثَلَاثَةٌ","خَمْسَةٌ","عَشَرَةٌ"],answer:1},
-{title:"Countries and Nationalities",objective:"Learn how to name countries and say where you come from.",greeting:"مَرْحَبًا بِكَ! الْيَوْمَ سَنَتَحَدَّثُ عَنِ الْبُلْدَانِ.",grammar:"مِنْ means 'from'. For example, أَنَا مِنْ غَانَا means 'I am from Ghana'.",vocab:[["غَانَا","Ghana"],["نِيجِيرِيَا","Nigeria"],["السُّعُودِيَّةُ","Saudi Arabia"],["مِصْرُ","Egypt"],["الْغَانِيُّ","Ghanaian (male)"],["الْغَانِيَّةُ","Ghanaian (female)"],["أَنَا مِنْ غَانَا","I am from Ghana."]],conversation:[["Tutor","مِنْ أَيْنَ أَنْتَ؟"],["Student","أَنَا مِنْ غَانَا."],["Tutor","هَلْ أَنْتَ غَانِيٌّ؟"],["Student","نَعَمْ، أَنَا غَانِيٌّ."]],speaking:"أَنَا مِنْ غَانَا",meaning:"I am from Ghana.",question:"What does مِنْ mean?",options:["To","From","With"],answer:1},
-{title:"Family Members",objective:"Learn Arabic words for close family members.",greeting:"أَهْلًا وَسَهْلًا! الْيَوْمَ سَنَتَعَلَّمُ أَسْمَاءَ أَفْرَادِ الْعَائِلَةِ.",grammar:"Arabic has different words for male and female family members. Notice the difference between أَبٌ (father) and أُمٌّ (mother).",vocab:[["أَبٌ","Father"],["أُمٌّ","Mother"],["أَخٌ","Brother"],["أُخْتٌ","Sister"],["جَدٌّ","Grandfather"],["جَدَّةٌ","Grandmother"],["عَائِلَةٌ","Family"]],conversation:[["Tutor","هَلْ لَدَيْكَ أَخٌ؟"],["Student","نَعَمْ، لَدَيَّ أَخٌ."],["Tutor","وَهَلْ لَدَيْكَ أُخْتٌ؟"],["Student","نَعَمْ، لَدَيَّ أُخْتٌ."]],speaking:"هَذِهِ أُمِّي",meaning:"This is my mother.",question:"What is the Arabic word for sister?",options:["أَخٌ","أُخْتٌ","أَبٌ"],answer:1},
-{title:"Daily Routines",objective:"Learn common Arabic expressions about everyday activities.",greeting:"مَرْحَبًا! الْيَوْمَ سَنَتَعَلَّمُ عَنِ الْأَنْشِطَةِ الْيَوْمِيَّةِ.",grammar:"Arabic verbs can change depending on the person doing the action. For example, أَكْتُبُ means 'I write' and أَقْرَأُ means 'I read'.",vocab:[["أَسْتَيْقِظُ","I wake up"],["أَذْهَبُ","I go"],["أَقْرَأُ","I read"],["أَكْتُبُ","I write"],["أَدْرُسُ","I study"],["أَتَعَلَّمُ","I learn"],["أَنَامُ","I sleep"]],conversation:[["Tutor","مَاذَا تَفْعَلُ فِي الصَّبَاحِ؟"],["Student","أَدْرُسُ فِي الصَّبَاحِ."],["Tutor","هَلْ تَقْرَأُ كِتَابًا؟"],["Student","نَعَمْ، أَقْرَأُ كِتَابًا."]],speaking:"أَنَا أَتَعَلَّمُ الْعَرَبِيَّةَ",meaning:"I am learning Arabic.",question:"What does أَقْرَأُ mean?",options:["I sleep","I read","I go"],answer:1},
-{title:"Asking Simple Questions",objective:"Learn useful question words and form simple Arabic questions.",greeting:"أَحْسَنْتَ! وَصَلْنَا إِلَى دَرْسِنَا السَّابِعِ. هَيَّا نَتَعَلَّمُ الْأَسْئِلَةَ.",grammar:"Question words help you gather information. مَاذَا means 'what', أَيْنَ means 'where', مَتَى means 'when', and لِمَاذَا means 'why'.",vocab:[["مَاذَا؟","What?"],["أَيْنَ؟","Where?"],["مَتَى؟","When?"],["لِمَاذَا؟","Why?"],["كَيْفَ؟","How?"],["مَنْ؟","Who?"],["كَمْ؟","How many? / How much?"]],conversation:[["Tutor","أَيْنَ تَدْرُسُ؟"],["Student","أَدْرُسُ فِي الْمَدْرَسَةِ."],["Tutor","مَاذَا تَدْرُسُ؟"],["Student","أَدْرُسُ اللُّغَةَ الْعَرَبِيَّةَ."]],speaking:"أَيْنَ تَدْرُسُ؟",meaning:"Where do you study?",question:"Which Arabic word means 'where'?",options:["مَتَى؟","أَيْنَ؟","لِمَاذَا؟"],answer:1}
-];
-const premiumLessons=["Shopping and Prices","Food, Drinks and Restaurants","School and Education","Time, Dates and Appointments","Directions and Transport","Describing People and Places","Opinions and Preferences","Past, Present and Future","Storytelling in Arabic","Formal Arabic Conversations","Debates and Discussions","Professional Communication","Academic Communication"];
-let currentLesson=0,selectedAnswer=null,quizPassed=false;
-const completed=new Set(JSON.parse(localStorage.getItem("arabicAcademyCompleted")||"[]"));
-function saveProgress(){localStorage.setItem("arabicAcademyCompleted",JSON.stringify([...completed]));updateProgress()}
-function updateProgress(){const count=completed.size;document.getElementById("completedCount").textContent=count;document.getElementById("progressFill").style.width=(count/7*100)+"%";document.getElementById("progressText").textContent=count+" of 7 free lessons completed"}
-function renderLessons(){const grid=document.getElementById("lessonGrid");grid.innerHTML="";lessons.forEach((lesson,index)=>{const done=completed.has(index),card=document.createElement("div");card.className="lesson-card"+(done?" completed":"");card.innerHTML=`<div class="lesson-number">LESSON ${index+1}</div><h3>${lesson.title}</h3><p>${lesson.objective}</p><span class="lesson-status">${done?"COMPLETED":"FREE LESSON"}</span><button class="gold-btn" onclick="openLesson(${index})">${done?"Review lesson":"Start lesson"}</button>`;grid.appendChild(card)});premiumLessons.forEach((name,index)=>{const card=document.createElement("div");card.className="lesson-card";card.innerHTML=`<div class="lesson-number">LESSON ${index+8}</div><h3>${name}</h3><p>This lesson belongs to the Premium learning programme.</p><span class="lesson-status locked">🔒 PREMIUM</span><button class="secondary-btn" onclick="showPremiumMessage()">Premium lesson</button>`;grid.appendChild(card)})}
-function showLessons(){document.getElementById("dashboard").style.display="block";document.getElementById("classroom").style.display="none";document.getElementById("lessonHeading").scrollIntoView({behavior:"smooth"})}
-function backToLessons(){showLessons()}
-function showPremiumMessage(){alert("This lesson is reserved for Premium members. Premium access will be connected to your membership system in a later integration step.")}
-function openLesson(index){currentLesson=index;selectedAnswer=null;quizPassed=false;const lesson=lessons[index];document.getElementById("dashboard").style.display="none";document.getElementById("classroom").style.display="block";document.getElementById("classTitle").textContent="Lesson "+(index+1)+": "+lesson.title;document.getElementById("tutorGreeting").textContent=lesson.greeting;document.getElementById("greetingAudio").onclick=()=>speak(lesson.greeting);document.getElementById("lessonObjective").textContent=lesson.objective;document.getElementById("grammarExplanation").textContent=lesson.grammar;
-const vocab=document.getElementById("vocabulary");vocab.innerHTML="";lesson.vocab.forEach(item=>{const row=document.createElement("tr"),arabic=document.createElement("td"),meaning=document.createElement("td"),audio=document.createElement("td"),button=document.createElement("button");arabic.className="arabic";arabic.textContent=item[0];meaning.textContent=item[1];button.className="audio-btn";button.textContent="🔊";button.setAttribute("aria-label","Listen to Arabic");button.onclick=()=>speak(item[0]);audio.appendChild(button);row.append(arabic,meaning,audio);vocab.appendChild(row)});
-const conversation=document.getElementById("conversation");conversation.innerHTML="";lesson.conversation.forEach(line=>{const p=document.createElement("p");p.innerHTML="<strong>"+line[0]+":</strong> ";const span=document.createElement("span");span.textContent=line[1];p.appendChild(span);const button=document.createElement("button");button.className="audio-btn";button.textContent=" 🔊";button.onclick=()=>speak(line[1]);p.appendChild(button);conversation.appendChild(p)});
-document.getElementById("speakingArabic").textContent=lesson.speaking;document.getElementById("speakingMeaning").textContent=lesson.meaning;document.getElementById("speakButton").onclick=()=>speak(lesson.speaking);document.getElementById("speechStatus").textContent="";document.getElementById("speechResult").textContent="";document.getElementById("recordButton").onclick=startRecognition;document.getElementById("quizQuestion").textContent=lesson.question;document.getElementById("quizFeedback").textContent="";document.getElementById("completeLesson").disabled=true;document.getElementById("completionMessage").textContent="";document.getElementById("checkQuiz").disabled=false;
-const options=document.getElementById("quizOptions");options.innerHTML="";lesson.options.forEach((option,index)=>{const button=document.createElement("button");button.className="quiz-option";button.textContent=String.fromCharCode(65+index)+". "+option;button.onclick=()=>{selectedAnswer=index;options.querySelectorAll("button").forEach(b=>b.classList.remove("selected"));button.classList.add("selected")};options.appendChild(button)});document.getElementById("checkQuiz").onclick=checkQuiz;document.getElementById("completeLesson").onclick=completeCurrentLesson;window.scrollTo({top:0,behavior:"smooth"})}
-function checkQuiz(){const lesson=lessons[currentLesson],feedback=document.getElementById("quizFeedback");if(selectedAnswer===null){feedback.className="feedback bad";feedback.textContent="Please select an answer first.";return}if(selectedAnswer===lesson.answer){quizPassed=true;feedback.className="feedback good";feedback.textContent="Excellent! Your answer is correct. مُمْتَازٌ!";document.getElementById("completeLesson").disabled=false;document.getElementById("checkQuiz").disabled=true}else{feedback.className="feedback bad";feedback.textContent="Not quite. Try again and review the vocabulary."}}
-function completeCurrentLesson(){if(!quizPassed)return;completed.add(currentLesson);saveProgress();renderLessons();recordLearningDay();document.getElementById("completionMessage").textContent="Alhamdulillah! Lesson completed successfully.";document.getElementById("completeLesson").disabled=true}
-function speak(text){if(!("speechSynthesis"in window)){alert("Your browser does not support speech playback.");return}window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(text);utterance.lang="ar-SA";utterance.rate=.78;utterance.pitch=1;window.speechSynthesis.speak(utterance)}
-function startRecognition(){const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition,status=document.getElementById("speechStatus"),result=document.getElementById("speechResult");if(!SpeechRecognition){status.className="feedback bad";status.textContent="Speech recognition is not supported in this browser. You can still listen and practise speaking aloud.";return}const recognition=new SpeechRecognition();recognition.lang="ar-SA";recognition.interimResults=false;recognition.maxAlternatives=1;status.className="feedback";status.textContent="Listening... Please speak in Arabic.";result.textContent="";recognition.onresult=(event)=>{const spoken=event.results[0][0].transcript;result.textContent="Your recognised Arabic: "+spoken;status.className="feedback good";status.textContent="Good effort! Compare your recognised words with the lesson expression."};recognition.onerror=(event)=>{status.className="feedback bad";status.textContent="Microphone recognition could not continue: "+event.error+". Check microphone permission or try a supported browser."};recognition.onend=()=>{if(status.textContent==="Listening... Please speak in Arabic.")status.textContent="Listening ended. You can try again."};try{recognition.start()}catch(error){status.className="feedback bad";status.textContent="Could not start the microphone. Please try again."}}
-/* Daily word, vocabulary review and learning streak */
-const dailyWords=[["كِتَابٌ","Book"],["عِلْمٌ","Knowledge"],["سَلَامٌ","Peace"],["مَاءٌ","Water"],["بَيْتٌ","House"],["قَلَمٌ","Pen"],["مَدْرَسَةٌ","School"],["صَدِيقٌ","Friend"],["جَمِيلٌ","Beautiful"],["شُكْرًا","Thank you"]];
-const dayIndex=Math.floor(Date.now()/86400000)%dailyWords.length,word=dailyWords[dayIndex];document.getElementById("dailyArabic").textContent=word[0];document.getElementById("dailyMeaning").textContent=word[1];document.getElementById("dailyListen").onclick=()=>speak(word[0]);
-const reviewWords=lessons.flatMap(l=>l.vocab);let reviewIndex=0;function showReview(){const item=reviewWords[reviewIndex%reviewWords.length],host=document.getElementById("reviewCards");host.innerHTML="";const card=document.createElement("div");card.className="review-item";const arabic=document.createElement("div");arabic.className="daily-arabic";arabic.textContent=item[0];const reveal=document.createElement("button");reveal.className="secondary-btn";reveal.textContent="Reveal meaning";const meaning=document.createElement("p");meaning.hidden=true;meaning.textContent=item[1];reveal.onclick=()=>{meaning.hidden=!meaning.hidden;reveal.textContent=meaning.hidden?"Reveal meaning":"Hide meaning"};card.append(arabic,reveal,meaning);host.appendChild(card)}document.getElementById("nextReview").onclick=()=>{reviewIndex++;showReview()};showReview();
-function dateKey(date){return date.getFullYear()+"-"+String(date.getMonth()+1).padStart(2,"0")+"-"+String(date.getDate()).padStart(2,"0")}
-function recordLearningDay(){const today=dateKey(new Date()),last=localStorage.getItem("arabicAcademyLastStudyDay");if(last!==today){localStorage.setItem("arabicAcademyLastStudyDay",today);let streak=Number(localStorage.getItem("arabicAcademyStreak")||0);const yesterday=new Date();yesterday.setDate(yesterday.getDate()-1);streak=last===dateKey(yesterday)?streak+1:1;localStorage.setItem("arabicAcademyStreak",String(streak))}updateStreak()}
-function updateStreak(){let streak=Number(localStorage.getItem("arabicAcademyStreak")||0);const last=localStorage.getItem("arabicAcademyLastStudyDay");if(last&&last!==dateKey(new Date())){const y=new Date();y.setDate(y.getDate()-1);if(last!==dateKey(y))streak=0}document.getElementById("streakCount").textContent=streak}
-function showUpdatePopup(){const key="arabicAcademyUpdatePopupViews",views=Number(localStorage.getItem(key)||0);if(views>=3)return;const next=views+1;localStorage.setItem(key,String(next));document.getElementById("popupCount").textContent="UPDATE NOTICE · DISPLAY "+next+" OF 3";document.getElementById("updatePopup").classList.add("show");document.getElementById("closeUpdate").focus()}
-function closeUpdatePopup(){document.getElementById("updatePopup").classList.remove("show")}
-document.getElementById("closeUpdate").addEventListener("click",closeUpdatePopup);document.getElementById("updatePopup").addEventListener("click",e=>{if(e.target.id==="updatePopup")closeUpdatePopup()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeUpdatePopup()});
-renderLessons();updateProgress();updateStreak();showUpdatePopup();
-</script>
-</body>
-</html>
+<script src="./conversation-academy.js"></script>
+</body></html>
