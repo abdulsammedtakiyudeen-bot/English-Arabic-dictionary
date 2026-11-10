@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/sitemap.xml
+
+Sitemap: https://arabiclearningdictionary.com/sitemap.xml
