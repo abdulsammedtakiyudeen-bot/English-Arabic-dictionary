@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#12372a">
+  <meta name="description" content="Learn Arabic online with the Islamic Arabic Learning Dictionary. Explore English-Arabic vocabulary, guided lessons, listening and speaking practice, quizzes, Islamic expressions and a 20-lesson conversation academy.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://arabiclearningdictionary.com/">
+
+  <title>Islamic Arabic Learning Dictionary | Learn Arabic Online</title>
+
+  <!-- Search and social-sharing metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Islamic Arabic Learning Dictionary">
+  <meta property="og:title" content="Islamic Arabic Learning Dictionary | Learn Arabic Online">
+  <meta property="og:description" content="Build Arabic vocabulary, study guided lessons, practise listening and speaking, take quizzes and explore Islamic expressions with free learning resources.">
+  <meta property="og:url" content="https://arabiclearningdictionary.com/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Islamic Arabic Learning Dictionary | Learn Arabic Online">
+  <meta name="twitter:description" content="Learn Arabic through vocabulary, guided lessons, listening and speaking practice, quizzes and Islamic learning resources.">
+
+  <!-- Structured information about the website -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Islamic Arabic Learning Dictionary",
+    "url": "https://arabiclearningdictionary.com/",
+    "description": "An online Arabic learning website with English-Arabic vocabulary, guided lessons, listening and speaking practice, quizzes, Islamic expressions and learning resources.",
+    "inLanguage": ["en", "ar"]
+  }
+  </script>
+
+  <!-- Returning signed-in learners go directly to their learning area.
+       New visitors continue through the introduction and onboarding. -->
+  <script>
+    (function () {
+      try {
+        var projectRef = "ivnxhisezpxamutweifl";
+        var sessionKey = "sb-" + projectRef + "-auth-token";
+        var saved = localStorage.getItem(sessionKey);
+
+        if (saved) {
+          var session = JSON.parse(saved);
+          if (session && session.access_token && session.user) {
+            window.location.replace("./learn.html");
+            return;
+          }
+        }
+
+        if (localStorage.getItem("arabicIntroSeen") !== "yes") {
+          window.location.replace("./intro.html");
+        }
+      } catch (error) {
+        console.warn("Could not restore the saved sign-in on the welcome page:", error);
+      }
+    })();
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7817058971603879"
+     crossorigin="anonymous"></script>
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./welcome.css">
+  <link rel="stylesheet" href="./install-app.css">
+</head>
+
+<body>
+  <header class="welcome-header">
+    <a class="brand" href="./index.html" aria-label="Welcome home">
+      <span class="brand-mark" aria-hidden="true">بِ</span>
+      <span>
+        <strong>Arabic Learning</strong>
+        <small>Islamic Arabic Learning Dictionary</small>
+      </span>
+    </a>
+
+    <a class="skip-link" href="./explore.html">Go to learning guide ↗</a>
+  </header>
+
+  <main>
+    <section class="welcome-hero">
+      <div class="ornament ornament-one" aria-hidden="true">✦</div>
+      <div class="ornament ornament-two" aria-hidden="true">۞</div>
+
+      <div class="hero-content">
+        <p class="bismillah" lang="ar" dir="rtl">
+          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+        </p>
+
+        <p class="eyebrow">YOUR ARABIC LEARNING JOURNEY STARTS HERE</p>
+
+        <h1>
+          Learn Arabic,<br>
+          <span>one step at a time.</span>
+        </h1>
+
+        <p class="hero-copy">
+          Build your Arabic vocabulary, understand useful expressions,
+          explore Islamic words, and practise at your own pace —
+          from wherever you are.
+        </p>
+
+        <a class="continue-button" href="./guide.html">
+          Explore the learning experience <span aria-hidden="true">→</span>
+        </a>
+
+        <p class="gentle-note">
+          Begin with the basics. Keep practising. Grow with every word.
+        </p>
+      </div>
+
+      <div class="arabic-art" aria-label="Arabic words: knowledge, peace, and learning">
+        <span class="word word-top" lang="ar" dir="rtl">عِلْم</span>
+        <span class="word word-mid" lang="ar" dir="rtl">سَلَام</span>
+        <span class="word word-bottom" lang="ar" dir="rtl">تَعَلَّمْ</span>
+        <span class="art-caption">KNOWLEDGE · PEACE · LEARNING</span>
+      </div>
+    </section>
+
+    <section class="welcome-features" aria-labelledby="features-title">
+      <p class="eyebrow">A LITTLE PRACTICE EVERY DAY</p>
+
+      <h2 id="features-title">Everything you need to get started</h2>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <span class="feature-icon" aria-hidden="true">أ</span>
+          <h3>Build vocabulary</h3>
+          <p>
+            Explore Arabic words with English meanings, helpful definitions,
+            and examples.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <span class="feature-icon" aria-hidden="true">▤</span>
+          <h3>Learn step by step</h3>
+          <p>
+            Study grammar, sentence patterns, everyday conversation,
+            and Islamic expressions.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <span class="feature-icon" aria-hidden="true">🔊</span>
+          <h3>Listen and practise</h3>
+          <p>
+            Use available Arabic speech on your device to practise
+            hearing and repeating words.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <span class="feature-icon" aria-hidden="true">✧</span>
+          <h3>Check your progress</h3>
+          <p>
+            Try the quiz and save useful words so you can return
+            to them later.
+          </p>
+        </article>
+      </div>
+    </section>
+
+
+
+
+    <section class="closing-card" aria-labelledby="islamic-knowledge-title">
+      <p class="eyebrow">NEW MAIN LEARNING SECTION</p>
+      <h2 id="islamic-knowledge-title">Islamic Knowledge &amp; Guidance</h2>
+      <p>Explore authentic duas, carefully referenced hadith, and stories of the Prophets with Arabic text, meanings, learning notes and symbolic illustrations. Start with the free collection or explore extended Premium study.</p>
+      <a class="continue-button" href="./islamic-knowledge.html">Explore Islamic Knowledge →</a>
+    </section>
+
+    <section class="closing-card" aria-labelledby="library-title">
+      <p class="eyebrow">FREE STUDY MATERIAL</p>
+      <h2 id="library-title">Explore the Arabic Resource Library</h2>
+      <p>Study extra grammar guides, practical conversations, Islamic vocabulary and reading exercises — even before signing in.</p>
+      <a class="continue-button" href="./resource-library.html">Open the free resource library →</a>
+    </section>
+
+    <section class="closing-card">
+      <p class="closing-arabic" lang="ar" dir="rtl">
+        رَبِّ زِدْنِي عِلْمًا
+      </p>
+
+      <p class="closing-translation">
+        “My Lord, increase me in knowledge.”
+      </p>
+
+      <a class="text-link" href="./guide.html">Explore the learning experience ↗</a>
+    </section>
+  </main>
+
+  <footer class="welcome-footer">
+    <p>Created by <strong>Dev. Takiyudeen</strong></p>
+
+    <p>
+      <a href="./about.html">About</a> ·
+      <a href="./contact.html">Contact</a> ·
+      <a href="./privacy.html">Privacy Policy</a> ·
+      <a href="./terms.html">Terms of Use</a>
+    </p>
+
+    <p class="footer-note">
+      Arabic meanings are learning aids; context can affect translation.
+      For Qur'anic interpretation, consult reliable tafsir and qualified teachers.
+    </p>
+  </footer>
+
+  <script>
+    if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('./service-worker.js')
+          .catch(() => {});
+      });
+    }
+  </script>
+  <script src="./install-app.js" defer></script>
+</body>
+  </html>
