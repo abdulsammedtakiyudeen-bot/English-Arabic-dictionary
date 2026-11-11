@@ -1,11 +1,16 @@
-<!DOCTYPE html><html lang="en">
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#12372a">
 <meta name="description" content="Learn Arabic through structured video lessons and practice exams.">
-  <link rel="canonical" href="https://arabiclearningdictionary.com/courses.html">
-<title>Arabic Courses | Islamic Arabic Learning Dictionary</title><link rel="stylesheet" href="./style.css"><style>
+<link rel="canonical" href="https://arabiclearningdictionary.com/courses.html">
+<title>Arabic Courses | Islamic Arabic Learning Dictionary</title>
+<link rel="stylesheet" href="./style.css">
+
+<style>
 #accessMessage {
   position:fixed;
   inset:0;
@@ -61,7 +66,6 @@
 }
 
 .lesson-card h2 {font-size:1.2rem;}
-
 .lesson-card p {line-height:1.6;}
 
 .video-frame {
@@ -175,12 +179,19 @@
   .course-hero {padding:18px;}
   .lesson-card {padding:13px;}
 }
-</style></head><body><div id="accessMessage" role="status" aria-live="polite">
+</style>
+</head>
+
+<body>
+
+<div id="accessMessage" role="status" aria-live="polite">
   <div>
     <h2>Checking Premium membership…</h2>
     <p>Please wait.</p>
   </div>
-</div><header class="topbar">
+</div>
+
+<header class="topbar">
   <a class="brand" href="./learn.html">
     <span class="brand-mark">بِ</span>
     <span>
@@ -189,28 +200,47 @@
     </span>
   </a>
   <a href="./profile.html">My Profile</a>
-</header><main class="course-wrap">  <section class="course-hero">
+</header>
+
+<main class="course-wrap">
+
+  <section class="course-hero">
     <p>STRUCTURED ARABIC LEARNING</p>
-    <h1>Learn Arabic step by step</h1><p>
-  Watch each lesson, complete its examination and progress
-  through your Arabic learning journey.
-</p>
+    <h1>Learn Arabic step by step</h1>
 
-<div class="progress-track">
-  <div id="progressFill" class="progress-fill"></div>
-</div>
+    <p>
+      Watch each lesson, complete its examination and progress
+      through your Arabic learning journey.
+    </p>
 
-<p id="progressText">Your progress: 0 of 4 lessons passed.</p>
+    <div class="progress-track">
+      <div id="progressFill" class="progress-fill"></div>
+    </div>
 
-<a class="action-btn" href="./premium.html">Explore Premium</a>
+    <p id="progressText">Your progress: 0 of 4 lessons passed.</p>
 
-  </section>  <p class="notice">
+    <a class="action-btn" href="./premium.html">Explore Premium</a>
+  </section>
+
+  <p class="notice">
     <strong>How it works:</strong>
     Watch each lesson video and mark it as completed.
     This unlocks its 10-question examination.
     Score at least 7/10 to pass and unlock the next lesson.
     Each examination allows only one submission.
-  </p>  <section id="lessonGrid" class="course-grid"></section>  <p><a href="./learn.html">← Return to the Learning Platform</a></p></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./config.js"></script><script src="./auth-gate.js"></script><script>
+  </p>
+
+  <section id="lessonGrid" class="course-grid"></section>
+
+  <p><a href="./learn.html">← Return to the Learning Platform</a></p>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./config.js"></script>
+<script src="./auth-gate.js"></script>
+
+<script>
 (function() {
   "use strict";
 
@@ -250,7 +280,15 @@
 
       const client = window.supabase.createClient(
         window.SUPABASE_URL,
-        window.SUPABASE_PUBLISHABLE_KEY, { auth: { storage: window.localStorage, persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } }
+        window.SUPABASE_PUBLISHABLE_KEY,
+        {
+          auth: {
+            storage: window.localStorage,
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true
+          }
+        }
       );
 
       const authResult = await client.auth.getUser();
@@ -299,7 +337,7 @@
       }
 
       message.remove();
-      startArabicCourses(user.id, client);
+      startArabicCourses(user.id,client);
 
     } catch(error) {
       console.error("Membership check failed:",error);
@@ -315,8 +353,10 @@
 
   checkMembership();
 })();
-</script><script>
-function startArabicCourses(userId, client) {
+</script>
+
+<script>
+function startArabicCourses(userId,client) {
 "use strict";
 
 const lessons = [
@@ -446,6 +486,54 @@ function loadProgress() {
 }
 
 let progress = loadProgress();
+
+/*
+ * RESTORE EXAM RESULTS FROM SUPABASE.
+ * Existing video-completion information remains in localStorage.
+ */
+async function restoreProgressFromSupabase() {
+  try {
+    const { data,error } = await client
+      .from("course_progress")
+      .select("lesson_index,score,passed,attempted_at")
+      .eq("user_id",userId);
+
+    if(error) {
+      console.error("Could not restore Supabase course progress:",error);
+      return;
+    }
+
+    if(!Array.isArray(data)) return;
+
+    data.forEach(function(row) {
+      const index = Number(row.lesson_index);
+
+      if(
+        !Number.isInteger(index) ||
+        index < 0 ||
+        index >= lessons.length
+      ) {
+        return;
+      }
+
+      const saved = progress.lessons[index];
+
+      saved.examSubmitted = true;
+
+      saved.score = Number.isFinite(Number(row.score))
+        ? Number(row.score)
+        : null;
+
+      saved.passed = row.passed === true;
+      saved.submittedAt = row.attempted_at || saved.submittedAt || null;
+    });
+
+    saveProgress();
+
+  } catch(error) {
+    console.error("Course progress restoration failed:",error);
+  }
+}
 
 function saveProgress() {
   try {
@@ -598,7 +686,7 @@ function renderCourses() {
       card.appendChild(locked);
     }
 
-    /* EXAMINATION: DIRECTLY BELOW VIDEO */
+    /* EXAMINATION */
 
     const exam = makeElement("form","exam");
 
@@ -685,90 +773,102 @@ function renderCourses() {
       );
 
       submit.type = "submit";
-
       exam.appendChild(submit);
 
-      exam.addEventListener("submit", async function(event) {
+      exam.addEventListener("submit",async function(event) {
 
-  event.preventDefault();
+        event.preventDefault();
 
-  if(state.examSubmitted || !state.videoCompleted) return;
+        if(state.examSubmitted || !state.videoCompleted) return;
 
-  if(!exam.reportValidity()) return;
+        if(!exam.reportValidity()) return;
 
-  const formData = new FormData(exam);
-  const answers = [];
+        const formData = new FormData(exam);
+        const answers = [];
 
-  lesson.questions.forEach(function(q, qIndex) {
+        lesson.questions.forEach(function(q,qIndex) {
+          const selected = formData.get(
+            "lesson" + lessonIndex + "q" + qIndex
+          );
 
-    const selected = formData.get(
-      "lesson" + lessonIndex + "q" + qIndex
-    );
+          answers.push(
+            selected === null ? -1 : Number(selected)
+          );
+        });
 
-    answers.push(
-      selected === null ? -1 : Number(selected)
-    );
+        const submitButton = exam.querySelector(
+          'button[type="submit"]'
+        );
 
-  });
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
 
-  const submitButton = exam.querySelector(
-    'button[type="submit"]'
-  );
+        try {
 
-  submitButton.disabled = true;
-  submitButton.textContent = "Submitting...";
+          const { data,error } = await client.functions.invoke(
+            "submit-course-exam",
+            {
+              body: {
+                lesson_index:lessonIndex,
+                answers:answers
+              }
+            }
+          );
 
-  try {
+          if(error) {
+            let serverMessage = error.message || "Submission failed.";
 
-    const { data, error } = await client.functions.invoke(
-      "submit-course-exam",
-      {
-        body: {
-          lesson_index: lessonIndex,
-          answers: answers
+            if(error.context && typeof error.context.json === "function") {
+              try {
+                const details = await error.context.json();
+                if(details && details.error) {
+                  serverMessage = details.error;
+                }
+              } catch(_) {}
+            }
+
+            throw new Error(serverMessage);
+          }
+
+          if(
+            !data ||
+            typeof data.score !== "number" ||
+            typeof data.passed !== "boolean"
+          ) {
+            throw new Error("The examination result was not received correctly.");
+          }
+
+          state.examSubmitted = true;
+          state.score = data.score;
+          state.passed = data.passed;
+          state.submittedAt = data.attempted_at || new Date().toISOString();
+
+          saveProgress();
+          renderCourses();
+          updateProgressSummary();
+
+          alert(
+            "Your score: " + data.score + "/10. " +
+            (data.passed
+              ? "Congratulations! You passed."
+              : "You did not reach the 7/10 pass mark.")
+          );
+
+        } catch(error) {
+
+          console.error("Examination submission failed:",error);
+
+          submitButton.disabled = false;
+          submitButton.textContent = "Submit Examination";
+
+          alert(
+            "Your examination could not be submitted.\n\n" +
+            (error.message || "Please check your connection and try again.")
+          );
+
         }
-      }
-    );
 
-    if(error) {
-      throw error;
-    }
-
-    if(!data || typeof data.score !== "number") {
-      throw new Error("The examination result was not received.");
-    }
-
-    state.examSubmitted = true;
-    state.score = data.score;
-    state.passed = data.passed === true;
-    state.submittedAt = new Date().toISOString();
-
-    saveProgress();
-    renderCourses();
-    updateProgressSummary();
-
-    alert(
-      "Your score: " + data.score + "/10. " +
-      (data.passed
-        ? "Congratulations! You passed."
-        : "You did not reach the 7/10 pass mark.")
-    );
-
-  } catch(error) {
-
-    console.error("Examination submission failed:", error);
-
-    submitButton.disabled = false;
-    submitButton.textContent = "Submit Examination";
-
-    alert(
-      "Your examination could not be submitted. " +
-      "Please check your connection and try again."
-    );
-
-  }
-
-});
+      });
     }
 
     card.appendChild(exam);
@@ -778,9 +878,15 @@ function renderCourses() {
   updateProgressSummary();
 }
 
-renderCourses();
-updateProgressSummary();
+/* Wait for Supabase progress before displaying the lessons. */
+(async function initializeCourses() {
+  await restoreProgressFromSupabase();
+  renderCourses();
+  updateProgressSummary();
+})();
 
 }
-</script></body>
-  </html>
+</script>
+
+</body>
+</html>
