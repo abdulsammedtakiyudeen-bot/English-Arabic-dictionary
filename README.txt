@@ -1,30 +1,29 @@
-ISLAMIC ARABIC LEARNING DICTIONARY — PROFILE NAVIGATION ADD-ON
+ISLAMIC ARABIC LEARNING DICTIONARY — LOADING FIX
 
-Files in this package:
-- profile.html: account profile page
-- profile.js: loads profile details, updates display name, and logs out
-- profile.css: responsive styling with bottom navigation
-- config.js: Supabase URL and browser-safe publishable key
+This patch contains only:
+1. conversation-academy.js
+2. service-worker.js
 
-IMPORTANT: These files do not automatically modify your existing learn.html. To show Profile in BOTH the top and bottom navigation, add the snippets below to learn.html.
+What it changes:
+- Starts the Academy controls immediately instead of waiting for lesson JSON.
+- Loads the 20 lessons and Supabase account status independently.
+- Gives the lesson-data request a 12-second timeout and clearer failure status.
+- Adds the Academy page, CSS, JavaScript and lesson JSON to the service-worker cache.
+- Uses cached static files immediately and refreshes them in the background.
+- Gives page navigation a short network wait before using its cached copy.
 
-1) TOP NAVIGATION
-In learn.html, find the <header class="topbar"> area. After the existing theme button, add:
-<a class="profile-top-link" href="./profile.html" aria-label="My profile">♙ Profile</a>
+What it deliberately does NOT change:
+- No lesson text, vocabulary, dialogues, quizzes or course order.
+- No Tutor Takiyudeen content or Academy page layout.
+- No images or image paths.
+- No Supabase keys, Paystack settings, Premium settings or other site pages.
 
-2) BOTTOM NAVIGATION
-In learn.html, find <nav class="bottom-nav" aria-label="Main navigation">. Add this anchor before </nav>:
-<a class="nav-item" href="./profile.html"><span>♙</span>Profile</a>
+IMPORTANT:
+The GitHub integration refused a direct live-repository update (HTTP 403), so these files
+have NOT been deployed. Upload these two files to the repository root and replace the
+existing files with the same names. Do not upload or replace learn.html with an older copy.
 
-3) STYLE THE TOP LINK
-Add this CSS to the end of style.css:
-.profile-top-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 12px;border:1px solid #b28b3b;border-radius:12px;color:inherit;text-decoration:none;font-size:13px;font-weight:700;white-space:nowrap}
-
-4) UPLOAD all four files to the ROOT of the same GitHub repository, alongside learn.html, login.html, signup.html and config.js. If config.js already exists from the account-system package, keep one config.js only; use the values in this package.
-
-5) Supabase must have the public.profiles table and RLS policies previously created. The profile page lets a signed-in user update only their own display_name. It does not allow changing membership status.
-
-6) Set Supabase Authentication > URL Configuration Site URL to:
-https://abdulsammedtakiyudeen-bot.github.io/English-Arabic-dictionary/
-
-This is an add-on, not a full website replacement. Do not replace index.html, learn.html, app.js, or service-worker.js with files from another project.
+The earlier learn.html you supplied includes an Academy announcement popup that is absent
+from the current GitHub learn.html. This patch intentionally does not overwrite learn.html
+because doing so could roll back newer live page content. That popup needs a safe merge
+as a separate small change.
