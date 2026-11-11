@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Islamic Arabic Learning Dictionary">
-<rect width="512" height="512" rx="112" fill="#12372a"/>
-<circle cx="256" cy="256" r="166" fill="none" stroke="#d8b66a" stroke-width="10"/>
-<path d="M256 72l18 48 48 18-48 18-18 48-18-48-48-18 48-18z" fill="#d8b66a"/>
-<text x="256" y="320" text-anchor="middle" font-size="145" font-family="serif" fill="#f7f6f0">بِ</text>
-<path d="M150 402h212" stroke="#d8b66a" stroke-width="10" stroke-linecap="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="104" fill="#12372a"/><rect x="36" y="36" width="440" height="440" rx="82" fill="none" stroke="#e0ca91" stroke-width="7"/><text x="256" y="315" text-anchor="middle" font-family="Noto Naskh Arabic, serif" font-size="286" font-weight="700" fill="#fff" direction="rtl">بِ</text></svg>

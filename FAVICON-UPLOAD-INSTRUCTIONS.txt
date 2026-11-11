@@ -1,0 +1,16 @@
+ISLAMIC ARABIC LEARNING DICTIONARY — FAVICON CORRECTION
+
+Upload the files in this ZIP to the ROOT of the GitHub Pages repository, preserving the folder structure (all files are at root). Replace same-named files when asked.
+
+This package includes PNG favicons (96, 192, 512), Apple touch icon, ICO fallback, SVG browser fallback, updated favicon links in the HTML pages in this package, a web app manifest referencing the PNG icons, and a service-worker cache update.
+
+IMPORTANT: manifest.json is included as a complete basic PWA manifest. If your current live manifest contains additional custom shortcuts or settings, this replacement will reset those extra manifest entries. The essential app identity, root scope, standalone display, theme colours, and app icons are preserved here.
+
+After upload and GitHub Pages deployment:
+1. Open https://arabiclearningdictionary.com/favicon-96.png in a browser. It should display the green square Arabic بِ logo.
+2. Open https://arabiclearningdictionary.com/manifest.json and confirm it displays JSON.
+3. Open the homepage once while online, then refresh.
+4. In Google Search Console, inspect https://arabiclearningdictionary.com/ and request indexing if appropriate.
+5. Google controls when the favicon appears in Search; it may take days or longer and is not guaranteed immediately.
+
+Do not delete unrelated repository files. This ZIP only contains the correction files; it is not a complete website backup.
