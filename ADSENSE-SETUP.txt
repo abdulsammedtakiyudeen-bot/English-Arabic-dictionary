@@ -14,4 +14,4 @@ This project contains a disabled manual-ad framework. No ads are requested while
 9. Update privacy.html to describe the actual advertising cookies/data processing and add any legally required consent mechanism before enabling ads. Do not claim ads are active before they are.
 10. Test Free and Premium accounts, logged-out state, mobile layout and all sensitive pages before launch.
 
-Current status: DISABLED — no publisher or ad-unit IDs supplied.
+Current supplied-code status: manual ad framework disabled (ads-config.js enabled:false; slot IDs blank). The welcome page contains the publisher tag ca-pub-7817058971603879. Confirm that this ID belongs to the AdSense account managing the site. No manual ad-unit IDs are supplied. Also review Auto ads settings in the AdSense account; the browser-side manual switch does not control account-level Auto ads.

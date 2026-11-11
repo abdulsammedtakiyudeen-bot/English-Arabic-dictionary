@@ -1,0 +1,24 @@
+ISLAMIC ARABIC LEARNING DICTIONARY — CORRECTIONS PACKAGE
+
+This package is based on the ZIP supplied in this conversation. It is not a live-site test and does not prove AdSense approval.
+
+CHANGES
+1. Replaced the seven main learning-section card illustrations in learn.html with individual realistic photographic images. The separate Conversation Academy page artwork and its functionality were not edited.
+2. Added favicon.ico, favicon-48.png, apple-touch-icon.png, icon-192.png and icon-512.png, all derived from the existing project logo icon.svg.
+3. Updated favicon declarations on pages that already used the SVG favicon.
+4. Updated manifest.json to use installable 192px and 512px PNG icons.
+5. Updated the service-worker cache version and added the new images and icon files to its core cache.
+6. Fixed the service-worker offline navigation fallback URL. The supplied code passed several URL arguments to new URL(), which is invalid; it now correctly falls back to index.html.
+7. Updated robots.txt and sitemap.xml to use https://arabiclearningdictionary.com, matching the supplied CNAME file. The sitemap lists public-facing pages and excludes account/payment pages.
+8. Corrected the privacy policy wording so it no longer says no AdSense publisher ID exists: the welcome page contains a publisher tag, while the manual ad framework is disabled and manual slot IDs are blank.
+9. Updated ADSENSE-SETUP.txt to explain the difference between the installed publisher tag and disabled manual ad slots.
+
+IMPORTANT FINDINGS FROM THE SUPPLIED ZIP
+- ads-config.js has enabled:false and blank manual slot IDs. The manual ad loader therefore does not request manual ad units.
+- index.html contains an AdSense publisher script using ca-pub-7817058971603879. Verify that this is the correct publisher ID in the AdSense account managing this domain.
+- Account approval, Auto ads settings, consent requirements, and live ad serving cannot be confirmed from source files alone.
+- The service worker, payment verification, Supabase permissions, Premium gating, account flows and every page's live behaviour have not been tested against production services.
+- A correct sitemap or favicon does not guarantee indexing or AdSense approval.
+
+UPLOAD
+Extract this ZIP and upload/replace only the files and folders included, keeping the same repository paths. Do not delete any other repository files. Commit the changes to the main branch, then allow the service worker to update by refreshing the site online.
