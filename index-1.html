@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -57,6 +58,8 @@
       }
     })();
   </script>
+
+  <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7817058971603879"
      crossorigin="anonymous"></script>
 
@@ -64,6 +67,44 @@
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./welcome.css">
   <link rel="stylesheet" href="./install-app.css">
+
+  <!-- Homepage account invitation styles -->
+  <style>
+    .welcome-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .welcome-actions .continue-button {
+      width: min(100%, 360px);
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .welcome-actions .text-link {
+      color: inherit;
+      text-align: center;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      font-weight: 600;
+    }
+
+    .welcome-actions .text-link:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 480px) {
+      .welcome-actions {
+        padding-left: 8px;
+        padding-right: 8px;
+        box-sizing: border-box;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -102,9 +143,20 @@
           from wherever you are.
         </p>
 
-        <a class="continue-button" href="./guide.html">
-          Explore the learning experience <span aria-hidden="true">→</span>
-        </a>
+        <!-- Account and visitor options -->
+        <div class="welcome-actions">
+          <a class="continue-button" href="./signup.html">
+            Create a FREE account <span aria-hidden="true">→</span>
+          </a>
+
+          <a class="text-link" href="./login.html">
+            Already have an account? Log in
+          </a>
+
+          <a class="text-link" href="./guide.html">
+            Explore without registering ↗
+          </a>
+        </div>
 
         <p class="gentle-note">
           Begin with the basics. Keep practising. Grow with every word.
@@ -163,21 +215,30 @@
       </div>
     </section>
 
-
-
-
     <section class="closing-card" aria-labelledby="islamic-knowledge-title">
       <p class="eyebrow">NEW MAIN LEARNING SECTION</p>
       <h2 id="islamic-knowledge-title">Islamic Knowledge &amp; Guidance</h2>
-      <p>Explore authentic duas, carefully referenced hadith, and stories of the Prophets with Arabic text, meanings, learning notes and symbolic illustrations. Start with the free collection or explore extended Premium study.</p>
-      <a class="continue-button" href="./islamic-knowledge.html">Explore Islamic Knowledge →</a>
+      <p>
+        Explore authentic duas, carefully referenced hadith, and stories
+        of the Prophets with Arabic text, meanings, learning notes and
+        symbolic illustrations. Start with the free collection or explore
+        extended Premium study.
+      </p>
+      <a class="continue-button" href="./islamic-knowledge.html">
+        Explore Islamic Knowledge →
+      </a>
     </section>
 
     <section class="closing-card" aria-labelledby="library-title">
       <p class="eyebrow">FREE STUDY MATERIAL</p>
       <h2 id="library-title">Explore the Arabic Resource Library</h2>
-      <p>Study extra grammar guides, practical conversations, Islamic vocabulary and reading exercises — even before signing in.</p>
-      <a class="continue-button" href="./resource-library.html">Open the free resource library →</a>
+      <p>
+        Study extra grammar guides, practical conversations, Islamic
+        vocabulary and reading exercises — even before signing in.
+      </p>
+      <a class="continue-button" href="./resource-library.html">
+        Open the free resource library →
+      </a>
     </section>
 
     <section class="closing-card">
@@ -189,7 +250,9 @@
         “My Lord, increase me in knowledge.”
       </p>
 
-      <a class="text-link" href="./guide.html">Explore the learning experience ↗</a>
+      <a class="text-link" href="./guide.html">
+        Explore the learning experience ↗
+      </a>
     </section>
   </main>
 
@@ -218,6 +281,7 @@
       });
     }
   </script>
+
   <script src="./install-app.js" defer></script>
 </body>
-  </html>
+</html>
