@@ -87,3 +87,20 @@
   .feature-grid .feature-card .feature-art { height: 132px; }
   .feature-grid .feature-card .card-arrow { top: 146px; }
 }
+/* Improve mobile navigation tap response */
+.bottom-nav {
+  z-index: 100;
+  isolation: isolate;
+  touch-action: manipulation;
+}
+
+.bottom-nav .nav-item {
+  min-height: 48px;
+  min-width: 0;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bottom-nav .nav-item span {
+  pointer-events: none;
+}
