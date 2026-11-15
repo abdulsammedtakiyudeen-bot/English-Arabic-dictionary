@@ -328,7 +328,7 @@ async function init() {
     $$(".nav-item").forEach(b => b.classList.toggle("active", b.dataset.nav === "home"));
   });
   $$(".feature-card").forEach(b => b.addEventListener("click", () => showView(b.dataset.view)));
-  $$(".nav-item").forEach(b => b.addEventListener("click", () => {
+  $$(".nav-item[data-nav]").forEach(b => b.addEventListener("click", () => {
     const view = b.dataset.nav;
     if (view === "home") {
       $("#viewSection").hidden = true; $("#resultsSection").hidden = true;
