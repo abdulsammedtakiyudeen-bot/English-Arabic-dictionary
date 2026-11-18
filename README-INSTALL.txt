@@ -1,28 +1,29 @@
-NOTIFICATION BELL — SAFE REPLACEMENT PACKAGE
+ISLAMIC ARABIC LEARNING DICTIONARY — CLICKABLE NOTIFICATIONS UPDATE
 
-Included:
-- auth-gate.js (complete replacement)
+WHAT THIS UPDATE DOES
+- Adds an optional action_url field to user_notifications.
+- Shows an "Open update" link when a notification has a valid destination.
+- Allows only same-site destinations; external URLs are not rendered as links.
+- Preserves existing notification loading, unread state, mark-as-read and mark-all-as-read behaviour.
+- Does not modify login, auth-gate.js, Paystack, Premium, lessons, courses or certificates.
 
-What it does:
-- Preserves the existing protected-page session check and redirect behavior.
-- After an existing signed-in session is confirmed, adds a notification bell to the page header.
-- Reads only the signed-in user's unread count from public.user_notifications.
-- Refreshes the count every 45 seconds and when the page becomes visible again.
-- Clicking the bell opens ./notifications.html.
-- If the count request fails, the rest of the page continues to work.
+INSTALLATION
+1. Back up the current notifications.js from the repository.
+2. In Supabase Dashboard > SQL Editor, run the complete file:
+   20261118_notification_action_url.sql
+3. Replace the repository's notifications.js with the notifications.js in this ZIP.
+4. Commit/deploy those two changes to the existing site.
+5. Refresh notifications.html and confirm the page still loads.
 
-Pages covered by the existing auth-gate.js:
-learn.html, courses.html, dashboard.html, profile.html, premium.html,
-payment.html, certificate.html and intelligence.html.
+HOW FUTURE NOTIFICATIONS GET A DESTINATION
+When a trusted server-side workflow inserts a notification, it should set action_url to a page on this website, for example:
+- ./courses.html
+- ./learn.html
+- ./islamic-knowledge.html
+- ./profile.html
+- ./premium.html
 
-IMPORTANT:
-1. Make a backup copy of your current auth-gate.js first.
-2. Replace ONLY auth-gate.js in the repository root with the file in this ZIP.
-3. Do not replace any HTML, CSS, config.js, auth.js, notifications.js, SQL,
-   Supabase settings, payment files or other files.
-4. Commit/publish the change only after reviewing it.
-5. Test while signed in, then test a signed-out session to confirm the existing
-   login redirect still behaves as before.
+Use the exact lesson/course page URL (including its existing query string or hash) when a specific lesson/course is published. Do not let ordinary browser clients insert notifications or expose a Supabase service-role key.
 
-The bell displays a count only when unread notification rows already exist.
-It does not create notifications or change notification records.
+IMPORTANT CURRENT LIMITATION
+This package adds the clickable destination support only. It does NOT yet create/send live announcements, course/lesson release notifications, account/Premium event notifications, or the scheduled Friday 8:00 AM Ghana-time Surah Al-Kahf reminder. Those require a trusted server-side notification sender and scheduler. No test notifications are inserted by this package.
