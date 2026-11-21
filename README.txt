@@ -1,15 +1,12 @@
-Arabic Video Learning — main page insertion package
+Islamic Arabic Learning Dictionary — learn.html layout update
 
-Files:
-- arabic-video-main-section.html: section markup
-- arabic-video-main-section.css: styles
-- arabic-video-main-section.js: render and embedded-player behavior
+Replace the repository's existing learn.html with this file.
 
-Integration:
-1. In learn.html, insert the HTML section immediately after the main hero/search section and before Extra Arabic Resource Library.
-2. Put the CSS contents inside the existing <style> block in learn.html (or include the CSS file).
-3. Put the JS contents before </body> in learn.html (or include the JS file).
-4. Keep arabic-video-banner.png in the repository root.
-5. Existing resource library and green feature cards remain below the new section.
+Changes:
+- The Extra Arabic Resource Library remains in its original position.
+- Added the Arabic Video Learning launcher linking to arabic-video-library.html after Today's Word and before Explore cards.
+- Reordered Explore cards: major learning destinations (including Conversation Academy and Certificate) are above the four green cartoon-image cards.
+- The green cartoon cards (Islamic Words, Mini Lessons, Quick Quiz, Saved Words) are grouped last in the feature grid.
+- Existing section IDs, data-view attributes, page scripts, stylesheets, auth/config references, navigation and footer are retained.
 
-Only two video IDs are currently enabled. Lessons 3–30 remain “Video coming soon” until verified videos are assigned. Each iframe appears inside its numbered card, never in a player at the top.
+This ZIP contains only learn.html and this note. It does not include the video library or banner asset; those should already be in the repository from the earlier upload.

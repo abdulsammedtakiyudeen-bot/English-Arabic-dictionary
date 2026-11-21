@@ -28,6 +28,12 @@
     .premium-promo .promo-button:hover{opacity:.92}
     .premium-promo .promo-button:focus-visible{outline:3px solid #fff;outline-offset:4px}
     .premium-promo .promo-note{font-size:.82rem;margin-bottom:0}
+    .video-learning-launch{max-width:1100px;margin:18px auto;padding:0 16px}
+    .video-learning-launch .video-launch-card{display:block;text-decoration:none;color:inherit;overflow:hidden}
+    .video-learning-launch .video-launch-banner{display:block;width:100%;height:auto;max-height:260px;object-fit:cover;border-radius:14px}
+    .video-learning-launch .video-launch-copy{padding:14px}
+    .video-learning-launch .video-launch-copy p{line-height:1.65}
+    .feature-grid .green-feature-group{display:contents}
   </style>
 </head>
 <body>
@@ -84,13 +90,24 @@
     <div class="section-heading"><div><p class="eyebrow">TODAY'S WORD</p><h2>A little Arabic every day</h2></div><span class="pill">Daily practice</span></div>
     <article id="dailyWord" class="daily-card"></article>
   </section>
+
+  <!-- New video launcher: placed before the feature cards, preserving the resource library's position. -->
+  <section class="section video-learning-launch">
+    <a href="./arabic-video-library.html" class="feature-card course-feature video-launch-card">
+      <img class="video-launch-banner" src="./arabic-video-banner.png" alt="Arabic Video Learning" loading="lazy" decoding="async">
+      <div class="video-launch-copy">
+        <span class="feature-icon">🎥</span>
+        <h2>30 Arabic Video Lessons</h2>
+        <p>Start from the alphabet and progress toward more advanced Arabic listening and conversations. Numbered lessons from beginner to advanced.</p>
+        <strong>Open Video Learning →</strong>
+      </div>
+    </a>
+  </section>
+
   <section class="section">
     <div class="section-heading"><div><p class="eyebrow">EXPLORE</p><h2>Choose your learning path</h2></div></div>
     <div class="feature-grid">
-      <button class="feature-card" type="button" data-view="islamic"><img class="feature-art" src="./islamic-words-cover.svg" alt="" loading="lazy" decoding="async"><div class="feature-copy"><span class="feature-icon">☾</span><strong>Islamic words</strong><small>Faith, worship and expressions</small></div><span class="card-arrow">↗</span></button>
-      <button class="feature-card" type="button" data-view="lessons"><img class="feature-art" src="./mini-lessons-cover.svg" alt="" loading="lazy" decoding="async"><div class="feature-copy"><span class="feature-icon">▤</span><strong>Mini lessons</strong><small>Learn the basics step by step</small></div><span class="card-arrow">↗</span></button>
-      <button class="feature-card" type="button" data-view="quiz"><img class="feature-art" src="./quick-quiz-cover.svg" alt="" loading="lazy" decoding="async"><div class="feature-copy"><span class="feature-icon">✧</span><strong>Quick quiz</strong><small>Practise and check your progress</small></div><span class="card-arrow">↗</span></button>
-      <button class="feature-card" type="button" data-view="favorites"><img class="feature-art" src="./saved-words-cover.svg" alt="" loading="lazy" decoding="async"><div class="feature-copy"><span class="feature-icon">☆</span><strong>Saved words</strong><small>Review your own collection</small></div><span class="card-arrow">↗</span></button>
+      <!-- Major learning destinations remain above the green cartoon feature cards. -->
       <a class="feature-card course-feature" href="./learning-center.html" aria-label="Open the structured Arabic learning path"><img class="feature-art" src="./learning-path-photo.jpg" alt="" loading="lazy" decoding="async"><div class="feature-copy"><span class="feature-icon">🧭</span><strong>Structured Learning Path</strong><small>Step-by-step reading, grammar, vocabulary and conversation lessons</small></div><span class="card-arrow">↗</span></a>
       <a class="feature-card course-feature" href="./academy.html" aria-label="Open the Arabic Learning Academy"><img class="feature-art" src="./academy-photo.jpg" alt="" loading="lazy" decoding="async"><div class="feature-copy"><span class="feature-icon">🌟</span><strong>Arabic Learning Academy</strong><small>Vocabulary trainer, daily challenges, conversations, reading and learning progress</small></div><span class="card-arrow">↗</span></a>
       <a class="feature-card course-feature" href="./conversation-academy.html" aria-label="Open Arabic Conversation Academy"><img class="feature-art" src="./conversation-academy-hero.png" alt="Arabic Conversation Academy" loading="lazy" decoding="async"><div class="feature-copy"><span class="feature-icon">💬</span><strong>Arabic Conversation Academy</strong><small>Practise Arabic conversations, listening, speaking and quizzes with Tutor Takiyudeen.</small></div><span class="card-arrow">↗</span></a>
@@ -99,6 +116,12 @@
       <a class="feature-card course-feature" href="./courses.html" aria-label="Explore structured Arabic courses"><img class="feature-art" src="./courses-photo.jpg" alt="" loading="lazy" decoding="async"><div class="feature-copy"><span class="feature-icon">🎓</span><strong>Structured Courses</strong><small>Explore Arabic courses, videos and examinations</small></div><span class="card-arrow">↗</span></a>
       <a class="feature-card course-feature" href="./books.html" aria-label="Open Premium Arabic learning books"><img class="feature-art" src="./books-photo.jpg" alt="" loading="lazy" decoding="async"><div class="feature-copy"><span class="feature-icon">📚</span><strong>Arabic Books</strong><small>Read and study Arabic learning books — Premium</small></div><span class="card-arrow">↗</span></a>
       <a class="feature-card course-feature" href="./certificate.html" aria-label="Open Arabic learning certificate"><img class="feature-art" src="./certificate-photo.jpg" alt="" loading="lazy" decoding="async"><div class="feature-copy"><span class="feature-icon">🏆</span><strong>Arabic Certificate</strong><small>Earn your certificate after passing all four course examinations — Premium</small></div><span class="card-arrow">↗</span></a>
+
+      <!-- Green cartoon-image cards intentionally grouped at the bottom of the feature grid. -->
+      <button class="feature-card" type="button" data-view="islamic"><img class="feature-art" src="./islamic-words-cover.svg" alt="" loading="lazy" decoding="async"><div class="feature-copy"><span class="feature-icon">☾</span><strong>Islamic words</strong><small>Faith, worship and expressions</small></div><span class="card-arrow">↗</span></button>
+      <button class="feature-card" type="button" data-view="lessons"><img class="feature-art" src="./mini-lessons-cover.svg" alt="" loading="lazy" decoding="async"><div class="feature-copy"><span class="feature-icon">▤</span><strong>Mini lessons</strong><small>Learn the basics step by step</small></div><span class="card-arrow">↗</span></button>
+      <button class="feature-card" type="button" data-view="quiz"><img class="feature-art" src="./quick-quiz-cover.svg" alt="" loading="lazy" decoding="async"><div class="feature-copy"><span class="feature-icon">✧</span><strong>Quick quiz</strong><small>Practise and check your progress</small></div><span class="card-arrow">↗</span></button>
+      <button class="feature-card" type="button" data-view="favorites"><img class="feature-art" src="./saved-words-cover.svg" alt="" loading="lazy" decoding="async"><div class="feature-copy"><span class="feature-icon">☆</span><strong>Saved words</strong><small>Review your own collection</small></div><span class="card-arrow">↗</span></button>
     </div>
   </section>
   <section id="viewSection" class="section" hidden>
