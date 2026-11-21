@@ -1,11 +1,15 @@
-ARABIC VIDEO LIBRARY FIX
+Arabic Video Learning — main page insertion package
 
 Files:
-1) arabic-video-library.html — replacement library page. Videos appear inside their own numbered cards, not in a top player.
-2) learn-video-section-snippet.html — feature banner snippet to place near the top of learn.html, before the existing green/cartoon feature cards.
+- arabic-video-main-section.html: section markup
+- arabic-video-main-section.css: styles
+- arabic-video-main-section.js: render and embedded-player behavior
 
-Important:
-- Only two video IDs are currently populated, the same two IDs in the previous library.
-- All other videos are intentionally disabled and labeled Video coming soon. No unverified YouTube search links or placeholder player boxes.
-- This package does not modify login, payments, premium courses, certificates, or Supabase settings.
-- To publish, upload/replace arabic-video-library.html and add the banner snippet into learn.html. The current GitHub connection returned 403 when attempting a direct write, so this package is not live yet.
+Integration:
+1. In learn.html, insert the HTML section immediately after the main hero/search section and before Extra Arabic Resource Library.
+2. Put the CSS contents inside the existing <style> block in learn.html (or include the CSS file).
+3. Put the JS contents before </body> in learn.html (or include the JS file).
+4. Keep arabic-video-banner.png in the repository root.
+5. Existing resource library and green feature cards remain below the new section.
+
+Only two video IDs are currently enabled. Lessons 3–30 remain “Video coming soon” until verified videos are assigned. Each iframe appears inside its numbered card, never in a player at the top.
