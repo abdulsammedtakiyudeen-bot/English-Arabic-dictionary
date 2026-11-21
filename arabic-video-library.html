@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#12372a"><title>Arabic Video Learning | Islamic Arabic Learning Dictionary</title>
+<link rel="stylesheet" href="./style.css">
+<style>
+.v-wrap{max-width:1000px;margin:18px auto 90px;padding:0 16px}
+.v-hero{position:relative;overflow:hidden;border-radius:22px;background:#12372a;color:white}
+.v-hero img{display:block;width:100%;height:auto;max-height:330px;object-fit:cover}
+.v-hero .hero-text{padding:18px 20px 24px}
+.v-hero h1{font-size:clamp(25px,5vw,38px);margin:5px 0}
+.v-hero p{line-height:1.6;color:#e4efe6;font-size:13px}
+.v-controls{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.v-controls button{border:1px solid #d6e0d8;background:var(--card);color:var(--ink);border-radius:99px;padding:9px 13px}
+.v-controls button.active{background:#12372a;color:white;border-color:#12372a}
+.v-progress{padding:13px;border:1px solid var(--line);border-radius:14px;background:var(--card);margin:16px 0;font-size:12px}
+.v-progress-track{height:8px;background:var(--soft);border-radius:10px;margin-top:8px;overflow:hidden}.v-progress-track span{display:block;height:100%;width:0;background:#d8b66a}
+.v-grid{display:grid;grid-template-columns:1fr;gap:11px}
+.lesson-card{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:13px;border:1px solid var(--line);border-radius:15px;background:var(--card);align-items:start}
+.lesson-card.locked{opacity:.78}
+.lesson-card .num{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:var(--soft);color:var(--green);font-weight:800}
+.card-copy{min-width:0}.card-copy h3{font-size:14px;margin:5px 0}.card-copy p{font-size:11px;line-height:1.5;color:var(--muted);margin:4px 0}
+.level{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#927329;font-weight:800}
+.access{grid-column:2;font-size:10px;font-weight:800;color:#20713a}
+.watch{grid-column:2;border:0;background:#12372a;color:white;border-radius:9px;padding:10px;font-weight:700;cursor:pointer}.watch:disabled{background:#777;cursor:not-allowed}
+#playerPanel{display:none;margin:16px 0;padding:15px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
+#playerPanel.open{display:block}.player-frame{aspect-ratio:16/9;background:#111;border-radius:12px;overflow:hidden}.player-frame iframe{width:100%;height:100%;border:0}
+#playerPanel h2{font-size:16px}.player-help{font-size:12px;color:var(--muted);line-height:1.6}
+@media(min-width:700px){.v-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lesson-card{grid-template-columns:44px 1fr}.v-hero .hero-text{max-width:740px}}
+</style>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="./learn.html"><span class="brand-mark">بِ</span><span><strong>Arabic Learning</strong><small>Islamic Arabic Learning Dictionary</small></span></a></header>
+<main class="v-wrap">
+<section class="v-hero"><img src="./arabic-video-banner.png" alt="Arabic video learning banner"><div class="hero-text"><p class="eyebrow">WATCH • LISTEN • PRACTISE</p><h1>Arabic Video Learning</h1><p>Progress from the Arabic alphabet to real conversations and advanced comprehension—step by step.</p></div></section>
+<div class="v-progress"><strong id="progressLabel">0 of 16 free lessons marked complete</strong><div class="v-progress-track"><span id="progressBar"></span></div></div>
+<div class="v-controls" aria-label="Filter lessons"><button class="active" data-filter="all">All lessons</button><button data-filter="beginner">Beginner</button><button data-filter="intermediate">Intermediate</button><button data-filter="advanced">Advanced</button></div>
+<section id="playerPanel"><h2 id="playerTitle"></h2><div class="player-frame" id="frameHolder"></div><p class="player-help" id="playerHelp"></p><button id="markComplete" class="watch">Mark as watched</button></section>
+<div class="v-grid"><article class="lesson-card" data-num="1" data-level="beginner" data-free="true" data-video="c-7SVieC_04" data-source="Arabic 101" data-source-title="How to READ ARABIC? – The alphabet – Lesson 1">
+      <div class="num">01</div><div class="card-copy"><span class="level">Beginner</span><h3>Arabic Alphabet: First Letters</h3><p>Learn the first Arabic letters and their sounds.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="2" data-level="beginner" data-free="true" data-video="2RcgfyuBlz8" data-source="LearnArabicwithMaha" data-source-title="Read & Write Arabic – Alphabet #1">
+      <div class="num">02</div><div class="card-copy"><span class="level">Beginner</span><h3>Reading Arabic: Alphabet Lesson 1</h3><p>Recognize letters and begin reading simple words.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="3" data-level="beginner" data-free="true" data-video="" data-source="" data-source-title="">
+      <div class="num">03</div><div class="card-copy"><span class="level">Beginner</span><h3>Letter Shapes at the Beginning, Middle and End</h3><p>Understand how Arabic letters change shape.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="4" data-level="beginner" data-free="true" data-video="" data-source="" data-source-title="">
+      <div class="num">04</div><div class="card-copy"><span class="level">Beginner</span><h3>Short Vowels: Fatha, Kasra and Damma</h3><p>Practise the three short vowel marks.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="5" data-level="beginner" data-free="true" data-video="" data-source="" data-source-title="">
+      <div class="num">05</div><div class="card-copy"><span class="level">Beginner</span><h3>Sukoon and Shadda</h3><p>Understand stillness and doubled consonants.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="6" data-level="beginner" data-free="true" data-video="" data-source="" data-source-title="">
+      <div class="num">06</div><div class="card-copy"><span class="level">Beginner</span><h3>Long Vowels: Alif, Waw and Ya</h3><p>Hear and read long vowel sounds.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="7" data-level="beginner" data-free="true" data-video="" data-source="" data-source-title="">
+      <div class="num">07</div><div class="card-copy"><span class="level">Beginner</span><h3>Joining Letters into Words</h3><p>Connect letters and read simple words.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="8" data-level="beginner" data-free="true" data-video="" data-source="" data-source-title="">
+      <div class="num">08</div><div class="card-copy"><span class="level">Beginner</span><h3>Arabic Pronunciation: Difficult Sounds</h3><p>Practise commonly challenging Arabic sounds.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="9" data-level="beginner" data-free="true" data-video="" data-source="" data-source-title="">
+      <div class="num">09</div><div class="card-copy"><span class="level">Beginner</span><h3>Greetings and Polite Expressions</h3><p>Learn greetings and useful responses.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="10" data-level="beginner" data-free="true" data-video="" data-source="" data-source-title="">
+      <div class="num">10</div><div class="card-copy"><span class="level">Beginner</span><h3>Introduce Yourself in Arabic</h3><p>Say your name and basic information.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="11" data-level="beginner" data-free="true" data-video="" data-source="" data-source-title="">
+      <div class="num">11</div><div class="card-copy"><span class="level">Beginner</span><h3>Numbers 1–10 and 11–20</h3><p>Build confidence with everyday numbers.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="12" data-level="beginner" data-free="true" data-video="" data-source="" data-source-title="">
+      <div class="num">12</div><div class="card-copy"><span class="level">Beginner</span><h3>Days, Months and Time</h3><p>Ask and answer simple time questions.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="13" data-level="beginner" data-free="true" data-video="" data-source="" data-source-title="">
+      <div class="num">13</div><div class="card-copy"><span class="level">Beginner</span><h3>Family and People</h3><p>Learn words for family and people.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="14" data-level="beginner" data-free="true" data-video="" data-source="" data-source-title="">
+      <div class="num">14</div><div class="card-copy"><span class="level">Beginner</span><h3>Everyday Objects and Places</h3><p>Name things around you and common places.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="15" data-level="beginner" data-free="true" data-video="" data-source="" data-source-title="">
+      <div class="num">15</div><div class="card-copy"><span class="level">Beginner</span><h3>Basic Verbs and Daily Activities</h3><p>Use simple verbs in familiar contexts.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="16" data-level="beginner" data-free="true" data-video="" data-source="" data-source-title="">
+      <div class="num">16</div><div class="card-copy"><span class="level">Beginner</span><h3>Simple Questions and Answers</h3><p>Practise what, who, where and how.</p></div>
+      <span class="access">FREE</span>
+      <button class="watch" type="button" > Watch lesson </button>
+    </article>
+<article class="lesson-card" data-num="17" data-level="intermediate" data-free="false" data-video="" data-source="" data-source-title="">
+      <div class="num">17</div><div class="card-copy"><span class="level">Intermediate</span><h3>Personal Pronouns</h3><p>Use pronouns in simple sentence patterns.</p></div>
+      <span class="access">PREMIUM 🔒</span>
+      <button class="watch" type="button" disabled> Premium lesson </button>
+    </article>
+<article class="lesson-card" data-num="18" data-level="intermediate" data-free="false" data-video="" data-source="" data-source-title="">
+      <div class="num">18</div><div class="card-copy"><span class="level">Intermediate</span><h3>Masculine and Feminine</h3><p>Recognize gender patterns in nouns and adjectives.</p></div>
+      <span class="access">PREMIUM 🔒</span>
+      <button class="watch" type="button" disabled> Premium lesson </button>
+    </article>
+<article class="lesson-card" data-num="19" data-level="intermediate" data-free="false" data-video="" data-source="" data-source-title="">
+      <div class="num">19</div><div class="card-copy"><span class="level">Intermediate</span><h3>Demonstratives: This and That</h3><p>Use هذا and هذه in basic sentences.</p></div>
+      <span class="access">PREMIUM 🔒</span>
+      <button class="watch" type="button" disabled> Premium lesson </button>
+    </article>
+<article class="lesson-card" data-num="20" data-level="intermediate" data-free="false" data-video="" data-source="" data-source-title="">
+      <div class="num">20</div><div class="card-copy"><span class="level">Intermediate</span><h3>Adjectives and Agreement</h3><p>Describe people and objects.</p></div>
+      <span class="access">PREMIUM 🔒</span>
+      <button class="watch" type="button" disabled> Premium lesson </button>
+    </article>
+<article class="lesson-card" data-num="21" data-level="intermediate" data-free="false" data-video="" data-source="" data-source-title="">
+      <div class="num">21</div><div class="card-copy"><span class="level">Intermediate</span><h3>Present-Tense Verbs</h3><p>Build common present-tense sentences.</p></div>
+      <span class="access">PREMIUM 🔒</span>
+      <button class="watch" type="button" disabled> Premium lesson </button>
+    </article>
+<article class="lesson-card" data-num="22" data-level="intermediate" data-free="false" data-video="" data-source="" data-source-title="">
+      <div class="num">22</div><div class="card-copy"><span class="level">Intermediate</span><h3>Past-Tense Verbs</h3><p>Talk about completed actions.</p></div>
+      <span class="access">PREMIUM 🔒</span>
+      <button class="watch" type="button" disabled> Premium lesson </button>
+    </article>
+<article class="lesson-card" data-num="23" data-level="intermediate" data-free="false" data-video="" data-source="" data-source-title="">
+      <div class="num">23</div><div class="card-copy"><span class="level">Intermediate</span><h3>Prepositions and Place</h3><p>Describe where things are.</p></div>
+      <span class="access">PREMIUM 🔒</span>
+      <button class="watch" type="button" disabled> Premium lesson </button>
+    </article>
+<article class="lesson-card" data-num="24" data-level="intermediate" data-free="false" data-video="" data-source="" data-source-title="">
+      <div class="num">24</div><div class="card-copy"><span class="level">Intermediate</span><h3>Everyday Conversations in Fusha</h3><p>Follow short practical conversations.</p></div>
+      <span class="access">PREMIUM 🔒</span>
+      <button class="watch" type="button" disabled> Premium lesson </button>
+    </article>
+<article class="lesson-card" data-num="25" data-level="advanced" data-free="false" data-video="" data-source="" data-source-title="">
+      <div class="num">25</div><div class="card-copy"><span class="level">Advanced</span><h3>Sentence Building and Word Order</h3><p>Combine ideas into clearer sentences.</p></div>
+      <span class="access">PREMIUM 🔒</span>
+      <button class="watch" type="button" disabled> Premium lesson </button>
+    </article>
+<article class="lesson-card" data-num="26" data-level="advanced" data-free="false" data-video="" data-source="" data-source-title="">
+      <div class="num">26</div><div class="card-copy"><span class="level">Advanced</span><h3>Listening Comprehension: Slow Fusha</h3><p>Train comprehension using careful speech.</p></div>
+      <span class="access">PREMIUM 🔒</span>
+      <button class="watch" type="button" disabled> Premium lesson </button>
+    </article>
+<article class="lesson-card" data-num="27" data-level="advanced" data-free="false" data-video="" data-source="" data-source-title="">
+      <div class="num">27</div><div class="card-copy"><span class="level">Advanced</span><h3>Reading Short Paragraphs</h3><p>Read and understand connected Arabic text.</p></div>
+      <span class="access">PREMIUM 🔒</span>
+      <button class="watch" type="button" disabled> Premium lesson </button>
+    </article>
+<article class="lesson-card" data-num="28" data-level="advanced" data-free="false" data-video="" data-source="" data-source-title="">
+      <div class="num">28</div><div class="card-copy"><span class="level">Advanced</span><h3>Verb Patterns and Root Words</h3><p>Notice common patterns and word families.</p></div>
+      <span class="access">PREMIUM 🔒</span>
+      <button class="watch" type="button" disabled> Premium lesson </button>
+    </article>
+<article class="lesson-card" data-num="29" data-level="advanced" data-free="false" data-video="" data-source="" data-source-title="">
+      <div class="num">29</div><div class="card-copy"><span class="level">Advanced</span><h3>Longer Conversations and Responses</h3><p>Understand longer exchanges and respond.</p></div>
+      <span class="access">PREMIUM 🔒</span>
+      <button class="watch" type="button" disabled> Premium lesson </button>
+    </article>
+<article class="lesson-card" data-num="30" data-level="advanced" data-free="false" data-video="" data-source="" data-source-title="">
+      <div class="num">30</div><div class="card-copy"><span class="level">Advanced</span><h3>Advanced Listening and Comprehension</h3><p>Review and strengthen independent comprehension.</p></div>
+      <span class="access">PREMIUM 🔒</span>
+      <button class="watch" type="button" disabled> Premium lesson </button>
+    </article></div>
+<p class="player-help">Premium lessons are reserved for active Premium members. The video catalogue is designed for Modern Standard Arabic (Fusha). The two embedded videos currently have verified IDs; remaining videos require source verification before embedding.</p>
+<p><a href="./learn.html">← Back to learning home</a></p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./config.js"></script>
+<script>
+(async()=>{
+const cards=[...document.querySelectorAll('.lesson-card')], panel=document.querySelector('#playerPanel');
+const key='iald_video_library_progress_v1', completed=new Set(JSON.parse(localStorage.getItem(key)||'[]'));
+function update(){const count=[...completed].filter(n=>n<=16).length;document.querySelector('#progressLabel').textContent=count+' of 16 free lessons marked complete';document.querySelector('#progressBar').style.width=(count/16*100)+'%';cards.forEach(c=>{if(completed.has(+c.dataset.num))c.classList.add('done')})}
+update();
+let premium=false;
+try{const client=window.supabase?.createClient(window.SUPABASE_URL,window.SUPABASE_PUBLISHABLE_KEY);const {data:{user}}=await client.auth.getUser();if(user){const {data}=await client.from('profiles').select('membership,premium_until').eq('id',user.id).maybeSingle();premium=!!data&&data.membership==='premium'&&Date.parse(data.premium_until)>Date.now()}}catch(_){}
+cards.forEach(card=>{const n=+card.dataset.num;if(n>16&&!premium){card.classList.add('locked');const b=card.querySelector('.watch');b.disabled=true;b.textContent='Premium · Upgrade';b.onclick=()=>location.href='./premium.html';return}
+card.querySelector('.watch').addEventListener('click',()=>{
+panel.classList.add('open');panel.scrollIntoView({behavior:'smooth',block:'start'});
+document.querySelector('#playerTitle').textContent=n+'. '+card.querySelector('h3').textContent;
+const holder=document.querySelector('#frameHolder');holder.replaceChildren();
+const id=card.dataset.video;
+if(id){const iframe=document.createElement('iframe');iframe.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?rel=0';iframe.title=card.querySelector('h3').textContent;iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';iframe.allowFullscreen=true;holder.append(iframe);document.querySelector('#playerHelp').textContent='Video source: '+card.dataset.source+' — '+card.dataset.sourceTitle;}
+else{holder.innerHTML='<div style="height:100%;display:grid;place-items:center;color:white;text-align:center;padding:20px">Video source is being verified. <br>Use the search link below meanwhile.</div>';const a=document.createElement('a');a.href='https://www.youtube.com/results?search_query='+encodeURIComponent('Arabic Fusha lesson '+card.querySelector('h3').textContent);a.target='_blank';a.rel='noopener';a.textContent='Find lesson videos on YouTube';a.className='watch';a.style.display='inline-block';a.style.marginTop='10px';document.querySelector('#playerHelp').replaceChildren(a);}
+document.querySelector('#markComplete').onclick=()=>{completed.add(n);localStorage.setItem(key,JSON.stringify([...completed]));update();document.querySelector('#playerHelp').textContent='Lesson marked as watched. Keep practising!';};
+});
+});
+document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');cards.forEach(c=>c.style.display=(b.dataset.filter==='all'||c.dataset.level===b.dataset.filter)?'grid':'none')}));
+})();
+</script>
+</body></html>
