@@ -22,3 +22,23 @@
 .tk-panel {
   z-index: 110;
 }
+/* Keep chatbot above the bottom navigation */
+.tk-launch {
+  bottom: 130px !important;
+}
+
+.tk-panel {
+  bottom: 210px !important;
+  max-height: calc(100vh - 240px);
+}
+
+@media (max-width: 480px) {
+  .tk-launch {
+    bottom: 130px !important;
+  }
+
+  .tk-panel {
+    bottom: 210px !important;
+    height: min(560px, calc(100vh - 240px));
+  }
+}
