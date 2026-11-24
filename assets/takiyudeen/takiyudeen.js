@@ -78,7 +78,7 @@
   }
     
   
-  }
+
 
   async function getToken() {
     if (typeof cfg.getAccessToken === "function") return await cfg.getAccessToken();
