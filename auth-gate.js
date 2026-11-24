@@ -37,6 +37,7 @@
           detectSessionInUrl: true
         } }
     );
+     window.__supabaseClient = client;
     const result = await Promise.race([
       client.auth.getSession(),
       new Promise((_, reject) => { timeout = setTimeout(() => reject(new Error('timeout')), 8000); })
