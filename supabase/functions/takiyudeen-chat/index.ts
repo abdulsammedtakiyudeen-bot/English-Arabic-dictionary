@@ -68,7 +68,11 @@ function answerQuestion(raw: string): string {
       "الْحَمْدُ لِلَّهِ (Alḥamdulillāh) means 'All praise belongs to Allah.'"],
     [/\b(allahu akbar)\b|الله أكبر/,
       "اللَّهُ أَكْبَرُ (Allāhu Akbar) means 'Allah is the Greatest.'"],
-
+     
+    //Pronouns
+        [/\b(pronouns?|arabic pronouns?|personal pronouns?|teach me.*pronouns|ana|anta|anti|huwa|hiya|nahnu|antum)\b|أنا|أنت|هو|هي|نحن/,
+      "Here are the basic Arabic personal pronouns:\n\nأَنَا (anā) — I\nنَحْنُ (naḥnu) — We\nأَنْتَ (anta) — You (masculine)\nأَنْتِ (anti) — You (feminine)\nأَنْتُمْ (antum) — You (plural)\nهُوَ (huwa) — He\nهِيَ (hiya) — She\nهُمْ (hum) — They (masculine or mixed group)\n\nExample: أَنَا طَالِبٌ — I am a male student.\nExample: أَنَا طَالِبَةٌ — I am a female student.\n\nWould you like to practise Arabic pronouns?"],
+    
     // Arabic vocabulary
     [/\b(kitab|kitaab|book)\b|كتاب/,
       "كِتَابٌ (kitābun) means 'a book.' Example: هٰذَا كِتَابٌ — This is a book."],
