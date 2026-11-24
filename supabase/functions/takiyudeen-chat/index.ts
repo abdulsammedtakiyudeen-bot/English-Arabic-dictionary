@@ -22,14 +22,8 @@ function answerQuestion(raw: string): string {
       "I am TAKIYUDEEN, your Arabic and Islamic learning assistant from Arabic Learning Dictionary. I can help you learn Arabic vocabulary, grammar, greetings and basic Islamic knowledge. What would you like to learn?"],
 
     // Greetings
-    [/\b(hello|hi|hey|assalamu|salaam|salam)\b|السلام عليكم/,
-      "Wa ʿalaykum as-salām! وَعَلَيْكُمُ السَّلَامُ. Welcome! Would you like to learn Arabic or explore basic Islamic knowledge?"],
-    [/\b(thank you|thanks|shukran)\b|شكرا/,
-      "You're welcome! عَفْوًا (ʿafwan) means 'you're welcome.'"],
-    [/\b(good morning)\b/,
-      "صَبَاحُ الْخَيْرِ (ṣabāḥ al-khayr) means 'Good morning.' A common reply is صَبَاحُ النُّورِ (ṣabāḥ an-nūr)."],
-    [/\b(goodbye|bye|see you)\b/,
-      "مَعَ السَّلَامَةِ (maʿa as-salāmah) means 'Goodbye' or 'Go in peace.'"],
+         [/\\b(islamic greetings|arabic greetings|teach me.*greetings|greetings in arabic|how to greet in arabic)\\b/,
+      "Here are some common Arabic and Islamic greetings:\\n\\n1. السَّلَامُ عَلَيْكُمْ (As-salāmu ʿalaykum) — Peace be upon you.\\n2. وَعَلَيْكُمُ السَّلَامُ (Wa ʿalaykumu s-salām) — And peace be upon you too.\\n3. صَبَاحُ الْخَيْرِ (Ṣabāḥ al-khayr) — Good morning.\\n4. صَبَاحُ النُّورِ (Ṣabāḥ an-nūr) — Good morning (reply).\\n5. مَسَاءُ الْخَيْرِ (Masāʾ al-khayr) — Good evening.\\n6. مَعَ السَّلَامَةِ (Maʿa as-salāmah) — Goodbye.\\n\\nRemember: Muslims commonly greet one another with As-salāmu ʿalaykum."],
 
     // Five Pillars
     [/\b(five pillars|pillars of islam)\b/,
