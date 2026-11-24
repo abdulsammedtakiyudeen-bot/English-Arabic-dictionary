@@ -1,64 +1,97 @@
-# Islamic Arabic Learning Dictionary
-**By Dev. Takiyudeen**
+# TAKIYUDEEN — Arabic Learning Dictionary chatbot add-on
 
-A responsive English–Arabic vocabulary and Islamic Arabic learning PWA designed for mobile and desktop.
+This package adds a small, programmed (not AI-powered) Arabic and basic Islamic learning chatbot. It is intentionally separate from your existing website files so it does not replace your login, lessons, payment pages, or other features.
 
-## Files in this repository root
-- `index.html` — app interface and navigation
-- `style.css` — responsive green-and-gold theme
-- `app.js` — dictionary search, saved words, learned-word tracking, daily word, mini lessons, quiz, Arabic speech, optional online lookup
-- `arabic-words.json` — bundled vocabulary data (offline dictionary)
-- `manifest.json` — PWA metadata
-- `service-worker.js` — offline caching and cache versioning
-- `icon.svg` — app icon
-- `privacy.html` — privacy notice
+## Included
 
-## Publish with GitHub Pages
-1. Upload these files directly into the repository root (the same level as `index.html`).
-2. In GitHub, open **Settings → Pages** and choose the `main` branch and `/ (root)` folder if Pages is not already enabled.
-3. Open the published HTTPS URL. Service workers require HTTPS (or localhost); they do not run from a local `file://` path.
+- Floating **Ask TAKIYUDEEN** button and responsive chat panel.
+- English and Arabic starter questions.
+- Greetings, vocabulary, pronouns, numbers and beginner grammar.
+- Basic Islamic learning notes and cautious handling of religious rulings.
+- Signed-in Supabase users only.
+- Free members: 10 questions per Ghana-local calendar day.
+- Premium members: unlimited questions while their Premium membership is active.
+- Server-side membership and daily-limit checks.
 
-## Important fixes in this edition
-- All references use the actual root paths. The vocabulary loads from `./arabic-words.json`; the icon is `./icon.svg`.
-- The service worker cache was bumped to `iald-cache-v3` and uses the same real paths.
-- The manifest uses the correct icon path and sets the app scope.
-- The dictionary file is validated before rendering, and the built-in dictionary is used as a fallback if the JSON file cannot be loaded.
-- HTML text from dictionary entries is escaped before being inserted into the page.
-- The quiz avoids repeating the same answer within one question and tracks correct answers.
-- Favourites, learned words, theme choice, quiz count, and saved online entries persist in local storage.
-- Online translation is explicitly optional and marked as machine-generated and unverified.
-- No active ads, subscriptions, payment service, or account system are included.
+## Important: this is a programmed chatbot
 
-## Notes
-- Offline vocabulary is bundled locally. Optional online lookup requires internet and a third-party service, so it may fail or return incorrect translations.
-- Arabic speech depends on speech synthesis and the Arabic voices available on the user's device.
-- Browser storage is device/browser-specific and is not cloud-synced.
-- Review the privacy notice and test the published site on the devices you plan to support before a Play Store release.
+It uses a small built-in answer bank. It does not use an AI model, browse the internet, or understand every possible question. Unknown questions receive a helpful fallback message.
 
+## 1. Supabase database
 
-## Expanded learning release v7
-- Expanded Arabic-English vocabulary with word forms and practical phrases organised by category.
-- 40 detailed lessons with Arabic examples, transliteration, notes, English summaries, and listening buttons.
-- Offline cache version bumped to v7.
-- Vocabulary includes Modern Standard Arabic and Islamic learning terms; specialised meanings should be checked against reliable references.
+You already ran the SQL that creates `chatbot_daily_usage` and `consume_chatbot_question(UUID, INTEGER)`. This Edge Function expects that function to exist and be executable by `service_role`.
 
+The function checks your existing `profiles` table for `membership` and `premium_until`. It assumes Premium membership is stored as `membership = 'premium'` and that `premium_until` is either NULL (no expiry recorded) or a future timestamp. If your actual values differ, adjust the check in `index.ts` before deploying.
 
-## Welcome page update (v8)
-The site now opens at `index.html`, a welcome page with a “Continue my Arabic learning journey” button. That button opens `learn.html`, which contains the dictionary application. `welcome.css` styles the landing page. The service worker cache is `iald-cache-v8`. Upload all files in this ZIP to the repository root, replacing files with the same names.
+## 2. Add the Edge Function
 
+Copy this folder into your existing Supabase project:
 
-## Welcome and guided course (v9)
-- `index.html` is the welcome page. “Start learning now” opens `guide.html`, then `explore.html`, then `learn.html`.
-- Mini Lessons displays a 20-section sequential course. Only the first section is available at the start.
-- A learner opens a section, studies the notes and vocabulary, then taps the next-section button and confirms completion. Confirmed progress unlocks the next section and is stored in this browser.
-- Section progress is local to the device/browser and is not an online account sync.
+`supabase/functions/takiyudeen-chat/`
 
-## Content expansion and installation update (v12)
-- Added `learning-center.html`, a structured learning path with eight guided modules covering the Arabic writing direction and letter forms, short vowels, greetings, pronouns, demonstratives, nominal sentences, present-tense verbs, and selected Islamic/Qur'anic vocabulary.
-- Each module includes learning objectives, lesson notes, Arabic examples, transliteration, English meanings, optional device speech, and a short comprehension check.
-- First five modules are available in the free path; the final three are presented as Premium modules based on the signed-in profile membership and expiry fields already used by the site. This is a front-end access presentation, not a substitute for server-side content protection.
-- Lesson completion is stored locally in this browser. It is not synced to Supabase and does not alter the existing course examination or certificate records.
-- Added a dismissible PWA installation prompt and install button on the welcome, dictionary and new learning-path pages. Browser/device support determines whether the native install dialog is available; other browsers receive home-screen instructions.
-- Updated the service-worker cache name to `iald-cache-v12` and added the new learning and installation assets.
-- Existing Supabase config, authentication, Paystack integration, existing courses, examination logic and certificate files were not intentionally modified.
-- Advertisement containers remain placeholders: no ad-network script or live ads are added by this update. Premium members have the placeholders hidden when membership can be verified; a compliant ad provider must be configured separately before ads can actually display.
+Deploy it using your normal Supabase deployment process. The function uses the Supabase environment variables available to Edge Functions. The service-role key stays on the server and is never placed in browser JavaScript.
+
+If your project has changed to the newer API-key setup, verify the legacy `SUPABASE_ANON_KEY` and `SUPABASE_SERVICE_ROLE_KEY` variables are available, or update the function to use your project's current key environment variables.
+
+## 3. Add the widget to the website
+
+Copy these two files into a new folder in your website, for example:
+
+- `assets/takiyudeen/takiyudeen.css`
+- `assets/takiyudeen/takiyudeen.js`
+
+Then add this just before `</body>` on the page where you want the assistant to appear:
+
+```html
+<div id="takiyudeen-root"></div>
+<link rel="stylesheet" href="/assets/takiyudeen/takiyudeen.css">
+
+<script>
+  window.TAKIYUDEEN_CONFIG = {
+    supabaseUrl: "https://YOUR_PROJECT_REF.supabase.co",
+    getAccessToken: async () => {
+      // Replace `supabase` below with the name of the Supabase client
+      // already initialized by your website's existing JavaScript.
+      const { data: { session } } = await supabase.auth.getSession();
+      return session?.access_token || null;
+    }
+  };
+</script>
+<script src="/assets/takiyudeen/takiyudeen.js" defer></script>
+```
+
+Use your existing Supabase client. Do not create a second auth system just for the chatbot. If your client variable is not named `supabase`, change that one reference to the actual variable name.
+
+The project URL is not a secret. Never paste a service-role key into HTML, JavaScript, GitHub Pages, or any browser-visible file.
+
+## 4. Membership and testing
+
+1. Sign in to the website with a normal Free account.
+2. Open the chat and ask a simple question, such as `What does kitāb mean?`.
+3. Confirm the status line shows the remaining daily allowance.
+4. Test with a Premium account whose `profiles.membership` is `premium` and whose `premium_until` is NULL or in the future.
+5. Confirm Premium users are not charged against the daily counter.
+
+Do not test by changing real customer membership records. Use your own test account.
+
+## 5. Before going live
+
+- Confirm the exact Premium values in your `profiles` table.
+- Confirm the Edge Function deploys successfully.
+- Test logged-out, Free, expired Premium, and active Premium states.
+- Add the widget to one page first. After it works, add it to other pages if desired.
+- Keep a backup of the current website ZIP before changing any live files.
+
+## Folder layout
+
+```text
+TAKIYUDEEN-chatbot/
+  README.md
+  widget/
+    takiyudeen.css
+    takiyudeen.js
+  supabase/
+    functions/
+      takiyudeen-chat/
+        index.ts
+```
