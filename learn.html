@@ -156,17 +156,11 @@
   window.TAKIYUDEEN_CONFIG = {
     supabaseUrl: window.SUPABASE_URL,
     getAccessToken: async function () {
-      const client = window.supabase.createClient(
-        window.SUPABASE_URL,
-        window.SUPABASE_PUBLISHABLE_KEY,
-        {
-          auth: {
-            storage: window.localStorage,
-            persistSession: true,
-            autoRefreshToken: true
-          }
-        }
-      );
+      const client = window.__supabaseClient;
+
+      if (!client) {
+        throw new Error("Your account session is still loading. Please refresh and try again.");
+      }
 
       const { data, error } = await client.auth.getSession();
 
@@ -176,6 +170,7 @@
   };
 </script>
 <script src="./assets/takiyudeen/takiyudeen.js" defer></script>
+  
   
 <script src="./install-app.js" defer></script>
 </body>
