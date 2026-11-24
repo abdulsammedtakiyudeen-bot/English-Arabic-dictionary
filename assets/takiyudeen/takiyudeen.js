@@ -107,6 +107,7 @@
       const data = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(data.error || "The assistant could not answer right now.");
       addMessage(data.answer || "I couldn't prepare an answer. Please try another question.", "bot");
+addChoices(question);
       if (typeof data.remaining === "number") {
         status.textContent = data.premium ? "Premium access: unlimited questions." :
           `Free questions remaining today: ${data.remaining} of ${limit}.`;
