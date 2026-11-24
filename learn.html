@@ -151,6 +151,32 @@
 </footer>
 <script src="./app.js" defer></script>
 <script src="./promo.js" defer></script>
+  
+<script>
+  window.TAKIYUDEEN_CONFIG = {
+    supabaseUrl: window.SUPABASE_URL,
+    getAccessToken: async function () {
+      const client = window.supabase.createClient(
+        window.SUPABASE_URL,
+        window.SUPABASE_PUBLISHABLE_KEY,
+        {
+          auth: {
+            storage: window.localStorage,
+            persistSession: true,
+            autoRefreshToken: true
+          }
+        }
+      );
+
+      const { data, error } = await client.auth.getSession();
+
+      if (error) throw error;
+      return data.session?.access_token || null;
+    }
+  };
+</script>
+<script src="./assets/takiyudeen/takiyudeen.js" defer></script>
+  
 <script src="./install-app.js" defer></script>
 </body>
 </html>
