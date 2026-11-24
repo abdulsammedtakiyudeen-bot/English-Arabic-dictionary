@@ -36,6 +36,46 @@
     el.textContent = text;
     messages.appendChild(el);
     messages.scrollTop = messages.scrollHeight;
+    
+  function addChoices(question) {
+    const q = question.toLowerCase();
+    let choices = [];
+
+    if (/salah|salat|prayer/.test(q)) {
+      choices = ["Teach me the five daily prayers", "What is Wudu?", "What are the Five Pillars of Islam?"];
+    } else if (/wudu|ablution/.test(q)) {
+      choices = ["What is Salah?", "Teach me the Five Pillars of Islam"];
+    } else if (/five pillars|pillars of islam/.test(q)) {
+      choices = ["What is Shahadah?", "What is Zakat?", "What is Hajj?"];
+    } else if (/ramadan|fasting|sawm/.test(q)) {
+      choices = ["What is Zakat?", "What is Salah?", "What is the Qur'an?"];
+    } else if (/arabic|alphabet|letters/.test(q)) {
+      choices = ["Teach me Arabic numbers", "Teach me Arabic pronouns", "Teach me Arabic greetings"];
+    } else if (/number|count/.test(q)) {
+      choices = ["Teach me Arabic letters", "Teach me Arabic pronouns"];
+    } else {
+      choices = ["Teach me Arabic greetings", "What are the Five Pillars of Islam?", "What is Salah?"];
+    }
+
+    const area = document.createElement("div");
+    area.className = "tk-choices";
+
+    choices.forEach((choice) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "tk-choice";
+      button.textContent = choice;
+      button.addEventListener("click", () => {
+        input.value = choice;
+        form.requestSubmit();
+      });
+      area.appendChild(button);
+    });
+
+    messages.appendChild(area);
+    messages.scrollTop = messages.scrollHeight;
+                                    }
+    
   }
 
   async function getToken() {
