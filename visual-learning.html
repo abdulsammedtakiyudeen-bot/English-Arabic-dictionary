@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#12372a">
+<meta name="description" content="Visual Arabic learning with picture vocabulary, flashcards, listening, games and guided practice.">
+<title>Visual Arabic Learning Studio | Arabic Learning Dictionary</title>
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./visual-learning.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./config.js"></script>
+</head>
+<body>
+<header class="vl-top">
+  <a class="vl-brand" href="./learn.html"><span class="vl-mark">بِ</span><span><b>Arabic Learning</b><small>Visual Learning Studio</small></span></a>
+  <a class="vl-back" href="./learn.html">← Main learning page</a>
+</header>
+<main class="vl-wrap">
+  <section class="vl-hero">
+    <div>
+      <p class="vl-kicker">SEE IT · HEAR IT · PRACTISE IT</p>
+      <h1>Learn Arabic<br><em>the interactive way.</em></h1>
+      <p>Explore pictures, listen to Arabic words, flip flashcards and practise with quick learning games.</p>
+      <div class="vl-hero-actions"><a href="#free-zone" class="vl-btn vl-btn-gold">Start learning</a><a href="#premium-zone" class="vl-btn vl-btn-glass">Explore Premium</a></div>
+    </div>
+    <div class="vl-hero-art" aria-hidden="true">
+      <div class="vl-orbit vl-orbit-one"></div><div class="vl-orbit vl-orbit-two"></div>
+      <div class="vl-book">ا<br><span>ب</span><br>ت</div>
+      <div class="vl-float vl-float-one">📚</div><div class="vl-float vl-float-two">🎧</div><div class="vl-float vl-float-three">🌟</div>
+    </div>
+  </section>
+
+  <section class="vl-progress" aria-live="polite">
+    <div><span class="vl-kicker">YOUR LEARNING JOURNEY</span><strong id="progress-label">Start your first activity</strong></div>
+    <div class="vl-progress-track"><span id="progress-fill"></span></div>
+    <small id="progress-count">0 activities completed</small>
+  </section>
+
+  <section id="free-zone" class="vl-section">
+    <div class="vl-heading"><div><span class="vl-kicker">OPEN TO EVERY LEARNER</span><h2>Free Learning Zone</h2><p>Build a strong foundation with visual activities anyone can enjoy.</p></div><span class="vl-pill vl-pill-free">FREE</span></div>
+    <div class="vl-grid">
+      <article class="vl-card vl-card-feature">
+        <div class="vl-illustration vl-letters"><span>أ</span><span>ب</span><span>ت</span><i>Arabic alphabet</i></div>
+        <div class="vl-card-body"><span class="vl-tag">READING</span><h3>Arabic Letters & Sounds</h3><p>Explore the alphabet, hear letter names and practise recognising letter shapes.</p><a class="vl-text-link" href="./learning-center.html">Open reading course →</a></div>
+      </article>
+      <article class="vl-card">
+        <div class="vl-illustration vl-objects"><span>🏠</span><span>📖</span><span>✏️</span><i>Everyday objects</i></div>
+        <div class="vl-card-body"><span class="vl-tag">PICTURE VOCABULARY</span><h3>Learn Words Through Pictures</h3><p>Connect familiar objects with Arabic words, meanings and audio.</p><button class="vl-text-link" data-open="picture-words">Explore picture words →</button></div>
+      </article>
+      <article class="vl-card">
+        <div class="vl-illustration vl-cards"><span>قَلَمٌ</span><b>↻</b><i>Flip and remember</i></div>
+        <div class="vl-card-body"><span class="vl-tag">FLASHCARDS</span><h3>Flip-and-Learn Cards</h3><p>Reveal meanings and test your memory with beginner vocabulary.</p><button class="vl-text-link" data-open="flashcards">Start flashcards →</button></div>
+      </article>
+      <article class="vl-card">
+        <div class="vl-illustration vl-game"><span>🧩</span><span>🎯</span><i>Play to practise</i></div>
+        <div class="vl-card-body"><span class="vl-tag">MINI GAME</span><h3>Match the Arabic Word</h3><p>Choose the correct Arabic word for a picture and get instant feedback.</p><button class="vl-text-link" data-open="matching">Play matching game →</button></div>
+      </article>
+      <article class="vl-card">
+        <div class="vl-illustration vl-audio"><span>🎧</span><span>مَرْحَبًا</span><i>Listen and repeat</i></div>
+        <div class="vl-card-body"><span class="vl-tag">LISTENING</span><h3>Listen & Speak</h3><p>Hear beginner words and practise saying them aloud at your own pace.</p><button class="vl-text-link" data-open="listening">Practise listening →</button></div>
+      </article>
+      <article class="vl-card">
+        <div class="vl-illustration vl-story"><span>💬</span><span>أَهْلًا</span><i>Little conversations</i></div>
+        <div class="vl-card-body"><span class="vl-tag">CONVERSATION</span><h3>Illustrated Conversations</h3><p>Practise greetings and useful everyday exchanges with translations.</p><a class="vl-text-link" href="./conversation-academy.html">Open Conversation Academy →</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="activity-panel" class="vl-activity" hidden aria-live="polite">
+    <div class="vl-activity-head"><div><span class="vl-kicker">PRACTISE NOW</span><h2 id="activity-title">Activity</h2></div><button id="close-activity" class="vl-close" type="button" aria-label="Close activity">×</button></div>
+    <div id="activity-content"></div>
+  </section>
+
+  <section id="premium-zone" class="vl-section vl-premium-section">
+    <div class="vl-heading"><div><span class="vl-kicker">GO FURTHER WITH PREMIUM</span><h2>Premium Learning Zone</h2><p>More depth, more guided practice and a richer learning journey.</p></div><span class="vl-pill vl-pill-premium">⭐ PREMIUM</span></div>
+    <div class="vl-premium-grid">
+      <article class="vl-premium-card" data-premium-card><span class="vl-premium-icon">🧠</span><div><h3>Advanced Grammar Visuals</h3><p>Detailed sentence diagrams, verb patterns and guided grammar exercises.</p></div><span class="vl-lock">🔒 Premium</span></article>
+      <article class="vl-premium-card" data-premium-card><span class="vl-premium-icon">🗺️</span><div><h3>Themed Vocabulary Packs</h3><p>Expanded picture vocabulary for travel, school, family, food and daily life.</p></div><span class="vl-lock">🔒 Premium</span></article>
+      <article class="vl-premium-card" data-premium-card><span class="vl-premium-icon">📝</span><div><h3>Guided Assessments</h3><p>Topic tests, revision challenges, explanations and progress review.</p></div><span class="vl-lock">🔒 Premium</span></article>
+      <article class="vl-premium-card" data-premium-card><span class="vl-premium-icon">🎓</span><div><h3>Structured Courses & Certificates</h3><p>Continue through the existing premium course and certificate pathway.</p></div><span class="vl-lock">🔒 Premium</span></article>
+    </div>
+    <div class="vl-premium-cta" id="premium-cta"><div><strong id="premium-status">Unlock the complete learning experience</strong><p id="premium-copy">Free learners can explore the activities above. Premium members get access to the existing advanced courses and study resources.</p></div><a class="vl-btn vl-btn-gold" id="premium-link" href="./premium.html">View Premium plans →</a></div>
+  </section>
+
+  <section class="vl-note"><strong>Learn carefully and confidently</strong><p>Pronunciation audio uses your device's available Arabic speech voice when supported. Translations are learning aids; consult qualified teachers and reliable references for advanced grammar and religious interpretation.</p></section>
+</main>
+<footer class="vl-footer">Created by Dev. Takiyudeen · <a href="./about.html">About</a> · <a href="./contact.html">Contact</a> · <a href="./privacy.html">Privacy</a></footer>
+<script src="./visual-learning.js" defer></script>
+</body>
+</html>
